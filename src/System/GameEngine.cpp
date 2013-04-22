@@ -7,11 +7,53 @@
 
 #include "GameEngine.h"
 #include "../Util/Constants.h"
+#include "../Levelmap/Map.h"
+#include "../Levelmap/InputController.h"
+#include <iostream>
 using namespace std;
 
 GameEngine::GameEngine() {
-  _gameWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_COLOR_DEPTH),
+  gameWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_COLOR_DEPTH),
                      GAME_LABEL + " " + VERSION_NUM);
+
+  gameWindow.setFramerateLimit(60);
+  gameWindow.setVerticalSyncEnabled(true);
+
+  loadDebug();
+
+  gameCam.SetWindow(getWindow());
+  gameWindow.setView(*(gameCam.GetView()));
+}
+
+void GameEngine::loadDebug() {
+  gameRes.addResource(TILE_KEY, TILE_ROCK);
+  gameRes.addResource(TILE_HIGH_KEY, TILE_HIGH);
 }
 
 
+void GameEngine::runEngine() {
+  Map testboard(getEngine());
+  testboard.setDimensions(3,6);
+  InputController input(getEngine());
+  input.setMap(&testboard);
+  input.setCurrentCell(1,3);
+
+  gameWindow.setView(*(gameCam.GetView()));
+
+  while (gameWindow.isOpen()) {
+    sf::Event ev;
+
+    while (gameWindow.pollEvent(ev)) {
+          if (ev.type == sf::Event::Closed)
+            gameWindow.close();
+    }
+
+    gameWindow.clear();
+    input.update();
+    testboard.render();
+    input.render();
+
+    gameWindow.display();
+  }
+
+}

@@ -41,7 +41,7 @@ public:
   float getElapsedTime();
 
 private:
-  sf::Clock* _internalclock;
+  sf::Clock _internalclock;
 
   float _breaktime;
   bool _paused;

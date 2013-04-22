@@ -9,13 +9,11 @@
 using namespace std;
 
 FormatClock::FormatClock() {
-  _internalclock = new sf::Clock();
   _paused = false;
   _breaktime = 0;
 }
 
 FormatClock::~FormatClock() {
-  delete _internalclock;
 }
 
 bool FormatClock::isPaused() {
@@ -29,15 +27,16 @@ bool FormatClock::isPaused() {
 }
 
 void FormatClock::setBreakTime() {
-  _breaktime = _internalclock->getElapsedTime().asSeconds();
+  //_breaktime = _internalclock->getElapsedTime().asSeconds();
 }
 
 float FormatClock::timeSinceBreak() {
-  return (_internalclock->getElapsedTime().asSeconds() - _breaktime);
+  //return (_internalclock->getElapsedTime().asSeconds() - _breaktime);
+  return 1.0;
 }
 
 string FormatClock::getFormatTime() {
-  float _currenttime = _internalclock->getElapsedTime().asSeconds();
+  float _currenttime = _internalclock.getElapsedTime().asSeconds();
 
   int _hours = (int) floor(_currenttime / 3600);
 
@@ -53,9 +52,9 @@ string FormatClock::getFormatTime() {
 }
 
 float FormatClock::getElapsedTime() {
-  return _internalclock->getElapsedTime().asSeconds();
+  return _internalclock.getElapsedTime().asSeconds();
 }
 
 void FormatClock::resetClock() {
-  _internalclock->restart();
+  _internalclock.restart();
 }
