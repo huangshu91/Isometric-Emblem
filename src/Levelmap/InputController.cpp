@@ -35,23 +35,38 @@ void InputController::setCurrentCell(int x, int y) {
 void InputController::update() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && inputtimer.getElapsedTime() > INPUT_DELAY) {
     setCurrentCell(cur_cell->getRow()-1, cur_cell->getCol());
-    inputtimer.resetClock();
+    updateCell();
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && inputtimer.getElapsedTime() > INPUT_DELAY) {
     setCurrentCell(cur_cell->getRow(), cur_cell->getCol()-1);
-    inputtimer.resetClock();
+    updateCell();
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && inputtimer.getElapsedTime() > INPUT_DELAY) {
     setCurrentCell(cur_cell->getRow()+1, cur_cell->getCol());
-    inputtimer.resetClock();
+    updateCell();
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && inputtimer.getElapsedTime() > INPUT_DELAY) {
     setCurrentCell(cur_cell->getRow(), cur_cell->getCol()+1);
-    inputtimer.resetClock();
+    updateCell();
   }
+
+}
+
+void InputController::updateCell() {
+  inputtimer.resetClock();
+  eng_ptr->getGameCam()->smoothMove(sf::Vector2f(cur_cell->getCenter()), 0.3f);
+}
+
+sf::Vector2i InputController::getCurrentCenter() {
+  if (cur_cell == 0) {
+    cout << "WARNING: current cell is null - InputController" << endl;
+    return sf::Vector2i(0,0);
+  }
+
+  return cur_cell->getCenter();
 }
 
 void InputController::render() {

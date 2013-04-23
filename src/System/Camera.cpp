@@ -7,11 +7,13 @@
 
 #include "Camera.h"
 #include "../Util/Constants.h"
+#include <iostream>
 using namespace std;
 
 Camera::Camera() {
   cam_view.setCenter(0, 0);
   cam_view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+  isSmoothMove = false;
 }
 
 Camera::~Camera() { }
@@ -30,11 +32,35 @@ const sf::Vector2f Camera::GetCenter() {
 }
 
 // TODO: this probably needs rework or support update through entity/tile
-void Camera::Update(sf::Vector2f cent) {
+void Camera::setCenter(sf::Vector2f cent) {
+  isSmoothMove = false;
   cam_view.setCenter(cent);
 }
 
-void Camera::Move(int x, int y) {
+void Camera::smoothMove(sf::Vector2f center, float time) {
+  smooth_goal = center;
+  smooth_start = GetCenter();
+  smoothTime = time*FPS_LIMIT;
+  isSmoothMove = true;
+
+  sf::Vector2f diff = smooth_goal - smooth_start;
+  Move(diff.x/smoothTime, diff.y/smoothTime);
+  smooth_clock.resetClock();
+}
+
+void Camera::update() {
+  if (isSmoothMove) {
+    sf::Vector2f diff = smooth_goal - smooth_start;
+    Move(diff.x/smoothTime, diff.y/smoothTime);
+
+    if (smooth_clock.getElapsedTime()*FPS_LIMIT >= smoothTime) {
+      isSmoothMove = false;
+    }
+  }
+
+}
+
+void Camera::Move(float x, float y) {
   cam_view.move(x, y);
 }
 

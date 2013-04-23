@@ -37,8 +37,7 @@ void GameEngine::runEngine() {
   InputController input(getEngine());
   input.setMap(&testboard);
   input.setCurrentCell(1,3);
-
-  gameWindow.setView(*(gameCam.GetView()));
+  gameCam.setCenter(sf::Vector2f(input.getCurrentCenter()));
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
@@ -50,6 +49,10 @@ void GameEngine::runEngine() {
 
     gameWindow.clear();
     input.update();
+    gameCam.update();
+
+    gameWindow.setView(*(gameCam.GetView()));
+
     testboard.render();
     input.render();
 

@@ -24,6 +24,7 @@ public:
   GameEngine* getEngine() { return this; };
   sf::RenderWindow* getWindow() {return (&gameWindow);};
   ResourceManager* getRes() {return (&gameRes);};
+  Camera* getGameCam() { return &gameCam; };
 
 
 private:

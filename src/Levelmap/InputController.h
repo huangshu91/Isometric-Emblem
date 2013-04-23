@@ -22,11 +22,14 @@ public:
 
   void setMap(Map* mp) { map_ptr = mp; };
   void setCurrentCell(int x, int y);
+  sf::Vector2i getCurrentCenter();
 
   void update();
   void render();
 
 private:
+  void updateCell();
+
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 

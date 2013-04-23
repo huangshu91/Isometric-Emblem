@@ -27,12 +27,11 @@ bool FormatClock::isPaused() {
 }
 
 void FormatClock::setBreakTime() {
-  //_breaktime = _internalclock->getElapsedTime().asSeconds();
+  _breaktime = _internalclock.getElapsedTime().asSeconds();
 }
 
 float FormatClock::timeSinceBreak() {
-  //return (_internalclock->getElapsedTime().asSeconds() - _breaktime);
-  return 1.0;
+  return (_internalclock.getElapsedTime().asSeconds() - _breaktime);
 }
 
 string FormatClock::getFormatTime() {

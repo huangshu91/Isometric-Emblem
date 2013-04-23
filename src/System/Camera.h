@@ -9,6 +9,7 @@
 #define CAMERA_H_
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
+#include "../Util/FormatClock.h"
 
 class Camera {
 public:
@@ -19,8 +20,12 @@ public:
 
   void CenterCamera();
   void ZoomCamera(float factor);
-  void Move(int x, int y);
-  void Update(sf::Vector2f center);
+  void Move(float x, float y);
+  void setCenter(sf::Vector2f center);
+
+  void smoothMove(sf::Vector2f center, float time);
+
+  void update();
 
   sf::Vector2f GetLocation();
   const sf::Vector2f GetCenter();
@@ -31,6 +36,12 @@ private:
 
   sf::View            cam_view;
   sf::RenderWindow*   window_ptr;
+
+  sf::Vector2f smooth_goal;
+  sf::Vector2f smooth_start;
+  FormatClock smooth_clock;
+  float smoothTime;
+  bool isSmoothMove;
 };
 
 
