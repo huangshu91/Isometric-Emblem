@@ -16,11 +16,11 @@ public:
   Camera();
   ~Camera();
 
-  void SetWindow(sf::RenderWindow *wp);
+  void setup(sf::RenderWindow *wp);
 
   void CenterCamera();
-  void ZoomCamera(float factor);
-  void Move(float x, float y);
+  void zoomCamera(float factor);
+  void move(float x, float y);
   void setCenter(sf::Vector2f center);
 
   void smoothMove(sf::Vector2f center, float time);

@@ -18,7 +18,7 @@ Camera::Camera() {
 
 Camera::~Camera() { }
 
-void Camera::SetWindow(sf::RenderWindow *wp) {
+void Camera::setup(sf::RenderWindow *wp) {
   window_ptr = wp;
 }
 
@@ -44,14 +44,14 @@ void Camera::smoothMove(sf::Vector2f center, float time) {
   isSmoothMove = true;
 
   sf::Vector2f diff = smooth_goal - smooth_start;
-  Move(diff.x/smoothTime, diff.y/smoothTime);
+  move(diff.x/smoothTime, diff.y/smoothTime);
   smooth_clock.resetClock();
 }
 
 void Camera::update() {
   if (isSmoothMove) {
     sf::Vector2f diff = smooth_goal - smooth_start;
-    Move(diff.x/smoothTime, diff.y/smoothTime);
+    move(diff.x/smoothTime, diff.y/smoothTime);
 
     if (smooth_clock.getElapsedTime()*FPS_LIMIT >= smoothTime) {
       isSmoothMove = false;
@@ -60,7 +60,7 @@ void Camera::update() {
 
 }
 
-void Camera::Move(float x, float y) {
+void Camera::move(float x, float y) {
   cam_view.move(x, y);
 }
 
@@ -68,6 +68,6 @@ sf::View* Camera::GetView() {
   return &cam_view;
 }
 
-void Camera::ZoomCamera(float factor) {
+void Camera::zoomCamera(float factor) {
   cam_view.zoom(factor);
 }

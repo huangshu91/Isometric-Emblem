@@ -10,9 +10,14 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "../Util/FormatClock.h"
+#include "../Util/Constants.h"
 #include "Camera.h"
 #include "ResourceManager.h"
+#include "HUDManager.h"
+
+class GameState;
 
 class GameEngine {
 public:
@@ -30,10 +35,15 @@ public:
 private:
 
   void loadDebug();
+  void ChangeState(state::GameStateTypes newstate);
+
+  state::GameStateTypes stateId;
+  std::vector<GameState*> states;
 
   sf::RenderWindow    gameWindow;
   FormatClock         gameClock;
   ResourceManager     gameRes;
+  HUDManager          gameHUD;
   Camera              gameCam;
 };
 

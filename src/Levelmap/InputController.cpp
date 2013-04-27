@@ -71,5 +71,4 @@ sf::Vector2i InputController::getCurrentCenter() {
 
 void InputController::render() {
   win_ptr->draw(tilehighlight);
-
 }
