@@ -15,6 +15,7 @@
 
 class GUIFrame;
 class GameEngine;
+class GUIWidget;
 
 class HUDManager {
 public:
@@ -23,16 +24,16 @@ public:
 
   void setup(GameEngine* eng);
 
-  void addWidget(std::string key, GUIFrame* obj);
-  GUIFrame* getWidget(std::string key);
+  void addWidget(std::string key, GUIWidget* obj);
+  GUIWidget* getWidget(std::string key);
   void render();
 
 private:
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 
-  std::vector<GUIFrame*> widgets;
-  std::map<std::string, GUIFrame*> map;
+  std::vector<GUIWidget*> widgets;
+  std::map<std::string, GUIWidget*> map;
 };
 
 #endif /* HUDMANAGER_H_ */

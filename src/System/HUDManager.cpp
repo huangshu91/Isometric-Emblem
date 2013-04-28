@@ -7,7 +7,6 @@
 
 #include "HUDManager.h"
 #include "GameEngine.h"
-#include "../Interface/GUIFrame.h"
 #include "../Interface/GUIWidget.h"
 using namespace std;
 
@@ -24,14 +23,14 @@ HUDManager::~HUDManager() {
   // TODO Auto-generated destructor stub
 }
 
-void HUDManager::addWidget(string key, GUIFrame* obj) {
+void HUDManager::addWidget(string key, GUIWidget* obj) {
   if (map.count(key) > 0) return;
 
   widgets.push_back(obj);
   map.insert(make_pair(key, obj));
 }
 
-GUIFrame* HUDManager::getWidget(string key) {
+GUIWidget* HUDManager::getWidget(string key) {
   if (map.count(key) < 1) {
     return 0;
   }

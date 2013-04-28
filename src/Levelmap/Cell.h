@@ -10,6 +10,8 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "Terrain.h"
+#include "../Util/Constants.h"
 
 class GameEngine;
 class Map;
@@ -39,6 +41,7 @@ private:
 
   sf::Vector2i half_size;
   sf::Vector2i center;
+
 };
 
 #endif /* CELL_H_ */

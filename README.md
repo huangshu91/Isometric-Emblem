@@ -17,3 +17,4 @@ FUTURE:
 NOTES:
 	build release with -mwindows so no console + crash on exit
 	something buggy about fonts, will figure out when they are added
+	Terrain type values are hardcoded in Terrain.h/cpp

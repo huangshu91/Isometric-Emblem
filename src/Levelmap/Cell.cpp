@@ -22,6 +22,8 @@ Cell::Cell(GameEngine* eng, Map* map, int r, int c)
   center.y = half_size.y + c*half_size.y + r*half_size.y;
 
   tile.setPosition(center.x - half_size.x, center.y - half_size.y);
+
+
 }
 
 Cell::~Cell() {

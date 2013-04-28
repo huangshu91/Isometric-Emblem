@@ -7,14 +7,23 @@
 
 #ifndef GUIWIDGET_H_
 #define GUIWIDGET_H_
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+
+class GameEngine;
 
 class GUIWidget {
 public:
   GUIWidget();
   virtual ~GUIWidget();
 
-  virtual void update() = 0;
+  void setup(GameEngine* eng);
+
   virtual void render() = 0;
+
+protected:
+  GameEngine* eng_ptr;
+  sf::RenderWindow* win_ptr;
 };
 
 #endif /* GUIWIDGET_H_ */

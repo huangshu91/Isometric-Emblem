@@ -37,14 +37,19 @@ const string GUI_FRAME_KEY = "guiframe";
 const int FRAME_CELL = 40;
 
 // HUD keys
-const string HUD_MENU = "hudmenu";
+const string TERRAIN_MENU = "terrain_menu";
 
 const int FONT_SIZE = 14;
+const int LABEL_SIZE = 20;
 
-// namespaces
+// enums
 
 namespace state {
   enum GameStateTypes { MENU, START, CHAT, LOOP, PAUSE, EXIT };
+}
+
+namespace terraintype {
+  enum Area { NONE, PLAIN, MOUNTAIN, CLIFF, SEA, FOREST };
 }
 
 #endif /* CONSTANTS_H_ */

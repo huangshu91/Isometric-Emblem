@@ -7,6 +7,8 @@
 
 #ifndef GUIDISPLAY_H_
 #define GUIDISPLAY_H_
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include <vector>
 #include <string>
 #include "GUIFrame.h"
