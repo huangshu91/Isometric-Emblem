@@ -14,6 +14,7 @@
 class GameEngine;
 class Map;
 class Cell;
+class TerrainMenu;
 
 class InputController {
 public:
@@ -21,7 +22,8 @@ public:
   virtual ~InputController();
 
   void setMap(Map* mp) { map_ptr = mp; };
-  void setCurrentCell(int x, int y);
+  // true if changed, false if same
+  bool setCurrentCell(int x, int y);
   sf::Vector2i getCurrentCenter();
 
   void update();
@@ -39,7 +41,7 @@ private:
 
   sf::Sprite tilehighlight;
 
-
+  TerrainMenu* terrainhud_ptr;
 };
 
 #endif /* INPUTCONTROLLER_H_ */

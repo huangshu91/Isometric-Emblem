@@ -7,6 +7,8 @@
 
 #ifndef TERRAINMENU_H_
 #define TERRAINMENU_H_
+#include "../Levelmap/Terrain.h"
+
 #include "GUIFrame.h"
 #include "GUIWidget.h"
 
@@ -19,7 +21,7 @@ public:
 
   void render();
 
-  void setTile();
+  void setTile(Terrain t);
 
 private:
   GUIFrame frame;

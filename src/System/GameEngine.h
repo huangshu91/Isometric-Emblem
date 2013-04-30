@@ -30,14 +30,15 @@ public:
   sf::RenderWindow* getWindow() {return (&gameWindow);};
   ResourceManager* getRes() {return (&gameRes);};
   Camera* getGameCam() { return &gameCam; };
+  HUDManager* getHUD() { return &gameHUD; };
 
 
 private:
 
   void loadDebug();
-  void ChangeState(state::GameStateTypes newstate);
+  void ChangeState(state::GameStateType newstate);
 
-  state::GameStateTypes stateId;
+  state::GameStateType stateId;
   std::vector<GameState*> states;
 
   sf::RenderWindow    gameWindow;

@@ -23,7 +23,7 @@ Cell::Cell(GameEngine* eng, Map* map, int r, int c)
 
   tile.setPosition(center.x - half_size.x, center.y - half_size.y);
 
-
+  area_type = Terrain::FOREST;
 }
 
 Cell::~Cell() {

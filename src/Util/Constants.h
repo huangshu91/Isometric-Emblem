@@ -10,7 +10,16 @@
 
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <sstream>
 using namespace std;
+
+template <typename T>
+string numberToString ( T Number )
+{
+   ostringstream ss;
+   ss << Number;
+   return ss.str();
+}
 
 const int WINDOW_WIDTH = 960;
 const int WINDOW_HEIGHT = 540;
@@ -45,11 +54,16 @@ const int LABEL_SIZE = 20;
 // enums
 
 namespace state {
-  enum GameStateTypes { MENU, START, CHAT, LOOP, PAUSE, EXIT };
+  enum GameStateType { MENU, START, CHAT, LOOP, PAUSE, EXIT };
 }
 
 namespace terraintype {
   enum Area { NONE, PLAIN, MOUNTAIN, CLIFF, SEA, FOREST };
+
+  const string TERRAIN_NAME[] = { "NONE", "PLAIN", "MOUNTAIN", "CLIFF", "SEA", "FOREST" };
+  const string NONE_STRING = "Terrain";
+  const string PLAIN_STRING = "Plain";
+  const string MOUNTAIN_STRING = "Mountain";
 }
 
 #endif /* CONSTANTS_H_ */

@@ -6,8 +6,11 @@
  */
 
 #include "TerrainMenu.h"
+#include "../Levelmap/Terrain.h"
 #include "../Util/Constants.h"
+#include <string>
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 sf::Vector2i TerrainMenu::MENU_SIZE = sf::Vector2i(120,120);
@@ -23,8 +26,8 @@ void TerrainMenu::setup(GameEngine* eng) {
   GUIWidget::setup(eng);
   frame.setup(eng_ptr);
   sf::Vector2i loc(0, WINDOW_HEIGHT);
-  loc.x += MENU_SIZE.x;
-  loc.y -= MENU_SIZE.y;
+  loc.x += MENU_SIZE.x - 30;
+  loc.y -= MENU_SIZE.y - 30;
   frame.build(loc, MENU_SIZE);
 
   label.setString("Terrain");
@@ -70,6 +73,16 @@ void TerrainMenu::setup(GameEngine* eng) {
       frame.getSize().x/2 - FONT_SIZE, atk_text.getPosition().y );
 }
 
+void TerrainMenu::setTile(Terrain t) {
+  def_val.setString(numberToString(t.def));
+  atk_val.setString(numberToString(t.atk));
+  avd_val.setString(numberToString(t.avd));
+  avd_val.setOrigin(avd_val.getLocalBounds().width, 0);
+
+  label.setString(terraintype::TERRAIN_NAME[t.type]);
+  label.setOrigin(label.getLocalBounds().width/2, label.getLocalBounds().height/2);
+}
+
 void TerrainMenu::render() {
   frame.render();
   win_ptr->draw(label);
@@ -80,9 +93,4 @@ void TerrainMenu::render() {
   win_ptr->draw(def_val);
   win_ptr->draw(avd_val);
   win_ptr->draw(atk_val);
-}
-
-void TerrainMenu::setTile() {
-
-
 }

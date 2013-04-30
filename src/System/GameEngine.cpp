@@ -42,22 +42,16 @@ void GameEngine::runEngine() {
   gameCam.setCenter(sf::Vector2f(input.getCurrentCenter()));
   gameCam.zoomCamera(0.9f);
 
-  TerrainMenu tmenu;
-  tmenu.setup(getEngine());
-
-  gameHUD.addWidget(TERRAIN_MENU, &tmenu);
-
   while (gameWindow.isOpen()) {
     sf::Event ev;
 
     while (gameWindow.pollEvent(ev)) {
           if (ev.type == sf::Event::Closed)
             gameWindow.close();
-          input.update();
     }
 
     gameWindow.clear(WINDOW_COLOR);
-    //input.update();
+    input.update();
     gameCam.update();
 
     gameWindow.setView(*(gameCam.GetView()));

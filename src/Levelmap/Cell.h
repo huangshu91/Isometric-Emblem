@@ -26,6 +26,7 @@ public:
   sf::Vector2i getCoords() { return sf::Vector2i(row, col); }
   int getRow() { return row; };
   int getCol() { return col; };
+  Terrain getTerrain() { return area_type; };
 
   void render();
 
@@ -42,6 +43,7 @@ private:
   sf::Vector2i half_size;
   sf::Vector2i center;
 
+  Terrain area_type;
 };
 
 #endif /* CELL_H_ */

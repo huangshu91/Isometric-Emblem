@@ -17,6 +17,9 @@ HUDManager::HUDManager() {
 void HUDManager::setup(GameEngine* eng) {
   eng_ptr = eng;
   win_ptr = eng_ptr->getWindow();
+
+  terrain_hud.setup(eng);
+  addWidget(TERRAIN_MENU, &terrain_hud);
 }
 
 HUDManager::~HUDManager() {

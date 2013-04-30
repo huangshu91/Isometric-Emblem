@@ -12,6 +12,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include "../Interface/TerrainMenu.h"
 
 class GUIFrame;
 class GameEngine;
@@ -26,6 +27,9 @@ public:
 
   void addWidget(std::string key, GUIWidget* obj);
   GUIWidget* getWidget(std::string key);
+
+  TerrainMenu* getTerrainHUD() { return &terrain_hud; };
+
   void render();
 
 private:
@@ -34,6 +38,8 @@ private:
 
   std::vector<GUIWidget*> widgets;
   std::map<std::string, GUIWidget*> map;
+
+  TerrainMenu   terrain_hud;
 };
 
 #endif /* HUDMANAGER_H_ */
