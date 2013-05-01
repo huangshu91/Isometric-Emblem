@@ -8,6 +8,7 @@
 #include "Cell.h"
 #include "../Util/Constants.h"
 #include "../System/GameEngine.h"
+#include "../Entity/DynamicEntity.h"
 
 Cell::Cell(GameEngine* eng, Map* map, int r, int c)
 : eng_ptr(eng), map_ptr(map), row(r), col(c) {

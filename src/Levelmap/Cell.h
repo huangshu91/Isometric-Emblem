@@ -15,6 +15,7 @@
 
 class GameEngine;
 class Map;
+class DynamicEntity;
 
 class Cell {
 public:
@@ -29,6 +30,8 @@ public:
   Terrain getTerrain() { return area_type; };
 
   void render();
+
+  DynamicEntity* unit;
 
 private:
   GameEngine* eng_ptr;

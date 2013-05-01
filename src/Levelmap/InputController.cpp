@@ -6,9 +6,9 @@
  */
 
 #include "InputController.h"
-#include "../Util/Constants.h"
 #include "../System/GameEngine.h"
 #include "../Interface/TerrainMenu.h"
+#include "../Entity/DynamicEntity.h"
 #include "Map.h"
 #include "Cell.h"
 #include <iostream>
@@ -29,6 +29,11 @@ InputController::~InputController() {
   // TODO Auto-generated destructor stub
 }
 
+void InputController::setMap(Map* mp) {
+  map_ptr = mp;
+  selected = map_ptr->getUnit();
+}
+
 bool InputController::setCurrentCell(int x, int y) {
   Cell* c = map_ptr->getCell(x, y);
   inputtimer.resetClock();
@@ -38,7 +43,6 @@ bool InputController::setCurrentCell(int x, int y) {
     tilehighlight.setPosition(sf::Vector2f(cur_cell->getLoc()));
     return true;
   }
-
   return false;
 }
 
@@ -59,6 +63,47 @@ void InputController::update() {
     if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol()+1)) updateCell();
   }
 
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && inputtimer.getElapsedTime() > INPUT_DELAY) {
+    moveUnit(dir::UP);
+  }
+
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && inputtimer.getElapsedTime() > INPUT_DELAY) {
+    moveUnit(dir::DOWN);
+  }
+
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && inputtimer.getElapsedTime() > INPUT_DELAY) {
+    moveUnit(dir::LEFT);
+  }
+
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && inputtimer.getElapsedTime() > INPUT_DELAY) {
+    moveUnit(dir::RIGHT);
+  }
+
+}
+
+void InputController::moveUnit(dir::Direction d) {
+  inputtimer.resetClock();
+  if (selected == 0) return;
+
+  Cell* player_cell = selected->getCurCell();
+  if (player_cell == 0) return;
+
+  Cell* new_cell;
+
+  if (d == dir::UP)
+    new_cell = map_ptr->getCell(player_cell->getRow()-1, player_cell->getCol());
+  else if (d == dir::DOWN)
+    new_cell = map_ptr->getCell(player_cell->getRow()+1, player_cell->getCol());
+  else if (d == dir::LEFT)
+    new_cell = map_ptr->getCell(player_cell->getRow(), player_cell->getCol()-1);
+  else if (d == dir::RIGHT)
+    new_cell = map_ptr->getCell(player_cell->getRow(), player_cell->getCol()+1);
+
+  if (new_cell == 0) return;
+
+  player_cell->unit = 0;
+  selected->setTile(new_cell);
+  new_cell->unit = selected;
 }
 
 void InputController::updateCell() {

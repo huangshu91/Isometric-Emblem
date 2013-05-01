@@ -79,4 +79,8 @@ namespace unit {
   const string CLASS_SPRITE[] = { "None", "Bandit", "Archer", "Cavalier" };
 }
 
+namespace dir {
+  enum Direction { UP, DOWN, LEFT, RIGHT };
+}
+
 #endif /* CONSTANTS_H_ */

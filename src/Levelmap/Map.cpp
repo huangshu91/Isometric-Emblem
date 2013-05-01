@@ -31,6 +31,7 @@ void Map::setupEntity() {
   player = new DynamicEntity(eng_ptr, SPRITE_KEY);
   player->setOffset(6, -4);
   player->setTile(getCell(1,2));
+  getCell(1,2)->unit = player;
 }
 
 Map::~Map() {

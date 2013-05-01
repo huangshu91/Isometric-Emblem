@@ -14,6 +14,9 @@ Entity::Entity(GameEngine* eng) : eng_ptr(eng) {
   win_ptr = eng_ptr->getWindow();
   sprite_offset.x = 0;
   sprite_offset.y = 0;
+
+  sprite.setTexture(*(eng->getRes()->getResource(SPRITE_KEY)));
+  sprite.setOrigin(sprite.getLocalBounds().width/2, sprite.getLocalBounds().height);
 }
 
 Entity::~Entity() {
@@ -22,9 +25,11 @@ Entity::~Entity() {
 
 void Entity::setOffset(sf::Vector2i off) {
   sprite_offset = off;
+  sprite.setOrigin(sprite.getOrigin().x + sprite_offset.x, sprite.getOrigin().y + sprite_offset.y);
 }
 
 void Entity::setOffset(int x, int y) {
   sprite_offset.x = x;
   sprite_offset.y = y;
+  sprite.setOrigin(sprite.getOrigin().x + sprite_offset.x, sprite.getOrigin().y + sprite_offset.y);
 }

@@ -24,6 +24,9 @@ public:
 
   Map* getMap() { return this; };
   Cell* getCell(int x, int y);
+
+  // this is only temporary unit we set up a system for multiple units
+  DynamicEntity* getUnit() { return player; };
   int getRow() { return row; };
   int getCol() { return col; };
 

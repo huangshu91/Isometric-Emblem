@@ -18,6 +18,8 @@ public:
   Entity(GameEngine* eng);
   virtual ~Entity();
 
+  std::string getName() { return name; };
+
   void setOffset(sf::Vector2i off);
   void setOffset(int x, int y);
   virtual void render() = 0;

@@ -20,6 +20,7 @@ public:
   virtual ~DynamicEntity();
 
   void setTile(Cell* t);
+  Cell* getCurCell() { return tile_ptr; };
 
   void render();
 
