@@ -10,6 +10,7 @@
 #include "Cell.h"
 #include <vector>
 
+class DynamicEntity;
 class GameEngine;
 
 class Map {
@@ -18,6 +19,8 @@ public:
   ~Map();
 
   void setDimensions(int x, int y);
+  //eventually load entities from file
+  void setupEntity();
 
   Map* getMap() { return this; };
   Cell* getCell(int x, int y);
@@ -25,6 +28,7 @@ public:
   int getCol() { return col; };
 
   void render();
+  void renderUnits();
 
 private:
   GameEngine* eng_ptr;
@@ -34,6 +38,8 @@ private:
   // dimensions of the map, row = x, col = y
   int row;
   int col;
+
+  DynamicEntity* player;
 };
 
 #endif /* MAP_H_ */

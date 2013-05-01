@@ -38,13 +38,12 @@ void GameEngine::loadDebug() {
 void GameEngine::runEngine() {
   Map testboard(getEngine());
   testboard.setDimensions(3,6);
+  testboard.setupEntity();
   InputController input(getEngine());
   input.setMap(&testboard);
   input.setCurrentCell(1,3);
   gameCam.setCenter(sf::Vector2f(input.getCurrentCenter()));
   gameCam.zoomCamera(0.8f);
-
-  DynamicEntity ent(getEngine(), SPRITE_KEY);
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
@@ -62,7 +61,7 @@ void GameEngine::runEngine() {
 
     testboard.render();
     input.render();
-    ent.render();
+    testboard.renderUnits();
 
     gameHUD.render();
 

@@ -32,6 +32,4 @@ Cell::~Cell() {
 
 void Cell::render() {
   eng_ptr->getWindow()->draw(tile);
-
-
 }

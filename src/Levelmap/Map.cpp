@@ -5,6 +5,8 @@
  *      Author: Maiev
  */
 
+#include "../Util/Constants.h"
+#include "../Entity/DynamicEntity.h"
 #include "Map.h"
 #include <iostream>
 using namespace std;
@@ -22,7 +24,13 @@ void Map::setDimensions(int x, int y) {
     }
     board.push_back(row);
   }
+}
 
+// offsets and tiles are currently hardcoded, get from file
+void Map::setupEntity() {
+  player = new DynamicEntity(eng_ptr, SPRITE_KEY);
+  player->setOffset(6, -4);
+  player->setTile(getCell(1,2));
 }
 
 Map::~Map() {
@@ -41,6 +49,8 @@ void Map::render() {
       board[i][j].render();
     }
   }
-
 }
 
+void Map::renderUnits() {
+  player->render();
+}
