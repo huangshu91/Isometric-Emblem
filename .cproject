@@ -19,7 +19,7 @@
 							<builder buildPath="${workspace_loc:/FriendlyFire/Debug}" id="cdt.managedbuild.tool.gnu.builder.mingw.base.1985818746" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.109087447" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug">
 								<option id="gnu.both.asm.option.include.paths.1049250103" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;F:\devtools\SFML-2.0-rc\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;F:\devtools\SFML-2.0\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.537997925" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -31,7 +31,7 @@
 									<listOptionValue builtIn="false" value="SFML_DYNAMIC"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.include.paths.1895200831" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;F:\devtools\SFML-2.0-rc\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;F:\devtools\SFML-2.0\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2108467549" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -43,7 +43,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug.1340549842" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug.1385885826" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug">
 								<option id="gnu.cpp.link.option.paths.195503794" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;F:\devtools\SFML-2.0-rc\lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;F:\devtools\SFML-2.0\lib&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1487931848" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="sfml-graphics-d"/>
@@ -123,23 +123,23 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="FriendlyFire.cdt.managedbuild.target.gnu.mingw.exe.591794590" name="Executable" projectType="cdt.managedbuild.target.gnu.mingw.exe"/>
 	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="1">
+		<resource resourceType="PROJECT" workspacePath="/IsometricEmblem"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.1814631325;cdt.managedbuild.config.gnu.mingw.exe.release.1814631325.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.870512640;cdt.managedbuild.tool.gnu.cpp.compiler.input.1930860906">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.1814631325;cdt.managedbuild.config.gnu.mingw.exe.release.1814631325.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.release.1357748177;cdt.managedbuild.tool.gnu.c.compiler.input.1292197009">
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.229649377;cdt.managedbuild.config.gnu.mingw.exe.debug.229649377.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.2095180445;cdt.managedbuild.tool.gnu.c.compiler.input.409313202">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.229649377;cdt.managedbuild.config.gnu.mingw.exe.debug.229649377.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug.414162520;cdt.managedbuild.tool.gnu.cpp.compiler.input.2108467549">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.229649377;cdt.managedbuild.config.gnu.mingw.exe.debug.229649377.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.2095180445;cdt.managedbuild.tool.gnu.c.compiler.input.409313202">
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.1814631325;cdt.managedbuild.config.gnu.mingw.exe.release.1814631325.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.release.1357748177;cdt.managedbuild.tool.gnu.c.compiler.input.1292197009">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="refreshScope" versionNumber="1">
-		<resource resourceType="PROJECT" workspacePath="/FriendlyFire"/>
-	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

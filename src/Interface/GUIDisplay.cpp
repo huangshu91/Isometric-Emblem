@@ -6,6 +6,7 @@
  */
 #include "GUIDisplay.h"
 #include "../Util/Constants.h"
+#include "../System/GameEngine.h"
 #include <iostream>
 using namespace std;
 
@@ -21,7 +22,7 @@ GUIDisplay::~GUIDisplay() {
 // consider adding a size argument to update
 void GUIDisplay::setText(vector<string> args) {
   for (int i = 0, j = args.size(); i < j; i++) {
-    sf::Text t(args[i]);
+    sf::Text t(args[i], *(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
     t.setCharacterSize(FONT_SIZE);
     sf::Vector2i pos = getLoc() - (getSize()/2);
     pos += sf::Vector2i(FONT_SIZE, FONT_SIZE);

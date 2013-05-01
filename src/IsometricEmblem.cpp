@@ -10,8 +10,8 @@
 
 int main()
 {
-    GameEngine gEng;
-    gEng.runEngine();
+  GameEngine gEng;
+  gEng.runEngine();
 
-    return 0;
+  return 0;
 }

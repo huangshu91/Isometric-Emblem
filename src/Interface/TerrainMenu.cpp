@@ -8,6 +8,7 @@
 #include "TerrainMenu.h"
 #include "../Levelmap/Terrain.h"
 #include "../Util/Constants.h"
+#include "../System/GameEngine.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>
@@ -29,6 +30,14 @@ void TerrainMenu::setup(GameEngine* eng) {
   loc.x += MENU_SIZE.x - 30;
   loc.y -= MENU_SIZE.y - 30;
   frame.build(loc, MENU_SIZE);
+
+  label.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
+  def_text.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
+  atk_text.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
+  avd_text.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
+  def_val.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
+  atk_val.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
+  avd_val.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
 
   label.setString("Terrain");
   label.setCharacterSize(LABEL_SIZE);

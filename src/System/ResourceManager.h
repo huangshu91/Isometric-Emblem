@@ -24,8 +24,13 @@ public:
   bool addResource(string key, string path);
   sf::Texture* getResource(string key);
 
+  bool addFont(string key, string path);
+  sf::Font* getFont(string key);
+
 private:
   std::map<string, sf::Texture*> resources;
+
+  std::map<string, sf::Font*> fonts;
 };
 
 #endif /* RESOURCEMANAGER_H_ */

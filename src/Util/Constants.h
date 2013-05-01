@@ -48,6 +48,10 @@ const int FRAME_CELL = 40;
 const string TEMP_SPRITE = "res/unit_armor.png";
 const string SPRITE_KEY = "spritearmor";
 
+// FOnts
+const string DEFAULT_FONT = "res/fonts/arial.ttf";
+const string DEFAULT_FONT_KEY = "default";
+
 // HUD keys
 const string TERRAIN_MENU = "terrain_menu";
 
@@ -64,7 +68,7 @@ namespace state {
 namespace terraintype {
   enum Area { NONE, PLAIN, MOUNTAIN, CLIFF, SEA, FOREST };
 
-  const string TERRAIN_NAME[] = { "NONE", "PLAIN", "MOUNTAIN", "CLIFF", "SEA", "FOREST" };
+  const string TERRAIN_NAME[] = { "None", "Plain", "Mountain", "Cliff", "Sea", "Forest" };
 }
 
 //maintain parallel enum/array so they can be used as indices
