@@ -7,6 +7,8 @@
 
 #ifndef ENTITY_H_
 #define ENTITY_H_
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 #include <string>
 
 class GameEngine;
@@ -18,9 +20,12 @@ public:
 
   virtual void render() = 0;
 
-private:
+protected:
   GameEngine* eng_ptr;
+  sf::RenderWindow* win_ptr;
+
   std::string name;
+  sf::Sprite  sprite;
 };
 
 #endif /* ENTITY_H_ */

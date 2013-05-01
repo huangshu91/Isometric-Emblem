@@ -11,6 +11,7 @@
 #include "../Levelmap/InputController.h"
 #include "../Interface/GUIDisplay.h"
 #include "../Interface/TerrainMenu.h"
+#include "../Entity/DynamicEntity.h"
 #include <iostream>
 using namespace std;
 
@@ -29,7 +30,7 @@ GameEngine::GameEngine() {
 
 void GameEngine::loadDebug() {
   gameRes.addResource(TILE_KEY, TILE_ROCK);
-  gameRes.addResource(TILE_HIGH_KEY, TILE_HIGH);
+  gameRes.addResource(SPRITE_KEY, TEMP_SPRITE);
 }
 
 
@@ -40,7 +41,9 @@ void GameEngine::runEngine() {
   input.setMap(&testboard);
   input.setCurrentCell(1,3);
   gameCam.setCenter(sf::Vector2f(input.getCurrentCenter()));
-  gameCam.zoomCamera(0.9f);
+  gameCam.zoomCamera(0.8f);
+
+  DynamicEntity ent(getEngine(), SPRITE_KEY);
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
@@ -58,6 +61,7 @@ void GameEngine::runEngine() {
 
     testboard.render();
     input.render();
+    ent.render();
 
     gameHUD.render();
 

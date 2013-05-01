@@ -15,6 +15,7 @@
 
 InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   win_ptr = eng_ptr->getWindow();
+  eng->getRes()->addResource(TILE_HIGH_KEY, TILE_HIGH);
   tilehighlight.setTexture(*(eng->getRes()->getResource(TILE_HIGH_KEY)));
   terrainhud_ptr = eng_ptr->getHUD()->getTerrainHUD();
 

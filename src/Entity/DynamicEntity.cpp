@@ -8,9 +8,9 @@
 #include "DynamicEntity.h"
 #include "../System/GameEngine.h"
 
-DynamicEntity::DynamicEntity(GameEngine* eng) : Entity(eng) {
-  // TODO Auto-generated constructor stub
-
+DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng) {
+  name = n;
+  sprite.setTexture(*(eng->getRes()->getResource(SPRITE_KEY)));
 }
 
 DynamicEntity::~DynamicEntity() {
@@ -18,5 +18,5 @@ DynamicEntity::~DynamicEntity() {
 }
 
 void DynamicEntity::render() {
-
+  win_ptr->draw(sprite);
 }

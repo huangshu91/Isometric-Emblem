@@ -45,6 +45,9 @@ const string GUI_FRAME = "res/gui_frame.png";
 const string GUI_FRAME_KEY = "guiframe";
 const int FRAME_CELL = 40;
 
+const string TEMP_SPRITE = "res/unit_armor.png";
+const string SPRITE_KEY = "spritearmor";
+
 // HUD keys
 const string TERRAIN_MENU = "terrain_menu";
 
@@ -57,13 +60,19 @@ namespace state {
   enum GameStateType { MENU, START, CHAT, LOOP, PAUSE, EXIT };
 }
 
+//maintain parallel enum/array so they can be used as indices
 namespace terraintype {
   enum Area { NONE, PLAIN, MOUNTAIN, CLIFF, SEA, FOREST };
 
   const string TERRAIN_NAME[] = { "NONE", "PLAIN", "MOUNTAIN", "CLIFF", "SEA", "FOREST" };
-  const string NONE_STRING = "Terrain";
-  const string PLAIN_STRING = "Plain";
-  const string MOUNTAIN_STRING = "Mountain";
+}
+
+//maintain parallel enum/array so they can be used as indices
+namespace unit {
+  enum Class { NONE, BANDIT, ARCHER, CAVALIER };
+  enum Control { PLAYER, ALLIED, ENEMY };
+
+  const string CLASS_SPRITE[] = { "None", "Bandit", "Archer", "Cavalier" };
 }
 
 #endif /* CONSTANTS_H_ */
