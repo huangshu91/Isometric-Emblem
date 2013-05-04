@@ -9,9 +9,11 @@
 #include "../System/GameEngine.h"
 #include "../Interface/TerrainMenu.h"
 #include "../Entity/DynamicEntity.h"
+#include "../Util/UtilFunc.h"
 #include "Map.h"
 #include "Cell.h"
 #include <iostream>
+#include <cstdlib>
 
 InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   win_ptr = eng_ptr->getWindow();
@@ -19,6 +21,7 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   tilehighlight.setTexture(*(eng->getRes()->getResource(TILE_HIGH_KEY)));
   terrainhud_ptr = eng_ptr->getHUD()->getTerrainHUD();
   selected = 0;
+  state = inputstate::FREE;
 
   inputtimer.resetClock();
 
@@ -39,7 +42,11 @@ bool InputController::setCurrentCell(int x, int y) {
   Cell* c = map_ptr->getCell(x, y);
   inputtimer.resetClock();
 
-  if (selected == 0) cout << "hurr" << endl;
+  if (state == inputstate::MOVE &&
+      cellDist(selected->getCurCell(), c) > selected->getRange()) {
+    return false;
+  }
+
   if (c != 0) {
     cur_cell = c;
     tilehighlight.setPosition(sf::Vector2f(cur_cell->getLoc()));
@@ -70,23 +77,6 @@ void InputController::update() {
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && inputtimer.getElapsedTime() > INPUT_DELAY) {
     selectCell();
   }
-
-  // temporary way to move the unit
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    moveUnit(dir::UP);
-  }
-
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    moveUnit(dir::DOWN);
-  }
-
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    moveUnit(dir::LEFT);
-  }
-
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    moveUnit(dir::RIGHT);
-  }
 }
 
 void InputController::selectCell() {
@@ -94,7 +84,8 @@ void InputController::selectCell() {
   // a unit was NOT previously selected already
   if (selected == 0) {
     selected = cur_cell->unit;
-    cout << "test3" << endl;
+    map_ptr->toggleRangeOn(selected);
+    state = inputstate::MOVE;
     return;
   }
   else {
@@ -103,15 +94,15 @@ void InputController::selectCell() {
 
     if (moveUnit(cur_cell->getRow(), cur_cell->getCol())) {
       selected = 0;
+      map_ptr->toggleRangeOff();
+      state = inputstate::FREE;
     } else {
 
     }
-
   }
 }
 
 bool InputController::moveUnit(int x, int y) {
-  cout << "test2" << endl;
   Cell* unit_cell = selected->getCurCell();
 
   if (unit_cell == 0) return false;

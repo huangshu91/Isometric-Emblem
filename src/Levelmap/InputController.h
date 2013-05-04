@@ -45,6 +45,7 @@ private:
   Cell* cur_cell;
   DynamicEntity* selected;
   FormatClock inputtimer;
+  inputstate::Phase state;
 
   sf::Sprite tilehighlight;
 

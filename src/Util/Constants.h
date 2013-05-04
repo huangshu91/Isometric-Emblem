@@ -8,18 +8,8 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
-#include <string>
 #include <SFML/Graphics.hpp>
-#include <sstream>
 using namespace std;
-
-template <typename T>
-string numberToString ( T Number )
-{
-   ostringstream ss;
-   ss << Number;
-   return ss.str();
-}
 
 const int WINDOW_WIDTH = 960;
 const int WINDOW_HEIGHT = 540;
@@ -41,6 +31,9 @@ const string TILE_KEY = "rocktile";
 const string TILE_HIGH = "res/highlight_tile.png";
 const string TILE_HIGH_KEY = "tilehigh";
 
+const string TILE_RANGE = "res/range_tile.png";
+const string TILE_RANGE_KEY = "tilerange";
+
 const string GUI_FRAME = "res/gui_frame.png";
 const string GUI_FRAME_KEY = "guiframe";
 const int FRAME_CELL = 40;
@@ -48,7 +41,7 @@ const int FRAME_CELL = 40;
 const string TEMP_SPRITE = "res/unit_armor.png";
 const string SPRITE_KEY = "spritearmor";
 
-// FOnts
+// Fonts
 const string DEFAULT_FONT = "res/fonts/arial.ttf";
 const string DEFAULT_FONT_KEY = "default";
 
@@ -60,8 +53,8 @@ const int LABEL_SIZE = 20;
 
 // enums
 
-namespace state {
-  enum GameStateType { MENU, START, CHAT, LOOP, PAUSE, EXIT };
+namespace gamestate {
+  enum Statetype { MENU, START, CHAT, LOOP, PAUSE, EXIT };
 }
 
 //maintain parallel enum/array so they can be used as indices
@@ -81,6 +74,10 @@ namespace unit {
 
 namespace dir {
   enum Direction { UP, DOWN, LEFT, RIGHT };
+}
+
+namespace inputstate {
+  enum Phase { FREE, MOVE };
 }
 
 #endif /* CONSTANTS_H_ */

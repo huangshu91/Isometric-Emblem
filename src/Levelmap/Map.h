@@ -30,13 +30,21 @@ public:
   int getRow() { return row; };
   int getCol() { return col; };
 
+  void toggleRangeOn(DynamicEntity* e);
+  void toggleRangeOff();
+  void markCell(Cell* c);
+
   void render();
   void renderUnits();
+  void renderRange();
 
 private:
   GameEngine* eng_ptr;
 
   std::vector<std::vector<Cell> > board;
+
+  std::vector<sf::Sprite> rangetile;
+  bool range_on;
 
   // dimensions of the map, row = x, col = y
   int row;

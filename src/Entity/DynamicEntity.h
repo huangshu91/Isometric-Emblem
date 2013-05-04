@@ -21,6 +21,7 @@ public:
 
   void setTile(Cell* t);
   Cell* getCurCell() { return tile_ptr; };
+  int getRange() { return move_range; };
 
   void render();
 
@@ -28,6 +29,8 @@ private:
   unit::Class classtype;
 
   Cell* tile_ptr;
+
+  int move_range;
 };
 
 #endif /* DYNAMICENTITY_H_ */

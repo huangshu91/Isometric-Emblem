@@ -16,7 +16,7 @@ public:
   virtual void Update() = 0;
   virtual ~GameState() {};
 
-  state::GameStateType stateId;
+  gamestate::Statetype stateId;
 };
 
 #endif /* GAMESTATE_H_ */

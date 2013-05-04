@@ -36,9 +36,9 @@ public:
 private:
 
   void loadDebug();
-  void ChangeState(state::GameStateType newstate);
+  void ChangeState(gamestate::Statetype newstate);
 
-  state::GameStateType stateId;
+  gamestate::Statetype stateId;
   std::vector<GameState*> states;
 
   sf::RenderWindow    gameWindow;

@@ -8,9 +8,11 @@
 #include "DynamicEntity.h"
 #include "../System/GameEngine.h"
 #include "../Levelmap/Cell.h"
+#include "../Util/UnitValues.h"
 
 DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng) {
   name = n;
+  move_range = UNIT_MOVE;
 }
 
 DynamicEntity::~DynamicEntity() {

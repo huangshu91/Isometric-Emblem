@@ -60,8 +60,6 @@ bool ResourceManager::addFont(string key, string path) {
   else {
     fonts.insert(make_pair(key, temp));
   }
-
-  cout << "test" << endl;
   return true;
 }
 

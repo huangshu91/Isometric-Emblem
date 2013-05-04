@@ -37,7 +37,7 @@ void GameEngine::loadDebug() {
 
 void GameEngine::runEngine() {
   Map testboard(getEngine());
-  testboard.setDimensions(3,6);
+  testboard.setDimensions(7,7);
   testboard.setupEntity();
   InputController input(getEngine());
   input.setMap(&testboard);
