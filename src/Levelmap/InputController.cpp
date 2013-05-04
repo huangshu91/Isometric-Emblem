@@ -18,6 +18,7 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   eng->getRes()->addResource(TILE_HIGH_KEY, TILE_HIGH);
   tilehighlight.setTexture(*(eng->getRes()->getResource(TILE_HIGH_KEY)));
   terrainhud_ptr = eng_ptr->getHUD()->getTerrainHUD();
+  selected = 0;
 
   inputtimer.resetClock();
 
@@ -31,13 +32,14 @@ InputController::~InputController() {
 
 void InputController::setMap(Map* mp) {
   map_ptr = mp;
-  selected = map_ptr->getUnit();
+  //selected = map_ptr->getUnit();
 }
 
 bool InputController::setCurrentCell(int x, int y) {
   Cell* c = map_ptr->getCell(x, y);
   inputtimer.resetClock();
 
+  if (selected == 0) cout << "hurr" << endl;
   if (c != 0) {
     cur_cell = c;
     tilehighlight.setPosition(sf::Vector2f(cur_cell->getLoc()));
@@ -47,6 +49,7 @@ bool InputController::setCurrentCell(int x, int y) {
 }
 
 void InputController::update() {
+  // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && inputtimer.getElapsedTime() > INPUT_DELAY) {
     if (setCurrentCell(cur_cell->getRow()-1, cur_cell->getCol())) updateCell();
   }
@@ -63,6 +66,12 @@ void InputController::update() {
     if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol()+1)) updateCell();
   }
 
+  // select the current cell
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && inputtimer.getElapsedTime() > INPUT_DELAY) {
+    selectCell();
+  }
+
+  // temporary way to move the unit
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && inputtimer.getElapsedTime() > INPUT_DELAY) {
     moveUnit(dir::UP);
   }
@@ -78,7 +87,43 @@ void InputController::update() {
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && inputtimer.getElapsedTime() > INPUT_DELAY) {
     moveUnit(dir::RIGHT);
   }
+}
 
+void InputController::selectCell() {
+  inputtimer.resetClock();
+  // a unit was NOT previously selected already
+  if (selected == 0) {
+    selected = cur_cell->unit;
+    cout << "test3" << endl;
+    return;
+  }
+  else {
+    //DynamicEntity* cur_unit = cur_cell->unit;
+    //actions based on what the unit in this tile is, enemy, etc
+
+    if (moveUnit(cur_cell->getRow(), cur_cell->getCol())) {
+      selected = 0;
+    } else {
+
+    }
+
+  }
+}
+
+bool InputController::moveUnit(int x, int y) {
+  cout << "test2" << endl;
+  Cell* unit_cell = selected->getCurCell();
+
+  if (unit_cell == 0) return false;
+  Cell* to_cell = map_ptr->getCell(x, y);
+
+  if (to_cell == 0) return false;
+
+  unit_cell->unit = 0;
+  selected->setTile(to_cell);
+  to_cell->unit = selected;
+
+  return true;
 }
 
 void InputController::moveUnit(dir::Direction d) {
