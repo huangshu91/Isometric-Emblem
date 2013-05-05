@@ -35,10 +35,23 @@ void Map::setDimensions(int x, int y) {
 
 // offsets and tiles are currently hardcoded, get from file
 void Map::setupEntity() {
+  /*
   player = new DynamicEntity(eng_ptr, SPRITE_KEY);
   player->setOffset(6, -4);
   player->setTile(getCell(3,3));
   getCell(3,3)->unit = player;
+  */
+  DynamicEntity* u = new DynamicEntity(eng_ptr, SPRITE_KEY);
+  u->setOffset(6,-4);
+  u->setTile(getCell(3,3));
+  getCell(3,3)->unit = u;
+  units.push_back(u);
+
+  u = new DynamicEntity(eng_ptr, SPRITE_KEY);
+  u->setOffset(6,-4);
+  u->setTile(getCell(5,1));
+  getCell(5,1)->unit = u;
+  units.push_back(u);
 }
 
 Map::~Map() {
@@ -133,7 +146,9 @@ void Map::render() {
 }
 
 void Map::renderUnits() {
-  player->render();
+  for (int i = 0, j = units.size(); i < j; i++) {
+    units[i]->render();
+  }
 }
 
 void Map::renderRange() {

@@ -50,7 +50,7 @@ private:
   int row;
   int col;
 
-  DynamicEntity* player;
+  std::vector<DynamicEntity*> units;
 };
 
 #endif /* MAP_H_ */
