@@ -13,6 +13,7 @@
 DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng) {
   name = n;
   move_range = UNIT_MOVE;
+  attack_range = UNIT_ATTACK;
 }
 
 DynamicEntity::~DynamicEntity() {
@@ -26,4 +27,22 @@ void DynamicEntity::setTile(Cell* t) {
 
 void DynamicEntity::render() {
   win_ptr->draw(sprite);
+}
+
+int DynamicEntity::getRange(range::RangeType state) {
+  switch (state) {
+  case range::MOVE :
+    return move_range;
+    break;
+  case range::ATTACK :
+    return attack_range;
+    break;
+  case range::COMBINED :
+    return move_range+attack_range;
+    break;
+  case range::AURA :
+    return 0;
+    break;
+  default: return 0;
+  }
 }

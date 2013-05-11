@@ -43,7 +43,12 @@ bool InputController::setCurrentCell(int x, int y) {
   inputtimer.resetClock();
 
   if (state == inputstate::MOVE &&
-      cellDist(selected->getCurCell(), c) > selected->getRange()) {
+      cellDist(selected->getCurCell(), c) > selected->getRange(range::MOVE)) {
+    return false;
+  }
+
+  if (state == inputstate::ATTACK &&
+      cellDist(selected->getCurCell(), c) > selected->getRange(range::ATTACK)) {
     return false;
   }
 
@@ -84,18 +89,20 @@ void InputController::selectCell() {
   // a unit was NOT previously selected already
   if (selected == 0) {
     selected = cur_cell->unit;
-    map_ptr->toggleRangeOn(selected);
+    map_ptr->toggleRangeOn(selected, range::COMBINED);
     state = inputstate::MOVE;
     return;
   }
   else {
-    //DynamicEntity* cur_unit = cur_cell->unit;
-    //actions based on what the unit in this tile is, enemy, etc
 
     if (moveUnit(cur_cell->getRow(), cur_cell->getCol())) {
-      selected = 0;
+      bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
       map_ptr->toggleRangeOff();
+      //state = inputstate::ATTACK;
       state = inputstate::FREE;
+      //map_ptr->toggleRangeOn(selected, range::ATTACK);
+
+      selected = 0;
     } else {
 
     }
@@ -108,7 +115,9 @@ bool InputController::moveUnit(int x, int y) {
   if (unit_cell == 0) return false;
   Cell* to_cell = map_ptr->getCell(x, y);
 
-  if (to_cell == 0) return false;
+  if (unit_cell == to_cell) return true;
+
+  if (to_cell == 0 || to_cell->unit != 0) return false;
 
   unit_cell->unit = 0;
   selected->setTile(to_cell);

@@ -17,6 +17,14 @@ TODO:
 	Animations should be in GUIWidget.  Once the frame is in place, render containing text/etc.  
 	Ignore for now because animations are a luxury.
 	
+	DynamicEntity.  Currently have hardcoded move and attack ranges.  This will change in future.  
+	Load default values based on unit type and add modifiers.  Control for movement is Q, control for
+	attack is E.  Eventually figure out a good menu or A,B input method.  
+	
+	1) If unit is already present in selected tile, cannot move. DONE
+	2) multiple vectors for enemy, neutral, player units. Use this to create the inDistance method.
+	3) Display the red attack range if there are enemies in range of player AFTER moving.
+	
 FUTURE:
 
 	Mouse control scheme (point in polygon)

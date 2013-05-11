@@ -9,6 +9,7 @@
 #define UNITVALUES_H_
 
 const int UNIT_MOVE = 2;
+const int UNIT_ATTACK = 1;
 
 
 

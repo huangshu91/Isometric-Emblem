@@ -28,11 +28,16 @@ const float INPUT_DELAY = 0.15;
 const string TILE_ROCK = "res/rock_tile.png";
 const string TILE_KEY = "rocktile";
 
+// tile modifiers
 const string TILE_HIGH = "res/highlight_tile.png";
 const string TILE_HIGH_KEY = "tilehigh";
 
-const string TILE_RANGE = "res/range_tile.png";
-const string TILE_RANGE_KEY = "tilerange";
+const string RANGE_MOVE = "res/range_move.png";
+const string RANGE_MOVE_KEY = "tilemoverange";
+
+const string RANGE_ATTACK = "res/range_attack.png";
+const string RANGE_ATTACK_KEY = "tileattackrange";
+//-----
 
 const string GUI_FRAME = "res/gui_frame.png";
 const string GUI_FRAME_KEY = "guiframe";
@@ -67,7 +72,7 @@ namespace terraintype {
 //maintain parallel enum/array so they can be used as indices
 namespace unit {
   enum Class { NONE, BANDIT, ARCHER, CAVALIER };
-  enum Control { PLAYER, ALLIED, ENEMY };
+  enum Control { EMPTY, PLAYER, ALLIED, ENEMY };
 
   const string CLASS_SPRITE[] = { "None", "Bandit", "Archer", "Cavalier" };
 }
@@ -77,7 +82,11 @@ namespace dir {
 }
 
 namespace inputstate {
-  enum Phase { FREE, MOVE };
+  enum Phase { FREE, MOVE, ATTACK };
+}
+
+namespace range {
+  enum RangeType { MOVE, ATTACK, COMBINED, AURA };
 }
 
 #endif /* CONSTANTS_H_ */

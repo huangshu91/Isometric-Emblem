@@ -7,7 +7,10 @@
 
 #ifndef MAP_H_
 #define MAP_H_
+#include "../Util/Constants.h"
 #include "Cell.h"
+#include <string>
+#include <queue>
 #include <vector>
 
 class DynamicEntity;
@@ -25,18 +28,20 @@ public:
   Map* getMap() { return this; };
   Cell* getCell(int x, int y);
 
-  // this is only temporary unit we set up a system for multiple units
-  DynamicEntity* getUnit() { return player; };
   int getRow() { return row; };
   int getCol() { return col; };
 
-  void toggleRangeOn(DynamicEntity* e);
+  queue<Cell*> getPath(DynamicEntity* e, range::RangeType type);
+  void toggleRangeOn(DynamicEntity* e, range::RangeType type);
   void toggleRangeOff();
-  void markCell(Cell* c);
+  void markCell(Cell* c, string key);
+
+  bool inDistance(DynamicEntity* e, unit::Control utype);
 
   void render();
   void renderUnits();
   void renderRange();
+  void sortForeground();
 
 private:
   GameEngine* eng_ptr;

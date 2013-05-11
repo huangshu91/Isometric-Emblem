@@ -11,13 +11,16 @@
 #include "../System/GameEngine.h"
 #include "Map.h"
 #include <iostream>
+#include <algorithm>
 #include <queue>
 #include <map>
 using namespace std;
 
-Map::Map(GameEngine* eng) : eng_ptr(eng), row(0), col(0) {
+Map::Map(GameEngine* eng) :
+    eng_ptr(eng), row(0), col(0) {
   range_on = false;
-  eng_ptr->getRes()->addResource(TILE_RANGE_KEY, TILE_RANGE);
+  eng_ptr->getRes()->addResource(RANGE_MOVE_KEY, RANGE_MOVE);
+  eng_ptr->getRes()->addResource(RANGE_ATTACK_KEY, RANGE_ATTACK);
 }
 
 void Map::setDimensions(int x, int y) {
@@ -35,22 +38,16 @@ void Map::setDimensions(int x, int y) {
 
 // offsets and tiles are currently hardcoded, get from file
 void Map::setupEntity() {
-  /*
-  player = new DynamicEntity(eng_ptr, SPRITE_KEY);
-  player->setOffset(6, -4);
-  player->setTile(getCell(3,3));
-  getCell(3,3)->unit = player;
-  */
   DynamicEntity* u = new DynamicEntity(eng_ptr, SPRITE_KEY);
-  u->setOffset(6,-4);
-  u->setTile(getCell(3,3));
-  getCell(3,3)->unit = u;
+  u->setOffset(6, -4);
+  u->setTile(getCell(3, 3));
+  getCell(3, 3)->unit = u;
   units.push_back(u);
 
   u = new DynamicEntity(eng_ptr, SPRITE_KEY);
-  u->setOffset(6,-4);
-  u->setTile(getCell(5,1));
-  getCell(5,1)->unit = u;
+  u->setOffset(6, -4);
+  u->setTile(getCell(5, 1));
+  getCell(5, 1)->unit = u;
   units.push_back(u);
 }
 
@@ -58,15 +55,34 @@ Map::~Map() {
   // TODO Auto-generated destructor stub
 }
 
-void Map::toggleRangeOn(DynamicEntity* e) {
-  if (e == 0) return;
+void Map::toggleRangeOn(DynamicEntity* e, range::RangeType type) {
+  if (e == 0)
+    return;
   // select a new unit
   if (range_on == true) {
     toggleRangeOff();
   }
 
-  //sf::Texture* tex = eng_ptr->getRes()->getResource(TILE_RANGE_KEY);
+  queue<Cell*> q = getPath(e, type);
+  while (!q.empty()) {
+    Cell* c = q.front();
+    if (cellDist(c, e->getCurCell()) > e->getRange(range::MOVE))
+      markCell(c, RANGE_ATTACK_KEY);
+    else
+      markCell(c, RANGE_MOVE_KEY);
+    q.pop();
+  }
+
+  range_on = true;
+}
+
+bool Map::inDistance(DynamicEntity* e, unit::Control utype) {
+  return false;
+}
+
+queue<Cell*> Map::getPath(DynamicEntity* e, range::RangeType type) {
   queue<Cell*> path;
+  queue<Cell*> ret;
   map<Cell*, int> traveled;
   path.push(e->getCurCell());
   Cell* origin = e->getCurCell();
@@ -76,35 +92,37 @@ void Map::toggleRangeOn(DynamicEntity* e) {
     path.pop();
     Cell* check_cell;
 
-    if ((check_cell = getCell(cur_cell->getRow(), cur_cell->getCol()-1))) {
-      if (!traveled.count(check_cell) && cellDist(origin, check_cell) <= e->getRange()) {
-       path.push(check_cell);
-       traveled.insert(pair<Cell*, int>(check_cell, 1));
-       markCell(check_cell);
+    ret.push(cur_cell);
+
+    if ((check_cell = getCell(cur_cell->getRow(), cur_cell->getCol() - 1))) {
+      if (!traveled.count(check_cell)
+          && cellDist(origin, check_cell) <= e->getRange(type)) {
+        path.push(check_cell);
+        traveled.insert(pair<Cell*, int>(check_cell, 1));
       }
     }
 
-    if ((check_cell = getCell(cur_cell->getRow(), cur_cell->getCol()+1))) {
-      if (!traveled.count(check_cell) && cellDist(origin, check_cell) <= e->getRange()) {
-       path.push(check_cell);
-       traveled.insert(pair<Cell*, int>(check_cell, 1));
-       markCell(check_cell);
+    if ((check_cell = getCell(cur_cell->getRow(), cur_cell->getCol() + 1))) {
+      if (!traveled.count(check_cell)
+          && cellDist(origin, check_cell) <= e->getRange(type)) {
+        path.push(check_cell);
+        traveled.insert(pair<Cell*, int>(check_cell, 1));
       }
     }
 
-    if ((check_cell = getCell(cur_cell->getRow()-1, cur_cell->getCol()))) {
-      if (!traveled.count(check_cell) && cellDist(origin, check_cell) <= e->getRange()) {
-       path.push(check_cell);
-       traveled.insert(pair<Cell*, int>(check_cell, 1));
-       markCell(check_cell);
+    if ((check_cell = getCell(cur_cell->getRow() - 1, cur_cell->getCol()))) {
+      if (!traveled.count(check_cell)
+          && cellDist(origin, check_cell) <= e->getRange(type)) {
+        path.push(check_cell);
+        traveled.insert(pair<Cell*, int>(check_cell, 1));
       }
     }
 
-    if ((check_cell = getCell(cur_cell->getRow()+1, cur_cell->getCol()))) {
-      if (!traveled.count(check_cell) && cellDist(origin, check_cell) <= e->getRange()) {
-       path.push(check_cell);
-       traveled.insert(pair<Cell*, int>(check_cell, 1));
-       markCell(check_cell);
+    if ((check_cell = getCell(cur_cell->getRow() + 1, cur_cell->getCol()))) {
+      if (!traveled.count(check_cell)
+          && cellDist(origin, check_cell) <= e->getRange(type)) {
+        path.push(check_cell);
+        traveled.insert(pair<Cell*, int>(check_cell, 1));
       }
     }
 
@@ -113,7 +131,7 @@ void Map::toggleRangeOn(DynamicEntity* e) {
     }
   }
 
-  range_on = true;
+  return ret;
 }
 
 void Map::toggleRangeOff() {
@@ -121,8 +139,8 @@ void Map::toggleRangeOff() {
   rangetile.clear();
 }
 
-void Map::markCell(Cell* c) {
-  sf::Texture* tex = eng_ptr->getRes()->getResource(TILE_RANGE_KEY);
+void Map::markCell(Cell* c, string key) {
+  sf::Texture* tex = eng_ptr->getRes()->getResource(key);
   sf::Sprite s(*tex);
 
   s.setPosition(sf::Vector2f(c->getLoc()));
@@ -130,7 +148,8 @@ void Map::markCell(Cell* c) {
 }
 
 Cell* Map::getCell(int x, int y) {
-  if (x < 0 || x >= row || y < 0 || y >= col) return 0;
+  if (x < 0 || x >= row || y < 0 || y >= col)
+    return 0;
 
   return &(board[x][y]);
 }
@@ -142,13 +161,18 @@ void Map::render() {
     }
   }
 
-  if (range_on) renderRange();
+  if (range_on)
+    renderRange();
 }
 
 void Map::renderUnits() {
   for (int i = 0, j = units.size(); i < j; i++) {
     units[i]->render();
   }
+}
+
+void Map::sortForeground() {
+
 }
 
 void Map::renderRange() {

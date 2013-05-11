@@ -21,7 +21,7 @@ public:
 
   void setTile(Cell* t);
   Cell* getCurCell() { return tile_ptr; };
-  int getRange() { return move_range; };
+  int getRange(range::RangeType state);
 
   void render();
 
@@ -30,7 +30,9 @@ private:
 
   Cell* tile_ptr;
 
+  // these will be based on various factors in future
   int move_range;
+  int attack_range;
 };
 
 #endif /* DYNAMICENTITY_H_ */
