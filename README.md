@@ -18,12 +18,20 @@ TODO:
 	Ignore for now because animations are a luxury.
 	
 	DynamicEntity.  Currently have hardcoded move and attack ranges.  This will change in future.  
-	Load default values based on unit type and add modifiers.  Control for movement is Q, control for
-	attack is E.  Eventually figure out a good menu or A,B input method.  
+	Load default values based on unit type and add modifiers.  Need to look at sfml shaders for "ended" 
+	units.
 	
 	1) If unit is already present in selected tile, cannot move. DONE
-	2) multiple vectors for enemy, neutral, player units. Use this to create the inDistance method.
-	3) Display the red attack range if there are enemies in range of player AFTER moving.
+	2) multiple vectors for enemy, neutral, player units. Use this to create the inDistance method. DONE
+	3) Display the red attack range if there are enemies in range of player AFTER moving. DONE
+	4) Maybe not top-priority at the moment but resolve attack. This entails stats system, exp, etc.  
+	Might save this for later since attacking works, it just doesn't really do anything right now.
+	
+	Graphics.  Sort the entities by row then col.  This will draw the sprites in the correct order based on 
+	"closest" unit to the camera.
+	
+	InputState. Add inputstate of "attacking" so that no commands are accepted while the attack is being
+	resolved.  For now, instantly resolve it in one update.
 	
 FUTURE:
 

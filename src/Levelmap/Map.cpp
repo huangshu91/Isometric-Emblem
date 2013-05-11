@@ -66,10 +66,22 @@ void Map::toggleRangeOn(DynamicEntity* e, range::RangeType type) {
   queue<Cell*> q = getPath(e, type);
   while (!q.empty()) {
     Cell* c = q.front();
-    if (cellDist(c, e->getCurCell()) > e->getRange(range::MOVE))
+
+    if (type == range::ATTACK) {
       markCell(c, RANGE_ATTACK_KEY);
-    else
+    }
+
+    if (type == range::COMBINED) {
+      if (cellDist(c, e->getCurCell()) > e->getRange(range::MOVE))
+        markCell(c, RANGE_ATTACK_KEY);
+      else
+        markCell(c, RANGE_MOVE_KEY);
+    }
+
+    if (type == range::MOVE) {
       markCell(c, RANGE_MOVE_KEY);
+    }
+
     q.pop();
   }
 
@@ -77,6 +89,13 @@ void Map::toggleRangeOn(DynamicEntity* e, range::RangeType type) {
 }
 
 bool Map::inDistance(DynamicEntity* e, unit::Control utype) {
+  queue<Cell*> q = getPath(e, range::ATTACK);
+  while (!q.empty()) {
+    Cell* c = q.front();
+    if (c->unit != 0 && c->unit != e && c->unit->getControl() == utype)
+      return true;
+    q.pop();
+  }
   return false;
 }
 

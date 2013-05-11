@@ -82,7 +82,7 @@ namespace dir {
 }
 
 namespace inputstate {
-  enum Phase { FREE, MOVE, ATTACK };
+  enum Phase { FREE, MOVE, ACTION, ATTACK };
 }
 
 namespace range {

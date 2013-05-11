@@ -22,11 +22,15 @@ public:
   void setTile(Cell* t);
   Cell* getCurCell() { return tile_ptr; };
   int getRange(range::RangeType state);
+  unit::Control getControl() { return control; };
+
+  void attackUnit(DynamicEntity* unit);
 
   void render();
 
 private:
   unit::Class classtype;
+  unit::Control control;
 
   Cell* tile_ptr;
 

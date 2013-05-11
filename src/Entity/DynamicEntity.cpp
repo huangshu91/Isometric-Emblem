@@ -14,6 +14,7 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng) {
   name = n;
   move_range = UNIT_MOVE;
   attack_range = UNIT_ATTACK;
+  control = unit::ENEMY;
 }
 
 DynamicEntity::~DynamicEntity() {
@@ -45,4 +46,8 @@ int DynamicEntity::getRange(range::RangeType state) {
     break;
   default: return 0;
   }
+}
+
+void DynamicEntity::attackUnit(DynamicEntity* unit) {
+  // resolve attacks here
 }
