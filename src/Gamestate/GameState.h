@@ -19,6 +19,7 @@ public:
   GameState(GameEngine* eng);
   virtual void render() = 0;
   virtual void update() = 0;
+  //virtual void setup() = 0;
   virtual ~GameState() {};
 
   gamestate::Statetype getId() { return stateId; };

@@ -23,6 +23,7 @@ public:
 
   void render();
   void update();
+  void setup();
 
 private:
   Map* level;

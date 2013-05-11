@@ -3,7 +3,9 @@ Isometric-Emblem
 
 TODO: 
 
-	Gamestates
+	Gamestates.  Does setup need to be done for each gamestate?  For now playstate will have hardcoded vals
+	but will be reading map info from file.  For now only worry about PlayState, eventually have a group of states,
+	managed by a stateengine or statemanager within gameengine.  
 	
 	Menu/OverlayBox/GUI
 	
@@ -32,6 +34,8 @@ TODO:
 	
 	InputState. Add inputstate of "attacking" so that no commands are accepted while the attack is being
 	resolved.  For now, instantly resolve it in one update.
+	
+	
 	
 FUTURE:
 

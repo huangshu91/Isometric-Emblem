@@ -18,7 +18,6 @@ public:
   virtual ~MapState();
 
 private:
-  GameEngine* eng_ptr;
 };
 
 #endif /* MAPSTATE_H_ */

@@ -12,6 +12,7 @@
 #include "../Interface/GUIDisplay.h"
 #include "../Interface/TerrainMenu.h"
 #include "../Entity/DynamicEntity.h"
+#include "../GameState/PlayState.h"
 #include <iostream>
 using namespace std;
 
@@ -36,34 +37,19 @@ void GameEngine::loadDebug() {
 
 
 void GameEngine::runEngine() {
-  Map testboard(getEngine());
-  testboard.setDimensions(7,7);
-  testboard.setupEntity();
-  InputController input(getEngine());
-  input.setMap(&testboard);
-  input.setCurrentCell(1,3);
-  gameCam.setCenter(sf::Vector2f(input.getCurrentCenter()));
-  gameCam.zoomCamera(0.8f);
+
+  PlayState* pstate = new PlayState(getEngine());
+  pstate->setup();
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
-
     while (gameWindow.pollEvent(ev)) {
-          if (ev.type == sf::Event::Closed)
-            gameWindow.close();
+          if (ev.type == sf::Event::Closed) gameWindow.close();
     }
-
     gameWindow.clear(WINDOW_COLOR);
-    input.update();
-    gameCam.update();
 
-    gameWindow.setView(*(gameCam.GetView()));
-
-    testboard.render();
-    input.render();
-    testboard.renderUnits();
-
-    gameHUD.render();
+    pstate->update();
+    pstate->render();
 
     gameWindow.display();
   }
