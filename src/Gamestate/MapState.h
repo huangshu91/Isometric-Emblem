@@ -8,7 +8,7 @@
 #ifndef MAPSTATE_H_
 #define MAPSTATE_H_
 
-#include "../System/GameState.h"
+#include "GameState.h"
 
 class GameEngine;
 

@@ -8,7 +8,7 @@
 #include "MapState.h"
 #include "../System/GameEngine.h"
 
-MapState::MapState(GameEngine* eng) : eng_ptr(eng) {
+MapState::MapState(GameEngine* eng) : GameState(eng) {
 
 
 }

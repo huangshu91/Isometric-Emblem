@@ -59,7 +59,7 @@ const int LABEL_SIZE = 20;
 // enums
 
 namespace gamestate {
-  enum Statetype { MENU, START, CHAT, LOOP, PAUSE, EXIT };
+  enum Statetype { MENU, START, PLAY, PAUSE, EXIT, UNINIT };
 }
 
 //maintain parallel enum/array so they can be used as indices
