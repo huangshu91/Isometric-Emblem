@@ -11,6 +11,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
+#include "../Util/Constants.h"
 
 class Map;
 class InputController;
@@ -24,6 +25,9 @@ public:
   void render();
   void update();
   void setup();
+
+  gamestate::Playphase phase;
+  void changePhase(gamestate::Playphase next);
 
 private:
   Map* level;

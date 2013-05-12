@@ -38,7 +38,7 @@ void GameEngine::loadDebug() {
 
 void GameEngine::runEngine() {
 
-  PlayState* pstate = new PlayState(getEngine());
+  pstate = new PlayState(getEngine());
   pstate->setup();
 
   while (gameWindow.isOpen()) {

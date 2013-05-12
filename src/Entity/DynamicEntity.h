@@ -28,6 +28,8 @@ public:
 
   void render();
 
+  bool can_move;
+
 private:
   unit::Class classtype;
   unit::Control control;

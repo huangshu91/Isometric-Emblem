@@ -94,6 +94,12 @@ void InputController::update() {
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
     selectCell();
   }
+
+  // for now use this to end turn/change phase. debugging purposes
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)
+      && inputtimer.getElapsedTime() > INPUT_DELAY) {
+    eng_ptr->getPlayState()->changePhase(gamestate::ENEMY);
+  }
 }
 
 void InputController::selectCell() {
@@ -120,8 +126,7 @@ void InputController::selectCell() {
       state = inputstate::ATTACK;
       return;
     } else {
-      state = inputstate::FREE;
-      selected = 0;
+      finishSelect();
       return;
     }
   }
@@ -129,22 +134,24 @@ void InputController::selectCell() {
   if (state == inputstate::ATTACK) {
     // end move, dont attack
     if (cur_cell == selected->getCurCell()) {
-      map_ptr->toggleRangeOff();
-      state = inputstate::FREE;
-      selected = 0;
+      finishSelect();
       return;
     }
 
     if (cur_cell->unit != 0 && cur_cell->unit->getControl() == unit::ENEMY) {
       // check readme for TODO here
-      map_ptr->toggleRangeOff();
       selected->attackUnit(cur_cell->unit);
-      state = inputstate::FREE;
-      selected = 0;
+      finishSelect();
       return;
     }
   }
+}
 
+void InputController::finishSelect() {
+  map_ptr->toggleRangeOff();
+  state = inputstate::FREE;
+  selected->can_move = false;
+  selected = 0;
 }
 
 bool InputController::moveUnit(int x, int y) {

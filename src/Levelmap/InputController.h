@@ -37,6 +37,7 @@ public:
 
 private:
   void updateCell();
+  void finishSelect();
 
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;

@@ -6,7 +6,6 @@
  */
 
 #include "PlayState.h"
-#include "../Util/Constants.h"
 #include "../Levelmap/Map.h"
 #include "../Levelmap/InputController.h"
 #include "../System/GameEngine.h"
@@ -15,6 +14,7 @@ PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   stateId = gamestate::PLAY;
   level = new Map(eng_ptr);
   input = new InputController(eng_ptr);
+  phase = gamestate::PLAYER;
 }
 
 PlayState::~PlayState() {
@@ -32,7 +32,12 @@ void PlayState::setup() {
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
 
-  input->update();
+  if (phase == gamestate::PLAYER) input->update();
+  if (phase == gamestate::ENEMY) {} //do something
+}
+
+void PlayState::changePhase(gamestate::Playphase next) {
+  phase = next;
 }
 
 void PlayState::update() {

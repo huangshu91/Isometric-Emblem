@@ -15,6 +15,7 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng) {
   move_range = UNIT_MOVE;
   attack_range = UNIT_ATTACK;
   control = unit::ENEMY;
+  can_move = true;
 }
 
 DynamicEntity::~DynamicEntity() {

@@ -18,6 +18,7 @@
 #include "HUDManager.h"
 
 class GameState;
+class PlayState;
 
 class GameEngine {
 public:
@@ -32,6 +33,7 @@ public:
   Camera* getGameCam() { return &gameCam; };
   HUDManager* getHUD() { return &gameHUD; };
 
+  PlayState* getPlayState() { return pstate; };
 
 private:
 
@@ -46,6 +48,8 @@ private:
   ResourceManager     gameRes;
   HUDManager          gameHUD;
   Camera              gameCam;
+
+  PlayState* pstate;
 };
 
 
