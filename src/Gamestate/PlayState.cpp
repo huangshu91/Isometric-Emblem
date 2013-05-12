@@ -7,7 +7,7 @@
 
 #include "PlayState.h"
 #include "../Levelmap/Map.h"
-#include "../Levelmap/InputController.h"
+#include "../Controller/InputController.h"
 #include "../System/GameEngine.h"
 
 PlayState::PlayState(GameEngine* eng) : GameState(eng) {
@@ -33,7 +33,7 @@ void PlayState::setup() {
   eng_ptr->getGameCam()->zoomCamera(0.8f);
 
   if (phase == gamestate::PLAYER) input->update();
-  if (phase == gamestate::ENEMY) {} //do something
+  if (phase == gamestate::ENEMY) { phase = gamestate::PLAYER; }
 }
 
 void PlayState::changePhase(gamestate::Playphase next) {

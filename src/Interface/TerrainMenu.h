@@ -17,7 +17,7 @@ public:
   TerrainMenu();
   virtual ~TerrainMenu();
 
-  void setup(GameEngine* end);
+  void setup(GameEngine* eng);
 
   void render();
 

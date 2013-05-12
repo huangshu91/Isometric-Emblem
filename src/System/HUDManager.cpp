@@ -10,9 +10,7 @@
 #include "../Interface/GUIWidget.h"
 using namespace std;
 
-HUDManager::HUDManager() {
-
-}
+HUDManager::HUDManager() { }
 
 void HUDManager::setup(GameEngine* eng) {
   eng_ptr = eng;

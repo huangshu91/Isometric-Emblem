@@ -9,25 +9,24 @@
 #include "../System/GameEngine.h"
 #include "../Interface/TerrainMenu.h"
 #include "../Entity/DynamicEntity.h"
+#include "../Gamestate/PlayState.h"
 #include "../Util/UtilFunc.h"
-#include "Map.h"
-#include "Cell.h"
+#include "../Levelmap/Map.h"
+#include "../Levelmap/Cell.h"
 #include <iostream>
 #include <cstdlib>
 
-InputController::InputController(GameEngine* eng) :
-    eng_ptr(eng) {
+InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   win_ptr = eng_ptr->getWindow();
   eng->getRes()->addResource(TILE_HIGH_KEY, TILE_HIGH);
   tilehighlight.setTexture(*(eng->getRes()->getResource(TILE_HIGH_KEY)));
   terrainhud_ptr = eng_ptr->getHUD()->getTerrainHUD();
+  map_ptr = 0;
+  cur_cell = 0;
   selected = 0;
   state = inputstate::FREE;
 
   inputtimer.resetClock();
-
-  //set the beginning cell to be the one that the main unit is on
-  //updateCell();
 }
 
 InputController::~InputController() {
@@ -36,7 +35,6 @@ InputController::~InputController() {
 
 void InputController::setMap(Map* mp) {
   map_ptr = mp;
-  //selected = map_ptr->getUnit();
 }
 
 bool InputController::setCurrentCell(int x, int y) {

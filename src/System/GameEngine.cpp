@@ -8,7 +8,7 @@
 #include "GameEngine.h"
 #include "../Util/Constants.h"
 #include "../Levelmap/Map.h"
-#include "../Levelmap/InputController.h"
+#include "../Controller/InputController.h"
 #include "../Interface/GUIDisplay.h"
 #include "../Interface/TerrainMenu.h"
 #include "../Entity/DynamicEntity.h"
@@ -38,6 +38,12 @@ void GameEngine::loadDebug() {
 
 void GameEngine::runEngine() {
 
+  gameRes.addResource(PHASE_PLAYER_KEY, PHASE_PLAYER);
+  gameRes.addResource(PHASE_ENEMY_KEY, PHASE_ENEMY);
+  sf::Sprite testsprite(*(gameRes.getResource(PHASE_PLAYER_KEY)));
+  testsprite.setOrigin(testsprite.getLocalBounds().width/2, testsprite.getLocalBounds().height/2);
+  testsprite.setPosition(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+
   pstate = new PlayState(getEngine());
   pstate->setup();
 
@@ -50,6 +56,8 @@ void GameEngine::runEngine() {
 
     pstate->update();
     pstate->render();
+
+    gameWindow.draw(testsprite);
 
     gameWindow.display();
   }
