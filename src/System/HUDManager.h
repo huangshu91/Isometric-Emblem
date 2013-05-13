@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include "../Interface/TerrainMenu.h"
+#include "../Interface/PhaseWidget.h"
 
 class GUIFrame;
 class GameEngine;
@@ -29,6 +30,7 @@ public:
   GUIWidget* getWidget(std::string key);
 
   TerrainMenu* getTerrainHUD() { return &terrain_hud; };
+  PhaseWidget* getPhaseHUD() { return &phase_hud; };
 
   void render();
 
@@ -40,6 +42,7 @@ private:
   std::map<std::string, GUIWidget*> map;
 
   TerrainMenu   terrain_hud;
+  PhaseWidget   phase_hud;
 };
 
 #endif /* HUDMANAGER_H_ */

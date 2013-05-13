@@ -17,7 +17,9 @@ void HUDManager::setup(GameEngine* eng) {
   win_ptr = eng_ptr->getWindow();
 
   terrain_hud.setup(eng);
+  phase_hud.setup(eng);
   addWidget(TERRAIN_MENU, &terrain_hud);
+  addWidget(PHASE_HUD, &phase_hud);
 }
 
 HUDManager::~HUDManager() {

@@ -47,6 +47,8 @@ const string PHASE_PLAYER = "res/phase_player.png";
 const string PHASE_ENEMY = "res/phase_enemy.png";
 const string PHASE_PLAYER_KEY = "playerphase";
 const string PHASE_ENEMY_KEY = "enemyphase";
+const string PHASE_HUD = "phasehud";
+const float PHASE_DUR = 1.0f;
 
 const string TEMP_SPRITE = "res/unit_armor.png";
 const string SPRITE_KEY = "spritearmor";

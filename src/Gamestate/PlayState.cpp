@@ -15,6 +15,7 @@ PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   level = new Map(eng_ptr);
   input = new InputController(eng_ptr);
   phase = gamestate::PLAYER;
+  wait = false;
 }
 
 PlayState::~PlayState() {
@@ -32,17 +33,37 @@ void PlayState::setup() {
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
 
-  if (phase == gamestate::PLAYER) input->update();
-  if (phase == gamestate::ENEMY) { phase = gamestate::PLAYER; }
+  //if (phase == gamestate::PLAYER) input->update();
+  //if (phase == gamestate::ENEMY) { phase = gamestate::PLAYER; }
 }
 
 void PlayState::changePhase(gamestate::Playphase next) {
   phase = next;
+
+  if (phase == gamestate::PLAYER || phase == gamestate::ENEMY) {
+    if (eng_ptr->getHUD()->getWidget(PHASE_HUD)) {
+      eng_ptr->getHUD()->getPhaseHUD()->changePhase(next);
+      wait = true;
+    }
+  }
+}
+
+void PlayState::finishTransition() {
+  wait = false;
 }
 
 void PlayState::update() {
-  input->update();
-  eng_ptr->getGameCam()->update();
+  if (!wait) {
+    if (phase == gamestate::PLAYER) {
+      input->update();
+    }
+
+    else if (phase == gamestate::ENEMY) {
+      changePhase(gamestate::PLAYER);
+    }
+
+    eng_ptr->getGameCam()->update();
+  }
 }
 
 void PlayState::render() {

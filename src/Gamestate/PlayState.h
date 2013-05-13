@@ -28,10 +28,13 @@ public:
 
   gamestate::Playphase phase;
   void changePhase(gamestate::Playphase next);
+  void finishTransition();
 
 private:
   Map* level;
   InputController* input;
+
+  bool wait;
 };
 
 #endif /* PLAYSTATE_H_ */

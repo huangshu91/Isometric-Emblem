@@ -21,6 +21,8 @@ public:
   virtual ~PhaseWidget();
 
   void setup(GameEngine* eng);
+  void changePhase(gamestate::Playphase p);
+  void render();
 
 private:
   gamestate::Playphase phase;
@@ -28,7 +30,7 @@ private:
   sf::Sprite player_sprite;
   sf::Sprite enemy_sprite;
 
-  bool visible;
+  bool is_visible;
   FormatClock timer;
 };
 

@@ -57,7 +57,7 @@ void GameEngine::runEngine() {
     pstate->update();
     pstate->render();
 
-    gameWindow.draw(testsprite);
+    //gameWindow.draw(testsprite);
 
     gameWindow.display();
   }
