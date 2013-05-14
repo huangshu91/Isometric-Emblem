@@ -15,7 +15,7 @@ class GameEngine;
 
 class Entity {
 public:
-  Entity(GameEngine* eng);
+  Entity(GameEngine* eng, std::string n);
   virtual ~Entity();
 
   std::string getName() { return name; };

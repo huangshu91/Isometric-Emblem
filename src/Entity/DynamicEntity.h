@@ -23,15 +23,17 @@ public:
   Cell* getCurCell() { return tile_ptr; };
   int getRange(range::RangeType state);
   unit::Control getControl() { return control; };
+  void setControl(unit::Control);
 
   void attackUnit(DynamicEntity* unit);
 
   void render();
 
   bool can_move;
+  bool finished_move;
 
 private:
-  unit::Class classtype;
+  unit::Class class_type;
   unit::Control control;
 
   Cell* tile_ptr;

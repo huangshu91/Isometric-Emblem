@@ -32,9 +32,6 @@ void PlayState::setup() {
 
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
-
-  //if (phase == gamestate::PLAYER) input->update();
-  //if (phase == gamestate::ENEMY) { phase = gamestate::PLAYER; }
 }
 
 void PlayState::changePhase(gamestate::Playphase next) {

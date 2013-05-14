@@ -30,11 +30,8 @@ GameEngine::GameEngine() {
 }
 
 void GameEngine::loadDebug() {
-  gameRes.addResource(TILE_KEY, TILE_ROCK);
-  gameRes.addResource(SPRITE_KEY, TEMP_SPRITE);
   gameRes.addFont(DEFAULT_FONT_KEY, DEFAULT_FONT);
 }
-
 
 void GameEngine::runEngine() {
 

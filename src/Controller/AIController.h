@@ -8,10 +8,15 @@
 #ifndef AICONTROLLER_H_
 #define AICONTROLLER_H_
 
+class GameEngine;
+
 class AIController {
 public:
-  AIController();
+  AIController(GameEngine* eng);
   virtual ~AIController();
+
+private:
+  GameEngine* eng_ptr;
 };
 
 #endif /* AICONTROLLER_H_ */

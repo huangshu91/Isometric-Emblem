@@ -26,7 +26,6 @@ public:
   void setMap(Map* mp);
   // true if changed, false if same
   bool setCurrentCell(int x, int y);
-  void moveUnit(dir::Direction d);
   // true if unit was moved, false if same
   bool moveUnit(int x, int y);
   void selectCell();

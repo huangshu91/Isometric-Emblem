@@ -6,9 +6,9 @@
  */
 
 #include "AIController.h"
+#include "../System/GameEngine.h"
 
-AIController::AIController() {
-  // TODO Auto-generated constructor stub
+AIController::AIController(GameEngine* eng) : eng_ptr(eng) {
 
 }
 

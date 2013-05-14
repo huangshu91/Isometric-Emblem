@@ -10,12 +10,16 @@
 #include "../Levelmap/Cell.h"
 #include "../Util/UnitValues.h"
 
-DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng) {
+DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
   name = n;
   move_range = UNIT_MOVE;
   attack_range = UNIT_ATTACK;
   control = unit::ENEMY;
+  class_type = unit::NONE;
   can_move = true;
+  finished_move = false;
+
+  tile_ptr = 0;
 }
 
 DynamicEntity::~DynamicEntity() {
@@ -47,6 +51,10 @@ int DynamicEntity::getRange(range::RangeType state) {
     break;
   default: return 0;
   }
+}
+
+void DynamicEntity::setControl(unit::Control c) {
+  control = c;
 }
 
 void DynamicEntity::attackUnit(DynamicEntity* unit) {

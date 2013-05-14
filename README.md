@@ -35,12 +35,18 @@ TODO:
 	InputState. Add inputstate of "attacking" so that no commands are accepted while the attack is being
 	resolved.  For now, instantly resolve it in one update.
 	
-	
+	Movement. Need to use A* to find the path that the unit should travel. Add arrow to show.  Double check
+	movement modifiers such as different terrain or impassable terrain affect my current method.
 	
 FUTURE:
 
 	Mouse control scheme (point in polygon)
 	Font manager if more than one font is used. (including same font different sizes?)
+	
+	Features:
+	Formation - Stand United (positional bonuses)
+	Titles - (bonuses for unit achievements)
+	Rewards - (bonuses for objectives in stage)
 	
 NOTES:
 

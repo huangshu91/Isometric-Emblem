@@ -21,6 +21,7 @@ Map::Map(GameEngine* eng) :
   range_on = false;
   eng_ptr->getRes()->addResource(RANGE_MOVE_KEY, RANGE_MOVE);
   eng_ptr->getRes()->addResource(RANGE_ATTACK_KEY, RANGE_ATTACK);
+  eng_ptr->getRes()->addResource(TILE_KEY, TILE_ROCK);
 }
 
 void Map::setDimensions(int x, int y) {
@@ -37,18 +38,26 @@ void Map::setDimensions(int x, int y) {
 }
 
 // offsets and tiles are currently hardcoded, get from file
+// also what units are in map, resources for those units/etc
 void Map::setupEntity() {
-  DynamicEntity* u = new DynamicEntity(eng_ptr, SPRITE_KEY);
+  eng_ptr->getRes()->addResource(UNIT_ARMOR_KEY, UNIT_ARMOR);
+  eng_ptr->getRes()->addResource(UNIT_ARMOR_RED_KEY, UNIT_ARMOR_RED);
+
+  DynamicEntity* u = new DynamicEntity(eng_ptr, UNIT_ARMOR_KEY);
   u->setOffset(6, -4);
   u->setTile(getCell(3, 3));
   getCell(3, 3)->unit = u;
+  u->setControl(unit::PLAYER);
   units.push_back(u);
+  player_units.push_back(u);
 
-  u = new DynamicEntity(eng_ptr, SPRITE_KEY);
+  u = new DynamicEntity(eng_ptr, UNIT_ARMOR_RED_KEY);
   u->setOffset(6, -4);
-  u->setTile(getCell(5, 1));
-  getCell(5, 1)->unit = u;
+  u->setTile(getCell(9, 1));
+  getCell(9, 1)->unit = u;
+  u->setControl(unit::ENEMY);
   units.push_back(u);
+  enemy_units.push_back(u);
 }
 
 Map::~Map() {
@@ -180,8 +189,7 @@ void Map::render() {
     }
   }
 
-  if (range_on)
-    renderRange();
+  if (range_on) renderRange();
 }
 
 void Map::renderUnits() {
@@ -190,8 +198,27 @@ void Map::renderUnits() {
   }
 }
 
-void Map::sortForeground() {
+bool sortUnits(DynamicEntity* x, DynamicEntity* y) {
+  if (x->getCurCell()->getRow() < y->getCurCell()->getRow()) {
+    return true;
+  }
+  else if (x->getCurCell()->getRow() > y->getCurCell()->getRow()) {
+    return false;
+  }
+  else { //same row, check cols
+    if (x->getCurCell()->getCol() < y->getCurCell()->getCol()) {
+      return true;
+    }
 
+    else if (x->getCurCell()->getCol() > y->getCurCell()->getCol()) {
+      return false;
+    }
+  }
+  return false; //should not reach here
+}
+
+void Map::sortForeground() {
+  sort(units.begin(), units.end(), sortUnits);
 }
 
 void Map::renderRange() {

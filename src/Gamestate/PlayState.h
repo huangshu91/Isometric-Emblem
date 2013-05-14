@@ -26,14 +26,15 @@ public:
   void update();
   void setup();
 
-  gamestate::Playphase phase;
   void changePhase(gamestate::Playphase next);
+  gamestate::Playphase getPhase() { return phase; };
   void finishTransition();
 
 private:
   Map* level;
   InputController* input;
 
+  gamestate::Playphase phase;
   bool wait;
 };
 

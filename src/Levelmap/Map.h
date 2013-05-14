@@ -55,6 +55,8 @@ private:
   int row;
   int col;
 
+  std::vector<DynamicEntity*> player_units;
+  std::vector<DynamicEntity*> enemy_units;
   std::vector<DynamicEntity*> units;
 };
 

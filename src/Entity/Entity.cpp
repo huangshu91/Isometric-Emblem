@@ -8,14 +8,14 @@
 #include "Entity.h"
 #include "../System/GameEngine.h"
 
-Entity::Entity(GameEngine* eng) : eng_ptr(eng) {
+Entity::Entity(GameEngine* eng, std::string n) : eng_ptr(eng) {
   // TODO Auto-generated constructor stub
   name = "UNINITIALZIED";
   win_ptr = eng_ptr->getWindow();
   sprite_offset.x = 0;
   sprite_offset.y = 0;
 
-  sprite.setTexture(*(eng->getRes()->getResource(SPRITE_KEY)));
+  sprite.setTexture(*(eng->getRes()->getResource(n)));
   sprite.setOrigin(sprite.getLocalBounds().width/2, sprite.getLocalBounds().height);
 }
 

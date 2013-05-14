@@ -50,8 +50,11 @@ const string PHASE_ENEMY_KEY = "enemyphase";
 const string PHASE_HUD = "phasehud";
 const float PHASE_DUR = 1.0f;
 
-const string TEMP_SPRITE = "res/unit_armor.png";
-const string SPRITE_KEY = "spritearmor";
+const string UNIT_ARMOR = "res/unit_armor.png";
+const string UNIT_ARMOR_KEY = "spritearmor";
+
+const string UNIT_ARMOR_RED = "res/unit_armor_red.png";
+const string UNIT_ARMOR_RED_KEY = "spriteredarmor";
 
 // Fonts
 const string DEFAULT_FONT = "res/fonts/arial.ttf";

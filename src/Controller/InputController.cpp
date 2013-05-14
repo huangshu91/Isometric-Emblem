@@ -42,8 +42,8 @@ bool InputController::setCurrentCell(int x, int y) {
   inputtimer.resetClock();
 
   if (state == inputstate::MOVE
-      && cellDist(selected->getCurCell(), c)
-          > selected->getRange(range::MOVE)) {
+      && cellDist(selected->getCurCell(), c) > selected->getRange(range::MOVE)
+      && selected->getControl() == unit::PLAYER) {
     return false;
   }
 
@@ -105,13 +105,23 @@ void InputController::selectCell() {
   // a unit was NOT previously selected already
 
   if (state == inputstate::FREE) {
-    selected = cur_cell->unit;
-    map_ptr->toggleRangeOn(selected, range::COMBINED);
-    state = inputstate::MOVE;
-    return;
+    if (cur_cell->unit) {
+      selected = cur_cell->unit;
+      map_ptr->toggleRangeOn(selected, range::COMBINED);
+      state = inputstate::MOVE;
+      return;
+    }
+    else {
+      //open menu
+    }
   }
 
   if (state == inputstate::MOVE) {
+    if (selected->getControl() != unit::PLAYER) {
+      finishSelect();
+      return;
+    }
+
     if (!moveUnit(cur_cell->getRow(), cur_cell->getCol()))
       return;
     map_ptr->toggleRangeOff();
@@ -169,39 +179,8 @@ bool InputController::moveUnit(int x, int y) {
   selected->setTile(to_cell);
   to_cell->unit = selected;
 
+  map_ptr->sortForeground();
   return true;
-}
-
-void InputController::moveUnit(dir::Direction d) {
-  inputtimer.resetClock();
-  if (selected == 0)
-    return;
-
-  Cell* player_cell = selected->getCurCell();
-  if (player_cell == 0)
-    return;
-
-  Cell* new_cell;
-
-  if (d == dir::UP)
-    new_cell = map_ptr->getCell(player_cell->getRow() - 1,
-        player_cell->getCol());
-  else if (d == dir::DOWN)
-    new_cell = map_ptr->getCell(player_cell->getRow() + 1,
-        player_cell->getCol());
-  else if (d == dir::LEFT)
-    new_cell = map_ptr->getCell(player_cell->getRow(),
-        player_cell->getCol() - 1);
-  else if (d == dir::RIGHT)
-    new_cell = map_ptr->getCell(player_cell->getRow(),
-        player_cell->getCol() + 1);
-
-  if (new_cell == 0)
-    return;
-
-  player_cell->unit = 0;
-  selected->setTile(new_cell);
-  new_cell->unit = selected;
 }
 
 void InputController::updateCell() {
@@ -219,5 +198,6 @@ sf::Vector2i InputController::getCurrentCenter() {
 }
 
 void InputController::render() {
+  if (eng_ptr->getPlayState()->getPhase() == gamestate::PLAYER)
   win_ptr->draw(tilehighlight);
 }
