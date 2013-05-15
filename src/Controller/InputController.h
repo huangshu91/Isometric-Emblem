@@ -29,13 +29,13 @@ public:
   // true if unit was moved, false if same
   bool moveUnit(int x, int y);
   void selectCell();
+  void updateCell();
   sf::Vector2i getCurrentCenter();
 
   void update();
   void render();
 
 private:
-  void updateCell();
   void finishSelect();
 
   GameEngine* eng_ptr;

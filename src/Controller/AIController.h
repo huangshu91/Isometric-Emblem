@@ -22,6 +22,7 @@ public:
 
   void setMap(Map* mp);
   void moveUnit();
+  void endUnit();
 
   void update();
 

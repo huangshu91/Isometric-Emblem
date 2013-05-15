@@ -98,20 +98,22 @@ void AIController::moveUnit() {
   if (cellDist(target->getCurCell(), to_cell) == selected->getRange(range::ATTACK)) {
     //attack
   }
+
+  endUnit();
 }
 
 void AIController::moveTo(Cell* c) {
   if (c == selected->getCurCell()) {
-    selected->endTurn();
-    selected = 0;
     return;
   }
 
   selected->getCurCell()->unit = 0;
   selected->setTile(c);
   c->unit = selected;
+}
+
+void AIController::endUnit() {
   selected->endTurn();
   selected = 0;
-
   map_ptr->sortForeground();
 }

@@ -32,10 +32,12 @@ void PlayState::setup() {
   level->setupEntity();
   input->setMap(level);
   input->setCurrentCell(1,3);
+  input->updateCell();
   ai->setMap(level);
 
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
+
 }
 
 void PlayState::changePhase(gamestate::Playphase next) {
