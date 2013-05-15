@@ -8,12 +8,14 @@
 #include "PlayState.h"
 #include "../Levelmap/Map.h"
 #include "../Controller/InputController.h"
+#include "../Controller/AIController.h"
 #include "../System/GameEngine.h"
 
 PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   stateId = gamestate::PLAY;
   level = new Map(eng_ptr);
   input = new InputController(eng_ptr);
+  ai = new AIController(eng_ptr);
   phase = gamestate::PLAYER;
   wait = false;
 }
@@ -21,6 +23,7 @@ PlayState::PlayState(GameEngine* eng) : GameState(eng) {
 PlayState::~PlayState() {
   delete level;
   delete input;
+  delete ai;
 }
 
 // eventually load from file
@@ -29,6 +32,7 @@ void PlayState::setup() {
   level->setupEntity();
   input->setMap(level);
   input->setCurrentCell(1,3);
+  ai->setMap(level);
 
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
@@ -43,6 +47,11 @@ void PlayState::changePhase(gamestate::Playphase next) {
       wait = true;
     }
   }
+
+  if (phase == gamestate::NEWTURN) {
+    level->resetUnits();
+    changePhase(gamestate::PLAYER);
+  }
 }
 
 void PlayState::finishTransition() {
@@ -56,7 +65,7 @@ void PlayState::update() {
     }
 
     else if (phase == gamestate::ENEMY) {
-      changePhase(gamestate::PLAYER);
+      ai->update();
     }
 
     eng_ptr->getGameCam()->update();

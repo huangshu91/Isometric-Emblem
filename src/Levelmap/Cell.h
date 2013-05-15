@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "Terrain.h"
 #include "../Util/Constants.h"
+#include <iostream>
 
 class GameEngine;
 class Map;
@@ -30,6 +31,9 @@ public:
   Terrain getTerrain() { return area_type; };
 
   void render();
+
+  friend std::ostream& operator<<(std::ostream& out, const Cell& c);
+  friend std::ostream& operator<<(std::ostream& out, const Cell* c);
 
   DynamicEntity* unit;
 

@@ -32,6 +32,9 @@ public:
   bool can_move;
   bool finished_move;
 
+  void newTurn();
+  void endTurn();
+
 private:
   unit::Class class_type;
   unit::Control control;

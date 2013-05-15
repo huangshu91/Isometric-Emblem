@@ -70,7 +70,7 @@ const int LABEL_SIZE = 20;
 
 namespace gamestate {
   enum Statetype { MENU, START, PLAY, PAUSE, EXIT, UNINIT };
-  enum Playphase { PLAYER, ENEMY, NEUTRAL };
+  enum Playphase { PLAYER, ENEMY, NEUTRAL, NEWTURN };
 }
 
 //maintain parallel enum/array so they can be used as indices

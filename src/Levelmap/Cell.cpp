@@ -36,3 +36,13 @@ Cell::~Cell() {
 void Cell::render() {
   eng_ptr->getWindow()->draw(tile);
 }
+
+std::ostream& operator<<(std::ostream& out, const Cell& c) {
+  out << c.row << ":" << c.col;
+  return out;
+}
+
+std::ostream& operator<<(std::ostream& out, const Cell* c) {
+  out << c->row << ":" << c->col;
+  return out;
+}

@@ -37,11 +37,15 @@ public:
   void markCell(Cell* c, string key);
 
   bool inDistance(DynamicEntity* e, unit::Control utype);
+  void resetUnits();
 
   void render();
   void renderUnits();
   void renderRange();
   void sortForeground();
+
+  std::vector<DynamicEntity*> getPlayerUnits() { return player_units; };
+  std::vector<DynamicEntity*> getEnemyUnits() { return enemy_units; };
 
 private:
   GameEngine* eng_ptr;

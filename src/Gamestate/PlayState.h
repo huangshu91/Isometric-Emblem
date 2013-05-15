@@ -15,6 +15,7 @@
 
 class Map;
 class InputController;
+class AIController;
 class GameEngine;
 
 class PlayState: public GameState {
@@ -33,6 +34,7 @@ public:
 private:
   Map* level;
   InputController* input;
+  AIController* ai;
 
   gamestate::Playphase phase;
   bool wait;

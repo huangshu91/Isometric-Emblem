@@ -45,8 +45,8 @@ void Map::setupEntity() {
 
   DynamicEntity* u = new DynamicEntity(eng_ptr, UNIT_ARMOR_KEY);
   u->setOffset(6, -4);
-  u->setTile(getCell(3, 3));
-  getCell(3, 3)->unit = u;
+  u->setTile(getCell(3, 5));
+  getCell(3, 5)->unit = u;
   u->setControl(unit::PLAYER);
   units.push_back(u);
   player_units.push_back(u);
@@ -55,6 +55,14 @@ void Map::setupEntity() {
   u->setOffset(6, -4);
   u->setTile(getCell(9, 1));
   getCell(9, 1)->unit = u;
+  u->setControl(unit::ENEMY);
+  units.push_back(u);
+  enemy_units.push_back(u);
+
+  u = new DynamicEntity(eng_ptr, UNIT_ARMOR_RED_KEY);
+  u->setOffset(6, -4);
+  u->setTile(getCell(4, 0));
+  getCell(4, 0)->unit = u;
   u->setControl(unit::ENEMY);
   units.push_back(u);
   enemy_units.push_back(u);
@@ -165,6 +173,12 @@ queue<Cell*> Map::getPath(DynamicEntity* e, range::RangeType type) {
 void Map::toggleRangeOff() {
   range_on = false;
   rangetile.clear();
+}
+
+void Map::resetUnits() {
+  for (int i = 0, j = units.size(); i < j; i++) {
+    units[i]->newTurn();
+  }
 }
 
 void Map::markCell(Cell* c, string key) {

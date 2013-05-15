@@ -60,3 +60,14 @@ void DynamicEntity::setControl(unit::Control c) {
 void DynamicEntity::attackUnit(DynamicEntity* unit) {
   // resolve attacks here
 }
+
+// for now reset finished_move. in future this is where poison and other
+// turn based effects are applied.
+void DynamicEntity::newTurn() {
+  finished_move = false;
+}
+
+void DynamicEntity::endTurn() {
+  can_move = false;
+  finished_move = true;
+}
