@@ -11,7 +11,6 @@
 #include "../Util/UtilFunc.h"
 #include "../System/GameEngine.h"
 #include <string>
-#include <iostream>
 #include <cstdlib>
 using namespace std;
 
@@ -28,8 +27,8 @@ void TerrainMenu::setup(GameEngine* eng) {
   GUIWidget::setup(eng);
   frame.setup(eng_ptr);
   sf::Vector2i loc(0, WINDOW_HEIGHT);
-  loc.x += MENU_SIZE.x - 30;
-  loc.y -= MENU_SIZE.y - 30;
+  loc.x += MENU_SIZE.x/2 + GUI_PADDING;
+  loc.y -= MENU_SIZE.y/2 + GUI_PADDING;
   frame.build(loc, MENU_SIZE);
 
   label.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));

@@ -14,6 +14,7 @@
 #include <map>
 #include "../Interface/TerrainMenu.h"
 #include "../Interface/PhaseWidget.h"
+#include "../Interface/StatusWidget.h"
 
 class GUIFrame;
 class GameEngine;
@@ -31,6 +32,7 @@ public:
 
   TerrainMenu* getTerrainHUD() { return &terrain_hud; };
   PhaseWidget* getPhaseHUD() { return &phase_hud; };
+  StatusWidget* getStatusHUD() { return &status_hud; };
 
   void render();
 
@@ -43,6 +45,7 @@ private:
 
   TerrainMenu   terrain_hud;
   PhaseWidget   phase_hud;
+  StatusWidget  status_hud;
 };
 
 #endif /* HUDMANAGER_H_ */

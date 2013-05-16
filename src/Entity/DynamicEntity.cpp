@@ -20,6 +20,10 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
   finished_move = false;
 
   tile_ptr = 0;
+
+  health = 30;
+  cur_hp = 30;
+  damage = 5;
 }
 
 DynamicEntity::~DynamicEntity() {
@@ -59,6 +63,12 @@ void DynamicEntity::setControl(unit::Control c) {
 
 void DynamicEntity::attackUnit(DynamicEntity* unit) {
   // resolve attacks here
+
+  unit->cur_hp -= damage;
+
+  cur_hp -= unit->damage;
+
+  unit->cur_hp -= damage;
 }
 
 // for now reset finished_move. in future this is where poison and other

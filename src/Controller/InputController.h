@@ -16,6 +16,7 @@ class GameEngine;
 class Map;
 class Cell;
 class TerrainMenu;
+class StatusWidget;
 class DynamicEntity;
 
 class InputController {
@@ -50,6 +51,7 @@ private:
   sf::Sprite tilehighlight;
 
   TerrainMenu* terrainhud_ptr;
+  StatusWidget* statushud_ptr;
 };
 
 #endif /* INPUTCONTROLLER_H_ */

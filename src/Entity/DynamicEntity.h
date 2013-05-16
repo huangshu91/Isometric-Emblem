@@ -44,6 +44,17 @@ private:
   // these will be based on various factors in future
   int move_range;
   int attack_range;
+
+  int cur_hp;
+  int damage;
+
+  int health;
+  int strength;
+  int dexterity;
+  int agility;
+  int defense;
+  int resist;
+  int luck;
 };
 
 #endif /* DYNAMICENTITY_H_ */

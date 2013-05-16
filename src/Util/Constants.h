@@ -47,14 +47,15 @@ const string PHASE_PLAYER = "res/phase_player.png";
 const string PHASE_ENEMY = "res/phase_enemy.png";
 const string PHASE_PLAYER_KEY = "playerphase";
 const string PHASE_ENEMY_KEY = "enemyphase";
-const string PHASE_HUD = "phasehud";
-const float PHASE_DUR = 1.0f;
+const float PHASE_DUR = 0.5f;
 
 const string UNIT_ARMOR = "res/unit_armor.png";
-const string UNIT_ARMOR_KEY = "spritearmor";
+const string UNIT_ARMOR_KEY = "Maiev";
 
 const string UNIT_ARMOR_RED = "res/unit_armor_red.png";
-const string UNIT_ARMOR_RED_KEY = "spriteredarmor";
+const string UNIT_ARMOR_RED_KEY = "Testing";
+
+const string PORTRAIT_ICON = "res/portrait_icon.png";
 
 // Fonts
 const string DEFAULT_FONT = "res/fonts/arial.ttf";
@@ -62,6 +63,10 @@ const string DEFAULT_FONT_KEY = "default";
 
 // HUD keys
 const string TERRAIN_MENU = "terrain_menu";
+const string PHASE_HUD = "phasehud";
+const string STATUS_HUD = "status_hud";
+
+const int GUI_PADDING = 30;
 
 const int FONT_SIZE = 14;
 const int LABEL_SIZE = 20;

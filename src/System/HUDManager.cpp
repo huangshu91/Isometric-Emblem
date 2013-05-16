@@ -21,6 +21,8 @@ void HUDManager::setup(GameEngine* eng) {
 
   terrain_hud.setup(eng);
   phase_hud.setup(eng);
+  status_hud.setup(eng);
+  addWidget(STATUS_HUD, &status_hud);
   addWidget(TERRAIN_MENU, &terrain_hud);
   addWidget(PHASE_HUD, &phase_hud);
 }

@@ -21,6 +21,7 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   eng->getRes()->addResource(TILE_HIGH_KEY, TILE_HIGH);
   tilehighlight.setTexture(*(eng->getRes()->getResource(TILE_HIGH_KEY)));
   terrainhud_ptr = eng_ptr->getHUD()->getTerrainHUD();
+  statushud_ptr = eng_ptr->getHUD()->getStatusHUD();
   map_ptr = 0;
   cur_cell = 0;
   selected = 0;
@@ -186,6 +187,15 @@ bool InputController::moveUnit(int x, int y) {
 void InputController::updateCell() {
   eng_ptr->getGameCam()->smoothMove(sf::Vector2f(cur_cell->getCenter()), 0.3f);
   terrainhud_ptr->setTile(cur_cell->getTerrain());
+
+  if (cur_cell->unit != 0 && selected == 0) {
+    statushud_ptr->updateChar(cur_cell->unit);
+    statushud_ptr->setVisible(true);
+  } else if (selected != 0) {
+    statushud_ptr->setVisible(true);
+  } else {
+    statushud_ptr->setVisible(false);
+  }
 }
 
 sf::Vector2i InputController::getCurrentCenter() {

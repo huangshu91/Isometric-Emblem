@@ -55,7 +55,6 @@ void AIController::moveUnit() {
   queue<Cell*> path;
 
   for (int i = 0, j = full_path.size(); i < j; i++) {
-    //cout << path.front() << endl;
     if (full_path.front()->unit == 0) {
       path.push(full_path.front());
     }
@@ -70,11 +69,6 @@ void AIController::moveUnit() {
       target = play_unit[i];
       dist = d;
     }
-  }
-
-  if (cellDist(target->getCurCell(), selected->getCurCell()) == selected->getRange(range::ATTACK)) {
-    moveTo(selected->getCurCell());
-    return;
   }
 
   Cell* to_cell;
@@ -93,10 +87,15 @@ void AIController::moveUnit() {
     path.pop();
   }
 
+  if (cellDist(target->getCurCell(), selected->getCurCell()) ==
+      selected->getRange(range::ATTACK)) {
+    to_cell = selected->getCurCell();
+  }
+
   moveTo(to_cell);
 
   if (cellDist(target->getCurCell(), to_cell) == selected->getRange(range::ATTACK)) {
-    //attack
+    selected->attackUnit(target);
   }
 
   endUnit();
