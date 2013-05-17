@@ -34,6 +34,7 @@ public:
   PhaseWidget* getPhaseHUD() { return &phase_hud; };
   StatusWidget* getStatusHUD() { return &status_hud; };
 
+  //void update();
   void render();
 
 private:

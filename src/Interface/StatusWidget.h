@@ -24,7 +24,9 @@ public:
   void setup(GameEngine* eng);
   void updateChar(DynamicEntity* e);
   void setVisible(bool vis);
+  DynamicEntity* getCurEnt() { return cur_ent; };
 
+  void update();
   void render();
 
 private:
@@ -37,6 +39,8 @@ private:
   sf::Texture tex;
   sf::Text    name;
   sf::Text    hp;
+
+  DynamicEntity* cur_ent;
 
   bool visible;
 };

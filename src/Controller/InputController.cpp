@@ -63,6 +63,16 @@ bool InputController::setCurrentCell(int x, int y) {
 }
 
 void InputController::update() {
+  // This logic should not be here but keep here for now.
+  if (cur_cell->unit != 0 && selected == 0) {
+    statushud_ptr->updateChar(cur_cell->unit);
+    statushud_ptr->setVisible(true);
+  } else if (selected != 0) {
+    statushud_ptr->setVisible(true);
+  } else {
+    statushud_ptr->setVisible(false);
+  }
+
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
@@ -106,7 +116,7 @@ void InputController::selectCell() {
   // a unit was NOT previously selected already
 
   if (state == inputstate::FREE) {
-    if (cur_cell->unit) {
+    if (cur_cell->unit) {//&& cur_cell->unit->can_move) {
       selected = cur_cell->unit;
       map_ptr->toggleRangeOn(selected, range::COMBINED);
       state = inputstate::MOVE;
@@ -150,6 +160,7 @@ void InputController::selectCell() {
     if (cur_cell->unit != 0 && cur_cell->unit->getControl() == unit::ENEMY) {
       // check readme for TODO here
       selected->attackUnit(cur_cell->unit);
+      statushud_ptr->update();
       finishSelect();
       return;
     }
@@ -177,7 +188,7 @@ bool InputController::moveUnit(int x, int y) {
     return false;
 
   unit_cell->unit = 0;
-  selected->setTile(to_cell);
+  selected->setTile(to_cell, map_ptr);
   to_cell->unit = selected;
 
   map_ptr->sortForeground();
@@ -188,14 +199,6 @@ void InputController::updateCell() {
   eng_ptr->getGameCam()->smoothMove(sf::Vector2f(cur_cell->getCenter()), 0.3f);
   terrainhud_ptr->setTile(cur_cell->getTerrain());
 
-  if (cur_cell->unit != 0 && selected == 0) {
-    statushud_ptr->updateChar(cur_cell->unit);
-    statushud_ptr->setVisible(true);
-  } else if (selected != 0) {
-    statushud_ptr->setVisible(true);
-  } else {
-    statushud_ptr->setVisible(false);
-  }
 }
 
 sf::Vector2i InputController::getCurrentCenter() {

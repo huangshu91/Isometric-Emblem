@@ -8,7 +8,9 @@
 #include "DynamicEntity.h"
 #include "../System/GameEngine.h"
 #include "../Levelmap/Cell.h"
+#include "../Levelmap/Map.h"
 #include "../Util/UnitValues.h"
+#include "../Gamestate/PlayState.h"
 
 DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
   name = n;
@@ -19,6 +21,7 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
   can_move = true;
   finished_move = false;
 
+  map_ptr = 0;
   tile_ptr = 0;
 
   health = 30;
@@ -30,8 +33,9 @@ DynamicEntity::~DynamicEntity() {
   // TODO Auto-generated destructor stub
 }
 
-void DynamicEntity::setTile(Cell* t) {
+void DynamicEntity::setTile(Cell* t, Map* map) {
   tile_ptr = t;
+  map_ptr = map;
   sprite.setPosition(sf::Vector2f(t->getCenter()));
 }
 
@@ -63,12 +67,26 @@ void DynamicEntity::setControl(unit::Control c) {
 
 void DynamicEntity::attackUnit(DynamicEntity* unit) {
   // resolve attacks here
-
   unit->cur_hp -= damage;
-
+  if (unit->cur_hp <= 0) {
+    unit->cur_hp = 0;
+    unitDeath(unit);
+  }
   cur_hp -= unit->damage;
-
+  if (cur_hp <= 0) {
+    cur_hp = 0;
+    unitDeath(this);
+  }
   unit->cur_hp -= damage;
+  if (unit->cur_hp <= 0) {
+    unit->cur_hp = 0;
+    unitDeath(unit);
+  }
+}
+
+void DynamicEntity::unitDeath(DynamicEntity* unit) {
+  map_ptr->removeUnit(unit, unit->getControl());
+  eng_ptr->getPlayState()->changePhase(gamestate::UNITDEATH);
 }
 
 // for now reset finished_move. in future this is where poison and other

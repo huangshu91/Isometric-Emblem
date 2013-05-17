@@ -45,7 +45,7 @@ void Map::setupEntity() {
 
   DynamicEntity* u = new DynamicEntity(eng_ptr, UNIT_ARMOR_KEY);
   u->setOffset(6, -4);
-  u->setTile(getCell(3, 5));
+  u->setTile(getCell(3, 5), this);
   getCell(3, 5)->unit = u;
   u->setControl(unit::PLAYER);
   units.push_back(u);
@@ -53,7 +53,7 @@ void Map::setupEntity() {
 
   u = new DynamicEntity(eng_ptr, UNIT_ARMOR_RED_KEY);
   u->setOffset(6, -4);
-  u->setTile(getCell(9, 1));
+  u->setTile(getCell(9, 1), this);
   getCell(9, 1)->unit = u;
   u->setControl(unit::ENEMY);
   units.push_back(u);
@@ -61,7 +61,7 @@ void Map::setupEntity() {
 
   u = new DynamicEntity(eng_ptr, UNIT_ARMOR_RED_KEY);
   u->setOffset(6, -4);
-  u->setTile(getCell(4, 0));
+  u->setTile(getCell(4, 0), this);
   getCell(4, 0)->unit = u;
   u->setControl(unit::ENEMY);
   units.push_back(u);
@@ -194,6 +194,39 @@ Cell* Map::getCell(int x, int y) {
     return 0;
 
   return &(board[x][y]);
+}
+
+void Map::removeUnit(DynamicEntity* unit, unit::Control utype) {
+  switch (utype) {
+  case unit::PLAYER:
+    for (int i = 0, j = player_units.size(); i < j; i++) {
+      if (player_units[i] == unit) {
+        player_units.erase(player_units.begin()+i);
+        return;
+      }
+    }
+    break;
+
+  case unit::ENEMY:
+    for (int i = 0, j = enemy_units.size(); i < j; i++) {
+      if (enemy_units[i] == unit) {
+        enemy_units.erase(enemy_units.begin()+i);
+        return;
+      }
+    }
+    break;
+
+  case unit::ALLIED:
+
+    break;
+  }
+
+  for (int i = 0, j = units.size(); i < j; i++) {
+    if (units[i] == unit) {
+      units.erase(units.begin()+i);
+      return;
+    }
+  }
 }
 
 void Map::render() {

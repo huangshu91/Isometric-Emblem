@@ -12,6 +12,8 @@
 #include "../Levelmap/Cell.h"
 #include "../Gamestate/PlayState.h"
 #include "../Util/UtilFunc.h"
+#include "../Interface/TerrainMenu.h"
+#include "../Interface/StatusWidget.h"
 #include <iostream>
 using namespace std;
 
@@ -19,6 +21,8 @@ AIController::AIController(GameEngine* eng) : eng_ptr(eng) {
   map_ptr = 0;
   selected = 0;
   state = inputstate::FREE;
+  terrainhud_ptr = eng_ptr->getHUD()->getTerrainHUD();
+  statushud_ptr = eng_ptr->getHUD()->getStatusHUD();
 
   delaytimer.resetClock();
 }
@@ -96,6 +100,7 @@ void AIController::moveUnit() {
 
   if (cellDist(target->getCurCell(), to_cell) == selected->getRange(range::ATTACK)) {
     selected->attackUnit(target);
+    statushud_ptr->update();
   }
 
   endUnit();
@@ -107,7 +112,7 @@ void AIController::moveTo(Cell* c) {
   }
 
   selected->getCurCell()->unit = 0;
-  selected->setTile(c);
+  selected->setTile(c, map_ptr);
   c->unit = selected;
 }
 

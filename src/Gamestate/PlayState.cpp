@@ -41,6 +41,7 @@ void PlayState::setup() {
 }
 
 void PlayState::changePhase(gamestate::Playphase next) {
+  gamestate::Playphase prev = phase;
   phase = next;
 
   if (phase == gamestate::PLAYER || phase == gamestate::ENEMY) {
@@ -53,6 +54,12 @@ void PlayState::changePhase(gamestate::Playphase next) {
   if (phase == gamestate::NEWTURN) {
     level->resetUnits();
     changePhase(gamestate::PLAYER);
+  }
+
+  if (phase == gamestate::UNITDEATH) {
+    // is there anything that needs to be handled here?
+    // until exp is implemented, just switch back to previous state;
+    phase = prev;
   }
 }
 

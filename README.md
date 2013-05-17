@@ -3,6 +3,11 @@ Isometric-Emblem
 
 TODO: 
 
+	-ITEMS
+	-MAP LOADING
+	-EXPERIENCE/LEVELUP/LEVEL
+	-UNIT TYPES/ADV STATS
+
 	Gamestates.  Does setup need to be done for each gamestate?  For now playstate will have hardcoded vals
 	but will be reading map info from file.  For now only worry about PlayState, eventually have a group of states,
 	managed by a stateengine or statemanager within gameengine.  
@@ -60,3 +65,5 @@ NOTES:
 	Show movement range (and accompanying sprites/logic) is contained in the map.  
 	This makes sense to me because the highlight is part of the map and unlike tilehighlight is not "controlled" 
 	by input other than activated or not.
+	
+	NEED TESTING. STARTING TO GET TOO COMPLICATED TO EASILY REASON ABOUT.

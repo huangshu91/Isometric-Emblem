@@ -14,6 +14,8 @@ class GameEngine;
 class DynamicEntity;
 class Map;
 class Cell;
+class TerrainMenu;
+class StatusWidget;
 
 class AIController {
 public:
@@ -37,6 +39,9 @@ private:
   inputstate::Phase state;
 
   void moveTo(Cell* c);
+
+  TerrainMenu* terrainhud_ptr;
+  StatusWidget* statushud_ptr;
 };
 
 #endif /* AICONTROLLER_H_ */

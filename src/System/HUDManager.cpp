@@ -45,7 +45,11 @@ GUIWidget* HUDManager::getWidget(string key) {
 
   return map.find(key)->second;
 }
-
+/*
+void HUDManager::update() {
+  status_hud.update();
+}
+*/
 void HUDManager::render() {
   win_ptr->setView(win_ptr->getDefaultView());
   for (int i = 0, j = widgets.size(); i < j; i++) {

@@ -9,6 +9,8 @@
 #include "../Entity/DynamicEntity.h"
 #include "../System/GameEngine.h"
 #include "../Util/Constants.h"
+#include "../Util/UtilFunc.h"
+#include <string>
 
 sf::Vector2i StatusWidget::MENU_SIZE = sf::Vector2i(280, 120);
 
@@ -48,12 +50,24 @@ void StatusWidget::setup(GameEngine* eng) {
   topright.y -= frame.getSize().y/2;
   name.setPosition(topright.x, topright.y);
 
-  name.setPosition(topright.x - (MENU_SIZE.x-120)/2, topright.y + 30);
-  hp.setPosition(topright.x - (MENU_SIZE.x-120)/2, topright.y + 60);
+  name.setPosition(topright.x - (MENU_SIZE.x-120)/2, topright.y + (MENU_SIZE.y)/4);
+  hp.setPosition(topright.x - (MENU_SIZE.x-120)/2, topright.y + 2*(MENU_SIZE.y)/4);
 }
 
 void StatusWidget::updateChar(DynamicEntity* e) {
-  name.setString(e->getName());
+  cur_ent = e;
+  update();
+}
+
+void StatusWidget::update() {
+  if (cur_ent == 0) return;
+  name.setString(cur_ent->getName());
+  string hpstring;
+  hpstring += numberToString(cur_ent->cur_hp);
+  hpstring += "/";
+  hpstring += numberToString(cur_ent->health);
+  hpstring += " HP";
+  hp.setString(hpstring);
 }
 
 // eventually have in and out animations for visibility
