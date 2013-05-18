@@ -13,7 +13,11 @@ using namespace std;
 Camera::Camera() {
   cam_view.setCenter(0, 0);
   cam_view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-  isSmoothMove = false;
+  window_ptr = 0;
+  //shouldn't be a problem but possible divide by 0 in smooth move
+  smoothTime = 0;
+
+  state = camera::NONE;
 }
 
 Camera::~Camera() { }
@@ -31,17 +35,17 @@ const sf::Vector2f Camera::GetCenter() {
   return cam_view.getCenter();
 }
 
-// TODO: this probably needs rework or support update through entity/tile
 void Camera::setCenter(sf::Vector2f cent) {
-  isSmoothMove = false;
+  state = camera::NONE;
   cam_view.setCenter(cent);
 }
 
 void Camera::smoothMove(sf::Vector2f center, float time) {
   smooth_goal = center;
   smooth_start = GetCenter();
+  // time*fps_limit will give you how much to move PER FRAME
   smoothTime = time*FPS_LIMIT;
-  isSmoothMove = true;
+  state = camera::SMOOTH;
 
   sf::Vector2f diff = smooth_goal - smooth_start;
   move(diff.x/smoothTime, diff.y/smoothTime);
@@ -49,13 +53,17 @@ void Camera::smoothMove(sf::Vector2f center, float time) {
 }
 
 void Camera::update() {
-  if (isSmoothMove) {
+  if (state == camera::SMOOTH) {
     sf::Vector2f diff = smooth_goal - smooth_start;
     move(diff.x/smoothTime, diff.y/smoothTime);
 
     if (smooth_clock.getElapsedTime()*FPS_LIMIT >= smoothTime) {
-      isSmoothMove = false;
+      state = camera::NONE;
     }
+  }
+
+  if (state == camera::SHAKE) {
+
   }
 
 }

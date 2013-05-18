@@ -55,6 +55,13 @@ void AIController::update() {
 
 void AIController::moveUnit() {
   std::vector<DynamicEntity*> play_unit = map_ptr->getPlayerUnits();
+
+  // no player units left, finish turn
+  if (play_unit.empty()) {
+    endUnit();
+    return;
+  }
+
   queue<Cell*> full_path = map_ptr->getPath(selected, range::MOVE);
   queue<Cell*> path;
 
@@ -73,12 +80,6 @@ void AIController::moveUnit() {
       target = play_unit[i];
       dist = d;
     }
-  }
-
-  // no player units left, finish turn
-  if (target == 0) {
-    endUnit();
-    return;
   }
 
   Cell* to_cell;

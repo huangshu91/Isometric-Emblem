@@ -80,6 +80,7 @@ void PlayState::update() {
 
     else if (phase == gamestate::LOSS) {
       // loss, menu options for player
+      input->update();
     }
 
     eng_ptr->getGameCam()->update();

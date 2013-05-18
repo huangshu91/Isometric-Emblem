@@ -15,6 +15,7 @@
 sf::Vector2i StatusWidget::MENU_SIZE = sf::Vector2i(280, 120);
 
 StatusWidget::StatusWidget() {
+  cur_ent = 0;
   visible = true;
 }
 

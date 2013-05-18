@@ -13,7 +13,8 @@
 using namespace std;
 
 GUIFrame::GUIFrame() {
-  //font.getDefaultFont();
+  eng_ptr = 0;
+  win_ptr = 0;
 }
 
 void GUIFrame::setup(GameEngine* eng)  {

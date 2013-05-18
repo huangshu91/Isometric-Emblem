@@ -10,6 +10,7 @@
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 #include "../Util/FormatClock.h"
+#include "../Util/Constants.h"
 
 class Camera {
 public:
@@ -33,7 +34,6 @@ public:
   sf::View* GetView();
 
 private:
-
   sf::View            cam_view;
   sf::RenderWindow*   window_ptr;
 
@@ -41,7 +41,8 @@ private:
   sf::Vector2f smooth_start;
   FormatClock smooth_clock;
   float smoothTime;
-  bool isSmoothMove;
+
+  camera::Effect  state;
 };
 
 

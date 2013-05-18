@@ -9,8 +9,8 @@
 #include "../System/GameEngine.h"
 
 GUIWidget::GUIWidget() {
-  // TODO Auto-generated constructor stub
-
+  eng_ptr = 0;
+  win_ptr = 0;
 }
 
 void GUIWidget::setup(GameEngine* eng)  {

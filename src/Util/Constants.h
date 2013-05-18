@@ -85,6 +85,10 @@ namespace terraintype {
   const string TERRAIN_NAME[] = { "None", "Plain", "Mountain", "Cliff", "Sea", "Forest" };
 }
 
+namespace camera {
+  enum Effect { NONE, SMOOTH, SHAKE };
+}
+
 //maintain parallel enum/array so they can be used as indices
 namespace unit {
   enum Class { NONE, BANDIT, ARCHER, CAVALIER };

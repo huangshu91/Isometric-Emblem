@@ -9,6 +9,7 @@
 #include "../Util/UtilFunc.h"
 #include "../Entity/DynamicEntity.h"
 #include "../System/GameEngine.h"
+#include "../Gamestate/PlayState.h"
 #include "Map.h"
 #include <iostream>
 #include <algorithm>
@@ -16,8 +17,7 @@
 #include <map>
 using namespace std;
 
-Map::Map(GameEngine* eng) :
-    eng_ptr(eng), row(0), col(0) {
+Map::Map(GameEngine* eng) : eng_ptr(eng), row(0), col(0) {
   range_on = false;
   eng_ptr->getRes()->addResource(RANGE_MOVE_KEY, RANGE_MOVE);
   eng_ptr->getRes()->addResource(RANGE_ATTACK_KEY, RANGE_ATTACK);
@@ -197,12 +197,13 @@ Cell* Map::getCell(int x, int y) {
 }
 
 void Map::removeUnit(DynamicEntity* unit, unit::Control utype) {
+  unit->getCurCell()->unit = 0;
+
   switch (utype) {
   case unit::PLAYER:
     for (int i = 0, j = player_units.size(); i < j; i++) {
       if (player_units[i] == unit) {
         player_units.erase(player_units.begin()+i);
-        return;
       }
     }
     break;
@@ -211,7 +212,6 @@ void Map::removeUnit(DynamicEntity* unit, unit::Control utype) {
     for (int i = 0, j = enemy_units.size(); i < j; i++) {
       if (enemy_units[i] == unit) {
         enemy_units.erase(enemy_units.begin()+i);
-        return;
       }
     }
     break;
@@ -219,12 +219,14 @@ void Map::removeUnit(DynamicEntity* unit, unit::Control utype) {
   case unit::ALLIED:
 
     break;
+
+  default:
+    break;
   }
 
   for (int i = 0, j = units.size(); i < j; i++) {
     if (units[i] == unit) {
       units.erase(units.begin()+i);
-      return;
     }
   }
 }
@@ -266,7 +268,7 @@ bool sortUnits(DynamicEntity* x, DynamicEntity* y) {
 
 void Map::checkLoss() {
   // if main char is dead or no units left.
-  if (player_units == 0) {
+  if (player_units.empty()) {
     eng_ptr->getPlayState()->changePhase(gamestate::LOSS);
   }
 }
