@@ -54,6 +54,7 @@ void PlayState::changePhase(gamestate::Playphase next) {
   if (phase == gamestate::NEWTURN) {
     level->resetUnits();
     changePhase(gamestate::PLAYER);
+    level->checkLoss();
   }
 
   if (phase == gamestate::UNITDEATH) {
@@ -75,6 +76,10 @@ void PlayState::update() {
 
     else if (phase == gamestate::ENEMY) {
       ai->update();
+    }
+
+    else if (phase == gamestate::LOSS) {
+      // loss, menu options for player
     }
 
     eng_ptr->getGameCam()->update();

@@ -9,7 +9,7 @@
 #include "../System/GameEngine.h"
 #include "../Levelmap/Cell.h"
 #include "../Levelmap/Map.h"
-#include "../Util/UnitValues.h"
+#include "../Util/UtilValues.h"
 #include "../Gamestate/PlayState.h"
 
 DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {

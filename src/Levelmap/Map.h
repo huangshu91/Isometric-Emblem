@@ -38,6 +38,7 @@ public:
 
   bool inDistance(DynamicEntity* e, unit::Control utype);
   void resetUnits();
+  void checkLoss();
   void removeUnit(DynamicEntity* unit, unit::Control utype);
 
   void render();

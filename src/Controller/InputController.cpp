@@ -63,16 +63,6 @@ bool InputController::setCurrentCell(int x, int y) {
 }
 
 void InputController::update() {
-  // This logic should not be here but keep here for now.
-  if (cur_cell->unit != 0 && selected == 0) {
-    statushud_ptr->updateChar(cur_cell->unit);
-    statushud_ptr->setVisible(true);
-  } else if (selected != 0) {
-    statushud_ptr->setVisible(true);
-  } else {
-    statushud_ptr->setVisible(false);
-  }
-
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
@@ -196,6 +186,15 @@ bool InputController::moveUnit(int x, int y) {
 }
 
 void InputController::updateCell() {
+  if (cur_cell->unit != 0 && selected == 0) {
+    statushud_ptr->updateChar(cur_cell->unit);
+    statushud_ptr->setVisible(true);
+  } else if (selected != 0) {
+    statushud_ptr->setVisible(true);
+  } else {
+    statushud_ptr->setVisible(false);
+  }
+
   eng_ptr->getGameCam()->smoothMove(sf::Vector2f(cur_cell->getCenter()), 0.3f);
   terrainhud_ptr->setTile(cur_cell->getTerrain());
 

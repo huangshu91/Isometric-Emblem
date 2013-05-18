@@ -10,6 +10,7 @@
 #include <string>
 #include "Entity.h"
 #include "../Util/Constants.h"
+#include "../Util/UtilValues.h"
 
 class GameEngine;
 class Cell;
@@ -48,6 +49,7 @@ public:
 private:
   unit::Class class_type;
   unit::Control control;
+  StatModifier mods;
 
   Map* map_ptr;
   Cell* tile_ptr;

@@ -75,7 +75,7 @@ const int LABEL_SIZE = 20;
 
 namespace gamestate {
   enum Statetype { MENU, START, PLAY, PAUSE, EXIT, UNINIT };
-  enum Playphase { PLAYER, ENEMY, NEUTRAL, NEWTURN, UNITDEATH };
+  enum Playphase { PLAYER, ENEMY, NEUTRAL, NEWTURN, UNITDEATH, LOSS };
 }
 
 //maintain parallel enum/array so they can be used as indices
@@ -103,6 +103,10 @@ namespace inputstate {
 
 namespace range {
   enum RangeType { MOVE, ATTACK, COMBINED, AURA };
+}
+
+namespace item {
+  enum Type { UNINIT, SWORD, AXE, LANCE, SHIELD, CONSUME };
 }
 
 #endif /* CONSTANTS_H_ */

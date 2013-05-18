@@ -7,6 +7,16 @@ TODO:
 	-MAP LOADING
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
+	
+	Camera shake when attack.
+	
+	Items.  For now make parent entity necessary but in future use a storage/warehouse system (that could be a parent
+	instead?). Think of system for determining what classes can use what equipment.
+	
+	If battle becomes more complicated with the addition of helpers, formations, bonuses, skills, etc.  It
+	might be necessary to create a 'BattleManager' system where you pass in the units that are fighting and have
+	that system resolve the battle and update all relevant systems.  This not only keeps Entity code clean but makes
+	sense logically because the pieces themselves should not be handling system updates.
 
 	Gamestates.  Does setup need to be done for each gamestate?  For now playstate will have hardcoded vals
 	but will be reading map info from file.  For now only worry about PlayState, eventually have a group of states,

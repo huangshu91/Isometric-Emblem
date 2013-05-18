@@ -75,6 +75,12 @@ void AIController::moveUnit() {
     }
   }
 
+  // no player units left, finish turn
+  if (target == 0) {
+    endUnit();
+    return;
+  }
+
   Cell* to_cell;
   dist = 999;
   for (int i = 0, j = path.size(); i < j; i++) {

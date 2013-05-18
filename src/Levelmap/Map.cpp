@@ -264,6 +264,13 @@ bool sortUnits(DynamicEntity* x, DynamicEntity* y) {
   return false; //should not reach here
 }
 
+void Map::checkLoss() {
+  // if main char is dead or no units left.
+  if (player_units == 0) {
+    eng_ptr->getPlayState()->changePhase(gamestate::LOSS);
+  }
+}
+
 void Map::sortForeground() {
   sort(units.begin(), units.end(), sortUnits);
 }
