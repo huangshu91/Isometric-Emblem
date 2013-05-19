@@ -21,7 +21,7 @@ public:
 private:
   DynamicEntity* parent;
 
-  StatModifier  item_stats;
+  StatPack  item_stats;
 
   item::Type  base_type;
   std::string      item_name;

@@ -24,8 +24,8 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
   map_ptr = 0;
   tile_ptr = 0;
 
-  health = 30;
-  cur_hp = 30;
+  total.hp = 30;
+  total.max_hp = 30;
   damage = 5;
 }
 
@@ -68,22 +68,16 @@ void DynamicEntity::setControl(unit::Control c) {
 // This needs to be refactored
 void DynamicEntity::attackUnit(DynamicEntity* unit) {
   // resolve attacks here
-  unit->cur_hp -= damage;
-  if (unit->cur_hp <= 0) {
-    unit->cur_hp = 0;
+  unit->total.hp -= damage;
+  if (unit->total.hp <= 0) {
+    unit->total.hp = 0;
     unitDeath(unit);
     return;
   }
-  cur_hp -= unit->damage;
-  if (cur_hp <= 0) {
-    cur_hp = 0;
+  total.hp -= unit->damage;
+  if (total.hp <= 0) {
+    total.hp = 0;
     unitDeath(this);
-    return;
-  }
-  unit->cur_hp -= damage;
-  if (unit->cur_hp <= 0) {
-    unit->cur_hp = 0;
-    unitDeath(unit);
     return;
   }
 

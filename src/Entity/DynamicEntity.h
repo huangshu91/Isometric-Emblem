@@ -37,19 +37,14 @@ public:
   void newTurn();
   void endTurn();
 
-  int cur_hp;
-  int health;
-  int strength;
-  int dexterity;
-  int agility;
-  int defense;
-  int resist;
-  int luck;
+  StatPack total;
 
 private:
   unit::Class class_type;
   unit::Control control;
-  StatModifier mods;
+
+  StatPack mods;
+  StatPack base;
 
   Map* map_ptr;
   Cell* tile_ptr;

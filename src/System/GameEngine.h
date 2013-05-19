@@ -13,6 +13,7 @@
 #include <vector>
 #include "../Util/FormatClock.h"
 #include "../Util/Constants.h"
+#include "../Util/Logger.h"
 #include "Camera.h"
 #include "ResourceManager.h"
 #include "HUDManager.h"
@@ -32,6 +33,7 @@ public:
   ResourceManager* getRes() {return (&gameRes);};
   Camera* getGameCam() { return &gameCam; };
   HUDManager* getHUD() { return &gameHUD; };
+  Logger* getLog() { return &gameLog; };
 
   PlayState* getPlayState() { return pstate; };
 
@@ -48,6 +50,7 @@ private:
   ResourceManager     gameRes;
   HUDManager          gameHUD;
   Camera              gameCam;
+  Logger              gameLog;
 
   PlayState* pstate;
 };

@@ -24,11 +24,9 @@ const string LOG_FILE = "log.txt";
 
 const float INPUT_DELAY = 0.15;
 
-// image paths hardcoded
 const string TILE_ROCK = "res/rock_tile.png";
 const string TILE_KEY = "rocktile";
 
-// tile modifiers
 const string TILE_HIGH = "res/highlight_tile.png";
 const string TILE_HIGH_KEY = "tilehigh";
 
@@ -74,6 +72,10 @@ const int LABEL_SIZE = 20;
 
 const float SHAKE_DURATION = 0.2f;
 const int SHAKE_INTENSITY = 2;
+
+// encyclopedia file paths
+
+const string DB_CLASS = "res/Data/classdb.txt";
 
 // enums
 

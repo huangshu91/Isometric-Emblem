@@ -7,13 +7,13 @@
 #include "Logger.h"
 using namespace std;
 
-Logger::Logger(FormatClock *clock) {
+Logger::Logger() {
   log.open(LOG_FILE.c_str(), ios_base::trunc);
-  gameClockPtr = clock;
   log << "LOG SYSTEM FOR '" << GAME_LABEL << " VER-" << VERSION_NUM
       << " STARTED." << endl;
   debugEnabled = true;
   prevLogType = ' ';
+  gameClock.resetClock();
 }
 
 Logger::~Logger() {
@@ -26,7 +26,7 @@ void Logger::i(string msg) {
     printheader('i');
   }
 
-  log << gameClockPtr->getFormatTime() << " - " << msg << endl;
+  log << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'i';
 }
 
@@ -35,7 +35,7 @@ void Logger::e(string msg) {
     printheader('e');
   }
 
-  log << gameClockPtr->getFormatTime() << " - " << msg << endl;
+  log << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'e';
 }
 
@@ -48,7 +48,7 @@ void Logger::d(string msg) {
     printheader('d');
   }
 
-  log << gameClockPtr->getFormatTime() << " - " << msg << endl;
+  log << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'd';
 }
 

@@ -71,9 +71,9 @@ void StatusWidget::update() {
   name.setString(cur_ent->getName());
   name.setOrigin(name.getLocalBounds().width/2, name.getLocalBounds().height/2);
   string hpstring;
-  hpstring += numberToString(cur_ent->cur_hp);
+  hpstring += numberToString(cur_ent->total.hp);
   hpstring += "/";
-  hpstring += numberToString(cur_ent->health);
+  hpstring += numberToString(cur_ent->total.max_hp);
   hpstring += " HP";
   hp.setString(hpstring);
   hp.setOrigin(hp.getLocalBounds().width/2, hp.getLocalBounds().height/2);

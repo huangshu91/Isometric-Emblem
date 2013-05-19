@@ -8,7 +8,18 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
-	NOTE TO SELF: CREATE SECOND STATUS WIDGET 
+	Database is the encyclopedia of all game data.  It will load all character, item, map data.  When creating new anything,
+	check database for base values.  If it's not in the game-database, it is not valid. Finish up class loading later, need to do some file i/o to get values.  Link entity creation to database lookup of class types.
+	
+	Day/night cycle.  Certain units get bonuses for day/night.  Have a cycle status widget in center top of screen.
+	
+	Unit stat widget.  Consider making this simple widget so taht when a unit is highlighted, you can see its stats.
+	This should be placed next to the unit or above the unit, this way the status widget can be kept simple yet you
+	can at a glance see the strength of a unit without having to go into a different screen/mode.
+	
+	Loading from files, use simple text for now but consider Json, xml, yaml, ini if scope gets bigger.
+	
+	Particle system for effects?  Camera shake is probablyf ine for now.
 	
 	Camera shake when attack. When unit is attacked, center it. What about tilehighlight?  Could either set the tile highlight to be the attacked tile or at the beginning of the newturn, return camera to that location.
 	
@@ -64,6 +75,7 @@ FUTURE:
 	Formation - Stand United (positional bonuses)
 	Titles - (bonuses for unit achievements)
 	Rewards - (bonuses for objectives in stage)
+	Day/Night phase - (modifier based on time of day for certain units)
 	
 NOTES:
 

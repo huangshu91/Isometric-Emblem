@@ -15,7 +15,7 @@ using namespace std;
 
 class Logger {
 public:
-  Logger(FormatClock *clock);
+  Logger();
   ~Logger();
 
   //info message
@@ -31,7 +31,7 @@ private:
   void printheader(char type);
 
   ofstream log;
-  FormatClock *gameClockPtr;
+  FormatClock gameClock;
 
   bool debugEnabled;
   char prevLogType;

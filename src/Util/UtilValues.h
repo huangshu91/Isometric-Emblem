@@ -11,8 +11,9 @@
 const int UNIT_MOVE = 2;
 const int UNIT_ATTACK = 1;
 
-struct StatModifier {
-  int health;
+struct StatPack {
+  int hp;
+  int max_hp;
   int str;
   int dex;
   int agi;
@@ -20,8 +21,9 @@ struct StatModifier {
   int res;
   int lck;
 
-  StatModifier() {
-    health = 0;
+  StatPack() {
+    hp = 0;
+    max_hp = 0;
     str = 0;
     dex = 0;
     agi = 0;
