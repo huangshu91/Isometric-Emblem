@@ -41,7 +41,8 @@ private:
   void moveTo(Cell* c);
 
   TerrainMenu* terrainhud_ptr;
-  StatusWidget* statushud_ptr;
+  StatusWidget* statushudr_ptr;
+  StatusWidget* statushudl_ptr;
 };
 
 #endif /* AICONTROLLER_H_ */

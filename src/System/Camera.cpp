@@ -7,8 +7,9 @@
 
 #include "Camera.h"
 #include "../Util/Constants.h"
+#include "stdlib.h"
 #include <iostream>
-using namespace std;
+#include <cmath>
 
 Camera::Camera() {
   cam_view.setCenter(0, 0);
@@ -16,6 +17,7 @@ Camera::Camera() {
   window_ptr = 0;
   //shouldn't be a problem but possible divide by 0 in smooth move
   smoothTime = 0;
+  intensity = 0;
 
   state = camera::NONE;
 }
@@ -52,18 +54,35 @@ void Camera::smoothMove(sf::Vector2f center, float time) {
   smooth_clock.resetClock();
 }
 
+// for now use a constant shake duration, maybe add variable times if
+// necessary for future features.
+void Camera::shakeMove(sf::Vector2f center, int inten) {
+  shake_start = cam_view.getCenter();
+  intensity = inten;
+  state = camera::SHAKE;
+
+  shake_clock.resetClock();
+}
+
 void Camera::update() {
   if (state == camera::SMOOTH) {
-    sf::Vector2f diff = smooth_goal - smooth_start;
-    move(diff.x/smoothTime, diff.y/smoothTime);
-
     if (smooth_clock.getElapsedTime()*FPS_LIMIT >= smoothTime) {
+      cam_view.setCenter(smooth_goal);
       state = camera::NONE;
     }
+    sf::Vector2f diff = smooth_goal - smooth_start;
+    move(diff.x/smoothTime, diff.y/smoothTime);
   }
 
   if (state == camera::SHAKE) {
+    int x_mov = (rand()%(2*intensity+1))-intensity;
+    int y_mov = (rand()%(2*intensity+1))-intensity;
+    cam_view.move(x_mov, y_mov);
 
+    if (shake_clock.getElapsedTime() >= SHAKE_DURATION) {
+      cam_view.setCenter(shake_start);
+      state = camera::NONE;
+    }
   }
 
 }

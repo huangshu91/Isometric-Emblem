@@ -65,23 +65,29 @@ void DynamicEntity::setControl(unit::Control c) {
   control = c;
 }
 
+// This needs to be refactored
 void DynamicEntity::attackUnit(DynamicEntity* unit) {
   // resolve attacks here
   unit->cur_hp -= damage;
   if (unit->cur_hp <= 0) {
     unit->cur_hp = 0;
     unitDeath(unit);
+    return;
   }
   cur_hp -= unit->damage;
   if (cur_hp <= 0) {
     cur_hp = 0;
     unitDeath(this);
+    return;
   }
   unit->cur_hp -= damage;
   if (unit->cur_hp <= 0) {
     unit->cur_hp = 0;
     unitDeath(unit);
+    return;
   }
+
+  eng_ptr->getGameCam()->shakeMove(sf::Vector2f(tile_ptr->getCenter()), SHAKE_INTENSITY);
 }
 
 void DynamicEntity::unitDeath(DynamicEntity* unit) {

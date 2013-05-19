@@ -22,7 +22,8 @@ AIController::AIController(GameEngine* eng) : eng_ptr(eng) {
   selected = 0;
   state = inputstate::FREE;
   terrainhud_ptr = eng_ptr->getHUD()->getTerrainHUD();
-  statushud_ptr = eng_ptr->getHUD()->getStatusHUD();
+  statushudr_ptr = eng_ptr->getHUD()->getStatusHUD(dir::RIGHT);
+  statushudl_ptr = eng_ptr->getHUD()->getStatusHUD(dir::LEFT);
 
   delaytimer.resetClock();
 }
@@ -107,7 +108,8 @@ void AIController::moveUnit() {
 
   if (cellDist(target->getCurCell(), to_cell) == selected->getRange(range::ATTACK)) {
     selected->attackUnit(target);
-    statushud_ptr->update();
+    statushudr_ptr->updateChar(target);
+    statushudl_ptr->updateChar(selected);
   }
 
   endUnit();

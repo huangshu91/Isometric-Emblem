@@ -21,8 +21,10 @@ void HUDManager::setup(GameEngine* eng) {
 
   terrain_hud.setup(eng);
   phase_hud.setup(eng);
-  status_hud.setup(eng);
-  addWidget(STATUS_HUD, &status_hud);
+  status_hudr.setup(eng, dir::RIGHT);
+  status_hudl.setup(eng, dir::LEFT);
+  addWidget(STATUS_HUDL, &status_hudl);
+  addWidget(STATUS_HUDR, &status_hudr);
   addWidget(TERRAIN_MENU, &terrain_hud);
   addWidget(PHASE_HUD, &phase_hud);
 }
@@ -53,4 +55,11 @@ void HUDManager::render() {
   }
 }
 
+StatusWidget* HUDManager::getStatusHUD(dir::Direction d) {
+  if (d == dir::LEFT) {
+    return &status_hudl;
+  }
+
+  return &status_hudr;
+}
 

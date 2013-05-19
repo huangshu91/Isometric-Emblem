@@ -23,11 +23,17 @@ StatusWidget::~StatusWidget() {
   // TODO Auto-generated destructor stub
 }
 
-void StatusWidget::setup(GameEngine* eng) {
+void StatusWidget::setup(GameEngine* eng, dir::Direction d) {
   GUIWidget::setup(eng);
   frame.setup(eng_ptr);
-  sf::Vector2i loc(WINDOW_WIDTH, 0);
-  loc.x -= MENU_SIZE.x/2 + GUI_PADDING;
+
+  sf::Vector2i loc(0,0);
+  if (d == dir::RIGHT) {
+    loc.x = WINDOW_WIDTH;
+    loc.x -= MENU_SIZE.x/2 + GUI_PADDING;
+  } else {
+    loc.x += MENU_SIZE.x/2 + GUI_PADDING;
+  }
   loc.y += MENU_SIZE.y/2 + GUI_PADDING;
   frame.build(loc, MENU_SIZE);
 
@@ -41,7 +47,7 @@ void StatusWidget::setup(GameEngine* eng) {
   name.setCharacterSize(LABEL_SIZE);
   hp.setCharacterSize(FONT_SIZE);
   name.setString("TEST");
-  hp.setString("60/60");
+  hp.setString("60/60 HP");
 
   name.setOrigin(name.getLocalBounds().width/2, name.getLocalBounds().height/2);
   hp.setOrigin(hp.getLocalBounds().width/2, hp.getLocalBounds().height/2);
@@ -63,12 +69,14 @@ void StatusWidget::updateChar(DynamicEntity* e) {
 void StatusWidget::update() {
   if (cur_ent == 0) return;
   name.setString(cur_ent->getName());
+  name.setOrigin(name.getLocalBounds().width/2, name.getLocalBounds().height/2);
   string hpstring;
   hpstring += numberToString(cur_ent->cur_hp);
   hpstring += "/";
   hpstring += numberToString(cur_ent->health);
   hpstring += " HP";
   hp.setString(hpstring);
+  hp.setOrigin(hp.getLocalBounds().width/2, hp.getLocalBounds().height/2);
 }
 
 // eventually have in and out animations for visibility

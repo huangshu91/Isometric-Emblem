@@ -51,7 +51,8 @@ private:
   sf::Sprite tilehighlight;
 
   TerrainMenu* terrainhud_ptr;
-  StatusWidget* statushud_ptr;
+  StatusWidget* statushudr_ptr;
+  StatusWidget* statushudl_ptr;
 };
 
 #endif /* INPUTCONTROLLER_H_ */

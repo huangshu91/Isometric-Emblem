@@ -21,7 +21,8 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   eng->getRes()->addResource(TILE_HIGH_KEY, TILE_HIGH);
   tilehighlight.setTexture(*(eng->getRes()->getResource(TILE_HIGH_KEY)));
   terrainhud_ptr = eng_ptr->getHUD()->getTerrainHUD();
-  statushud_ptr = eng_ptr->getHUD()->getStatusHUD();
+  statushudr_ptr = eng_ptr->getHUD()->getStatusHUD(dir::RIGHT);
+  statushudl_ptr = eng_ptr->getHUD()->getStatusHUD(dir::LEFT);
   map_ptr = 0;
   cur_cell = 0;
   selected = 0;
@@ -150,7 +151,8 @@ void InputController::selectCell() {
     if (cur_cell->unit != 0 && cur_cell->unit->getControl() == unit::ENEMY) {
       // check readme for TODO here
       selected->attackUnit(cur_cell->unit);
-      statushud_ptr->update();
+      statushudl_ptr->updateChar(cur_cell->unit);
+      statushudr_ptr->updateChar(selected);
       finishSelect();
       return;
     }
@@ -186,18 +188,29 @@ bool InputController::moveUnit(int x, int y) {
 }
 
 void InputController::updateCell() {
-  if (cur_cell->unit != 0 && selected == 0) {
-    statushud_ptr->updateChar(cur_cell->unit);
-    statushud_ptr->setVisible(true);
+  // consider if selected == 0, this means that if someone is selected,
+  // the statuswidgets are locked.
+  if (cur_cell->unit != 0) {// && selected == 0) {
+    if (cur_cell->unit->getControl() == unit::PLAYER) {
+      statushudr_ptr->updateChar(cur_cell->unit);
+      statushudr_ptr->setVisible(true);
+    }
+    if (cur_cell->unit->getControl() == unit::ENEMY) {
+      statushudl_ptr->updateChar(cur_cell->unit);
+      statushudl_ptr->setVisible(true);
+    }
   } else if (selected != 0) {
-    statushud_ptr->setVisible(true);
+    if (selected->getControl() == unit::PLAYER)
+      statushudr_ptr->setVisible(true);
+    if (selected->getControl() == unit::ENEMY)
+      statushudl_ptr->setVisible(true);
   } else {
-    statushud_ptr->setVisible(false);
+    statushudr_ptr->setVisible(false);
+    statushudl_ptr->setVisible(false);
   }
 
   eng_ptr->getGameCam()->smoothMove(sf::Vector2f(cur_cell->getCenter()), 0.3f);
   terrainhud_ptr->setTile(cur_cell->getTerrain());
-
 }
 
 sf::Vector2i InputController::getCurrentCenter() {

@@ -32,7 +32,7 @@ public:
 
   TerrainMenu* getTerrainHUD() { return &terrain_hud; };
   PhaseWidget* getPhaseHUD() { return &phase_hud; };
-  StatusWidget* getStatusHUD() { return &status_hud; };
+  StatusWidget* getStatusHUD(dir::Direction d);
 
   //void update();
   void render();
@@ -46,7 +46,8 @@ private:
 
   TerrainMenu   terrain_hud;
   PhaseWidget   phase_hud;
-  StatusWidget  status_hud;
+  StatusWidget  status_hudr;
+  StatusWidget  status_hudl;
 };
 
 #endif /* HUDMANAGER_H_ */

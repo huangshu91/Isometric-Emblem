@@ -10,8 +10,7 @@
 
 #include "GUIFrame.h"
 #include "GUIWidget.h"
-
-#include "GUIWidget.h"
+#include "../Util/Constants.h"
 
 class GameEngine;
 class DynamicEntity;
@@ -21,7 +20,7 @@ public:
   StatusWidget();
   virtual ~StatusWidget();
 
-  void setup(GameEngine* eng);
+  void setup(GameEngine* eng, dir::Direction);
   void updateChar(DynamicEntity* e);
   void setVisible(bool vis);
   DynamicEntity* getCurEnt() { return cur_ent; };

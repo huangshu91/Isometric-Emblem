@@ -52,6 +52,8 @@ void PhaseWidget::render() {
       break;
     case gamestate::NEUTRAL:
       break;
+    default:
+      break;
     }
   }
 

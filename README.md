@@ -8,7 +8,9 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
-	Camera shake when attack.
+	NOTE TO SELF: CREATE SECOND STATUS WIDGET 
+	
+	Camera shake when attack. When unit is attacked, center it. What about tilehighlight?  Could either set the tile highlight to be the attacked tile or at the beginning of the newturn, return camera to that location.
 	
 	Items.  For now make parent entity necessary but in future use a storage/warehouse system (that could be a parent
 	instead?). Think of system for determining what classes can use what equipment.

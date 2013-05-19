@@ -82,9 +82,9 @@ void PlayState::update() {
       // loss, menu options for player
       input->update();
     }
-
-    eng_ptr->getGameCam()->update();
   }
+
+  eng_ptr->getGameCam()->update();
 }
 
 void PlayState::render() {

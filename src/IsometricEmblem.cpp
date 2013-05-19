@@ -7,9 +7,12 @@
 
 #include <SFML/Graphics.hpp>
 #include "System/GameEngine.h"
+#include "stdlib.h"
+#include "time.h"
 
 int main()
 {
+  srand(time(0));
   GameEngine gEng;
   gEng.runEngine();
 

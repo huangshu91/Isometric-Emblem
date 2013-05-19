@@ -64,12 +64,16 @@ const string DEFAULT_FONT_KEY = "default";
 // HUD keys
 const string TERRAIN_MENU = "terrain_menu";
 const string PHASE_HUD = "phasehud";
-const string STATUS_HUD = "status_hud";
+const string STATUS_HUDR = "status_hudr";
+const string STATUS_HUDL = "status_hudl";
 
 const int GUI_PADDING = 30;
 
 const int FONT_SIZE = 14;
 const int LABEL_SIZE = 20;
+
+const float SHAKE_DURATION = 0.2f;
+const int SHAKE_INTENSITY = 2;
 
 // enums
 

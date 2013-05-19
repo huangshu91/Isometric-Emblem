@@ -25,6 +25,7 @@ public:
   void setCenter(sf::Vector2f center);
 
   void smoothMove(sf::Vector2f center, float time);
+  void shakeMove(sf::Vector2f center, int inten);
 
   void update();
 
@@ -41,6 +42,10 @@ private:
   sf::Vector2f smooth_start;
   FormatClock smooth_clock;
   float smoothTime;
+
+  sf::Vector2f shake_start;
+  FormatClock shake_clock;
+  int intensity;
 
   camera::Effect  state;
 };
