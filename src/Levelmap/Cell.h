@@ -13,6 +13,7 @@
 #include "Terrain.h"
 #include "../Util/Constants.h"
 #include <iostream>
+#include <vector>
 
 class GameEngine;
 class Map;
@@ -24,7 +25,7 @@ public:
   virtual ~Cell();
 
   sf::Vector2i getCenter() { return center; }
-  sf::Vector2i getLoc() { return sf::Vector2i(tile.getPosition()); };
+  sf::Vector2i getLoc() { return sf::Vector2i(base.getPosition()); };
   sf::Vector2i getCoords() { return sf::Vector2i(row, col); }
   int getRow() { return row; };
   int getCol() { return col; };
@@ -42,7 +43,8 @@ private:
 
   Map* map_ptr;
 
-  sf::Sprite tile;
+  sf::Sprite base;
+  std::vector<sf::Sprite> add;
 
   int row;
   int col;

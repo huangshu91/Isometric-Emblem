@@ -17,3 +17,10 @@ res/path/pic2.png
 2
 HeavyGeneral GrandGeneral
 20 15 5 0 10 -5 5
+
+
+
+Tile database type
+------------------------
+2						// first line, number of tiles in file
+Plain					// string name of tile
