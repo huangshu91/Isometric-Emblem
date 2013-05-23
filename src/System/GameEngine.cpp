@@ -27,6 +27,7 @@ GameEngine::GameEngine() {
 
   gameCam.setup(getWindow());
   gameHUD.setup(getEngine());
+  gameData.setup(getEngine());
 }
 
 void GameEngine::loadDebug() {

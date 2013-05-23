@@ -14,6 +14,7 @@
 #include "../Util/FormatClock.h"
 #include "../Util/Constants.h"
 #include "../Util/Logger.h"
+#include "../Database/Database.h"
 #include "Camera.h"
 #include "ResourceManager.h"
 #include "HUDManager.h"
@@ -34,6 +35,7 @@ public:
   Camera* getGameCam() { return &gameCam; };
   HUDManager* getHUD() { return &gameHUD; };
   Logger* getLog() { return &gameLog; };
+  Database* getDatabase() { return &gameData; };
 
   PlayState* getPlayState() { return pstate; };
 
@@ -51,6 +53,7 @@ private:
   HUDManager          gameHUD;
   Camera              gameCam;
   Logger              gameLog;
+  Database            gameData;
 
   PlayState* pstate;
 };

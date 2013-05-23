@@ -8,8 +8,10 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Cells. Redo alot of this stuff.  Since we are now using different types of cells. A newly created cell just has logic but no graphics.  You then set the type and the cell will check the database for what the graphical base and adds are for itself.  Cell creation is now a two set process but overall is more flexible.
+	
 	Database is the encyclopedia of all game data.  It will load all character, item, map data.  When creating new anything,
-	check database for base values.  If it's not in the game-database, it is not valid. Finish up class loading later, need to do some file i/o to get values.  Link entity creation to database lookup of class types.
+	check database for base values.  If it's not in the game-database, it is not valid. Finish up class loading later, need to do some file i/o to get values.  Link entity creation to database lookup of class types.  Database will have lots of methods for debugging, verify data is loaded correctly and everything is linked at the end of loading.
 	
 	Day/night cycle.  Certain units get bonuses for day/night.  Have a cycle status widget in center top of screen.
 	
@@ -91,3 +93,5 @@ NOTES:
 	by input other than activated or not.
 	
 	NEED TESTING. STARTING TO GET TOO COMPLICATED TO EASILY REASON ABOUT.
+	
+	Do not overdesign the classdb and make sure all referenced classes in promote path exist, even if the numbers are filler.

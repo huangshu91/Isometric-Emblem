@@ -5,6 +5,7 @@
  *      Author: Maiev
  */
 #include "Logger.h"
+#include <iostream>
 using namespace std;
 
 Logger::Logger() {
@@ -26,6 +27,7 @@ void Logger::i(string msg) {
     printheader('i');
   }
 
+  if (DEBUG) cout << gameClock.getFormatTime() << " - " << msg << endl;
   log << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'i';
 }
@@ -35,6 +37,7 @@ void Logger::e(string msg) {
     printheader('e');
   }
 
+  if (DEBUG) cout << gameClock.getFormatTime() << " - " << msg << endl;
   log << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'e';
 }
@@ -48,6 +51,7 @@ void Logger::d(string msg) {
     printheader('d');
   }
 
+  if (DEBUG) cout << gameClock.getFormatTime() << " - " << msg << endl;
   log << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'd';
 }

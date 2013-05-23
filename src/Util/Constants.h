@@ -15,17 +15,27 @@ const int WINDOW_WIDTH = 960;
 const int WINDOW_HEIGHT = 540;
 const int WINDOW_COLOR_DEPTH = 32;
 const int FPS_LIMIT = 60;
+const bool DEBUG = true;
 
-const string VERSION_NUM = "0.0.1";
-const string GAME_LABEL = "Isometric FireEmblem RPG";
+const string VERSION_NUM = "0.0.2";
+const string GAME_LABEL = "Isometric RPG";
 const sf::Color WINDOW_COLOR = sf::Color(117,169,191);
 
 const string LOG_FILE = "log.txt";
 
 const float INPUT_DELAY = 0.15;
 
-const string TILE_ROCK = "res/rock_tile.png";
+const string TILE_ROCK = "res/Tiles/rock_plain_tile.png";
 const string TILE_KEY = "rocktile";
+
+const string TILE_WATER = "res/Tiles/water_plain_tile.png";
+const string TILE_WATER_KEY = "watertile";
+
+const string TILE_GRASS = "res/Tiles/grass_plain_tile.png";
+const string TILE_GRASS_KEY = "grasstile";
+
+const string TILE_TREE = "res/Tiles/forest_plain_tile.png";
+const string TILE_TREE_KEY = "treetile";
 
 const string TILE_HIGH = "res/highlight_tile.png";
 const string TILE_HIGH_KEY = "tilehigh";
@@ -47,10 +57,10 @@ const string PHASE_PLAYER_KEY = "playerphase";
 const string PHASE_ENEMY_KEY = "enemyphase";
 const float PHASE_DUR = 0.5f;
 
-const string UNIT_ARMOR = "res/unit_armor.png";
+const string UNIT_ARMOR = "res/Units/unit_armor.png";
 const string UNIT_ARMOR_KEY = "Maiev";
 
-const string UNIT_ARMOR_RED = "res/unit_armor_red.png";
+const string UNIT_ARMOR_RED = "res/Units/unit_armor_red.png";
 const string UNIT_ARMOR_RED_KEY = "Testing";
 
 const string PORTRAIT_ICON = "res/portrait_icon.png";

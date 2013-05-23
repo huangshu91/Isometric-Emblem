@@ -11,6 +11,7 @@
 #include <string>
 #include <map>
 #include "../Util/UtilValues.h"
+#include "../Util/Constants.h"
 
 class GameEngine;
 class Logger;
@@ -39,8 +40,12 @@ private:
   std::vector<std::string> class_names;
   std::map<std::string, Class*> class_db;
 
+  std::map<terraintype::Area, std::vector<sf::Sprite> > tile_adds;
+
   void LoadClasses();
   void LinkClasses();
+
+  void LoadTiles();
 };
 
 #endif /* DATABASE_H_ */

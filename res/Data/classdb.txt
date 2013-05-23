@@ -1,7 +1,13 @@
-1
+2
 General 2
 res/unit_armor_red.png
 30 15 10 10 15 5 10
-2
-HeavyGeneral GrandGeneral
+1
+HeavyGeneral
+20 15 5 0 10 -5 5
+
+HeavyGeneral 3
+res/unit_armor_red.png
+30 15 10 10 15 5 10
+0
 20 15 5 0 10 -5 5

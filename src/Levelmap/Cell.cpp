@@ -9,6 +9,7 @@
 #include "../Util/Constants.h"
 #include "../System/GameEngine.h"
 #include "../Entity/DynamicEntity.h"
+#include "../Database/Database.h"
 
 Cell::Cell(GameEngine* eng, Map* map, int r, int c)
 : eng_ptr(eng), map_ptr(map), row(r), col(c) {
@@ -34,6 +35,10 @@ Cell::Cell(GameEngine* eng, Map* map, int r, int c)
 
 Cell::~Cell() {
   // TODO Auto-generated destructor stub
+}
+
+void Cell::setType(terraintype::Area type) {
+
 }
 
 void Cell::render() {
