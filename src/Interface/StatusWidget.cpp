@@ -68,6 +68,7 @@ void StatusWidget::updateChar(DynamicEntity* e) {
 
 void StatusWidget::update() {
   if (cur_ent == 0) return;
+  name.setColor(sf::Color::Black);
   name.setString(cur_ent->getName());
   name.setOrigin(name.getLocalBounds().width/2, name.getLocalBounds().height/2);
   string hpstring;
@@ -75,6 +76,7 @@ void StatusWidget::update() {
   hpstring += "/";
   hpstring += numberToString(cur_ent->total.max_hp);
   hpstring += " HP";
+  hp.setColor(sf::Color::Black);
   hp.setString(hpstring);
   hp.setOrigin(hp.getLocalBounds().width/2, hp.getLocalBounds().height/2);
 }

@@ -40,6 +40,7 @@ void TerrainMenu::setup(GameEngine* eng) {
   avd_val.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
 
   label.setString("Terrain");
+  label.setColor(sf::Color::Black);
   label.setCharacterSize(LABEL_SIZE);
   label.setOrigin(label.getLocalBounds().width/2, label.getLocalBounds().height/2);
   sf::Vector2f pos(frame.getLoc().x, frame.getLoc().y - (MENU_SIZE.y/2) + 2*FONT_SIZE);
@@ -47,10 +48,13 @@ void TerrainMenu::setup(GameEngine* eng) {
 
   def_text.setString("DEF");
   def_text.setCharacterSize(FONT_SIZE);
+  def_text.setColor(sf::Color::Black);
   avd_text.setString("AVD");
   avd_text.setCharacterSize(FONT_SIZE);
+  avd_text.setColor(sf::Color::Black);
   atk_text.setString("ATK");
   atk_text.setCharacterSize(FONT_SIZE);
+  atk_text.setColor(sf::Color::Black);
 
   pos = sf::Vector2f(frame.getLoc().x -
       frame.getSize().x/2 + FONT_SIZE, label.getPosition().y + LABEL_SIZE);
@@ -66,12 +70,15 @@ void TerrainMenu::setup(GameEngine* eng) {
 
   def_val.setString("0");
   def_val.setCharacterSize(FONT_SIZE);
+  def_val.setColor(sf::Color::Black);
   def_val.setOrigin(def_val.getLocalBounds().width, 0);
   avd_val.setString("0");
   avd_val.setCharacterSize(FONT_SIZE);
+  avd_val.setColor(sf::Color::Black);
   avd_val.setOrigin(avd_val.getLocalBounds().width, 0);
   atk_val.setString("0");
   atk_val.setCharacterSize(FONT_SIZE);
+  atk_val.setColor(sf::Color::Black);
   atk_val.setOrigin(atk_val.getLocalBounds().width, 0);
 
   def_val.setPosition(frame.getLoc().x +
