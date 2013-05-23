@@ -108,8 +108,6 @@ void AIController::moveUnit() {
 
   if (cellDist(target->getCurCell(), to_cell) == selected->getRange(range::ATTACK)) {
     selected->attackUnit(target);
-    statushudr_ptr->updateChar(target);
-    statushudl_ptr->updateChar(selected);
   }
 
   endUnit();

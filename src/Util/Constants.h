@@ -91,7 +91,8 @@ const string DB_CLASS = "res/Data/classdb.txt";
 
 namespace gamestate {
   enum Statetype { MENU, START, PLAY, PAUSE, EXIT, UNINIT };
-  enum Playphase { PLAYER, ENEMY, NEUTRAL, NEWTURN, UNITDEATH, LOSS };
+  enum Playphase { PLAYER, ENEMY, NEUTRAL, NEWTURN,
+                   FIGHT, FINISHFIGHT, UNITDEATH, LOSS };
 }
 
 //maintain parallel enum/array so they can be used as indices

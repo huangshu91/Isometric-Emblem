@@ -151,8 +151,6 @@ void InputController::selectCell() {
     if (cur_cell->unit != 0 && cur_cell->unit->getControl() == unit::ENEMY) {
       // check readme for TODO here
       selected->attackUnit(cur_cell->unit);
-      statushudl_ptr->updateChar(cur_cell->unit);
-      statushudr_ptr->updateChar(selected);
       finishSelect();
       return;
     }

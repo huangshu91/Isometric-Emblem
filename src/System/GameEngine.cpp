@@ -45,6 +45,8 @@ void GameEngine::runEngine() {
   pstate = new PlayState(getEngine());
   pstate->setup();
 
+  gameBat.setup(getEngine(), getPlayState());
+
   while (gameWindow.isOpen()) {
     sf::Event ev;
     while (gameWindow.pollEvent(ev)) {

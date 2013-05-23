@@ -15,6 +15,7 @@
 #include "../Util/Constants.h"
 #include "../Util/Logger.h"
 #include "../Database/Database.h"
+#include "../Entity/BattleManager.h"
 #include "Camera.h"
 #include "ResourceManager.h"
 #include "HUDManager.h"
@@ -36,6 +37,7 @@ public:
   HUDManager* getHUD() { return &gameHUD; };
   Logger* getLog() { return &gameLog; };
   Database* getDatabase() { return &gameData; };
+  BattleManager* getBattle() { return &gameBat; };
 
   PlayState* getPlayState() { return pstate; };
 
@@ -54,6 +56,7 @@ private:
   Camera              gameCam;
   Logger              gameLog;
   Database            gameData;
+  BattleManager       gameBat;
 
   PlayState* pstate;
 };

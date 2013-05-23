@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Two versions of the function shakeMove. One has a center but its never used (maybe useful, keep for now).
+	
 	Cells. Redo alot of this stuff.  Since we are now using different types of cells. A newly created cell just has logic but no graphics.  You then set the type and the cell will check the database for what the graphical base and adds are for itself.  Cell creation is now a two set process but overall is more flexible.
 	
 	Database is the encyclopedia of all game data.  It will load all character, item, map data.  When creating new anything,

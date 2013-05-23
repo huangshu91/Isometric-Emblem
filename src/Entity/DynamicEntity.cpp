@@ -67,7 +67,8 @@ void DynamicEntity::setControl(unit::Control c) {
 
 // This needs to be refactored
 void DynamicEntity::attackUnit(DynamicEntity* unit) {
-  // resolve attacks here
+  eng_ptr->getBattle()->attackUnit(this, unit);
+  /*
   unit->total.hp -= damage;
   if (unit->total.hp <= 0) {
     unit->total.hp = 0;
@@ -82,6 +83,20 @@ void DynamicEntity::attackUnit(DynamicEntity* unit) {
   }
 
   eng_ptr->getGameCam()->shakeMove(sf::Vector2f(tile_ptr->getCenter()), SHAKE_INTENSITY);
+  */
+}
+
+void DynamicEntity::takeDamage(int d) {
+  if (d <= 0) {
+   //no damage taken, play sound, etc
+    return;
+  }
+
+  total.hp -= d;
+  if (total.hp <= 0) {
+    total.hp = 0;
+    unitDeath(this);
+  }
 }
 
 void DynamicEntity::unitDeath(DynamicEntity* unit) {

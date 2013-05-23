@@ -10,6 +10,7 @@
 #include "../Controller/InputController.h"
 #include "../Controller/AIController.h"
 #include "../System/GameEngine.h"
+#include "../Entity/BattleManager.h"
 
 PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   stateId = gamestate::PLAY;
@@ -17,7 +18,9 @@ PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   input = new InputController(eng_ptr);
   ai = new AIController(eng_ptr);
   phase = gamestate::PLAYER;
+  turn = gamestate::PLAYER;
   wait = false;
+  bm = eng_ptr->getBattle();
 }
 
 PlayState::~PlayState() {
@@ -37,16 +40,15 @@ void PlayState::setup() {
 
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
-
 }
 
 void PlayState::changePhase(gamestate::Playphase next) {
-  gamestate::Playphase prev = phase;
   phase = next;
 
   if (phase == gamestate::PLAYER || phase == gamestate::ENEMY) {
     if (eng_ptr->getHUD()->getWidget(PHASE_HUD)) {
       eng_ptr->getHUD()->getPhaseHUD()->changePhase(next);
+      turn = phase;
       wait = true;
     }
   }
@@ -60,7 +62,18 @@ void PlayState::changePhase(gamestate::Playphase next) {
   if (phase == gamestate::UNITDEATH) {
     // is there anything that needs to be handled here?
     // until exp is implemented, just switch back to previous state;
-    phase = prev;
+    phase = turn;
+
+    //finishTransition();
+  }
+
+  if (phase == gamestate::FIGHT) {
+    // set some hud stuff?
+  }
+
+  if (phase == gamestate::FINISHFIGHT) {
+    // exp stuff here as well
+    phase = turn;
   }
 }
 
@@ -81,6 +94,10 @@ void PlayState::update() {
     else if (phase == gamestate::LOSS) {
       // loss, menu options for player
       input->update();
+    }
+
+    else if (phase == gamestate::FIGHT) {
+      bm->update();
     }
   }
 

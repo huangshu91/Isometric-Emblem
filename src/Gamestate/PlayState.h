@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
 #include "../Util/Constants.h"
+#include "../Entity/BattleManager.h"
 
 class Map;
 class InputController;
@@ -35,8 +36,10 @@ private:
   Map* level;
   InputController* input;
   AIController* ai;
+  BattleManager* bm;
 
   gamestate::Playphase phase;
+  gamestate::Playphase turn;
   bool wait;
 };
 

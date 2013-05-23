@@ -39,6 +39,15 @@ public:
 
   StatPack total;
 
+  // modify these later to give calculated values
+  int getPow() { return damage; };
+  int getDef() { return total.def; };
+
+  void takeDamage(int d);
+
+  //temporary
+  int damage;
+
 private:
   unit::Class class_type;
   unit::Control control;
@@ -52,8 +61,6 @@ private:
   // these will be based on various factors in future
   int move_range;
   int attack_range;
-
-  int damage;
 
   void unitDeath(DynamicEntity* unit);
 };

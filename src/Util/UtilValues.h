@@ -20,6 +20,8 @@ struct StatPack {
   int def;
   int res;
   int lck;
+  int con;
+  int cha;
 
   StatPack() {
     hp = 0;
@@ -30,6 +32,8 @@ struct StatPack {
     def = 0;
     res = 0;
     lck = 0;
+    con = 0;
+    cha = 0;
   }
 };
 

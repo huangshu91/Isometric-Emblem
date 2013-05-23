@@ -26,6 +26,7 @@ public:
 
   void smoothMove(sf::Vector2f center, float time);
   void shakeMove(sf::Vector2f center, int inten);
+  void shakeMove(int inte);
 
   void update();
 

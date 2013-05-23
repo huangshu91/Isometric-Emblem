@@ -64,6 +64,14 @@ void Camera::shakeMove(sf::Vector2f center, int inten) {
   shake_clock.resetClock();
 }
 
+void Camera::shakeMove(int inten) {
+  shake_start = cam_view.getCenter();
+  intensity = inten;
+  state = camera::SHAKE;
+
+  shake_clock.resetClock();
+}
+
 void Camera::update() {
   if (state == camera::SMOOTH) {
     if (smooth_clock.getElapsedTime()*FPS_LIMIT >= smoothTime) {

@@ -90,6 +90,7 @@ void StatusWidget::setVisible(bool vis) {
 void StatusWidget::render() {
   if (!visible) return;
 
+  update();
   frame.render();
   win_ptr->draw(icon);
   win_ptr->draw(name);

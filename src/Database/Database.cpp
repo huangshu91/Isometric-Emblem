@@ -131,9 +131,6 @@ void Database::LinkClasses() {
     string class_n = class_names[i];
     Class* cur_class = class_db.find(class_n)->second;
 
-    cout << cur_class->class_name << endl;
-    cout << cur_class->promote_string.size() << endl;
-
     for (int k = 0, l = cur_class->promote_string.size(); k < l; k++) {
       Class* promote = class_db.find(cur_class->promote_string[k])->second;
       cur_class->promote.push_back(promote);
