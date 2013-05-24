@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Note to self: Exp bar.  ProgressBar class, build from sfml primitives + pointer for now.  Window focus. Check focus in event handling and then check that in update of inputcontroller.
+	
 	Two versions of the function shakeMove. One has a center but its never used (maybe useful, keep for now).
 	
 	Cells. Redo alot of this stuff.  Since we are now using different types of cells. A newly created cell just has logic but no graphics.  You then set the type and the cell will check the database for what the graphical base and adds are for itself.  Cell creation is now a two set process but overall is more flexible.

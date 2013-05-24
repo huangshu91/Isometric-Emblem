@@ -64,6 +64,9 @@ bool InputController::setCurrentCell(int x, int y) {
 }
 
 void InputController::update() {
+  //if the window does not have focus, do not accept input
+  if (eng_ptr->hasFocus() == false) return;
+
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {

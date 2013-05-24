@@ -41,6 +41,8 @@ public:
 
   PlayState* getPlayState() { return pstate; };
 
+  bool hasFocus() { return focus; };
+
 private:
 
   void loadDebug();
@@ -59,6 +61,8 @@ private:
   BattleManager       gameBat;
 
   PlayState* pstate;
+
+  bool focus;
 };
 
 

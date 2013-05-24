@@ -9,7 +9,7 @@
 #include "../Util/Constants.h"
 #include "../Levelmap/Map.h"
 #include "../Controller/InputController.h"
-#include "../Interface/GUIDisplay.h"
+#include "../Interface/GUIFrame.h"
 #include "../Interface/TerrainMenu.h"
 #include "../Entity/DynamicEntity.h"
 #include "../GameState/PlayState.h"
@@ -22,6 +22,7 @@ GameEngine::GameEngine() {
 
   gameWindow.setFramerateLimit(60);
   gameWindow.setVerticalSyncEnabled(true);
+  focus = true;
 
   loadDebug();
 
@@ -47,10 +48,18 @@ void GameEngine::runEngine() {
 
   gameBat.setup(getEngine(), getPlayState());
 
+  GUIFrame exp;
+  exp.setup(getEngine());
+  sf::Vector2i l(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+  exp.build(l, sf::Vector2i(440, 80));
+
   while (gameWindow.isOpen()) {
     sf::Event ev;
     while (gameWindow.pollEvent(ev)) {
-          if (ev.type == sf::Event::Closed) gameWindow.close();
+      if (ev.type == sf::Event::Closed) gameWindow.close();
+
+      if (ev.type == sf::Event::LostFocus) focus = false;
+      if (ev.type == sf::Event::GainedFocus) focus = true;
     }
     gameWindow.clear(WINDOW_COLOR);
 
@@ -58,7 +67,7 @@ void GameEngine::runEngine() {
     pstate->render();
 
     //gameWindow.draw(testsprite);
-
+    exp.render();
     gameWindow.display();
   }
 
