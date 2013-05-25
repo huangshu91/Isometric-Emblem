@@ -12,6 +12,7 @@
 
 //debug includes
 #include "../Interface/GUIProgressBar.h"
+#include "../Interface/EXPWidget.h"
 using namespace std;
 
 GameEngine::GameEngine() {
@@ -19,7 +20,7 @@ GameEngine::GameEngine() {
                      GAME_LABEL + " " + VERSION_NUM);
 
   gameWindow.setFramerateLimit(60);
-  gameWindow.setVerticalSyncEnabled(true);
+  //gameWindow.setVerticalSyncEnabled(true);
   focus = true;
 
   loadDebug();
@@ -46,16 +47,8 @@ void GameEngine::runEngine() {
 
   gameBat.setup(getEngine(), getPlayState());
 
-  GUIFrame exp;
-  exp.setup(getEngine());
-  sf::Vector2i l(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-  exp.build(l, sf::Vector2i(440, 80));
-
-  GUIProgressBar rs;
-  rs.setup(getEngine());
-  sf::Vector2i size(240,20);
-  rs.build(l, size);
-  rs.growProg(0, 50);
+  EXPWidget wid;
+  wid.setup(getEngine());
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
@@ -78,9 +71,7 @@ void GameEngine::runEngine() {
     pstate->update();
     pstate->render();
 
-    exp.render();
-    rs.update();
-    rs.render();
+    wid.render();
     gameWindow.display();
   }
 

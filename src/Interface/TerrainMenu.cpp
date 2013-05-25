@@ -14,7 +14,7 @@
 #include <cstdlib>
 using namespace std;
 
-sf::Vector2i TerrainMenu::MENU_SIZE = sf::Vector2i(120,120);
+sf::Vector2i TerrainMenu::MENU_SIZE = sf::Vector2i(120, 120);
 
 TerrainMenu::TerrainMenu() {
 }
