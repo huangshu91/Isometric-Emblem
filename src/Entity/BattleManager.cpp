@@ -17,7 +17,7 @@ BattleManager::BattleManager() {
   atk = 0;
   def = 0;
   parent = 0;
-  round = 0;
+  stat = FIRST;
 }
 
 BattleManager::~BattleManager() {

@@ -9,15 +9,15 @@
 using namespace std;
 
 FormatClock::FormatClock() {
-  _paused = false;
-  _breaktime = 0;
+  paused = false;
+  breaktime = 0;
 }
 
 FormatClock::~FormatClock() {
 }
 
 bool FormatClock::isPaused() {
-  if (_paused == false) {
+  if (paused == false) {
     return false;
   }
 
@@ -27,33 +27,33 @@ bool FormatClock::isPaused() {
 }
 
 void FormatClock::setBreakTime() {
-  _breaktime = _internalclock.getElapsedTime().asSeconds();
+  breaktime = internalclock.getElapsedTime().asSeconds();
 }
 
 float FormatClock::timeSinceBreak() {
-  return (_internalclock.getElapsedTime().asSeconds() - _breaktime);
+  return (internalclock.getElapsedTime().asSeconds() - breaktime);
 }
 
 string FormatClock::getFormatTime() {
-  float _currenttime = _internalclock.getElapsedTime().asSeconds();
+  float currenttime = internalclock.getElapsedTime().asSeconds();
 
-  int _hours = (int) floor(_currenttime / 3600);
+  int hours = (int) floor(currenttime / 3600);
 
-  _currenttime = fmod(_currenttime, 3600);
+  currenttime = fmod(currenttime, 3600);
 
-  int _minutes = (int) floor(_currenttime / 60);
+  int minutes = (int) floor(currenttime / 60);
 
-  _currenttime = fmod(_currenttime, 60);
+  currenttime = fmod(currenttime, 60);
   stringstream ss;
-  ss << _hours << ":" << _minutes << ":" << _currenttime;
+  ss << hours << "h_" << minutes << "m_" << currenttime;
 
   return ss.str();
 }
 
 float FormatClock::getElapsedTime() {
-  return _internalclock.getElapsedTime().asSeconds();
+  return internalclock.getElapsedTime().asSeconds();
 }
 
 void FormatClock::resetClock() {
-  _internalclock.restart();
+  internalclock.restart();
 }

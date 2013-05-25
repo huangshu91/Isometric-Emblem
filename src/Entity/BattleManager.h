@@ -28,7 +28,6 @@ private:
   GameEngine* eng_ptr;
   PlayState* parent;
 
-  int round;
   enum Round { FIRST, SECOND, THIRD, FOURTH };
   Round stat;
 

@@ -7,13 +7,11 @@
 
 #include "GameEngine.h"
 #include "../Util/Constants.h"
-#include "../Levelmap/Map.h"
-#include "../Controller/InputController.h"
-#include "../Interface/GUIFrame.h"
-#include "../Interface/TerrainMenu.h"
-#include "../Entity/DynamicEntity.h"
-#include "../GameState/PlayState.h"
+#include "../Gamestate/PlayState.h"
 #include <iostream>
+
+//debug includes
+#include "../Interface/GUIProgressBar.h"
 using namespace std;
 
 GameEngine::GameEngine() {
@@ -53,6 +51,11 @@ void GameEngine::runEngine() {
   sf::Vector2i l(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
   exp.build(l, sf::Vector2i(440, 80));
 
+  GUIProgressBar rs;
+  rs.setup(getEngine());
+  sf::Vector2i size(240,20);
+  rs.build(l, size);
+
   while (gameWindow.isOpen()) {
     sf::Event ev;
     while (gameWindow.pollEvent(ev)) {
@@ -60,14 +63,22 @@ void GameEngine::runEngine() {
 
       if (ev.type == sf::Event::LostFocus) focus = false;
       if (ev.type == sf::Event::GainedFocus) focus = true;
+
+      if (ev.type == sf::Event::KeyPressed) {
+        if (ev.key.code == sf::Keyboard::F1) {
+          gameLog.i("Screenshot taken.");
+          sf::Image im = gameWindow.capture();
+          im.saveToFile(SS_PATH+"ss_"+gameClock.getFormatTime()+".png");
+        }
+      }
     }
     gameWindow.clear(WINDOW_COLOR);
 
     pstate->update();
     pstate->render();
 
-    //gameWindow.draw(testsprite);
     exp.render();
+    rs.render();
     gameWindow.display();
   }
 

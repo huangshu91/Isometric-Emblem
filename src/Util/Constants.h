@@ -22,6 +22,7 @@ const string GAME_LABEL = "Isometric RPG";
 const sf::Color WINDOW_COLOR = sf::Color(117,169,191);
 
 const string LOG_FILE = "log.txt";
+const string SS_PATH = "Screenshot/";
 
 const float INPUT_DELAY = 0.15;
 

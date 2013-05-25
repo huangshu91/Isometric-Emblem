@@ -14,10 +14,6 @@
 #include <sstream>
 using namespace std;
 
-/*
- * Wrapper for the sfml Clock class which has pause and start functionality.
- * Includes methods to format the second of the clock to hours/minutes for output.
- */
 class FormatClock {
 public:
   FormatClock();
@@ -41,10 +37,10 @@ public:
   float getElapsedTime();
 
 private:
-  sf::Clock _internalclock;
+  sf::Clock internalclock;
 
-  float _breaktime;
-  bool _paused;
+  float breaktime;
+  bool paused;
 };
 
 #endif /* FORMATCLOCK_H_ */
