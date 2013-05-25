@@ -75,6 +75,7 @@ const string TERRAIN_MENU = "terrain_menu";
 const string PHASE_HUD = "phasehud";
 const string STATUS_HUDR = "status_hudr";
 const string STATUS_HUDL = "status_hudl";
+const string EXP_HUD = "exp_hud";
 
 const int GUI_PADDING = 30;
 
@@ -83,6 +84,9 @@ const int LABEL_SIZE = 20;
 
 const float SHAKE_DURATION = 0.2f;
 const int SHAKE_INTENSITY = 2;
+
+const float EXP_DUR = 1;
+const int EXP_RATE = 2;
 
 // encyclopedia file paths
 

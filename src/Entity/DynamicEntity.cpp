@@ -27,6 +27,8 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
   total.hp = 30;
   total.max_hp = 30;
   damage = 5;
+  level = 1;
+  exp = 0;
 }
 
 DynamicEntity::~DynamicEntity() {
@@ -68,39 +70,31 @@ void DynamicEntity::setControl(unit::Control c) {
 // This needs to be refactored
 void DynamicEntity::attackUnit(DynamicEntity* unit) {
   eng_ptr->getBattle()->attackUnit(this, unit);
-  /*
-  unit->total.hp -= damage;
-  if (unit->total.hp <= 0) {
-    unit->total.hp = 0;
-    unitDeath(unit);
-    return;
-  }
-  total.hp -= unit->damage;
-  if (total.hp <= 0) {
-    total.hp = 0;
-    unitDeath(this);
-    return;
-  }
-
-  eng_ptr->getGameCam()->shakeMove(sf::Vector2f(tile_ptr->getCenter()), SHAKE_INTENSITY);
-  */
 }
 
-void DynamicEntity::takeDamage(int d) {
+bool DynamicEntity::takeDamage(int d) {
   if (d <= 0) {
    //no damage taken, play sound, etc
-    return;
+    return false;
   }
 
   total.hp -= d;
   if (total.hp <= 0) {
     total.hp = 0;
-    unitDeath(this);
+    return true;
   }
+
+  return false;
 }
 
-void DynamicEntity::unitDeath(DynamicEntity* unit) {
-  map_ptr->removeUnit(unit, unit->getControl());
+// Formula for exp gain based on unit
+int DynamicEntity::gainEXP(DynamicEntity* e) {
+  exp += 50;
+  return 50;
+}
+
+void DynamicEntity::unitDeath() {
+  map_ptr->removeUnit(this, getControl());
   eng_ptr->getPlayState()->changePhase(gamestate::UNITDEATH);
 }
 

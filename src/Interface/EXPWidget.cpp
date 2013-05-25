@@ -9,6 +9,7 @@
 #include "../System/GameEngine.h"
 #include "../Entity/DynamicEntity.h"
 #include "../Util/Constants.h"
+#include "../Util/UtilFunc.h"
 #include <string>
 #include <iostream>
 sf::Vector2i EXPWidget::MENU_SIZE = sf::Vector2i(440, 80);
@@ -62,22 +63,39 @@ void EXPWidget::setup(GameEngine* eng) {
 }
 
 void EXPWidget::updateChar(DynamicEntity* e, int from, int to) {
+  unit = e;
+  start = from;
+  cur = from;
+  end = to;
 
+  visible = true;
+  timer.resetClock();
+
+  expbar.growProg(from, to);
+
+  val.setString(numberToString(from));
 }
 
 void EXPWidget::setVisible(bool vis) {
-
+  visible = true;
 }
 
 void EXPWidget::update() {
+  cur += EXP_RATE;
+  if (cur > end) cur = end;
 
+  val.setString(numberToString(cur));
 }
 
 void EXPWidget::render() {
-  //if (!visible) return;
+  if (!visible) return;
 
+  update();
   frame.render();
+  expbar.update();
   expbar.render();
   win_ptr->draw(label);
   win_ptr->draw(val);
+
+  if (timer.getElapsedTime() > EXP_DUR) visible = false;
 }

@@ -15,6 +15,7 @@
 #include "../Interface/TerrainMenu.h"
 #include "../Interface/PhaseWidget.h"
 #include "../Interface/StatusWidget.h"
+#include "../Interface/EXPWidget.h"
 
 class GUIFrame;
 class GameEngine;
@@ -33,6 +34,7 @@ public:
   TerrainMenu* getTerrainHUD() { return &terrain_hud; };
   PhaseWidget* getPhaseHUD() { return &phase_hud; };
   StatusWidget* getStatusHUD(dir::Direction d);
+  EXPWidget* getEXPHUD() { return &exp_hud; };
 
   //void update();
   void render();
@@ -48,6 +50,7 @@ private:
   PhaseWidget   phase_hud;
   StatusWidget  status_hudr;
   StatusWidget  status_hudl;
+  EXPWidget     exp_hud;
 };
 
 #endif /* HUDMANAGER_H_ */

@@ -47,9 +47,6 @@ void GameEngine::runEngine() {
 
   gameBat.setup(getEngine(), getPlayState());
 
-  EXPWidget wid;
-  wid.setup(getEngine());
-
   while (gameWindow.isOpen()) {
     sf::Event ev;
     while (gameWindow.pollEvent(ev)) {
@@ -71,7 +68,6 @@ void GameEngine::runEngine() {
     pstate->update();
     pstate->render();
 
-    wid.render();
     gameWindow.display();
   }
 

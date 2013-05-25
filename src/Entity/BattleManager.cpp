@@ -44,13 +44,29 @@ void BattleManager::update() {
     int power = atk->getPow();
     int defense = def->getDef();
 
-    def->takeDamage(power-defense);
+    bool death = def->takeDamage(power-defense);
+    if (death) {
+      if (atk->getControl() == unit::PLAYER) {
+        int val = atk->gainEXP(def);
+        eng_ptr->getHUD()->getEXPHUD()->updateChar(atk, atk->exp-val, atk->exp);
+      }
+      def->unitDeath();
+    }
     DynamicEntity* swap = atk;
     atk = def;
     def = swap;
   } else if (stat == SECOND) {
     //stat = THIRD;
     parent->changePhase(gamestate::FINISHFIGHT);
+
+    if (atk->getControl() == unit::PLAYER) {
+      int val = atk->gainEXP(def);
+      eng_ptr->getHUD()->getEXPHUD()->updateChar(atk, atk->exp-val, atk->exp);
+    }
+    else if (def->getControl() == unit::PLAYER) {
+      int val = def->gainEXP(atk);
+      eng_ptr->getHUD()->getEXPHUD()->updateChar(def, def->exp-val, def->exp);
+    }
   }
 
   eng_ptr->getGameCam()->shakeMove(SHAKE_INTENSITY);

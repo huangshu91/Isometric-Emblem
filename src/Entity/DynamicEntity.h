@@ -43,10 +43,15 @@ public:
   int getPow() { return damage; };
   int getDef() { return total.def; };
 
-  void takeDamage(int d);
+  // return true if unit died
+  bool takeDamage(int d);
+  void unitDeath();
+  int gainEXP(DynamicEntity* e);
 
   //temporary
   int damage;
+  int level;
+  int exp;
 
 private:
   unit::Class class_type;
@@ -61,8 +66,6 @@ private:
   // these will be based on various factors in future
   int move_range;
   int attack_range;
-
-  void unitDeath(DynamicEntity* unit);
 };
 
 #endif /* DYNAMICENTITY_H_ */

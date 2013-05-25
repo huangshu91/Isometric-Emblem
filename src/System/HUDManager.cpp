@@ -23,10 +23,12 @@ void HUDManager::setup(GameEngine* eng) {
   phase_hud.setup(eng);
   status_hudr.setup(eng, dir::RIGHT);
   status_hudl.setup(eng, dir::LEFT);
+  exp_hud.setup(eng);
   addWidget(STATUS_HUDL, &status_hudl);
   addWidget(STATUS_HUDR, &status_hudr);
   addWidget(TERRAIN_MENU, &terrain_hud);
   addWidget(PHASE_HUD, &phase_hud);
+  addWidget(EXP_HUD, &exp_hud);
 }
 
 HUDManager::~HUDManager() {

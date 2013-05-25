@@ -61,7 +61,7 @@ void GUIProgressBar::growProg(int from, int to) {
 
 void GUIProgressBar::update() {
   if (incFlag) {
-    setProg(cur+1);
+    setProg(cur+EXP_RATE);
     incFlag = (cur >= end) ? false : true;
   }
 }
