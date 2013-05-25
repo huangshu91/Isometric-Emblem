@@ -55,6 +55,7 @@ void GameEngine::runEngine() {
   rs.setup(getEngine());
   sf::Vector2i size(240,20);
   rs.build(l, size);
+  rs.growProg(0, 50);
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
@@ -78,6 +79,7 @@ void GameEngine::runEngine() {
     pstate->render();
 
     exp.render();
+    rs.update();
     rs.render();
     gameWindow.display();
   }
