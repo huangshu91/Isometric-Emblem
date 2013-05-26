@@ -8,8 +8,10 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Camera.  In update, at the end of smooth state, if setcenter, there is a slight whiplash effect.  can keep or remove.
+	
 	EXP gain.  Until I flesh out class structure and have an idea of how growth should work, not going to bother making
-	exp gain formula.  Static exp gain of 50 per killed unit.
+	exp gain formula.  Static exp gain of 50 per killed unit.  Once the expwidget reaches 100, call level up on unit.  This might be bad design but it lets the animation finish before displaying level up screen.
 	
 	Note to self: Exp bar.  ProgressBar class, build from sfml primitives + pointer for now.  Window focus. Check focus in event handling and then check that in update of inputcontroller.
 	

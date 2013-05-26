@@ -64,6 +64,8 @@ private:
   std::vector<DynamicEntity*> player_units;
   std::vector<DynamicEntity*> enemy_units;
   std::vector<DynamicEntity*> units;
+
+  std::vector<DynamicEntity*> dead;
 };
 
 #endif /* MAP_H_ */

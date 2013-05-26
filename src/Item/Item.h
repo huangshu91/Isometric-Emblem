@@ -24,7 +24,8 @@ private:
   StatPack  item_stats;
 
   item::Type  base_type;
-  std::string      item_name;
+  std::string  item_name;
+  int  amount;
 };
 
 #endif /* ITEM_H_ */

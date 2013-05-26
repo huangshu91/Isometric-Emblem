@@ -13,11 +13,11 @@
 #include <string>
 using namespace std;
 
-void testClasses(vector<string> classes, map<string, Class*> db) {
+void testClasses(vector<string> classes, map<string, UnitClass*> db) {
   cout << "test start" << endl;
   for (int i = 0, j = classes.size(); i < j; i++) {
     cout << classes[i] << endl;
-    Class* cur_class = db.find(classes[i])->second;
+    UnitClass* cur_class = db.find(classes[i])->second;
 
     cout << cur_class->tier << " - " << cur_class->res_path << endl;
 
@@ -69,7 +69,7 @@ void Database::LoadClasses() {
     string str_temp;
 
     for (int i = 0; i < num_class; i++) {
-      Class* newclass = new Class();
+      UnitClass* newclass = new UnitClass();
       file >> str_temp;  // class name
       file >> int_temp;  // class tier
 
@@ -118,7 +118,7 @@ void Database::LoadClasses() {
       newclass->growth.lck = int_temp;
 
       class_db.insert(
-          make_pair<std::string, Class*>(newclass->class_name, newclass));
+          make_pair(newclass->class_name, newclass));
     }
 
   } else {
@@ -129,10 +129,10 @@ void Database::LoadClasses() {
 void Database::LinkClasses() {
   for (int i = 0, j = class_names.size(); i < j; i++) {
     string class_n = class_names[i];
-    Class* cur_class = class_db.find(class_n)->second;
+    UnitClass* cur_class = class_db.find(class_n)->second;
 
     for (int k = 0, l = cur_class->promote_string.size(); k < l; k++) {
-      Class* promote = class_db.find(cur_class->promote_string[k])->second;
+      UnitClass* promote = class_db.find(cur_class->promote_string[k])->second;
       cur_class->promote.push_back(promote);
     }
   }

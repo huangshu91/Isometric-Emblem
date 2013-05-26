@@ -47,6 +47,8 @@ void Map::setupEntity() {
   u->setOffset(6, -4);
   u->setTile(getCell(3, 5), this);
   getCell(3, 5)->unit = u;
+  u->buildUnit(60,60,10,10,10,10,10,10,5,20);
+  u->damage = 10;
   u->setControl(unit::PLAYER);
   units.push_back(u);
   player_units.push_back(u);
@@ -98,7 +100,6 @@ void Map::toggleRangeOn(DynamicEntity* e, range::RangeType type) {
     if (type == range::MOVE) {
       markCell(c, RANGE_MOVE_KEY);
     }
-
     q.pop();
   }
 
@@ -229,6 +230,8 @@ void Map::removeUnit(DynamicEntity* unit, unit::Control utype) {
       units.erase(units.begin()+i);
     }
   }
+
+  dead.push_back(unit);
 }
 
 void Map::render() {

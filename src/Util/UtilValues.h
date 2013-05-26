@@ -35,6 +35,20 @@ struct StatPack {
     con = 0;
     cha = 0;
   }
+
+  StatPack(int h, int ma, int s, int de, int a,
+      int d, int r, int l, int co, int ch) {
+    hp = h;
+    max_hp = ma;
+    str = s;
+    dex = de;
+    agi = a;
+    res = r;
+    def = d;
+    lck = l;
+    con = co;
+    cha = ch;
+  }
 };
 
 

@@ -74,6 +74,7 @@ void EXPWidget::updateChar(DynamicEntity* e, int from, int to) {
   expbar.growProg(from, to);
 
   val.setString(numberToString(from));
+  incFlag = true;
 }
 
 void EXPWidget::setVisible(bool vis) {
@@ -81,8 +82,13 @@ void EXPWidget::setVisible(bool vis) {
 }
 
 void EXPWidget::update() {
+  if (incFlag == false) return;
   cur += EXP_RATE;
-  if (cur > end) cur = end;
+  if (cur > end) {
+    cur = end;
+    incFlag = false;
+  }
+  if (cur == 100) unit->levelUp();
 
   val.setString(numberToString(cur));
 }

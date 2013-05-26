@@ -31,6 +31,18 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
   exp = 0;
 }
 
+void DynamicEntity::buildUnit(StatPack s) {
+  base = s;
+  total = s;
+}
+
+void DynamicEntity::buildUnit(int hp, int max, int s, int de,
+    int a, int d, int r, int l, int co, int ch){
+  StatPack temp(hp, max, s, de, a, d, r, l, co, ch);
+  base = temp;
+  total = temp;
+}
+
 DynamicEntity::~DynamicEntity() {
   // TODO Auto-generated destructor stub
 }
@@ -89,8 +101,12 @@ bool DynamicEntity::takeDamage(int d) {
 
 // Formula for exp gain based on unit
 int DynamicEntity::gainEXP(DynamicEntity* e) {
-  exp += 50;
+  exp = (exp+50 > 100) ? 100 : exp+50;
   return 50;
+}
+
+void DynamicEntity::levelUp() {
+
 }
 
 void DynamicEntity::unitDeath() {

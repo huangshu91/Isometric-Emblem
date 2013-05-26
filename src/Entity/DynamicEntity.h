@@ -38,6 +38,12 @@ public:
   void endTurn();
 
   StatPack total;
+  StatPack mods;
+  StatPack base;
+
+  void buildUnit(StatPack s);
+  void buildUnit(int hp, int max, int s, int dee,
+      int a, int d, int r, int l, int co, int ch);
 
   // modify these later to give calculated values
   int getPow() { return damage; };
@@ -47,6 +53,7 @@ public:
   bool takeDamage(int d);
   void unitDeath();
   int gainEXP(DynamicEntity* e);
+  void levelUp();
 
   //temporary
   int damage;
@@ -56,9 +63,6 @@ public:
 private:
   unit::Class class_type;
   unit::Control control;
-
-  StatPack mods;
-  StatPack base;
 
   Map* map_ptr;
   Cell* tile_ptr;

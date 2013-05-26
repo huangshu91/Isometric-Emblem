@@ -16,14 +16,14 @@
 class GameEngine;
 class Logger;
 
-struct Class {
+struct UnitClass {
   std::string class_name;
   std::string res_path;
   int         tier;
   StatPack    base_stat;
   StatPack    growth;
   std::vector<std::string> promote_string;
-  std::vector<Class*> promote;
+  std::vector<UnitClass*> promote;
 };
 
 class Database {
@@ -38,7 +38,7 @@ private:
   Logger* log_ptr;
 
   std::vector<std::string> class_names;
-  std::map<std::string, Class*> class_db;
+  std::map<std::string, UnitClass*> class_db;
 
   std::map<terraintype::Area, std::vector<sf::Sprite> > tile_adds;
 
