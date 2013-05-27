@@ -35,6 +35,7 @@ public:
   Terrain getTerrain() { return area_type; };
 
   void render();
+  void renderAdd();
 
   friend std::ostream& operator<<(std::ostream& out, const Cell& c);
   friend std::ostream& operator<<(std::ostream& out, const Cell* c);

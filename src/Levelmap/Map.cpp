@@ -13,6 +13,7 @@
 #include "../Database/Database.h"
 #include "Map.h"
 #include <iostream>
+#include <fstream>
 #include <algorithm>
 #include <queue>
 #include <map>
@@ -30,6 +31,36 @@ void Map::loadMap(string id) {
   if (!cd.chap_name.compare("NONE")) {
     eng_ptr->getLog()->e("Could not load map: "+id);
     return;
+  }
+  map_name = cd.chap_name;
+  map_id = cd.id;
+  ifstream file(cd.map_def.c_str());
+  if (file.is_open()) {
+    file >> row;
+    file >> col;
+    map<char, string> symbol;
+    int int_tmp;
+    file >> int_tmp;
+
+    for (int i = 0; i < int_tmp; i++) {
+      char sym;
+      string key;
+      file >> sym;
+      file >> key;
+      symbol.insert(make_pair(sym,key));
+    }
+
+    for (int i = 0; i < row; i++) {
+      vector<Cell> row;
+      for (int j = 0; j < col; j++) {
+        char ch;
+        file >> ch;
+        Cell c(eng_ptr, getMap(), i, j);
+        c.setType(symbol.find(ch)->second);
+        row.push_back(c);
+      }
+      board.push_back(row);
+    }
   }
 }
 
@@ -252,10 +283,19 @@ void Map::render() {
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < col; j++) {
       board[i][j].render();
+      board[i][j].renderAdd();
     }
   }
 
   if (range_on) renderRange();
+}
+
+void Map::renderAdd() {
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      board[i][j].renderAdd();
+    }
+  }
 }
 
 void Map::renderUnits() {

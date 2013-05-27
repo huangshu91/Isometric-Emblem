@@ -31,8 +31,10 @@ PlayState::~PlayState() {
 
 // eventually load from file
 void PlayState::setup() {
-  level->setDimensions(20,7);
+  //level->setDimensions(20,7);
+  level->loadMap("1");
   level->setupEntity();
+
   input->setMap(level);
   input->setCurrentCell(1,3);
   input->updateCell();
@@ -110,6 +112,7 @@ void PlayState::render() {
   level->render();
   input->render();
   level->renderUnits();
+  //level->renderAdd();
 
   eng_ptr->getHUD()->render();
 }

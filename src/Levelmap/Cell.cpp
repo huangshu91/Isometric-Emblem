@@ -59,6 +59,9 @@ void Cell::setType(string type) {
 void Cell::render() {
   eng_ptr->getWindow()->draw(base);
 
+}
+
+void Cell::renderAdd() {
   for (auto i : add) {
     eng_ptr->getWindow()->draw(i);
   }

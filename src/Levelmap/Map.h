@@ -43,6 +43,7 @@ public:
   void removeUnit(DynamicEntity* unit, unit::Control utype);
 
   void render();
+  void renderAdd();
   void renderUnits();
   void renderRange();
   void sortForeground();
@@ -58,6 +59,8 @@ private:
   std::vector<sf::Sprite> rangetile;
   bool range_on;
 
+  string map_name;
+  string map_id;
   // dimensions of the map, row = x, col = y
   int row;
   int col;

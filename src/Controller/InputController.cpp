@@ -67,9 +67,6 @@ void InputController::update() {
   //if the window does not have focus, do not accept input
   if (eng_ptr->hasFocus() == false) return;
 
-  // ANUP: CODE HERE
-
-  /*
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
@@ -94,7 +91,6 @@ void InputController::update() {
     if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() + 1))
       updateCell();
   }
-  */
 
   // select the current cell
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)

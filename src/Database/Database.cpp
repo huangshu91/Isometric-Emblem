@@ -216,7 +216,7 @@ void Database::LoadTiles() {
 }
 
 ChapDef Database::getChap(string c) {
-  if (tile_db.count(c) == 0) {
+  if (chap_db.count(c) == 0) {
     ChapDef tmp;
     tmp.chap_name = "NONE";
     return tmp;
