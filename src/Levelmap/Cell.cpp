@@ -36,7 +36,10 @@ Cell::~Cell() {
 
 void Cell::setType(string type) {
   TileDef td = eng_ptr->getDatabase()->getTile(type);
-  if (!td.tile_name.compare("NONE")) return;
+  if (!td.tile_name.compare("NONE")) {
+    eng_ptr->getLog()->e("Could not load tile: "+type);
+    return;
+  }
 
   sf::Sprite b(*(eng_ptr->getRes()->getResource(td.base_key)));
   b.setPosition(base.getPosition());

@@ -10,6 +10,7 @@
 #include "../Entity/DynamicEntity.h"
 #include "../System/GameEngine.h"
 #include "../Gamestate/PlayState.h"
+#include "../Database/Database.h"
 #include "Map.h"
 #include <iostream>
 #include <algorithm>
@@ -22,6 +23,14 @@ Map::Map(GameEngine* eng) : eng_ptr(eng), row(0), col(0) {
   eng_ptr->getRes()->addResource(RANGE_MOVE_KEY, RANGE_MOVE);
   eng_ptr->getRes()->addResource(RANGE_ATTACK_KEY, RANGE_ATTACK);
   eng_ptr->getRes()->addResource(TILE_KEY, TILE_ROCK);
+}
+
+void Map::loadMap(string id) {
+  ChapDef cd = eng_ptr->getDatabase()->getChap(id);
+  if (!cd.chap_name.compare("NONE")) {
+    eng_ptr->getLog()->e("Could not load map: "+id);
+    return;
+  }
 }
 
 void Map::setDimensions(int x, int y) {

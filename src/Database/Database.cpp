@@ -161,16 +161,6 @@ void Database::LinkClasses() {
   }
 }
 
-TileDef Database::getTile(string t) {
-  if (tile_db.count(t) == 0) {
-    TileDef tmp;
-    tmp.tile_name = "NONE";
-    return tmp;
-  }
-
-  return tile_db.find(t)->second;
-}
-
 void Database::LoadTiles() {
   ifstream file(DB_TILE.c_str());
   if (file.is_open()) {
@@ -220,9 +210,27 @@ void Database::LoadTiles() {
 
       tile_db.insert(make_pair(newTile.tile_name, newTile));
     }
-
   } else {
     log_ptr->e("Could not load tiles!");
   }
+}
 
+ChapDef Database::getChap(string c) {
+  if (tile_db.count(c) == 0) {
+    ChapDef tmp;
+    tmp.chap_name = "NONE";
+    return tmp;
+  }
+
+  return chap_db.find(c)->second;
+}
+
+TileDef Database::getTile(string t) {
+  if (tile_db.count(t) == 0) {
+    TileDef tmp;
+    tmp.tile_name = "NONE";
+    return tmp;
+  }
+
+  return tile_db.find(t)->second;
 }

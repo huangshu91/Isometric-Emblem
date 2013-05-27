@@ -48,6 +48,7 @@ public:
   void setup(GameEngine* eng);
 
   TileDef getTile(std::string t);
+  ChapDef getChap(std::string c);
 
 private:
   GameEngine* eng_ptr;

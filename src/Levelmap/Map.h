@@ -21,6 +21,7 @@ public:
   Map(GameEngine* eng);
   ~Map();
 
+  void loadMap(string id);
   void setDimensions(int x, int y);
   //eventually load entities from file
   void setupEntity();
