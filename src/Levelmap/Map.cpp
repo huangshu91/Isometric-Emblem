@@ -38,6 +38,8 @@ void Map::setDimensions(int x, int y) {
   }
 
   board[2][2].setType("Grass");
+  board[5][3].setType("Pond");
+  board[8][3].setType("Forest");
 }
 
 // offsets and tiles are currently hardcoded, get from file

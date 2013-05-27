@@ -12,8 +12,8 @@
 #include "../Levelmap/Cell.h"
 #include "../Gamestate/PlayState.h"
 #include "../Util/UtilFunc.h"
-#include "../Interface/TerrainMenu.h"
-#include "../Interface/StatusWidget.h"
+#include "../HUDWidget/TerrainMenu.h"
+#include "../HUDWidget/StatusWidget.h"
 #include <iostream>
 using namespace std;
 

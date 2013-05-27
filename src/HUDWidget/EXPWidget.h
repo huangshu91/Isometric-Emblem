@@ -9,8 +9,8 @@
 #define EXPWIDGET_H_
 
 #include "GUIWidget.h"
-#include "GUIFrame.h"
-#include "GUIProgressBar.h"
+#include "../Interface/GUIFrame.h"
+#include "../Interface/GUIProgressBar.h"
 #include "../Util/FormatClock.h"
 
 class GameEngine;

@@ -9,7 +9,7 @@
 #define TERRAINMENU_H_
 #include "../Levelmap/Terrain.h"
 
-#include "GUIFrame.h"
+#include "../Interface/GUIFrame.h"
 #include "GUIWidget.h"
 
 class TerrainMenu: public GUIWidget {

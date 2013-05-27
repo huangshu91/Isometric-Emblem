@@ -12,10 +12,10 @@
 #include <vector>
 #include <string>
 #include <map>
-#include "../Interface/TerrainMenu.h"
-#include "../Interface/PhaseWidget.h"
-#include "../Interface/StatusWidget.h"
-#include "../Interface/EXPWidget.h"
+#include "../HUDWidget/TerrainMenu.h"
+#include "../HUDWidget/PhaseWidget.h"
+#include "../HUDWidget/StatusWidget.h"
+#include "../HUDWidget/EXPWidget.h"
 
 class GUIFrame;
 class GameEngine;

@@ -50,9 +50,6 @@ private:
   std::vector<std::string> class_names;
   std::map<std::string, UnitClass*> class_db;
 
-  std::map<terraintype::Area, std::vector<std::string> > tile_adds;
-  std::map<terraintype::Area, Terrain> terrain_db;
-
   std::vector<std::string> tile_names;
   std::map<std::string, TileDef> tile_db;
 

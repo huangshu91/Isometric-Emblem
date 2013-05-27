@@ -9,7 +9,7 @@
 #define GUIPROGRESSBAR_H_
 
 #include <SFML/Graphics.hpp>
-#include "GUIWidget.h"
+#include "../HUDWidget/GUIWidget.h"
 
 class GameEngine;
 

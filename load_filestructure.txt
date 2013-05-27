@@ -34,3 +34,6 @@ res/Tiles/rock_plain_tiles.png
 grass_add						// key for add resource
 res/Tiles/grass_plain_tile.png	// path to adds
 1 15 0 0
+
+Map database type
+-------------------------

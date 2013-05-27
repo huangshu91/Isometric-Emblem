@@ -1,11 +1,17 @@
-2
+4
 rock_plain
 res/Tiles/rock_plain_tile.png
 
 grass_add
 res/Tiles/grass_plain_tile.png
 
-2
+tree_add
+res/Tiles/forest_plain_tile.png
+
+water_add
+res/Tiles/water_plain_tile.png
+
+4
 Plain
 rock_plain
 0
@@ -16,3 +22,15 @@ rock_plain
 1
 grass_add
 1 15 0 0
+
+Forest
+rock_plain
+1
+tree_add
+2 20 0 1
+
+Pond
+rock_plain
+1
+water_add
+0 30 0 2

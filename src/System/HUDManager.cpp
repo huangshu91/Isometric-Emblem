@@ -7,7 +7,7 @@
 
 #include "HUDManager.h"
 #include "GameEngine.h"
-#include "../Interface/GUIWidget.h"
+#include "../HUDWidget/GUIWidget.h"
 using namespace std;
 
 HUDManager::HUDManager() {

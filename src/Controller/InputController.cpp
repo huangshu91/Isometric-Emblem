@@ -7,7 +7,7 @@
 
 #include "InputController.h"
 #include "../System/GameEngine.h"
-#include "../Interface/TerrainMenu.h"
+#include "../HUDWidget/TerrainMenu.h"
 #include "../Entity/DynamicEntity.h"
 #include "../Gamestate/PlayState.h"
 #include "../Util/UtilFunc.h"

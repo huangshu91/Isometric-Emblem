@@ -11,8 +11,6 @@
 #include <iostream>
 
 //debug includes
-#include "../Interface/GUIProgressBar.h"
-#include "../Interface/EXPWidget.h"
 using namespace std;
 
 GameEngine::GameEngine() {

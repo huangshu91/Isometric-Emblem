@@ -8,8 +8,8 @@
 #ifndef STATUSWIDGET_H_
 #define STATUSWIDGET_H_
 
-#include "GUIFrame.h"
 #include "GUIWidget.h"
+#include "../Interface/GUIFrame.h"
 #include "../Util/Constants.h"
 
 class GameEngine;
