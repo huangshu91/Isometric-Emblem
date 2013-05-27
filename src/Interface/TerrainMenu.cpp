@@ -96,7 +96,7 @@ void TerrainMenu::setTile(Terrain t) {
   avd_val.setString(numberToString(t.avd));
   avd_val.setOrigin(avd_val.getLocalBounds().width, 0);
 
-  label.setString(terraintype::TERRAIN_NAME[t.type]);
+  label.setString(t.type);
   label.setOrigin(label.getLocalBounds().width/2, label.getLocalBounds().height/2);
 }
 

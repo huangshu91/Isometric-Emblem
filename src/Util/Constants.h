@@ -91,6 +91,7 @@ const int EXP_RATE = 2;
 // encyclopedia file paths
 
 const string DB_CLASS = "res/Data/classdb.txt";
+const string DB_TILE = "res/Data/tiledb.txt";
 
 // enums
 

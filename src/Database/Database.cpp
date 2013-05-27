@@ -29,6 +29,20 @@ void testClasses(vector<string> classes, map<string, UnitClass*> db) {
   }
 }
 
+void testTiles(vector<string> tiles, map<string, TileDef> db) {
+  cout << "test start" << endl;
+  for (auto i : tiles) {
+    cout << i << endl;
+    TileDef td = db.find(i)->second;
+
+    cout << td.tile_name << endl;
+    cout << td.base_key << endl;
+    cout << td.add_key.size() << endl;
+  }
+
+  cout << "--------------" << endl;
+}
+
 Database::Database() {
   eng_ptr = 0;
   log_ptr = 0;
@@ -54,6 +68,12 @@ void Database::setup(GameEngine* eng) {
   //testClasses(class_names, class_db);
 
   log_ptr->i("Finished Linking Classes.");
+  log_ptr->i("Loading tiles: ");
+
+  LoadTiles();
+  //testTiles(tile_names, tile_db);
+
+  log_ptr->i("Tiles loaded.");
 
   log_ptr->i("Finished loading db files.");
 
@@ -138,7 +158,68 @@ void Database::LinkClasses() {
   }
 }
 
+TileDef Database::getTile(string t) {
+  if (tile_db.count(t) == 0) {
+    TileDef tmp;
+    tmp.tile_name = "NONE";
+    return tmp;
+  }
+
+  return tile_db.find(t)->second;
+}
 
 void Database::LoadTiles() {
+  ifstream file(DB_TILE.c_str());
+  if (file.is_open()) {
+    int num_res = 0;
+    file >> num_res;
+    int int_tmp;
+    string str_tmp;
+
+    for (int i = 0; i < num_res; i++) {
+      string res_path;
+      file >> str_tmp;
+      file >> res_path;
+      eng_ptr->getRes()->addResource(str_tmp, res_path);
+    }
+
+    int num_tile = 0;
+    file >> num_tile;
+
+    for (int i = 0; i < num_tile; i++) {
+      file >> str_tmp;
+      TileDef newTile;
+
+      tile_names.push_back(str_tmp);
+      newTile.tile_name = str_tmp;
+
+      file >> str_tmp;
+
+      newTile.base_key = str_tmp;
+
+      file >> int_tmp;
+
+      // tile adds
+      for (int j = 0; j < int_tmp; j++) {
+        file >> str_tmp;
+        newTile.add_key.push_back(str_tmp);
+      }
+
+      newTile.ter.type = newTile.tile_name;
+      file >> int_tmp;
+      newTile.ter.def = int_tmp;
+      file >> int_tmp;
+      newTile.ter.avd = int_tmp;
+      file >> int_tmp;
+      newTile.ter.atk = int_tmp;
+      file >> int_tmp;
+      newTile.ter.mv_dec = int_tmp;
+
+      tile_db.insert(make_pair(newTile.tile_name, newTile));
+    }
+
+  } else {
+    log_ptr->e("Could not load tiles!");
+  }
 
 }

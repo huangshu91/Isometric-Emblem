@@ -14,6 +14,7 @@
 #include "../Util/Constants.h"
 #include <iostream>
 #include <vector>
+#include <string>
 
 class GameEngine;
 class Map;
@@ -24,7 +25,7 @@ public:
   Cell(GameEngine* eng, Map* map_ptr, int r, int c);
   virtual ~Cell();
 
-  void setType(terraintype::Area type);
+  void setType(std::string type);
 
   sf::Vector2i getCenter() { return center; }
   sf::Vector2i getLoc() { return sf::Vector2i(base.getPosition()); };

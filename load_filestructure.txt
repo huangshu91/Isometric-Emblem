@@ -22,5 +22,15 @@ HeavyGeneral GrandGeneral
 
 Tile database type
 ------------------------
-2						// first line, number of tiles in file
-Plain					// string name of tile
+2								// first line, number of tiles in file
+Plain							// string name of tile
+res/Tiles/rock_plain_tile.png	// path to base
+0								// number of adds
+0 5 0 0							// terrain def, avd, atk, mv_dec
+
+Grass
+res/Tiles/rock_plain_tiles.png
+1
+grass_add						// key for add resource
+res/Tiles/grass_plain_tile.png	// path to adds
+1 15 0 0

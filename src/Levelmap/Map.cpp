@@ -32,9 +32,12 @@ void Map::setDimensions(int x, int y) {
     vector<Cell> row;
     for (int j = 0; j < col; j++) {
       row.push_back(Cell(eng_ptr, getMap(), i, j));
+      row[j].setType("Plain");
     }
     board.push_back(row);
   }
+
+  board[2][2].setType("Grass");
 }
 
 // offsets and tiles are currently hardcoded, get from file

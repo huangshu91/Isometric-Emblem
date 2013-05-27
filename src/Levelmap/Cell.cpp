@@ -5,6 +5,8 @@
  *      Author: Maiev
  */
 
+#include <algorithm>
+#include <string>
 #include "Cell.h"
 #include "../Util/Constants.h"
 #include "../System/GameEngine.h"
@@ -24,12 +26,7 @@ Cell::Cell(GameEngine* eng, Map* map, int r, int c)
 
   base.setPosition(center.x - half_size.x, center.y - half_size.y);
 
-  // use this to draw on top of the base tile.
-  sf::Sprite temp(*(eng_ptr->getRes()->getResource(TILE_KEY)));
-  temp.setPosition(center.x - half_size.x, center.y - half_size.y);
-  add.push_back(temp);
-
-  area_type = Terrain::FOREST;
+  area_type = Terrain();
   unit = 0;
 }
 
@@ -37,14 +34,30 @@ Cell::~Cell() {
   // TODO Auto-generated destructor stub
 }
 
-void Cell::setType(terraintype::Area type) {
+void Cell::setType(string type) {
+  TileDef td = eng_ptr->getDatabase()->getTile(type);
+  if (!td.tile_name.compare("NONE")) return;
 
+  sf::Sprite b(*(eng_ptr->getRes()->getResource(td.base_key)));
+  b.setPosition(base.getPosition());
+  base = b;
+
+  for (auto a : td.add_key) {
+    sf::Sprite tmp(*(eng_ptr->getRes()->getResource(a)));
+    tmp.setOrigin(tmp.getLocalBounds().width/2, tmp.getLocalBounds().height);
+    sf::Vector2f loc(center.x, center.y+half_size.y);
+    tmp.setPosition(loc);
+    add.push_back(tmp);
+  }
+
+  area_type = td.ter;
 }
 
 void Cell::render() {
   eng_ptr->getWindow()->draw(base);
-  for (int i = 0, j = add.size(); i < j; i++) {
-    eng_ptr->getWindow()->draw(add[i]);
+
+  for (auto i : add) {
+    eng_ptr->getWindow()->draw(i);
   }
 }
 

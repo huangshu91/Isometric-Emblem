@@ -1,0 +1,18 @@
+2
+rock_plain
+res/Tiles/rock_plain_tile.png
+
+grass_add
+res/Tiles/grass_plain_tile.png
+
+2
+Plain
+rock_plain
+0
+0 5 0 0
+
+Grass
+rock_plain
+1
+grass_add
+1 15 0 0
