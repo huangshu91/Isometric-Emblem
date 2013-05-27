@@ -6,42 +6,13 @@
  */
 
 #include "Database.h"
+#include "DatabaseTest.h"
 #include "../Util/Logger.h"
 #include "../System/GameEngine.h"
 #include <fstream>
 #include <iostream>
 #include <string>
 using namespace std;
-
-void testClasses(vector<string> classes, map<string, UnitClass*> db) {
-  cout << "test start" << endl;
-  for (int i = 0, j = classes.size(); i < j; i++) {
-    cout << classes[i] << endl;
-    UnitClass* cur_class = db.find(classes[i])->second;
-
-    cout << cur_class->tier << " - " << cur_class->res_path << endl;
-
-    for (int k = 0, l = cur_class->promote.size(); k < l; k++) {
-      cout << cur_class->promote[k]->class_name << endl;
-    }
-
-    cout << "-------------" << endl;
-  }
-}
-
-void testTiles(vector<string> tiles, map<string, TileDef> db) {
-  cout << "test start" << endl;
-  for (auto i : tiles) {
-    cout << i << endl;
-    TileDef td = db.find(i)->second;
-
-    cout << td.tile_name << endl;
-    cout << td.base_key << endl;
-    cout << td.add_key.size() << endl;
-  }
-
-  cout << "--------------" << endl;
-}
 
 Database::Database() {
   eng_ptr = 0;
@@ -74,12 +45,44 @@ void Database::setup(GameEngine* eng) {
   //testTiles(tile_names, tile_db);
 
   log_ptr->i("Tiles loaded.");
+  log_ptr->i("Loading Chapter Information: ");
+
+  LoadChapterInfo();
+  //testChap(chapter_id, chap_db);
+
+  log_ptr->i("Finished Loading ChapterInfo.");
 
   log_ptr->i("Finished loading db files.");
 
 }
 
-// file io
+void Database::LoadChapterInfo() {
+  ifstream file(DB_CHAP.c_str());
+  if (file.is_open()) {
+    int num_chap = 0;
+    file >> num_chap;
+    string str_tmp;
+
+    for (int i = 0; i < num_chap; i++) {
+      ChapDef newchap;
+
+      file >> str_tmp;
+      newchap.id = str_tmp;
+      chapter_id.push_back(str_tmp);
+
+      // twice because of \n character left in stream
+      getline(file, str_tmp);
+      getline(file, str_tmp);
+      newchap.chap_name = str_tmp;
+
+      file >> str_tmp;
+      newchap.map_def = str_tmp;
+
+      chap_db.insert(make_pair(newchap.id, newchap));
+    }
+  }
+}
+
 void Database::LoadClasses() {
   ifstream file(DB_CLASS.c_str());
   if (file.is_open()) {

@@ -34,6 +34,12 @@ struct TileDef {
   Terrain ter;
 };
 
+struct ChapDef {
+  string id;
+  string chap_name;
+  string map_def;
+};
+
 class Database {
 public:
   Database();
@@ -53,9 +59,13 @@ private:
   std::vector<std::string> tile_names;
   std::map<std::string, TileDef> tile_db;
 
+  std::vector<std::string> chapter_id;
+  std::map<std::string, ChapDef> chap_db;
+
   void LoadClasses();
   void LinkClasses();
   void LoadTiles();
+  void LoadChapterInfo();
 };
 
 #endif /* DATABASE_H_ */

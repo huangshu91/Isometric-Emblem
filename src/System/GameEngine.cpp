@@ -18,6 +18,7 @@ GameEngine::GameEngine() {
                      GAME_LABEL + " " + VERSION_NUM);
 
   gameWindow.setFramerateLimit(60);
+  gameWindow.setMouseCursorVisible(false);
   //gameWindow.setVerticalSyncEnabled(true);
   focus = true;
 

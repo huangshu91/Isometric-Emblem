@@ -1,0 +1,4 @@
+1
+1
+Training Session
+res/Data/Maps/chapter1.txt

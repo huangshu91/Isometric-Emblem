@@ -19,7 +19,6 @@ HeavyGeneral GrandGeneral
 20 15 5 0 10 -5 5
 
 
-
 Tile database type
 ------------------------
 2								// first line, number of tiles in file
@@ -35,5 +34,20 @@ grass_add						// key for add resource
 res/Tiles/grass_plain_tile.png	// path to adds
 1 15 0 0
 
-Map database type
+Map database type (chapter[x].txt)
 -------------------------
+2 3								// row _ col
+2								// number of tiles used
+P Plain							// symbol _ Tile Name
+G Grass
+
+PGG								// map description using symbols
+PPG
+
+
+Chapter database type
+-------------------------
+1								// number of maps
+1								// STRING chapter identifier
+Training Session				// name of chapter				
+res/Data/Maps/chapter1.txt		// path to chapter

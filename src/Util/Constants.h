@@ -92,6 +92,7 @@ const int EXP_RATE = 2;
 
 const string DB_CLASS = "res/Data/classdb.txt";
 const string DB_TILE = "res/Data/tiledb.txt";
+const string DB_CHAP = "res/Data/chapterdb.txt";
 
 // enums
 
