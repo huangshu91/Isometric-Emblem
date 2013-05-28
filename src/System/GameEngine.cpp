@@ -18,7 +18,7 @@ GameEngine::GameEngine() {
                      GAME_LABEL + " " + VERSION_NUM);
 
   gameWindow.setFramerateLimit(60);
-  gameWindow.setMouseCursorVisible(false);
+  //gameWindow.setMouseCursorVisible(false);
   //gameWindow.setVerticalSyncEnabled(true);
   focus = true;
 
@@ -27,6 +27,11 @@ GameEngine::GameEngine() {
   gameCam.setup(getWindow());
   gameHUD.setup(getEngine());
   gameData.setup(getEngine());
+
+  pstate = new PlayState(getEngine());
+  pstate->setup();
+
+  gameBat.setup(getEngine(), getPlayState());
 }
 
 void GameEngine::loadDebug() {
@@ -34,17 +39,10 @@ void GameEngine::loadDebug() {
 }
 
 void GameEngine::runEngine() {
-
-  gameRes.addResource(PHASE_PLAYER_KEY, PHASE_PLAYER);
-  gameRes.addResource(PHASE_ENEMY_KEY, PHASE_ENEMY);
-  sf::Sprite testsprite(*(gameRes.getResource(PHASE_PLAYER_KEY)));
-  testsprite.setOrigin(testsprite.getLocalBounds().width/2, testsprite.getLocalBounds().height/2);
+  gameRes.addResource("test", "res/Units/unit_dummy.png");
+  sf::Sprite testsprite(*(gameRes.getResource("test")));
+  //testsprite.setOrigin(testsprite.getLocalBounds().width/2, testsprite.getLocalBounds().height/2);
   testsprite.setPosition(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-
-  pstate = new PlayState(getEngine());
-  pstate->setup();
-
-  gameBat.setup(getEngine(), getPlayState());
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
@@ -66,6 +64,8 @@ void GameEngine::runEngine() {
 
     pstate->update();
     pstate->render();
+
+    //gameWindow.draw(testsprite);
 
     gameWindow.display();
   }

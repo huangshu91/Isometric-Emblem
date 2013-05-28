@@ -111,8 +111,9 @@ void PlayState::render() {
 
   level->render();
   input->render();
+  //level->renderUnits();
+  level->renderAdd();
   level->renderUnits();
-  //level->renderAdd();
 
   eng_ptr->getHUD()->render();
 }

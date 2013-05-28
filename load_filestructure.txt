@@ -6,13 +6,15 @@ Class Database type
 2 						// first line, number of classes in file
 Archer 1				// string name of class, class tier. 
 res/path/pic.png		// path to sprite resource
-20 10 10 10 10 10 10	// base stats, in order - maxhp, str, dex, agi, def, res, lck
+4 5						// x _ y of sprite offsets
+20 10 10 10 10 10 10	// maxstats, in order - maxhp, str, dex, agi, def, res, lck
 3						// promotion class number, can be 0 if does not promote
 Sniper Arbalist Ranger	// promotion path, no particular order
 10 5 10 15 0 5 10		// levelup growth modifer for class, maxhp, str, dex, agi, def, res, lck
 
 General 2
 res/path/pic2.png
+6 -4
 30 15 10 10 15 5 10
 2
 HeavyGeneral GrandGeneral

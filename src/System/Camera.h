@@ -30,6 +30,7 @@ public:
 
   void update();
 
+  float getZoom() { return zoomAmount; };
   sf::Vector2f GetLocation();
   const sf::Vector2f GetCenter();
 
@@ -47,6 +48,8 @@ private:
   sf::Vector2f shake_start;
   FormatClock shake_clock;
   int intensity;
+
+  float zoomAmount;
 
   camera::Effect  state;
 };

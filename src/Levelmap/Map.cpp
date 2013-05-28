@@ -61,6 +61,8 @@ void Map::loadMap(string id) {
       }
       board.push_back(row);
     }
+
+    file.close();
   }
 }
 
@@ -92,9 +94,8 @@ void Map::setupEntity() {
   u->setOffset(6, -4);
   u->setTile(getCell(3, 5), this);
   getCell(3, 5)->unit = u;
-  u->buildUnit(60,60,10,10,10,10,10,10,5,20);
+  u->buildUnit(60,60,10,10,10,10,10,10,5,20, unit::PLAYER);
   u->damage = 10;
-  u->setControl(unit::PLAYER);
   units.push_back(u);
   player_units.push_back(u);
 
@@ -102,7 +103,6 @@ void Map::setupEntity() {
   u->setOffset(6, -4);
   u->setTile(getCell(9, 1), this);
   getCell(9, 1)->unit = u;
-  u->setControl(unit::ENEMY);
   units.push_back(u);
   enemy_units.push_back(u);
 
@@ -110,7 +110,6 @@ void Map::setupEntity() {
   u->setOffset(6, -4);
   u->setTile(getCell(4, 0), this);
   getCell(4, 0)->unit = u;
-  u->setControl(unit::ENEMY);
   units.push_back(u);
   enemy_units.push_back(u);
 }
@@ -283,7 +282,7 @@ void Map::render() {
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < col; j++) {
       board[i][j].render();
-      board[i][j].renderAdd();
+      //board[i][j].renderAdd();
     }
   }
 

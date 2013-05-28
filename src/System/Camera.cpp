@@ -18,6 +18,7 @@ Camera::Camera() {
   //shouldn't be a problem but possible divide by 0 in smooth move
   smoothTime = 0;
   intensity = 0;
+  zoomAmount = 1;
 
   state = camera::NONE;
 }
@@ -29,8 +30,10 @@ void Camera::setup(sf::RenderWindow *wp) {
 }
 
 sf::Vector2f Camera::GetLocation() {
-  sf::Vector2f retpos(cam_view.getViewport().left, cam_view.getViewport().top);
-  return retpos;
+  sf::Vector2f cent = GetCenter();
+  cent.x -= cam_view.getSize().x/2;
+  cent.y -= cam_view.getSize().y/2;
+  return cent;
 }
 
 const sf::Vector2f Camera::GetCenter() {
@@ -104,5 +107,6 @@ sf::View* Camera::GetView() {
 }
 
 void Camera::zoomCamera(float factor) {
+  zoomAmount = factor;
   cam_view.zoom(factor);
 }

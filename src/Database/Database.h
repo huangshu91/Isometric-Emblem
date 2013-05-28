@@ -20,8 +20,9 @@ class Logger;
 struct UnitClass {
   std::string class_name;
   std::string res_path;
+  sf::Vector2i offset;
   int         tier;
-  StatPack    base_stat;
+  StatPack    max_stat;
   StatPack    growth;
   std::vector<std::string> promote_string;
   std::vector<UnitClass*> promote;

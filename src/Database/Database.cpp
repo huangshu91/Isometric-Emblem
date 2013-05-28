@@ -80,6 +80,9 @@ void Database::LoadChapterInfo() {
 
       chap_db.insert(make_pair(newchap.id, newchap));
     }
+    file.close();
+  } else {
+    log_ptr->e("Could not load chapters!");
   }
 }
 
@@ -101,25 +104,29 @@ void Database::LoadClasses() {
       class_names.push_back(str_temp);
 
       file >> str_temp;  // res path
-
       newclass->res_path = str_temp;
 
       file >> int_temp;
-      newclass->base_stat.max_hp = int_temp;
+      newclass->offset.x = int_temp;
       file >> int_temp;
-      newclass->base_stat.str = int_temp;
-      file >> int_temp;
-      newclass->base_stat.dex = int_temp;
-      file >> int_temp;
-      newclass->base_stat.agi = int_temp;
-      file >> int_temp;
-      newclass->base_stat.def = int_temp;
-      file >> int_temp;
-      newclass->base_stat.res = int_temp;
-      file >> int_temp;
-      newclass->base_stat.lck = int_temp;
+      newclass->offset.y = int_temp;
 
-      file >> int_temp;  // promote char path
+      file >> int_temp;
+      newclass->max_stat.max_hp = int_temp;
+      file >> int_temp;
+      newclass->max_stat.str = int_temp;
+      file >> int_temp;
+      newclass->max_stat.dex = int_temp;
+      file >> int_temp;
+      newclass->max_stat.agi = int_temp;
+      file >> int_temp;
+      newclass->max_stat.def = int_temp;
+      file >> int_temp;
+      newclass->max_stat.res = int_temp;
+      file >> int_temp;
+      newclass->max_stat.lck = int_temp;
+
+      file >> int_temp;
       for (int i = 0, j = int_temp; i < j; i++) {
         file >> str_temp;  // promote class name;
         newclass->promote_string.push_back(str_temp);
@@ -143,7 +150,7 @@ void Database::LoadClasses() {
       class_db.insert(
           make_pair(newclass->class_name, newclass));
     }
-
+    file.close();
   } else {
     log_ptr->e("Could not load classes!");
   }
@@ -156,6 +163,7 @@ void Database::LinkClasses() {
 
     for (int k = 0, l = cur_class->promote_string.size(); k < l; k++) {
       UnitClass* promote = class_db.find(cur_class->promote_string[k])->second;
+      if (promote == 0) cout << "ERROR" << endl;
       cur_class->promote.push_back(promote);
     }
   }
@@ -210,6 +218,7 @@ void Database::LoadTiles() {
 
       tile_db.insert(make_pair(newTile.tile_name, newTile));
     }
+    file.close();
   } else {
     log_ptr->e("Could not load tiles!");
   }

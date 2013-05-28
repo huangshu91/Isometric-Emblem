@@ -41,9 +41,9 @@ public:
   StatPack mods;
   StatPack base;
 
-  void buildUnit(StatPack s);
+  void buildUnit(StatPack s, unit::Control c);
   void buildUnit(int hp, int max, int s, int dee,
-      int a, int d, int r, int l, int co, int ch);
+      int a, int d, int r, int l, int co, int ch, unit::Control c);
 
   // modify these later to give calculated values
   int getPow() { return damage; };
