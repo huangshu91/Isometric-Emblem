@@ -22,16 +22,15 @@ void testChap(vector<string> chap, map<string, ChapDef> db) {
   cout << "-------------" << endl;
 }
 
-void testClasses(vector<string> classes, map<string, UnitClass*> db) {
+void testClasses(vector<string> classes, map<string, UnitClass> db) {
   cout << "test start" << endl;
   for (int i = 0, j = classes.size(); i < j; i++) {
     cout << classes[i] << endl;
-    UnitClass* cur_class = db.find(classes[i])->second;
+    UnitClass cur_class = db.find(classes[i])->second;
+    cout << classes[i] << " - " << cur_class.tier << endl;
 
-    cout << cur_class->tier << " - " << cur_class->res_path << endl;
-
-    for (int k = 0, l = cur_class->promote.size(); k < l; k++) {
-      cout << cur_class->promote[k]->class_name << endl;
+    for (int k = 0, l = cur_class.promote.size(); k < l; k++) {
+      cout << cur_class.promote[k].class_name << endl;
     }
 
     cout << "-------------" << endl;

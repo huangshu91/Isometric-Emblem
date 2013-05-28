@@ -9,6 +9,7 @@
 #define DYNAMICENTITY_H_
 #include <string>
 #include "Entity.h"
+#include "../Database/Database.h"
 #include "../Util/Constants.h"
 #include "../Util/UtilValues.h"
 
@@ -18,7 +19,7 @@ class Map;
 
 class DynamicEntity : public Entity {
 public:
-  DynamicEntity(GameEngine* eng, string n = "");
+  DynamicEntity(GameEngine* eng, string n);
   virtual ~DynamicEntity();
 
   void setTile(Cell* t, Map* map);
@@ -41,9 +42,9 @@ public:
   StatPack mods;
   StatPack base;
 
-  void buildUnit(StatPack s, unit::Control c);
-  void buildUnit(int hp, int max, int s, int dee,
-      int a, int d, int r, int l, int co, int ch, unit::Control c);
+  void buildUnit(StatPack s, unit::Control c = unit::ENEMY);
+  void buildUnit(int hp, int max, int s, int dee, int a, int d,
+      int r, int l, int co, int ch, unit::Control c = unit::ENEMY);
 
   // modify these later to give calculated values
   int getPow() { return damage; };

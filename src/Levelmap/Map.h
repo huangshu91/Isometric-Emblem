@@ -8,6 +8,7 @@
 #ifndef MAP_H_
 #define MAP_H_
 #include "../Util/Constants.h"
+#include "../Util/UtilValues.h"
 #include "Cell.h"
 #include <string>
 #include <queue>
@@ -22,9 +23,8 @@ public:
   ~Map();
 
   void loadMap(string id);
-  void setDimensions(int x, int y);
-  //eventually load entities from file
   void setupEntity();
+  void createEntity(sf::Vector2i loc, string key, StatPack stat);
 
   Map* getMap() { return this; };
   Cell* getCell(int x, int y);

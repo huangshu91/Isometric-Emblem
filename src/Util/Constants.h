@@ -26,17 +26,9 @@ const string SS_PATH = "Screenshot/";
 
 const float INPUT_DELAY = 0.15;
 
-const string TILE_ROCK = "res/Tiles/rock_plain_tile.png";
+const string TILE_BASE = "res/Tiles/rock_plain_tile.png";
 const string TILE_KEY = "rocktile";
 
-const string TILE_WATER = "res/Tiles/water_plain_tile.png";
-const string TILE_WATER_KEY = "watertile";
-
-const string TILE_GRASS = "res/Tiles/grass_plain_tile.png";
-const string TILE_GRASS_KEY = "grasstile";
-
-const string TILE_TREE = "res/Tiles/forest_plain_tile.png";
-const string TILE_TREE_KEY = "treetile";
 
 const string TILE_HIGH = "res/highlight_tile.png";
 const string TILE_HIGH_KEY = "tilehigh";

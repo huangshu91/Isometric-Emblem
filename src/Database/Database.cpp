@@ -95,60 +95,60 @@ void Database::LoadClasses() {
     string str_temp;
 
     for (int i = 0; i < num_class; i++) {
-      UnitClass* newclass = new UnitClass();
+      UnitClass newclass;
       file >> str_temp;  // class name
       file >> int_temp;  // class tier
 
-      newclass->class_name = str_temp;
-      newclass->tier = int_temp;
+      newclass.class_name = str_temp;
+      newclass.tier = int_temp;
       class_names.push_back(str_temp);
 
       file >> str_temp;  // res path
-      newclass->res_path = str_temp;
+      eng_ptr->getRes()->addResource(newclass.class_name, str_temp);
 
       file >> int_temp;
-      newclass->offset.x = int_temp;
+      newclass.offset.x = int_temp;
       file >> int_temp;
-      newclass->offset.y = int_temp;
+      newclass.offset.y = int_temp;
 
       file >> int_temp;
-      newclass->max_stat.max_hp = int_temp;
+      newclass.max_stat.max_hp = int_temp;
       file >> int_temp;
-      newclass->max_stat.str = int_temp;
+      newclass.max_stat.str = int_temp;
       file >> int_temp;
-      newclass->max_stat.dex = int_temp;
+      newclass.max_stat.dex = int_temp;
       file >> int_temp;
-      newclass->max_stat.agi = int_temp;
+      newclass.max_stat.agi = int_temp;
       file >> int_temp;
-      newclass->max_stat.def = int_temp;
+      newclass.max_stat.def = int_temp;
       file >> int_temp;
-      newclass->max_stat.res = int_temp;
+      newclass.max_stat.res = int_temp;
       file >> int_temp;
-      newclass->max_stat.lck = int_temp;
+      newclass.max_stat.lck = int_temp;
 
       file >> int_temp;
       for (int i = 0, j = int_temp; i < j; i++) {
         file >> str_temp;  // promote class name;
-        newclass->promote_string.push_back(str_temp);
+        newclass.promote_string.push_back(str_temp);
       }
 
       file >> int_temp;
-      newclass->growth.max_hp = int_temp;
+      newclass.growth.max_hp = int_temp;
       file >> int_temp;
-      newclass->growth.str = int_temp;
+      newclass.growth.str = int_temp;
       file >> int_temp;
-      newclass->growth.dex = int_temp;
+      newclass.growth.dex = int_temp;
       file >> int_temp;
-      newclass->growth.agi = int_temp;
+      newclass.growth.agi = int_temp;
       file >> int_temp;
-      newclass->growth.def = int_temp;
+      newclass.growth.def = int_temp;
       file >> int_temp;
-      newclass->growth.res = int_temp;
+      newclass.growth.res = int_temp;
       file >> int_temp;
-      newclass->growth.lck = int_temp;
+      newclass.growth.lck = int_temp;
 
       class_db.insert(
-          make_pair(newclass->class_name, newclass));
+          make_pair(newclass.class_name, newclass));
     }
     file.close();
   } else {
@@ -159,12 +159,11 @@ void Database::LoadClasses() {
 void Database::LinkClasses() {
   for (int i = 0, j = class_names.size(); i < j; i++) {
     string class_n = class_names[i];
-    UnitClass* cur_class = class_db.find(class_n)->second;
+    UnitClass cur_class = class_db.find(class_n)->second;
 
-    for (int k = 0, l = cur_class->promote_string.size(); k < l; k++) {
-      UnitClass* promote = class_db.find(cur_class->promote_string[k])->second;
-      if (promote == 0) cout << "ERROR" << endl;
-      cur_class->promote.push_back(promote);
+    for (int k = 0, l = cur_class.promote_string.size(); k < l; k++) {
+      UnitClass promote = class_db.find(cur_class.promote_string[k])->second;
+      cur_class.promote.push_back(promote);
     }
   }
 }
@@ -222,6 +221,16 @@ void Database::LoadTiles() {
   } else {
     log_ptr->e("Could not load tiles!");
   }
+}
+
+UnitClass Database::getClass(string c) {
+  if (class_db.count(c) == 0) {
+    UnitClass tmp;
+    tmp.class_name = "NONE";
+    return tmp;
+  }
+
+  return class_db.find(c)->second;
 }
 
 ChapDef Database::getChap(string c) {

@@ -12,7 +12,9 @@
 #include "../Util/UtilValues.h"
 #include "../Gamestate/PlayState.h"
 
-DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
+DynamicEntity::DynamicEntity(GameEngine* eng, string n)
+: Entity(eng, n) {
+  UnitClass c = eng_ptr->getDatabase()->getClass(n);
   name = n;
   move_range = UNIT_MOVE;
   attack_range = UNIT_ATTACK;
@@ -32,6 +34,7 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n) : Entity(eng, n) {
 }
 
 void DynamicEntity::buildUnit(StatPack s, unit::Control c) {
+  s.hp = s.max_hp;
   base = s;
   total = s;
   control = c;
@@ -40,9 +43,7 @@ void DynamicEntity::buildUnit(StatPack s, unit::Control c) {
 void DynamicEntity::buildUnit(int hp, int max, int s, int de,
     int a, int d, int r, int l, int co, int ch, unit::Control c){
   StatPack temp(hp, max, s, de, a, d, r, l, co, ch);
-  base = temp;
-  total = temp;
-  control = c;
+  buildUnit(temp, c);
 }
 
 DynamicEntity::~DynamicEntity() {

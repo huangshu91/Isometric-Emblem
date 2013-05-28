@@ -19,13 +19,12 @@ class Logger;
 
 struct UnitClass {
   std::string class_name;
-  std::string res_path;
   sf::Vector2i offset;
   int         tier;
   StatPack    max_stat;
   StatPack    growth;
   std::vector<std::string> promote_string;
-  std::vector<UnitClass*> promote;
+  std::vector<UnitClass> promote;
 };
 
 struct TileDef {
@@ -48,15 +47,17 @@ public:
 
   void setup(GameEngine* eng);
 
+  //UnitClass
   TileDef getTile(std::string t);
   ChapDef getChap(std::string c);
+  UnitClass getClass(std::string c);
 
 private:
   GameEngine* eng_ptr;
   Logger* log_ptr;
 
   std::vector<std::string> class_names;
-  std::map<std::string, UnitClass*> class_db;
+  std::map<std::string, UnitClass> class_db;
 
   std::vector<std::string> tile_names;
   std::map<std::string, TileDef> tile_db;

@@ -23,7 +23,7 @@ Map::Map(GameEngine* eng) : eng_ptr(eng), row(0), col(0) {
   range_on = false;
   eng_ptr->getRes()->addResource(RANGE_MOVE_KEY, RANGE_MOVE);
   eng_ptr->getRes()->addResource(RANGE_ATTACK_KEY, RANGE_ATTACK);
-  eng_ptr->getRes()->addResource(TILE_KEY, TILE_ROCK);
+  eng_ptr->getRes()->addResource(TILE_KEY, TILE_BASE);
 }
 
 void Map::loadMap(string id) {
@@ -51,37 +51,51 @@ void Map::loadMap(string id) {
     }
 
     for (int i = 0; i < row; i++) {
-      vector<Cell> row;
+      vector<Cell> r;
       for (int j = 0; j < col; j++) {
         char ch;
         file >> ch;
         Cell c(eng_ptr, getMap(), i, j);
         c.setType(symbol.find(ch)->second);
-        row.push_back(c);
+        r.push_back(c);
       }
-      board.push_back(row);
+      board.push_back(r);
+    }
+
+    file >> int_tmp;
+    for (int i = 0 ; i < int_tmp; i++) {
+      // get enemy entity information
+      sf::Vector2i loc;
+      file >> loc.x;
+      file >> loc.y;
+      string str_tmp;
+      file >> str_tmp;
+      StatPack en;
+      file >> en.max_hp;
+      file >> en.str;
+      file >> en.dex;
+      file >> en.agi;
+      file >> en.def;
+      file >> en.res;
+      file >> en.lck;
+
+      createEntity(loc, str_tmp, en);
     }
 
     file.close();
   }
 }
 
-void Map::setDimensions(int x, int y) {
-  row = x;
-  col = y;
-
-  for (int i = 0; i < row; i++) {
-    vector<Cell> row;
-    for (int j = 0; j < col; j++) {
-      row.push_back(Cell(eng_ptr, getMap(), i, j));
-      row[j].setType("Plain");
-    }
-    board.push_back(row);
-  }
-
-  board[2][2].setType("Grass");
-  board[5][3].setType("Pond");
-  board[8][3].setType("Forest");
+void Map::createEntity(sf::Vector2i loc, string key, StatPack stat) {
+  UnitClass c = eng_ptr->getDatabase()->getClass(key);
+  //cout << c.class_name << endl;
+  DynamicEntity* ent = new DynamicEntity(eng_ptr, key);
+  ent->setOffset(c.offset);
+  ent->setTile(getCell(loc.x, loc.y), this);
+  getCell(loc.x, loc.y)->unit = ent;
+  ent->buildUnit(stat);
+  units.push_back(ent);
+  enemy_units.push_back(ent);
 }
 
 // offsets and tiles are currently hardcoded, get from file
@@ -89,6 +103,8 @@ void Map::setDimensions(int x, int y) {
 void Map::setupEntity() {
   eng_ptr->getRes()->addResource(UNIT_ARMOR_KEY, UNIT_ARMOR);
   eng_ptr->getRes()->addResource(UNIT_ARMOR_RED_KEY, UNIT_ARMOR_RED);
+
+  UnitClass c = eng_ptr->getDatabase()->getClass("General");
 
   DynamicEntity* u = new DynamicEntity(eng_ptr, UNIT_ARMOR_KEY);
   u->setOffset(6, -4);
@@ -99,6 +115,7 @@ void Map::setupEntity() {
   units.push_back(u);
   player_units.push_back(u);
 
+  /*
   u = new DynamicEntity(eng_ptr, UNIT_ARMOR_RED_KEY);
   u->setOffset(6, -4);
   u->setTile(getCell(9, 1), this);
@@ -112,6 +129,7 @@ void Map::setupEntity() {
   getCell(4, 0)->unit = u;
   units.push_back(u);
   enemy_units.push_back(u);
+  */
 }
 
 Map::~Map() {
