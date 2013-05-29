@@ -11,6 +11,7 @@
 #include <iostream>
 
 //debug includes
+#include "../Interface/GUIFrame.h"
 using namespace std;
 
 GameEngine::GameEngine() {
@@ -46,6 +47,10 @@ void GameEngine::runEngine() {
   //testsprite.setOrigin(testsprite.getLocalBounds().width/2, testsprite.getLocalBounds().height/2);
   testsprite.setPosition(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 
+  GUIFrame frame;
+  frame.setup(getEngine());
+  frame.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), sf::Vector2i(80,80));
+
   while (gameWindow.isOpen()) {
     sf::Event ev;
     while (gameWindow.pollEvent(ev)) {
@@ -68,6 +73,7 @@ void GameEngine::runEngine() {
     pstate->render();
 
     //gameWindow.draw(testsprite);
+    //frame.render();
 
     gameWindow.display();
   }

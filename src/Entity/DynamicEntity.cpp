@@ -28,7 +28,6 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n)
 
   total.hp = 30;
   total.max_hp = 30;
-  damage = 5;
   level = 1;
   exp = 0;
 }

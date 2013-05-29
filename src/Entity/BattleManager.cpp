@@ -43,13 +43,8 @@ void BattleManager::attackUnit(DynamicEntity* a, DynamicEntity* d) {
 void BattleManager::update() {
   if (stat == FIRST) {
     stat = SECOND;
-    int power = atk->getPow();
-    int defense = def->getDef();
-
-    bool damage = def->takeDamage(power-defense);
 
     battle();
-
     DynamicEntity* swap = atk;
     atk = def;
     def = swap;

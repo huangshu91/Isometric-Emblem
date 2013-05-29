@@ -68,8 +68,10 @@ const string PHASE_HUD = "phasehud";
 const string STATUS_HUDR = "status_hudr";
 const string STATUS_HUDL = "status_hudl";
 const string EXP_HUD = "exp_hud";
+const string MENU_HUD = "menu_hud";
 
 const int GUI_PADDING = 30;
+const int MENU_PADDING = 5;
 
 const int FONT_SIZE = 14;
 const int LABEL_SIZE = 20;
@@ -89,9 +91,9 @@ const string DB_CHAP = "res/Data/chapterdb.txt";
 // enums
 
 namespace gamestate {
-  enum Statetype { MENU, START, PLAY, PAUSE, EXIT, UNINIT };
+  enum Statetype { START, PLAY, PAUSE, EXIT, UNINIT };
   enum Playphase { PLAYER, ENEMY, NEUTRAL, NEWTURN,
-                   FIGHT, FINISHFIGHT, UNITDEATH, LOSS };
+                   FIGHT, FINISHFIGHT, UNITDEATH, LOSS, MENU };
 }
 
 namespace camera {

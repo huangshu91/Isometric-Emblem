@@ -41,6 +41,8 @@ private:
   gamestate::Playphase phase;
   gamestate::Playphase turn;
   bool wait;
+
+  int round_num;
 };
 
 #endif /* PLAYSTATE_H_ */

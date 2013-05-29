@@ -8,7 +8,6 @@
 #ifndef TERRAINMENU_H_
 #define TERRAINMENU_H_
 #include "../Levelmap/Terrain.h"
-
 #include "../Interface/GUIFrame.h"
 #include "GUIWidget.h"
 

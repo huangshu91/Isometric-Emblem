@@ -16,6 +16,7 @@
 #include "../HUDWidget/PhaseWidget.h"
 #include "../HUDWidget/StatusWidget.h"
 #include "../HUDWidget/EXPWidget.h"
+#include "../HUDWidget/MenuWidget.h"
 
 class GUIFrame;
 class GameEngine;
@@ -35,6 +36,7 @@ public:
   PhaseWidget* getPhaseHUD() { return &phase_hud; };
   StatusWidget* getStatusHUD(dir::Direction d);
   EXPWidget* getEXPHUD() { return &exp_hud; };
+  MenuWidget* getMenuHUD() { return &menu_hud; };
 
   //void update();
   void render();
@@ -51,6 +53,8 @@ private:
   StatusWidget  status_hudr;
   StatusWidget  status_hudl;
   EXPWidget     exp_hud;
+
+  MenuWidget    menu_hud;
 };
 
 #endif /* HUDMANAGER_H_ */

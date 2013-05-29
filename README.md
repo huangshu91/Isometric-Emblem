@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Map source split into 2 files.  Map_Construction.cpp deals with anything related to the construction of a map and rendering.  Map.cpp deals with how the map is used and functions that others call.
+	
 	Needs more refining of battle system.  Tweak delay to make it obvious when consecutive fights occur.  Move camera/highlight to attacking unit (when enemy).  Either return camera to old location when player turn or switch highlight to last logical position.
 	
 	Map source too big.  Split into different source files.  One for handling the map during runtime and the other for loading/setting up the map.

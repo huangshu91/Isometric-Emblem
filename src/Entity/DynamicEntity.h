@@ -57,7 +57,6 @@ public:
   int gainEXP(DynamicEntity* e, BattleManager::Result r);
   void levelUp();
 
-  int damage;
   int level;
   int exp;
   int move_range;

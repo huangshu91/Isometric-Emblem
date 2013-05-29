@@ -21,6 +21,7 @@ PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   turn = gamestate::PLAYER;
   wait = false;
   bm = eng_ptr->getBattle();
+  round_num = 1;
 }
 
 PlayState::~PlayState() {
@@ -59,11 +60,12 @@ void PlayState::changePhase(gamestate::Playphase next) {
     level->resetUnits();
     changePhase(gamestate::PLAYER);
     level->checkLoss();
+    round_num++;
   }
 
   if (phase == gamestate::UNITDEATH) {
     // is there anything that needs to be handled here?
-    // until exp is implemented, just switch back to previous state;
+    // just switch back to previous state;
     phase = turn;
 
     //finishTransition();
