@@ -18,7 +18,7 @@ public:
   Entity(GameEngine* eng, std::string n);
   virtual ~Entity();
 
-  std::string getName() { return name; };
+  std::string name;
 
   void setOffset(sf::Vector2i off);
   void setOffset(int x, int y);
@@ -28,7 +28,6 @@ protected:
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 
-  std::string name;
   sf::Sprite  sprite;
 
   sf::Vector2i sprite_offset;

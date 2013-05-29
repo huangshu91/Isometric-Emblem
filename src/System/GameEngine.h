@@ -16,6 +16,7 @@
 #include "../Util/Logger.h"
 #include "../Database/Database.h"
 #include "../Entity/BattleManager.h"
+#include "../Database/Caravan.h"
 #include "Camera.h"
 #include "ResourceManager.h"
 #include "HUDManager.h"
@@ -39,6 +40,8 @@ public:
   Database* getDatabase() { return &gameData; };
   BattleManager* getBattle() { return &gameBat; };
 
+  Caravan* getCaravan() { return &caravan; };
+
   PlayState* getPlayState() { return pstate; };
 
   bool hasFocus() { return focus; };
@@ -59,6 +62,8 @@ private:
   Logger              gameLog;
   Database            gameData;
   BattleManager       gameBat;
+
+  Caravan             caravan;
 
   PlayState* pstate;
 

@@ -210,11 +210,13 @@ void InputController::updateCell() {
       statushudr_ptr->updateChar(cur_cell->unit);
       statushudr_ptr->setVisible(true);
     }
-    if (cur_cell->unit->getControl() == unit::ENEMY) {
+    else if (cur_cell->unit->getControl() == unit::ENEMY) {
       statushudl_ptr->updateChar(cur_cell->unit);
       statushudl_ptr->setVisible(true);
     }
-  } else if (selected != 0) {
+  }
+
+  else if (selected != 0) {
     if (selected->getControl() == unit::PLAYER)
       statushudr_ptr->setVisible(true);
     if (selected->getControl() == unit::ENEMY)

@@ -16,7 +16,7 @@ sf::Vector2i StatusWidget::MENU_SIZE = sf::Vector2i(280, 120);
 
 StatusWidget::StatusWidget() {
   cur_ent = 0;
-  visible = true;
+  visible = false;
 }
 
 StatusWidget::~StatusWidget() {
@@ -69,7 +69,7 @@ void StatusWidget::updateChar(DynamicEntity* e) {
 void StatusWidget::update() {
   if (cur_ent == 0) return;
   name.setColor(sf::Color::Black);
-  name.setString(cur_ent->getName());
+  name.setString(cur_ent->name);
   name.setOrigin(name.getLocalBounds().width/2, name.getLocalBounds().height/2);
   string hpstring;
   hpstring += numberToString(cur_ent->total.hp);

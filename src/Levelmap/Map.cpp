@@ -33,7 +33,7 @@ void Map::loadMap(string id) {
     return;
   }
   map_name = cd.chap_name;
-  map_id = cd.id;
+  map_id = id;
   ifstream file(cd.map_def.c_str());
   if (file.is_open()) {
     file >> row;
@@ -88,7 +88,6 @@ void Map::loadMap(string id) {
 
 void Map::createEntity(sf::Vector2i loc, string key, StatPack stat) {
   UnitClass c = eng_ptr->getDatabase()->getClass(key);
-  //cout << c.class_name << endl;
   DynamicEntity* ent = new DynamicEntity(eng_ptr, key);
   ent->setOffset(c.offset);
   ent->setTile(getCell(loc.x, loc.y), this);
@@ -96,40 +95,26 @@ void Map::createEntity(sf::Vector2i loc, string key, StatPack stat) {
   ent->buildUnit(stat);
   units.push_back(ent);
   enemy_units.push_back(ent);
+  ent->move_range = c.mv;
 }
 
-// offsets and tiles are currently hardcoded, get from file
-// also what units are in map, resources for those units/etc
 void Map::setupEntity() {
   eng_ptr->getRes()->addResource(UNIT_ARMOR_KEY, UNIT_ARMOR);
   eng_ptr->getRes()->addResource(UNIT_ARMOR_RED_KEY, UNIT_ARMOR_RED);
 
   UnitClass c = eng_ptr->getDatabase()->getClass("General");
 
-  DynamicEntity* u = new DynamicEntity(eng_ptr, UNIT_ARMOR_KEY);
-  u->setOffset(6, -4);
-  u->setTile(getCell(3, 5), this);
-  getCell(3, 5)->unit = u;
-  u->buildUnit(60,60,10,10,10,10,10,10,5,20, unit::PLAYER);
-  u->damage = 10;
-  units.push_back(u);
-  player_units.push_back(u);
-
-  /*
-  u = new DynamicEntity(eng_ptr, UNIT_ARMOR_RED_KEY);
-  u->setOffset(6, -4);
-  u->setTile(getCell(9, 1), this);
-  getCell(9, 1)->unit = u;
-  units.push_back(u);
-  enemy_units.push_back(u);
-
-  u = new DynamicEntity(eng_ptr, UNIT_ARMOR_RED_KEY);
-  u->setOffset(6, -4);
-  u->setTile(getCell(4, 0), this);
-  getCell(4, 0)->unit = u;
-  units.push_back(u);
-  enemy_units.push_back(u);
-  */
+  if (!map_id.compare("1")) {
+    DynamicEntity* u = new DynamicEntity(eng_ptr, c.class_name);
+    u->setOffset(c.offset);
+    u->setTile(getCell(3, 3), this);
+    getCell(3, 3)->unit = u;
+    u->buildUnit(60,60,10,10,10,10,10,10,5,20, unit::PLAYER);
+    u->damage = 10;
+    units.push_back(u);
+    player_units.push_back(u);
+    eng_ptr->getCaravan()->addPlayer(u);
+  }
 }
 
 Map::~Map() {

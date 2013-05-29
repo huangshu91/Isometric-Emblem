@@ -54,7 +54,6 @@ const string UNIT_ARMOR = "res/Units/unit_armor.png";
 const string UNIT_ARMOR_KEY = "Maiev";
 
 const string UNIT_ARMOR_RED = "res/Units/unit_armor_red.png";
-//const string UNIT_ARMOR_RED = "res/Units/unit_dummy.png";
 const string UNIT_ARMOR_RED_KEY = "Testing";
 
 const string PORTRAIT_ICON = "res/portrait_icon.png";

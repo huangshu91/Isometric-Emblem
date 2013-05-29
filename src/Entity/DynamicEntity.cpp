@@ -82,6 +82,10 @@ void DynamicEntity::setControl(unit::Control c) {
   control = c;
 }
 
+int DynamicEntity::getPow() {
+  return 0;
+}
+
 // This needs to be refactored
 void DynamicEntity::attackUnit(DynamicEntity* unit) {
   eng_ptr->getBattle()->attackUnit(this, unit);
@@ -126,4 +130,9 @@ void DynamicEntity::newTurn() {
 void DynamicEntity::endTurn() {
   can_move = false;
   finished_move = true;
+}
+
+ostream& operator<<(ostream& out, const DynamicEntity* e) {
+
+  return out;
 }

@@ -25,6 +25,7 @@ struct UnitClass {
   StatPack    growth;
   std::vector<std::string> promote_string;
   std::vector<UnitClass> promote;
+  int         mv;
 };
 
 struct TileDef {

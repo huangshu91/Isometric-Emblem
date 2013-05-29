@@ -47,8 +47,8 @@ public:
       int r, int l, int co, int ch, unit::Control c = unit::ENEMY);
 
   // modify these later to give calculated values
-  int getPow() { return damage; };
-  int getDef() { return total.def; };
+  int getPow();
+  int getDef() { return 0; };
 
   // return true if unit died
   bool takeDamage(int d);
@@ -56,10 +56,14 @@ public:
   int gainEXP(DynamicEntity* e);
   void levelUp();
 
-  //temporary
   int damage;
   int level;
   int exp;
+  int move_range;
+  int attack_range;
+
+  // for debug use
+  friend std::ostream& operator<<(std::ostream& out, const DynamicEntity* e);
 
 private:
   unit::Class class_type;
@@ -67,10 +71,6 @@ private:
 
   Map* map_ptr;
   Cell* tile_ptr;
-
-  // these will be based on various factors in future
-  int move_range;
-  int attack_range;
 };
 
 #endif /* DYNAMICENTITY_H_ */

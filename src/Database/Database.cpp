@@ -125,6 +125,8 @@ void Database::LoadClasses() {
       newclass.max_stat.res = int_temp;
       file >> int_temp;
       newclass.max_stat.lck = int_temp;
+      file >> int_temp;
+      newclass.mv = int_temp;
 
       file >> int_temp;
       for (int i = 0, j = int_temp; i < j; i++) {

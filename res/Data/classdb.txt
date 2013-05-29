@@ -2,7 +2,7 @@
 General 2
 res/Units/unit_armor_red.png
 6 -4
-60 20 20 30 20 15 20
+60 20 20 30 20 15 20 3
 1
 HeavyGeneral
 20 15 5 0 10 -5 5
@@ -10,13 +10,13 @@ HeavyGeneral
 HeavyGeneral 3
 res/Units/unit_armor_red.png
 6 -4
-60 20 20 30 20 15 20
+60 20 20 30 20 15 20 3
 0
 20 15 5 0 10 -5 5
 
 Dummy 0
 res/Units/unit_dummy.png
 0 0
-20 10 10 10 10 10 10
+20 10 10 10 10 10 10 0
 0
 0 0 0 0 0 0 0

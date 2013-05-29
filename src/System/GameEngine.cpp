@@ -28,6 +28,8 @@ GameEngine::GameEngine() {
   gameHUD.setup(getEngine());
   gameData.setup(getEngine());
 
+  caravan.setup(getEngine());
+
   pstate = new PlayState(getEngine());
   pstate->setup();
 

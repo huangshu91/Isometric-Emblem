@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Map::createEntity is to load ENEMY entities for that level.  setupEntity is just for player entities and does not load from file.  hardcode player entities in database.
+	
 	Camera.  In update, at the end of smooth state, if setcenter, there is a slight whiplash effect.  can keep or remove.
 	
 	EXP gain.  Until I flesh out class structure and have an idea of how growth should work, not going to bother making

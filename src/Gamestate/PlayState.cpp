@@ -36,7 +36,7 @@ void PlayState::setup() {
   level->setupEntity();
 
   input->setMap(level);
-  input->setCurrentCell(1,3);
+  input->setCurrentCell(3,3);
   input->updateCell();
   ai->setMap(level);
 
