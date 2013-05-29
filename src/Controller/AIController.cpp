@@ -83,7 +83,7 @@ void AIController::moveUnit() {
     }
   }
 
-  Cell* to_cell;
+  Cell* to_cell = 0;
   dist = 999;
   for (int i = 0, j = path.size(); i < j; i++) {
     int d = cellDist(target->getCurCell(), path.front());
@@ -100,7 +100,7 @@ void AIController::moveUnit() {
   }
 
   if (cellDist(target->getCurCell(), selected->getCurCell()) ==
-      selected->getRange(range::ATTACK)) {
+      selected->getRange(range::ATTACK) || to_cell == 0) {
     to_cell = selected->getCurCell();
   }
 
