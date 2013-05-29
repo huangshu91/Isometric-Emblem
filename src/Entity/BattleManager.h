@@ -24,15 +24,20 @@ public:
   void update();
   void render();
 
+  enum Result { HIT, MISS, KILL };
+
 private:
   GameEngine* eng_ptr;
   PlayState* parent;
+
+  void battle();
 
   enum Round { FIRST, SECOND, THIRD, FOURTH };
   Round stat;
 
   DynamicEntity* atk;
   DynamicEntity* def;
+  bool           hit;
 };
 
 #endif /* BATTLEMANAGER_H_ */

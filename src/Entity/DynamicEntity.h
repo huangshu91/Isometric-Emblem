@@ -12,6 +12,7 @@
 #include "../Database/Database.h"
 #include "../Util/Constants.h"
 #include "../Util/UtilValues.h"
+#include "../Entity/BattleManager.h"
 
 class GameEngine;
 class Cell;
@@ -48,12 +49,12 @@ public:
 
   // modify these later to give calculated values
   int getPow();
-  int getDef() { return 0; };
+  int getDef();
 
-  // return true if unit died
+  // return true if unit took damage
   bool takeDamage(int d);
   void unitDeath();
-  int gainEXP(DynamicEntity* e);
+  int gainEXP(DynamicEntity* e, BattleManager::Result r);
   void levelUp();
 
   int damage;

@@ -83,7 +83,14 @@ void DynamicEntity::setControl(unit::Control c) {
 }
 
 int DynamicEntity::getPow() {
-  return 0;
+  int pow = total.str + tile_ptr->getTerrain().atk;
+  // pow += itembonuses
+  return pow;
+}
+
+int DynamicEntity::getDef() {
+  int def = total.def + tile_ptr->getTerrain().def;
+  return def;
 }
 
 // This needs to be refactored
@@ -100,16 +107,19 @@ bool DynamicEntity::takeDamage(int d) {
   total.hp -= d;
   if (total.hp <= 0) {
     total.hp = 0;
-    return true;
   }
 
-  return false;
+  return true;
 }
 
 // Formula for exp gain based on unit
-int DynamicEntity::gainEXP(DynamicEntity* e) {
-  exp = (exp+50 > 100) ? 100 : exp+50;
-  return 50;
+int DynamicEntity::gainEXP(DynamicEntity* e, BattleManager::Result r) {
+  int amt = 0;
+  if (r == BattleManager::Result::KILL) amt = 30;
+  else if (r == BattleManager::Result::MISS) amt = 5;
+  else if (r == BattleManager::Result::HIT) amt = 10;
+  exp = (exp+amt > 100) ? 100 : exp+amt;
+  return amt;
 }
 
 void DynamicEntity::levelUp() {

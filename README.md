@@ -8,6 +8,10 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Needs more refining of battle system.  Tweak delay to make it obvious when consecutive fights occur.  Move camera/highlight to attacking unit (when enemy).  Either return camera to old location when player turn or switch highlight to last logical position.
+	
+	Map source too big.  Split into different source files.  One for handling the map during runtime and the other for loading/setting up the map.
+	
 	Map::createEntity is to load ENEMY entities for that level.  setupEntity is just for player entities and does not load from file.  hardcode player entities in database.
 	
 	Camera.  In update, at the end of smooth state, if setcenter, there is a slight whiplash effect.  can keep or remove.

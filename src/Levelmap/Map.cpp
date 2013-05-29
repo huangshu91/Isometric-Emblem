@@ -109,7 +109,7 @@ void Map::setupEntity() {
     u->setOffset(c.offset);
     u->setTile(getCell(3, 3), this);
     getCell(3, 3)->unit = u;
-    u->buildUnit(60,60,10,10,10,10,10,10,5,20, unit::PLAYER);
+    u->buildUnit(60,60,10,10,10,0,10,10,5,20, unit::PLAYER);
     u->damage = 10;
     units.push_back(u);
     player_units.push_back(u);
