@@ -8,6 +8,7 @@
 #include "HUDManager.h"
 #include "GameEngine.h"
 #include "../HUDWidget/GUIWidget.h"
+#include "../Util/Constants.h"
 using namespace std;
 
 HUDManager::HUDManager() {
@@ -31,6 +32,15 @@ void HUDManager::setup(GameEngine* eng) {
   addWidget(PHASE_HUD, &phase_hud);
   addWidget(EXP_HUD, &exp_hud);
   addWidget(MENU_HUD, &menu_hud);
+
+  vector<string> test;
+  test.push_back("ATTACK");
+  test.push_back("ITEM");
+  test.push_back("WAIT");
+  test.push_back("TESTING");
+  menu_hud.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), test);
+
+  menu_hud.select(1);
 }
 
 HUDManager::~HUDManager() {

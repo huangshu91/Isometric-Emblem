@@ -39,6 +39,7 @@ GameEngine::GameEngine() {
 
 void GameEngine::loadDebug() {
   gameRes.addFont(DEFAULT_FONT_KEY, DEFAULT_FONT);
+  gameRes.addFont(VISITOR_FONT_KEY, VISITOR_FONT);
 }
 
 void GameEngine::runEngine() {

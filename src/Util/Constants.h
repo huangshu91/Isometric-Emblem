@@ -61,6 +61,8 @@ const string PORTRAIT_ICON = "res/portrait_icon.png";
 // Fonts
 const string DEFAULT_FONT = "res/fonts/arial.ttf";
 const string DEFAULT_FONT_KEY = "default";
+const string VISITOR_FONT = "res/fonts/visitor1.ttf";
+const string VISITOR_FONT_KEY = "visitor1";
 
 // HUD keys
 const string TERRAIN_MENU = "terrain_menu";
@@ -75,6 +77,8 @@ const int MENU_PADDING = 5;
 
 const int FONT_SIZE = 14;
 const int LABEL_SIZE = 20;
+const int VISITOR_SIZE = 18;
+const int VIS_LABEL_SIZE = 24;
 
 const float SHAKE_DURATION = 0.2f;
 const int SHAKE_INTENSITY = 2;
