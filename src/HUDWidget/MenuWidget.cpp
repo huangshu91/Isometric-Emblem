@@ -72,11 +72,15 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   for (int i = 1, j = c_text.size(); i < j; i++) {
     c_text[i].setPosition(loc.x, c_text[i-1].getPosition().y + FONT_SIZE + 2*MENU_PADDING);
   }
+
+  c_text[selected].setColor(sf::Color::Green);
 }
 
 void MenuWidget::select(int s) {
-  if (s < 0 || s > num_opt) return;
+  if (s < 0 || s > num_opt-1) return;
 
+  c_text[selected].setColor(sf::Color::Black);
+  selected = s;
   c_text[s].setColor(sf::Color::Green);
 }
 
@@ -89,6 +93,7 @@ void MenuWidget::disable() {
 }
 
 void MenuWidget::render() {
+  if (!visible) return;
   frame.render();
   for (auto t : c_text) {
     win_ptr->draw(t);

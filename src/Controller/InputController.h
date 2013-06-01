@@ -32,6 +32,7 @@ public:
   void selectCell();
   void updateCell();
   sf::Vector2i getCurrentCenter();
+  DynamicEntity* getSelected() { return selected; };
 
   void update();
   void render();

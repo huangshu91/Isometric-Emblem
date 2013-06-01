@@ -9,9 +9,12 @@
 #define MENUCONTROLLER_H_
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "../Util/Constants.h"
+#include "../Util/FormatClock.h"
 
 class GameEngine;
 class DynamicEntity;
+class MenuWidget;
 
 class MenuController {
 public:
@@ -29,8 +32,10 @@ private:
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 
-  sf::Sprite cursor;
+  MenuWidget* base_menu;
 
+  sf::Sprite cursor;
+  FormatClock timer;
   DynamicEntity* selected;
 
   menucon::Type focus;

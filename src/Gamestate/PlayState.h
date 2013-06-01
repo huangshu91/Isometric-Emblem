@@ -17,6 +17,7 @@
 class Map;
 class InputController;
 class AIController;
+class MenuController;
 class GameEngine;
 
 class PlayState: public GameState {
@@ -37,6 +38,7 @@ private:
   InputController* input;
   AIController* ai;
   BattleManager* bm;
+  MenuController* mc;
 
   playstate::Phase phase;
   playstate::Phase turn;

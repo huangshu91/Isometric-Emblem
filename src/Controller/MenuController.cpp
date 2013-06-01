@@ -6,7 +6,9 @@
  */
 
 #include "MenuController.h"
+#include "../HUDWidget/MenuWidget.h"
 #include "../Entity/DynamicEntity.h"
+#include "../System/GameEngine.h"
 #include "../Util/Constants.h"
 
 MenuController::MenuController() {
@@ -14,19 +16,31 @@ MenuController::MenuController() {
   win_ptr = 0;
   selected = 0;
   focus = menucon::NONE;
+  base_menu = 0;
 }
 
 MenuController::~MenuController() {
-  // TODO Auto-generated destructor stub
 }
 
 void MenuController::setup(GameEngine* eng) {
   eng_ptr = eng;
   win_ptr = eng->getWindow();
+
+  base_menu = eng->getHUD()->getMenuHUD();
 }
 
 void MenuController::update() {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
+    && timer.getElapsedTime() > INPUT_DELAY) {
+    timer.resetClock();
+    base_menu->select(base_menu->getChoice()-1);
+  }
 
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)
+    && timer.getElapsedTime() > INPUT_DELAY) {
+    timer.resetClock();
+    base_menu->select(base_menu->getChoice()+1);
+  }
 }
 
 void MenuController::render() {
@@ -34,6 +48,7 @@ void MenuController::render() {
 }
 
 void MenuController::enable(DynamicEntity* e, menucon::Type t) {
-  selected = e;
+  if (e) selected = e;
   focus = t;
+  base_menu->enable();
 }

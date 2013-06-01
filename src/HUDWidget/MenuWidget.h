@@ -23,6 +23,8 @@ public:
   void disable();
   void select(int s);
 
+  int getChoice() { return selected; };
+
   void render();
 
 private:

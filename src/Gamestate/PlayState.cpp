@@ -9,6 +9,7 @@
 #include "../Levelmap/Map.h"
 #include "../Controller/InputController.h"
 #include "../Controller/AIController.h"
+#include "../Controller/MenuController.h"
 #include "../System/GameEngine.h"
 #include "../Entity/BattleManager.h"
 
@@ -17,6 +18,7 @@ PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   level = new Map(eng_ptr);
   input = new InputController(eng_ptr);
   ai = new AIController(eng_ptr);
+  mc = new MenuController();
   phase = playstate::PLAYER;
   turn = playstate::PLAYER;
   wait = false;
@@ -28,11 +30,10 @@ PlayState::~PlayState() {
   delete level;
   delete input;
   delete ai;
+  delete mc;
 }
 
-// eventually load from file
 void PlayState::setup() {
-  //level->setDimensions(20,7);
   level->loadMap("1");
   level->setupEntity();
 
@@ -43,6 +44,8 @@ void PlayState::setup() {
 
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
+
+  mc->setup(eng_ptr);
 }
 
 void PlayState::changePhase(playstate::Phase next) {
@@ -69,6 +72,10 @@ void PlayState::changePhase(playstate::Phase next) {
     phase = turn;
 
     //finishTransition();
+  }
+
+  if (phase == playstate::MENU) {
+    mc->enable(input->getSelected(), menucon::STAT);
   }
 
   if (phase == playstate::FIGHT) {
@@ -102,6 +109,9 @@ void PlayState::update() {
 
     else if (phase == playstate::FIGHT) {
       bm->update();
+    }
+    else if (phase == playstate::MENU) {
+      mc->update();
     }
   }
 

@@ -115,7 +115,9 @@ void InputController::update() {
   // for now use this to end turn/change phase. debugging purposes
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
+
+    eng_ptr->getPlayState()->changePhase(playstate::MENU);
+    //eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
   }
 }
 
