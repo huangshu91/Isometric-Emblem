@@ -88,9 +88,9 @@ void TerrainMenu::setup(GameEngine* eng) {
   atk_val.setPosition(frame.getLoc().x +
       frame.getSize().x/2 - FONT_SIZE, atk_text.getPosition().y );
 
-  cout << label.getLocalBounds().width << " : " << label.getLocalBounds().height << endl;
-  cout << atk_text.getLocalBounds().width << " _ " << atk_text.getLocalBounds().height << endl;
-  cout << atk_val.getLocalBounds().width << " - " << atk_val.getLocalBounds().height << endl;
+  //cout << label.getLocalBounds().width << " : " << label.getLocalBounds().height << endl;
+  //cout << atk_text.getLocalBounds().width << " _ " << atk_text.getLocalBounds().height << endl;
+  //cout << atk_val.getLocalBounds().width << " - " << atk_val.getLocalBounds().height << endl;
 }
 
 void TerrainMenu::setTile(Terrain t) {

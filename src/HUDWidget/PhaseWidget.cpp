@@ -10,7 +10,7 @@
 #include "../Gamestate/PlayState.h"
 
 PhaseWidget::PhaseWidget() {
-  phase = gamestate::PLAYER;
+  phase = playstate::PLAYER;
   is_visible = false;
 
   timer.resetClock();
@@ -35,7 +35,7 @@ void PhaseWidget::setup(GameEngine* eng) {
   enemy_sprite.setPosition(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 }
 
-void PhaseWidget::changePhase(gamestate::Playphase p) {
+void PhaseWidget::changePhase(playstate::Phase p) {
   phase = p;
   timer.resetClock();
   is_visible = true;
@@ -44,13 +44,13 @@ void PhaseWidget::changePhase(gamestate::Playphase p) {
 void PhaseWidget::render() {
   if (is_visible) {
     switch (phase) {
-    case gamestate::PLAYER:
+    case playstate::PLAYER:
       win_ptr->draw(player_sprite);
       break;
-    case gamestate::ENEMY:
+    case playstate::ENEMY:
       win_ptr->draw(enemy_sprite);
       break;
-    case gamestate::NEUTRAL:
+    case playstate::NEUTRAL:
       break;
     default:
       break;

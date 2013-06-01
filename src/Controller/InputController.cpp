@@ -115,7 +115,7 @@ void InputController::update() {
   // for now use this to end turn/change phase. debugging purposes
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    eng_ptr->getPlayState()->changePhase(gamestate::ENEMY);
+    eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
   }
 }
 
@@ -131,7 +131,7 @@ void InputController::selectCell() {
       return;
     }
     else {
-      //open menu
+      eng_ptr->getPlayState()->changePhase(playstate::MENU_STAT);
     }
   }
 
@@ -150,7 +150,8 @@ void InputController::selectCell() {
     // for now go straight to attack if possible, in future use a menu with the action "attack"
     if (canAttack) {
       map_ptr->toggleRangeOn(selected, range::ATTACK);
-      state = inputstate::ATTACK;
+      //state = inputstate::ATTACK;
+      eng_ptr->getPlayState()->changePhase(playstate::MENU_UNIT);
       return;
     } else {
       finishSelect();
@@ -166,7 +167,6 @@ void InputController::selectCell() {
     }
 
     if (cur_cell->unit != 0 && cur_cell->unit->getControl() == unit::ENEMY) {
-      // check readme for TODO here
       selected->attackUnit(cur_cell->unit);
       finishSelect();
       return;
@@ -178,6 +178,7 @@ void InputController::finishSelect() {
   map_ptr->toggleRangeOff();
   state = inputstate::FREE;
   selected->can_move = false;
+  eng_ptr->getPlayState()->changePhase(playstate::MENU_UNIT);
   selected = 0;
 }
 
@@ -240,6 +241,6 @@ sf::Vector2i InputController::getCurrentCenter() {
 }
 
 void InputController::render() {
-  if (eng_ptr->getPlayState()->getPhase() == gamestate::PLAYER)
+  if (eng_ptr->getPlayState()->getPhase() == playstate::PLAYER)
   win_ptr->draw(tilehighlight);
 }

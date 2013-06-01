@@ -127,7 +127,7 @@ void DynamicEntity::levelUp() {
 
 void DynamicEntity::unitDeath() {
   map_ptr->removeUnit(this, getControl());
-  eng_ptr->getPlayState()->changePhase(gamestate::UNITDEATH);
+  eng_ptr->getPlayState()->changePhase(playstate::UNITDEATH);
 }
 
 // for now reset finished_move. in future this is where poison and other

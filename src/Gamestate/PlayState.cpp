@@ -17,8 +17,8 @@ PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   level = new Map(eng_ptr);
   input = new InputController(eng_ptr);
   ai = new AIController(eng_ptr);
-  phase = gamestate::PLAYER;
-  turn = gamestate::PLAYER;
+  phase = playstate::PLAYER;
+  turn = playstate::PLAYER;
   wait = false;
   bm = eng_ptr->getBattle();
   round_num = 1;
@@ -45,10 +45,10 @@ void PlayState::setup() {
   eng_ptr->getGameCam()->zoomCamera(0.8f);
 }
 
-void PlayState::changePhase(gamestate::Playphase next) {
+void PlayState::changePhase(playstate::Phase next) {
   phase = next;
 
-  if (phase == gamestate::PLAYER || phase == gamestate::ENEMY) {
+  if (phase == playstate::PLAYER || phase == playstate::ENEMY) {
     if (eng_ptr->getHUD()->getWidget(PHASE_HUD)) {
       eng_ptr->getHUD()->getPhaseHUD()->changePhase(next);
       turn = phase;
@@ -56,14 +56,14 @@ void PlayState::changePhase(gamestate::Playphase next) {
     }
   }
 
-  if (phase == gamestate::NEWTURN) {
+  if (phase == playstate::NEWTURN) {
     level->resetUnits();
-    changePhase(gamestate::PLAYER);
+    changePhase(playstate::PLAYER);
     level->checkLoss();
     round_num++;
   }
 
-  if (phase == gamestate::UNITDEATH) {
+  if (phase == playstate::UNITDEATH) {
     // is there anything that needs to be handled here?
     // just switch back to previous state;
     phase = turn;
@@ -71,11 +71,11 @@ void PlayState::changePhase(gamestate::Playphase next) {
     //finishTransition();
   }
 
-  if (phase == gamestate::FIGHT) {
+  if (phase == playstate::FIGHT) {
     // set some hud stuff?
   }
 
-  if (phase == gamestate::FINISHFIGHT) {
+  if (phase == playstate::FINISHFIGHT) {
     // exp stuff here as well
     phase = turn;
   }
@@ -87,20 +87,20 @@ void PlayState::finishTransition() {
 
 void PlayState::update() {
   if (!wait) {
-    if (phase == gamestate::PLAYER) {
+    if (phase == playstate::PLAYER) {
       input->update();
     }
 
-    else if (phase == gamestate::ENEMY) {
+    else if (phase == playstate::ENEMY) {
       ai->update();
     }
 
-    else if (phase == gamestate::LOSS) {
+    else if (phase == playstate::LOSS) {
       // loss, menu options for player
       input->update();
     }
 
-    else if (phase == gamestate::FIGHT) {
+    else if (phase == playstate::FIGHT) {
       bm->update();
     }
   }

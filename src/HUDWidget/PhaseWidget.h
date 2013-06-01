@@ -21,11 +21,11 @@ public:
   virtual ~PhaseWidget();
 
   void setup(GameEngine* eng);
-  void changePhase(gamestate::Playphase p);
+  void changePhase(playstate::Phase p);
   void render();
 
 private:
-  gamestate::Playphase phase;
+  playstate::Phase phase;
 
   sf::Sprite player_sprite;
   sf::Sprite enemy_sprite;

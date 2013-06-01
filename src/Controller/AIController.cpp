@@ -51,7 +51,7 @@ void AIController::update() {
     }
   }
 
-  eng_ptr->getPlayState()->changePhase(gamestate::NEWTURN);
+  eng_ptr->getPlayState()->changePhase(playstate::NEWTURN);
 }
 
 void AIController::moveUnit() {

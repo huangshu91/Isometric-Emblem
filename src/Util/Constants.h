@@ -96,8 +96,15 @@ const string DB_CHAP = "res/Data/chapterdb.txt";
 
 namespace gamestate {
   enum Statetype { START, PLAY, PAUSE, EXIT, UNINIT };
-  enum Playphase { PLAYER, ENEMY, NEUTRAL, NEWTURN,
-                   FIGHT, FINISHFIGHT, UNITDEATH, LOSS, MENU };
+}
+
+namespace playstate {
+  enum Phase { PLAYER, ENEMY, NEUTRAL, NEWTURN,
+    FIGHT, FINISHFIGHT, UNITDEATH, LOSS, MENU_UNIT, MENU_STAT };
+}
+
+namespace menucon {
+  enum Type { NONE, UNIT, STAT };
 }
 
 namespace camera {

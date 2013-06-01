@@ -5,13 +5,14 @@
  *      Author: Maiev
  */
 
-#include <algorithm>
-#include <string>
 #include "Cell.h"
 #include "../Util/Constants.h"
 #include "../System/GameEngine.h"
 #include "../Entity/DynamicEntity.h"
 #include "../Database/Database.h"
+#include <algorithm>
+#include <string>
+#include <vector>
 
 Cell::Cell(GameEngine* eng, Map* map, int r, int c)
 : eng_ptr(eng), map_ptr(map), row(r), col(c) {
@@ -32,6 +33,21 @@ Cell::Cell(GameEngine* eng, Map* map, int r, int c)
 
 Cell::~Cell() {
   // TODO Auto-generated destructor stub
+}
+
+vector<sf::Vector2i> Cell::getVert() {
+  vector<sf::Vector2i> ret;
+  sf::Vector2i top(center.x, center.y - half_size.y);
+  sf::Vector2i bot(center.x, center.y + half_size.y);
+  sf::Vector2i left(center.x - half_size.x, center.y);
+  sf::Vector2i right(center.x + half_size.x, center.y);
+
+  ret.push_back(top);
+  ret.push_back(bot);
+  ret.push_back(left);
+  ret.push_back(right);
+
+  return ret;
 }
 
 void Cell::setType(string type) {

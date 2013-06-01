@@ -27,6 +27,7 @@ public:
 
   void setType(std::string type);
 
+  std::vector<sf::Vector2i> getVert();
   sf::Vector2i getCenter() { return center; }
   sf::Vector2i getLoc() { return sf::Vector2i(base.getPosition()); };
   sf::Vector2i getCoords() { return sf::Vector2i(row, col); }

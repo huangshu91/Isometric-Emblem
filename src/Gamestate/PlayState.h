@@ -28,8 +28,8 @@ public:
   void update();
   void setup();
 
-  void changePhase(gamestate::Playphase next);
-  gamestate::Playphase getPhase() { return phase; };
+  void changePhase(playstate::Phase next);
+  playstate::Phase getPhase() { return phase; };
   void finishTransition();
 
 private:
@@ -38,8 +38,8 @@ private:
   AIController* ai;
   BattleManager* bm;
 
-  gamestate::Playphase phase;
-  gamestate::Playphase turn;
+  playstate::Phase phase;
+  playstate::Phase turn;
   bool wait;
 
   int round_num;

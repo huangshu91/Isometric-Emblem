@@ -117,7 +117,7 @@ Map::~Map() {
 void Map::checkLoss() {
   // if main char is dead or no units left.
   if (player_units.empty()) {
-    eng_ptr->getPlayState()->changePhase(gamestate::LOSS);
+    eng_ptr->getPlayState()->changePhase(playstate::LOSS);
   }
 }
 

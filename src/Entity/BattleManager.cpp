@@ -35,7 +35,7 @@ void BattleManager::attackUnit(DynamicEntity* a, DynamicEntity* d) {
   def = d;
   hit = false;
 
-  parent->changePhase(gamestate::FIGHT);
+  parent->changePhase(playstate::FIGHT);
   stat = FIRST;
 }
 
@@ -51,7 +51,7 @@ void BattleManager::update() {
 
   } else if (stat == SECOND) {
     //stat = THIRD;
-    parent->changePhase(gamestate::FINISHFIGHT);
+    parent->changePhase(playstate::FINISHFIGHT);
 
     battle();
     Result r = (hit == true) ? HIT : MISS;
