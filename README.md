@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	MenuWidget. Instead of doing a very general approach, it is easier to just hardcode the different types of actions.  Similarly, instead of a general number and type of menu it is easier to just hardcode the menus that get created in menucontroller.  For now this behavior makes sense because of the limited possibiltiies of these menus but might require large refactor in future.
+	
 	Change fonts over to Visitor.  Easy but too lazy to experiment
 	
 	Map source split into 2 files.  Map_Construction.cpp deals with anything related to the construction of a map and rendering.  Map.cpp deals with how the map is used and functions that others call.

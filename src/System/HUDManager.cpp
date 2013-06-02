@@ -37,7 +37,6 @@ void HUDManager::setup(GameEngine* eng) {
   test.push_back("ATTACK");
   test.push_back("ITEM");
   test.push_back("WAIT");
-  test.push_back("TESTING");
   menu_hud.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), test);
 }
 

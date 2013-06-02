@@ -8,8 +8,11 @@
 #include "MenuWidget.h"
 #include "../System/GameEngine.h"
 #include "../Util/Constants.h"
+#include "../Gamestate/PlayState.h"
 #include <cmath>
 using namespace std;
+
+string MenuWidget::attack_string = "ATTACK";
 
 MenuWidget::MenuWidget() {
   visible = false;
@@ -30,6 +33,7 @@ void MenuWidget::setup(GameEngine* eng) {
 void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   sf::Vector2i size(0,0);
   sf::Vector2i tx_size(0,0);
+  choices.clear();
   num_opt = opt.size();
 
   for (auto t : opt) {
@@ -46,6 +50,7 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
 
     tx.setOrigin(tx.getLocalBounds().width/2, 0);
     c_text.push_back(tx);
+    choices.push_back(t);
   }
 
   // add side borders
@@ -74,6 +79,17 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   }
 
   c_text[selected].setColor(sf::Color::Green);
+}
+
+void MenuWidget::selectAction() {
+  if (!choices[selected].compare(attack_string)) {
+
+  }
+
+  else {
+    visible = false;
+    eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
+  }
 }
 
 void MenuWidget::select(int s) {

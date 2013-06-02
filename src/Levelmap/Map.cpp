@@ -119,7 +119,8 @@ void Map::toggleRangeOff() {
   rangetile.clear();
 }
 
-void Map::resetUnits() {
+void Map::newTurn() {
+  cycle.update();
   for (int i = 0, j = units.size(); i < j; i++) {
     units[i]->newTurn();
   }

@@ -39,6 +39,11 @@ void InputController::setMap(Map* mp) {
   map_ptr = mp;
 }
 
+void InputController::reset() {
+  state = inputstate::FREE;
+  selected = 0;
+}
+
 bool InputController::setCurrentCell(int x, int y) {
   Cell* c = map_ptr->getCell(x, y);
   inputtimer.resetClock();
@@ -124,6 +129,7 @@ void InputController::update() {
 void InputController::selectCell() {
   inputtimer.resetClock();
   // a unit was NOT previously selected already
+  cout << state << endl;
 
   if (state == inputstate::FREE) {
     if (cur_cell->unit) {//&& cur_cell->unit->can_move) {
@@ -149,13 +155,15 @@ void InputController::selectCell() {
     state = inputstate::ACTION;
     bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
 
+    eng_ptr->getPlayState()->changePhase(playstate::MENU);
+
     // for now go straight to attack if possible, in future use a menu with the action "attack"
     if (canAttack) {
       map_ptr->toggleRangeOn(selected, range::ATTACK);
-      //state = inputstate::ATTACK;
-      eng_ptr->getPlayState()->changePhase(playstate::MENU_UNIT);
+      state = inputstate::ATTACK;
       return;
     } else {
+      cout << "finish" << endl;
       finishSelect();
       return;
     }
@@ -180,7 +188,7 @@ void InputController::finishSelect() {
   map_ptr->toggleRangeOff();
   state = inputstate::FREE;
   selected->can_move = false;
-  eng_ptr->getPlayState()->changePhase(playstate::MENU_UNIT);
+  //eng_ptr->getPlayState()->changePhase(playstate::MENU_UNIT);
   selected = 0;
 }
 

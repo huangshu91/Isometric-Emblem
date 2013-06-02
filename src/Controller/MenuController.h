@@ -34,6 +34,8 @@ private:
 
   MenuWidget* base_menu;
 
+
+
   sf::Sprite cursor;
   FormatClock timer;
   DynamicEntity* selected;

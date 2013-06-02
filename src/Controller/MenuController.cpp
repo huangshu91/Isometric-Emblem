@@ -41,6 +41,12 @@ void MenuController::update() {
     timer.resetClock();
     base_menu->select(base_menu->getChoice()+1);
   }
+
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)
+    && timer.getElapsedTime() > INPUT_DELAY) {
+    timer.resetClock();
+    base_menu->selectAction();
+  }
 }
 
 void MenuController::render() {

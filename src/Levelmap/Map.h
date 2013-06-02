@@ -9,6 +9,7 @@
 #define MAP_H_
 #include "../Util/Constants.h"
 #include "../Util/UtilValues.h"
+#include "DayCycle.h"
 #include "Cell.h"
 #include <string>
 #include <queue>
@@ -38,7 +39,7 @@ public:
   void markCell(Cell* c, string key);
 
   bool inDistance(DynamicEntity* e, unit::Control utype);
-  void resetUnits();
+  void newTurn();
   void checkLoss();
   void removeUnit(DynamicEntity* unit, unit::Control utype);
 
@@ -64,6 +65,7 @@ private:
   // dimensions of the map, row = x, col = y
   int row;
   int col;
+  DayCycle  cycle;
 
   std::vector<DynamicEntity*> player_units;
   std::vector<DynamicEntity*> enemy_units;

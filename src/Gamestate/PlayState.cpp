@@ -60,9 +60,10 @@ void PlayState::changePhase(playstate::Phase next) {
   }
 
   if (phase == playstate::NEWTURN) {
-    level->resetUnits();
+    level->newTurn();
     changePhase(playstate::PLAYER);
     level->checkLoss();
+    input->reset();
     round_num++;
   }
 
@@ -84,6 +85,10 @@ void PlayState::changePhase(playstate::Phase next) {
 
   if (phase == playstate::FINISHFIGHT) {
     // exp stuff here as well
+    phase = turn;
+  }
+
+  if (phase == playstate::RETURN) {
     phase = turn;
   }
 }

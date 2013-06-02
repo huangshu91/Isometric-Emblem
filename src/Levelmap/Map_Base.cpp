@@ -18,6 +18,7 @@ Map::Map(GameEngine* eng) : eng_ptr(eng), row(0), col(0) {
   eng_ptr->getRes()->addResource(RANGE_MOVE_KEY, RANGE_MOVE);
   eng_ptr->getRes()->addResource(RANGE_ATTACK_KEY, RANGE_ATTACK);
   eng_ptr->getRes()->addResource(TILE_KEY, TILE_BASE);
+  cycle.setup(eng);
 }
 
 void Map::loadMap(string id) {
@@ -122,6 +123,7 @@ void Map::checkLoss() {
 }
 
 void Map::render() {
+  cycle.render();
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < col; j++) {
       board[i][j].render();

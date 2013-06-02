@@ -34,6 +34,8 @@ public:
   sf::Vector2i getCurrentCenter();
   DynamicEntity* getSelected() { return selected; };
 
+  void reset();
+
   void update();
   void render();
 
