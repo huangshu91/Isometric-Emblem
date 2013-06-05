@@ -6,6 +6,7 @@
  */
 
 #include "InputController.h"
+#include "MenuController.h"
 #include "../System/GameEngine.h"
 #include "../HUDWidget/TerrainMenu.h"
 #include "../Entity/DynamicEntity.h"
@@ -26,6 +27,7 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   map_ptr = 0;
   cur_cell = 0;
   selected = 0;
+  menucon = 0;
   state = inputstate::FREE;
 
   inputtimer.resetClock();
@@ -33,6 +35,11 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
 
 InputController::~InputController() {
   // TODO Auto-generated destructor stub
+}
+
+void InputController::setup(GameEngine* eng, MenuController* mc) {
+  eng_ptr = eng;
+  menucon = mc;
 }
 
 void InputController::setMap(Map* mp) {
@@ -121,15 +128,14 @@ void InputController::update() {
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
 
-    eng_ptr->getPlayState()->changePhase(playstate::MENU);
-    //eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
+    //eng_ptr->getPlayState()->changePhase(playstate::MENU);
+    eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
   }
 }
 
 void InputController::selectCell() {
   inputtimer.resetClock();
   // a unit was NOT previously selected already
-  cout << state << endl;
 
   if (state == inputstate::FREE) {
     if (cur_cell->unit) {//&& cur_cell->unit->can_move) {
@@ -163,7 +169,6 @@ void InputController::selectCell() {
       state = inputstate::ATTACK;
       return;
     } else {
-      cout << "finish" << endl;
       finishSelect();
       return;
     }

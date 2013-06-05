@@ -12,8 +12,6 @@
 #include <cmath>
 using namespace std;
 
-string MenuWidget::attack_string = "ATTACK";
-
 MenuWidget::MenuWidget() {
   visible = false;
   num_opt = 0;
@@ -82,18 +80,23 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
 }
 
 void MenuWidget::selectAction() {
+  /*
   if (!choices[selected].compare(attack_string)) {
 
   }
 
   else {
     visible = false;
+
     eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
   }
+  */
 }
 
 void MenuWidget::select(int s) {
-  if (s < 0 || s > num_opt-1) return;
+  //if (s < 0 || s > num_opt-1) return;
+  if (s < 0) s = num_opt-1;
+  if (s > num_opt-1) s = 0;
 
   c_text[selected].setColor(sf::Color::Black);
   selected = s;
@@ -102,6 +105,7 @@ void MenuWidget::select(int s) {
 
 void MenuWidget::enable() {
   visible = true;
+  select(0);
 }
 
 void MenuWidget::disable() {

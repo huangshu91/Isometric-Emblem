@@ -8,7 +8,7 @@
 #include "DayCycle.h"
 #include "../System/GameEngine.h"
 
-sf::Color bgcolor[] = { sf::Color(163,208,228), sf::Color(65,194,249),
+sf::Color DayCycle::bgcolor[] = { sf::Color(163,208,228), sf::Color(65,194,249),
                         sf::Color(14,64,85), sf::Color(100,128,139) };
 
 DayCycle::DayCycle() {
@@ -28,7 +28,7 @@ void DayCycle::setup(GameEngine* eng) {
 
 void DayCycle::update() {
   time += 1;
-  if (time > 4) time = 0;
+  if (time >= 4) time = 0;
 }
 
 void DayCycle::render() {

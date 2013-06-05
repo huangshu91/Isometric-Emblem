@@ -15,32 +15,37 @@
 class GameEngine;
 class DynamicEntity;
 class MenuWidget;
+class InputController;
 
 class MenuController {
 public:
   MenuController();
   virtual ~MenuController();
 
-  void setup(GameEngine* eng);
+  void setup(GameEngine* eng, InputController* ic);
 
   void update();
   void render();
 
   void enable(DynamicEntity* e, menucon::Type t);
+  void action();
 
 private:
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 
   MenuWidget* base_menu;
+  MenuWidget* cur_menu;
 
-
+  InputController* unitcon;
 
   sf::Sprite cursor;
   FormatClock timer;
   DynamicEntity* selected;
 
   menucon::Type focus;
+
+
 };
 
 #endif /* MENUCONTROLLER_H_ */

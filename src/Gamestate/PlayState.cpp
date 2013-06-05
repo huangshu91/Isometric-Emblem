@@ -45,7 +45,8 @@ void PlayState::setup() {
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
 
-  mc->setup(eng_ptr);
+  mc->setup(eng_ptr, input);
+  input->setup(eng_ptr, mc);
 }
 
 void PlayState::changePhase(playstate::Phase next) {

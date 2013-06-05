@@ -18,6 +18,7 @@ class Cell;
 class TerrainMenu;
 class StatusWidget;
 class DynamicEntity;
+class MenuController;
 
 class InputController {
 public:
@@ -35,13 +36,13 @@ public:
   DynamicEntity* getSelected() { return selected; };
 
   void reset();
+  void finishSelect();
 
+  void setup(GameEngine* eng, MenuController* mc);
   void update();
   void render();
 
 private:
-  void finishSelect();
-
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 
@@ -50,6 +51,7 @@ private:
   DynamicEntity* selected;
   FormatClock inputtimer;
   inputstate::Phase state;
+  MenuController* menucon;
 
   sf::Sprite tilehighlight;
 

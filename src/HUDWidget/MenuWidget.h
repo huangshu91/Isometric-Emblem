@@ -42,8 +42,6 @@ private:
   std::vector<sf::Text> c_text;
   int     num_opt;
   int     selected;
-
-  static std::string attack_string;
 };
 
 #endif /* MENUWIDGET_H_ */
