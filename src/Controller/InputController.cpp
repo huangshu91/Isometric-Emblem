@@ -6,9 +6,9 @@
  */
 
 #include "InputController.h"
-#include "MenuController.h"
 #include "../System/GameEngine.h"
 #include "../HUDWidget/TerrainMenu.h"
+#include "../HUDWidget/MenuWidget.h"
 #include "../Entity/DynamicEntity.h"
 #include "../Gamestate/PlayState.h"
 #include "../Util/UtilFunc.h"
@@ -27,7 +27,8 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   map_ptr = 0;
   cur_cell = 0;
   selected = 0;
-  menucon = 0;
+  base_menu = 0;
+  cur_menu = 0;
   state = inputstate::FREE;
 
   inputtimer.resetClock();
@@ -37,9 +38,8 @@ InputController::~InputController() {
   // TODO Auto-generated destructor stub
 }
 
-void InputController::setup(GameEngine* eng, MenuController* mc) {
+void InputController::setup(GameEngine* eng) {
   eng_ptr = eng;
-  menucon = mc;
 }
 
 void InputController::setMap(Map* mp) {
@@ -145,7 +145,7 @@ void InputController::selectCell() {
       return;
     }
     else {
-      eng_ptr->getPlayState()->changePhase(playstate::MENU_STAT);
+      //eng_ptr->getPlayState()->changePhase(playstate::MENU_STAT);
     }
   }
 
@@ -160,8 +160,6 @@ void InputController::selectCell() {
     map_ptr->toggleRangeOff();
     state = inputstate::ACTION;
     bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
-
-    eng_ptr->getPlayState()->changePhase(playstate::MENU);
 
     // for now go straight to attack if possible, in future use a menu with the action "attack"
     if (canAttack) {

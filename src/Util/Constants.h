@@ -124,7 +124,7 @@ namespace dir {
 }
 
 namespace inputstate {
-  enum Phase { FREE, MOVE, ACTION, ATTACK };
+  enum Phase { FREE, MOVE, ACTION, ATTACK, MENU };
 }
 
 namespace range {

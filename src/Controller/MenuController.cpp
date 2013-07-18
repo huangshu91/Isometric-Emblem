@@ -35,6 +35,8 @@ void MenuController::setup(GameEngine* eng, InputController* ic) {
 }
 
 void MenuController::update() {
+  if (eng_ptr->hasFocus() == false) return;
+
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
     && timer.getElapsedTime() > INPUT_DELAY) {
     timer.resetClock();

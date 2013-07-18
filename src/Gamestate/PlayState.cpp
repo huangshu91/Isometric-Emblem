@@ -46,7 +46,7 @@ void PlayState::setup() {
   eng_ptr->getGameCam()->zoomCamera(0.8f);
 
   mc->setup(eng_ptr, input);
-  input->setup(eng_ptr, mc);
+  input->setup(eng_ptr);//, mc);
 }
 
 void PlayState::changePhase(playstate::Phase next) {

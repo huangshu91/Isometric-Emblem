@@ -19,6 +19,7 @@ class TerrainMenu;
 class StatusWidget;
 class DynamicEntity;
 class MenuController;
+class MenuWidget;
 
 class InputController {
 public:
@@ -38,7 +39,7 @@ public:
   void reset();
   void finishSelect();
 
-  void setup(GameEngine* eng, MenuController* mc);
+  void setup(GameEngine* eng);
   void update();
   void render();
 
@@ -51,13 +52,14 @@ private:
   DynamicEntity* selected;
   FormatClock inputtimer;
   inputstate::Phase state;
-  MenuController* menucon;
 
   sf::Sprite tilehighlight;
 
   TerrainMenu* terrainhud_ptr;
   StatusWidget* statushudr_ptr;
   StatusWidget* statushudl_ptr;
+  MenuWidget* base_menu;
+  MenuWidget* cur_menu;
 };
 
 #endif /* INPUTCONTROLLER_H_ */
