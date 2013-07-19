@@ -31,6 +31,9 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   cur_menu = 0;
   state = inputstate::FREE;
 
+  base_menu = eng->getHUD()->getMenuHUD();
+  cur_menu = base_menu;
+
   inputtimer.resetClock();
 }
 
@@ -96,25 +99,41 @@ void InputController::update() {
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    if (setCurrentCell(cur_cell->getRow() - 1, cur_cell->getCol()))
+    if (state == inputstate::MENU) {
+      inputtimer.resetClock();
+      base_menu->select(base_menu->getChoice()-1);
+    }
+    else if (setCurrentCell(cur_cell->getRow() - 1, cur_cell->getCol()))
       updateCell();
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() - 1))
+    if (state == inputstate::MENU) {
+      inputtimer.resetClock();
+      base_menu->select(base_menu->getChoice()-1);
+    }
+    else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() - 1))
       updateCell();
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    if (setCurrentCell(cur_cell->getRow() + 1, cur_cell->getCol()))
+    if (state == inputstate::MENU) {
+      inputtimer.resetClock();
+      base_menu->select(base_menu->getChoice()+1);
+    }
+    else if (setCurrentCell(cur_cell->getRow() + 1, cur_cell->getCol()))
       updateCell();
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() + 1))
+    if (state == inputstate::MENU) {
+      inputtimer.resetClock();
+      base_menu->select(base_menu->getChoice()+1);
+    }
+    else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() + 1))
       updateCell();
   }
 
@@ -160,6 +179,10 @@ void InputController::selectCell() {
     map_ptr->toggleRangeOff();
     state = inputstate::ACTION;
     bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
+
+    state = inputstate::MENU;
+    base_menu->enable();
+    return;
 
     // for now go straight to attack if possible, in future use a menu with the action "attack"
     if (canAttack) {

@@ -11,7 +11,6 @@
 #include "FormatClock.h"
 #include <iostream>
 #include <fstream>
-using namespace std;
 
 class Logger {
 public:

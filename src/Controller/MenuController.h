@@ -44,8 +44,6 @@ private:
   DynamicEntity* selected;
 
   menucon::Type focus;
-
-
 };
 
 #endif /* MENUCONTROLLER_H_ */

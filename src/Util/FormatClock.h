@@ -12,7 +12,6 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-using namespace std;
 
 class FormatClock {
 public:
@@ -32,7 +31,7 @@ public:
   float timeSinceBreak();
 
   //get the time as a string formatted in H:M:S.MS
-  string getFormatTime();
+  std::string getFormatTime();
 
   float getElapsedTime();
 
