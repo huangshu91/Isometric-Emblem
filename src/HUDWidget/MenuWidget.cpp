@@ -28,6 +28,9 @@ void MenuWidget::setup(GameEngine* eng) {
   frame.setup(eng_ptr);
 }
 
+// loc is topleft, not center.  This is because the menu size is
+// variable so center position does not make sense.  Instead use
+// topleft for positioning relative to other widgets.
 void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   sf::Vector2i size(0,0);
   sf::Vector2i tx_size(0,0);
@@ -49,6 +52,7 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
     tx.setOrigin(tx.getLocalBounds().width/2, 0);
     c_text.push_back(tx);
     choices.push_back(t);
+    c_enable.push_back(true);
   }
 
   // add side borders
@@ -65,32 +69,25 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   MENU_SIZE.y = ceil(tx_size.y/(float)FRAME_CELL);
   MENU_SIZE.y *= FRAME_CELL;
   CENTER = loc;
+  CENTER.x += MENU_SIZE.x/2;
+  CENTER.y += MENU_SIZE.y/2;
 
-  frame.build(loc, MENU_SIZE);
+  frame.build(CENTER, MENU_SIZE);
 
   sf::Vector2i topmid = frame.getLoc();
   topmid.y -= frame.getSize().y/2;
 
-  c_text[0].setPosition(loc.x, topmid.y + FONT_SIZE);
+  c_text[0].setPosition(CENTER.x, topmid.y + FONT_SIZE);
   for (int i = 1, j = c_text.size(); i < j; i++) {
-    c_text[i].setPosition(loc.x, c_text[i-1].getPosition().y + FONT_SIZE + 2*MENU_PADDING);
+    c_text[i].setPosition(CENTER.x, c_text[i-1].getPosition().y + FONT_SIZE + 2*MENU_PADDING);
   }
 
-  c_text[selected].setColor(sf::Color::Green);
+  //c_text[selected].setColor(sf::Color::Green);
 }
 
-void MenuWidget::selectAction() {
-  /*
-  if (!choices[selected].compare(attack_string)) {
-
-  }
-
-  else {
-    visible = false;
-
-    eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
-  }
-  */
+void MenuWidget::disableChoice(menu::Choice c) {
+  c_text[c].setColor(sf::Color::White);
+  c_enable[c] = false;
 }
 
 void MenuWidget::select(int s) {
@@ -98,7 +95,8 @@ void MenuWidget::select(int s) {
   if (s < 0) s = num_opt-1;
   if (s > num_opt-1) s = 0;
 
-  c_text[selected].setColor(sf::Color::Black);
+  if (c_enable[selected]) c_text[selected].setColor(sf::Color::Black);
+  else c_text[selected].setColor(sf::Color::White);
   selected = s;
   c_text[s].setColor(sf::Color::Green);
 }

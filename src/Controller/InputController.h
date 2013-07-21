@@ -32,6 +32,7 @@ public:
   // true if unit was moved, false if same
   bool moveUnit(int x, int y);
   void selectCell();
+  void selectMenu();
   void updateCell();
   sf::Vector2i getCurrentCenter();
   DynamicEntity* getSelected() { return selected; };

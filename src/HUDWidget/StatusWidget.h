@@ -28,11 +28,11 @@ public:
   void update();
   void render();
 
+  static sf::Vector2i MENU_SIZE;
+
 private:
   GUIFrame frame;
   sf::Sprite icon;
-
-  static sf::Vector2i MENU_SIZE;
 
   //temporary placeholder for portrait
   sf::Texture tex;

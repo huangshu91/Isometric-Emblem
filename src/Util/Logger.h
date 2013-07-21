@@ -18,18 +18,18 @@ public:
   ~Logger();
 
   //info message
-  void i(string msg);
+  void i(std::string msg);
 
   //error message
-  void e(string msg);
+  void e(std::string msg);
 
   //debug message
-  void d(string msg);
+  void d(std::string msg);
 
 private:
   void printheader(char type);
 
-  ofstream log;
+  std::ofstream log;
   FormatClock gameClock;
 
   bool debugEnabled;

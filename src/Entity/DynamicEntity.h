@@ -20,7 +20,7 @@ class Map;
 
 class DynamicEntity : public Entity {
 public:
-  DynamicEntity(GameEngine* eng, string n);
+  DynamicEntity(GameEngine* eng, std::string n);
   virtual ~DynamicEntity();
 
   void setTile(Cell* t, Map* map);

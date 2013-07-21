@@ -9,6 +9,7 @@
 #define MENUWIDGET_H_
 #include "../Interface/GUIFrame.h"
 #include "GUIWidget.h"
+#include "../Util/Constants.h"
 #include <vector>
 
 class MenuWidget: public GUIWidget {
@@ -23,10 +24,9 @@ public:
   void disable();
   void select(int s);
 
-  void selectAction();
-
   std::string getChoiceName() { return choices[selected]; };
   int getChoice() { return selected; };
+  void disableChoice(menu::Choice c);
 
   void render();
 
@@ -40,6 +40,7 @@ private:
 
   std::vector<std::string> choices;
   std::vector<sf::Text> c_text;
+  std::vector<bool> c_enable;
   int     num_opt;
   int     selected;
 };

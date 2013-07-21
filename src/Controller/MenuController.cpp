@@ -17,7 +17,7 @@ MenuController::MenuController() {
   eng_ptr = 0;
   win_ptr = 0;
   selected = 0;
-  focus = menucon::NONE;
+  focus = menu::NONE;
   base_menu = 0;
   unitcon = 0;
   cur_menu = 0;
@@ -52,7 +52,7 @@ void MenuController::update() {
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)
     && timer.getElapsedTime() > INPUT_DELAY) {
     timer.resetClock();
-    base_menu->selectAction();
+    //base_menu->selectAction();
     action();
   }
 }
@@ -69,7 +69,7 @@ void MenuController::render() {
 
 }
 
-void MenuController::enable(DynamicEntity* e, menucon::Type t) {
+void MenuController::enable(DynamicEntity* e, menu::Type t) {
   if (e) selected = e;
   focus = t;
   base_menu->enable();

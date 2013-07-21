@@ -27,7 +27,7 @@ public:
   void update();
   void render();
 
-  void enable(DynamicEntity* e, menucon::Type t);
+  void enable(DynamicEntity* e, menu::Type t);
   void action();
 
 private:
@@ -43,7 +43,7 @@ private:
   FormatClock timer;
   DynamicEntity* selected;
 
-  menucon::Type focus;
+  menu::Type focus;
 };
 
 #endif /* MENUCONTROLLER_H_ */

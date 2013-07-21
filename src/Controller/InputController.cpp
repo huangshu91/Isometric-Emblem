@@ -140,7 +140,8 @@ void InputController::update() {
   // select the current cell
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    selectCell();
+    if (state == inputstate::MENU) selectMenu();
+    else selectCell();
   }
 
   // for now use this to end turn/change phase. debugging purposes
@@ -150,6 +151,13 @@ void InputController::update() {
     //eng_ptr->getPlayState()->changePhase(playstate::MENU);
     eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
   }
+}
+
+void InputController::selectMenu() {
+  inputtimer.resetClock();
+
+  bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
+
 }
 
 void InputController::selectCell() {
@@ -181,6 +189,16 @@ void InputController::selectCell() {
     bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
 
     state = inputstate::MENU;
+
+    //change these hardcoded strings to constants
+    vector<string> choices;
+    if (canAttack) choices.push_back("ATTACK");
+    choices.push_back("ITEM");
+    choices.push_back("END");
+    //sf::Vector2i loc = cur_cell->getCenter();
+    sf::Vector2i loc = sf::Vector2i(tilehighlight.getPosition());
+    //loc.x += 50;
+    if (!canAttack) base_menu->disableChoice(menu::ATTACK);
     base_menu->enable();
     return;
 
@@ -197,11 +215,12 @@ void InputController::selectCell() {
 
   if (state == inputstate::ATTACK) {
     // end move, dont attack
+    /*
     if (cur_cell == selected->getCurCell()) {
       finishSelect();
       return;
     }
-
+    */
     if (cur_cell->unit != 0 && cur_cell->unit->getControl() == unit::ENEMY) {
       selected->attackUnit(cur_cell->unit);
       finishSelect();

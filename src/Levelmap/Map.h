@@ -23,9 +23,9 @@ public:
   Map(GameEngine* eng);
   ~Map();
 
-  void loadMap(string id);
+  void loadMap(std::string id);
   void setupEntity();
-  void createEntity(sf::Vector2i loc, string key, StatPack stat);
+  void createEntity(sf::Vector2i loc, std::string key, StatPack stat);
 
   Map* getMap() { return this; };
   Cell* getCell(int x, int y);
@@ -33,10 +33,10 @@ public:
   int getRow() { return row; };
   int getCol() { return col; };
 
-  queue<Cell*> getPath(DynamicEntity* e, range::RangeType type);
+  std::queue<Cell*> getPath(DynamicEntity* e, range::RangeType type);
   void toggleRangeOn(DynamicEntity* e, range::RangeType type);
   void toggleRangeOff();
-  void markCell(Cell* c, string key);
+  void markCell(Cell* c, std::string key);
 
   bool inDistance(DynamicEntity* e, unit::Control utype);
   void newTurn();
@@ -60,8 +60,8 @@ private:
   std::vector<sf::Sprite> rangetile;
   bool range_on;
 
-  string map_name;
-  string map_id;
+  std::string map_name;
+  std::string map_id;
   // dimensions of the map, row = x, col = y
   int row;
   int col;

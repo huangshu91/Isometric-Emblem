@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Split InputController into 2 source files.  One that has bare minimum of update, render, etc. The other contains logic for selecting cell, selecting menu, updating cell, etc.
+	
 	Rework Menu so that InputController is manages the unit menu directly.  MenuController only controls menus that are not attached to any entity (base menu, status menu, etc).
 	
 	MenuWidget. Instead of doing a very general approach, it is easier to just hardcode the different types of actions.  Similarly, instead of a general number and type of menu it is easier to just hardcode the menus that get created in menucontroller.  For now this behavior makes sense because of the limited possibiltiies of these menus but might require large refactor in future.

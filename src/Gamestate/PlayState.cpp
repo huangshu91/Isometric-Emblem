@@ -77,7 +77,7 @@ void PlayState::changePhase(playstate::Phase next) {
   }
 
   if (phase == playstate::MENU) {
-    mc->enable(input->getSelected(), menucon::STAT);
+    mc->enable(input->getSelected(), menu::STAT);
   }
 
   if (phase == playstate::FIGHT) {

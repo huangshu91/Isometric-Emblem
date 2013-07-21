@@ -36,9 +36,9 @@ struct TileDef {
 };
 
 struct ChapDef {
-  string id;
-  string chap_name;
-  string map_def;
+  std::string id;
+  std::string chap_name;
+  std::string map_def;
 };
 
 class Database {

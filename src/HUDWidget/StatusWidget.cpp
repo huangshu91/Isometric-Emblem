@@ -64,6 +64,7 @@ void StatusWidget::setup(GameEngine* eng, dir::Direction d) {
 void StatusWidget::updateChar(DynamicEntity* e) {
   cur_ent = e;
   update();
+
 }
 
 void StatusWidget::update() {

@@ -36,8 +36,12 @@ void HUDManager::setup(GameEngine* eng) {
   vector<string> test;
   test.push_back("ATTACK");
   test.push_back("ITEM");
-  test.push_back("WAIT");
-  menu_hud.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), test);
+  test.push_back("END");
+  sf::Vector2i loc(0,0);
+  loc.x = GUI_PADDING;
+  loc.y = status_hudl.MENU_SIZE.y + 2*GUI_PADDING;
+
+  menu_hud.build(loc, test);
 }
 
 HUDManager::~HUDManager() {
