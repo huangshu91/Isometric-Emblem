@@ -27,7 +27,9 @@ public:
   std::string getChoiceName() { return choices[selected]; };
   int getChoice() { return selected; };
   void disableChoice(menu::Choice c);
+  bool isDisabled(menu::Choice c);
 
+  void resetMenu();
   void render();
 
 private:

@@ -1,13 +1,13 @@
 LOG SYSTEM FOR 'Isometric RPG VER-0.0.2 STARTED.
 ============ INFO ============
-0h_0m_0.061204 - Loading db files: 
-0h_0m_0.061241 - Loading classes: 
-0h_0m_0.062354 - Classes loaded.
-0h_0m_0.062391 - Linking Classes: 
-0h_0m_0.062428 - Finished Linking Classes.
-0h_0m_0.062458 - Loading tiles: 
-0h_0m_0.06345 - Tiles loaded.
-0h_0m_0.063485 - Loading Chapter Information: 
-0h_0m_0.063555 - Finished Loading ChapterInfo.
-0h_0m_0.063587 - Finished loading db files.
+0h_0m_0.063454 - Loading db files: 
+0h_0m_0.063496 - Loading classes: 
+0h_0m_0.064664 - Classes loaded.
+0h_0m_0.0647 - Linking Classes: 
+0h_0m_0.064737 - Finished Linking Classes.
+0h_0m_0.064768 - Loading tiles: 
+0h_0m_0.065777 - Tiles loaded.
+0h_0m_0.065811 - Loading Chapter Information: 
+0h_0m_0.065888 - Finished Loading ChapterInfo.
+0h_0m_0.06592 - Finished loading db files.
 LOG SYSTEM CLOSING.

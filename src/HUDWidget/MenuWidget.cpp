@@ -85,6 +85,12 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   //c_text[selected].setColor(sf::Color::Green);
 }
 
+bool MenuWidget::isDisabled(menu::Choice c) {
+  if (c >= num_opt) return false;
+
+  return c_enable[c];
+}
+
 void MenuWidget::disableChoice(menu::Choice c) {
   c_text[c].setColor(sf::Color::White);
   c_enable[c] = false;
@@ -104,6 +110,16 @@ void MenuWidget::select(int s) {
 void MenuWidget::enable() {
   visible = true;
   select(0);
+}
+
+void MenuWidget::resetMenu() {
+  for (sf::Text s : c_text) {
+    s.setColor(sf::Color::Black);
+  }
+
+  for (unsigned int i = 0; i < c_enable.size(); i++) {
+    c_enable[i] = true;
+  }
 }
 
 void MenuWidget::disable() {

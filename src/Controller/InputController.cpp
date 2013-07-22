@@ -156,8 +156,21 @@ void InputController::update() {
 void InputController::selectMenu() {
   inputtimer.resetClock();
 
-  bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
+  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::END])) {
+    cur_menu->disable();
+    finishSelect();
+  }
 
+  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ATTACK])) {
+    state = inputstate::ATTACK;
+    base_menu->disable();
+  }
+
+  /*
+  if (cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEM])) {
+
+  }
+  */
 }
 
 void InputController::selectCell() {
@@ -187,17 +200,9 @@ void InputController::selectCell() {
     map_ptr->toggleRangeOff();
     state = inputstate::ACTION;
     bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
+    map_ptr->toggleRangeOn(selected, range::ATTACK);
 
     state = inputstate::MENU;
-
-    //change these hardcoded strings to constants
-    vector<string> choices;
-    if (canAttack) choices.push_back("ATTACK");
-    choices.push_back("ITEM");
-    choices.push_back("END");
-    //sf::Vector2i loc = cur_cell->getCenter();
-    sf::Vector2i loc = sf::Vector2i(tilehighlight.getPosition());
-    //loc.x += 50;
     if (!canAttack) base_menu->disableChoice(menu::ATTACK);
     base_menu->enable();
     return;
@@ -233,6 +238,7 @@ void InputController::finishSelect() {
   map_ptr->toggleRangeOff();
   state = inputstate::FREE;
   selected->can_move = false;
+  base_menu->resetMenu();
   //eng_ptr->getPlayState()->changePhase(playstate::MENU_UNIT);
   selected = 0;
 }

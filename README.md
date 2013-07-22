@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	MenuWidget, in build 'loc' param is top-left not center.  
+	
 	Split InputController into 2 source files.  One that has bare minimum of update, render, etc. The other contains logic for selecting cell, selecting menu, updating cell, etc.
 	
 	Rework Menu so that InputController is manages the unit menu directly.  MenuController only controls menus that are not attached to any entity (base menu, status menu, etc).
