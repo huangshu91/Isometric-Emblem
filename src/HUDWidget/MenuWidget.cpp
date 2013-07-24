@@ -26,6 +26,10 @@ MenuWidget::~MenuWidget() {
 void MenuWidget::setup(GameEngine* eng) {
   GUIWidget::setup(eng);
   frame.setup(eng_ptr);
+
+  eng->getRes()->addResource(MENU_CURSOR_KEY, MENU_CURSOR);
+  menu_cursor.setTexture(*(eng->getRes()->getResource(MENU_CURSOR_KEY)));
+  menu_cursor.setOrigin(menu_cursor.getLocalBounds().width, 0);
 }
 
 // loc is topleft, not center.  This is because the menu size is
@@ -78,7 +82,8 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Position a)
 
   c_text[0].setPosition(CENTER.x, topmid.y + FONT_SIZE);
   for (int i = 1, j = c_text.size(); i < j; i++) {
-    c_text[i].setPosition(CENTER.x, c_text[i-1].getPosition().y + FONT_SIZE + 2*MENU_PADDING);
+    c_text[i].setPosition(CENTER.x,
+        c_text[i-1].getPosition().y + FONT_SIZE + 2*MENU_PADDING);
   }
 }
 
@@ -123,6 +128,9 @@ void MenuWidget::select(int s) {
   if (s < 0) s = num_opt-1;
   if (s > num_opt-1) s = 0;
 
+  menu_cursor.setPosition(c_text[s].getPosition().x - c_text[s].getLocalBounds().width/2,
+      c_text[s].getPosition().y);
+
   if (c_enable[selected]) c_text[selected].setColor(sf::Color::Black);
   else c_text[selected].setColor(sf::Color::White);
   selected = s;
@@ -154,4 +162,5 @@ void MenuWidget::render() {
   for (auto t : c_text) {
     win_ptr->draw(t);
   }
+  win_ptr->draw(menu_cursor);
 }

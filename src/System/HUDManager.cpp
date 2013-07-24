@@ -40,9 +40,9 @@ void HUDManager::setup(GameEngine* eng) {
     unit.push_back(menu::CHOICE_TEXT[i]);
   }
   sf::Vector2i loc(0,0);
-  loc.x = GUI_PADDING;
-  loc.y = status_hudl.MENU_SIZE.y + 2*GUI_PADDING;
-  menu_hud_unit.build(loc, unit, anchor::TOPLEFT);
+  loc.x = WINDOW_WIDTH - GUI_PADDING;
+  loc.y = status_hudr.MENU_SIZE.y + 2*GUI_PADDING;
+  menu_hud_unit.build(loc, unit, anchor::TOPRIGHT);
 
   vector<string> gen;
   for (int i = 0; i < menu::NUM_GEN_CHOICE; i++) {

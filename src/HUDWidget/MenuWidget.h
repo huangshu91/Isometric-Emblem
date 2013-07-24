@@ -47,6 +47,8 @@ private:
   std::vector<bool> c_enable;
   int     num_opt;
   int     selected;
+
+  sf::Sprite menu_cursor;
 };
 
 #endif /* MENUWIDGET_H_ */

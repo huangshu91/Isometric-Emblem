@@ -31,6 +31,9 @@ const std::string TILE_KEY = "rocktile";
 const std::string TILE_HIGH = "res/highlight_tile.png";
 const std::string TILE_HIGH_KEY = "tilehigh";
 
+const std::string MENU_CURSOR = "res/Misc/cursor_feather.png";
+const std::string MENU_CURSOR_KEY = "menucursor";
+
 const std::string RANGE_MOVE = "res/range_move.png";
 const std::string RANGE_MOVE_KEY = "tilemoverange";
 
