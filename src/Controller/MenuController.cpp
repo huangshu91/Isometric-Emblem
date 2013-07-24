@@ -16,10 +16,9 @@
 MenuController::MenuController() {
   eng_ptr = 0;
   win_ptr = 0;
-  selected = 0;
   focus = menu::NONE;
-  base_menu = 0;
   unitcon = 0;
+  base_menu = 0;
   cur_menu = 0;
 }
 
@@ -31,7 +30,8 @@ void MenuController::setup(GameEngine* eng, InputController* ic) {
   win_ptr = eng->getWindow();
   unitcon = ic;
 
-  base_menu = eng->getHUD()->getMenuHUD();
+  base_menu = eng->getHUD()->getGenHUD();
+  cur_menu = base_menu;
 }
 
 void MenuController::update() {
@@ -52,15 +52,19 @@ void MenuController::update() {
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)
     && timer.getElapsedTime() > INPUT_DELAY) {
     timer.resetClock();
-    //base_menu->selectAction();
     action();
+  }
+
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)
+    && timer.getElapsedTime() > INPUT_DELAY) {
+
   }
 }
 
 void MenuController::action() {
-  if (base_menu->getChoiceName().compare("ATTACK")) {
+  if (!base_menu->getChoiceName().compare(menu::GEN_TEXT[menu::ENDTURN])) {
     base_menu->disable();
-    //eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
+    eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
   }
 
 }
@@ -69,8 +73,7 @@ void MenuController::render() {
 
 }
 
-void MenuController::enable(DynamicEntity* e, menu::Type t) {
-  if (e) selected = e;
-  focus = t;
+void MenuController::enable() {
   base_menu->enable();
+  timer.resetClock();
 }

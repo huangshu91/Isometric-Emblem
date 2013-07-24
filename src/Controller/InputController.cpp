@@ -185,7 +185,7 @@ void InputController::selectCell() {
       return;
     }
     else {
-      //eng_ptr->getPlayState()->changePhase(playstate::MENU_STAT);
+      eng_ptr->getPlayState()->changePhase(playstate::MENU);
     }
   }
 

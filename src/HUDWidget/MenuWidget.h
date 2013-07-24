@@ -18,7 +18,7 @@ public:
   virtual ~MenuWidget();
 
   void setup(GameEngine* eng);
-  void build(sf::Vector2i loc, std::vector<std::string> opt);
+  void build(sf::Vector2i loc, std::vector<std::string> opt, anchor::Position a);
 
   void enable();
   void disable();
@@ -26,13 +26,15 @@ public:
 
   std::string getChoiceName() { return choices[selected]; };
   int getChoice() { return selected; };
-  void disableChoice(menu::Choice c);
-  bool isDisabled(menu::Choice c);
+  void disableChoice(menu::UnitChoice c);
+  bool isDisabled(menu::UnitChoice c);
 
   void resetMenu();
   void render();
 
 private:
+  void setAnchor(anchor::Position a);
+
   GUIFrame frame;
 
   sf::Vector2i MENU_SIZE;

@@ -36,7 +36,8 @@ public:
   PhaseWidget* getPhaseHUD() { return &phase_hud; };
   StatusWidget* getStatusHUD(dir::Direction d);
   EXPWidget* getEXPHUD() { return &exp_hud; };
-  MenuWidget* getMenuHUD() { return &menu_hud; };
+  MenuWidget* getMenuHUD() { return &menu_hud_unit; };
+  MenuWidget* getGenHUD() { return &menu_hud_gen; };
 
   //void update();
   void render();
@@ -54,7 +55,9 @@ private:
   StatusWidget  status_hudl;
   EXPWidget     exp_hud;
 
-  MenuWidget    menu_hud;
+  MenuWidget    menu_hud_unit;
+  MenuWidget    menu_hud_gen;
+
 };
 
 #endif /* HUDMANAGER_H_ */

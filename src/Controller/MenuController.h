@@ -27,7 +27,7 @@ public:
   void update();
   void render();
 
-  void enable(DynamicEntity* e, menu::Type t);
+  void enable();
   void action();
 
 private:
@@ -41,7 +41,6 @@ private:
 
   sf::Sprite cursor;
   FormatClock timer;
-  DynamicEntity* selected;
 
   menu::Type focus;
 };

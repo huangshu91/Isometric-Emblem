@@ -25,23 +25,33 @@ void HUDManager::setup(GameEngine* eng) {
   status_hudr.setup(eng, dir::RIGHT);
   status_hudl.setup(eng, dir::LEFT);
   exp_hud.setup(eng);
-  menu_hud.setup(eng);
+  menu_hud_unit.setup(eng);
+  menu_hud_gen.setup(eng);
   addWidget(STATUS_HUDL, &status_hudl);
   addWidget(STATUS_HUDR, &status_hudr);
   addWidget(TERRAIN_MENU, &terrain_hud);
   addWidget(PHASE_HUD, &phase_hud);
   addWidget(EXP_HUD, &exp_hud);
-  addWidget(MENU_HUD, &menu_hud);
+  addWidget(MENU_HUD_UNIT, &menu_hud_unit);
+  addWidget(MENU_HUD_GEN, &menu_hud_gen);
 
-  vector<string> test;
-  test.push_back("ATTACK");
-  test.push_back("ITEM");
-  test.push_back("END");
+  vector<string> unit;
+  for (int i = 0; i < menu::NUM_UNIT_CHOICE; i++) {
+    unit.push_back(menu::CHOICE_TEXT[i]);
+  }
   sf::Vector2i loc(0,0);
   loc.x = GUI_PADDING;
   loc.y = status_hudl.MENU_SIZE.y + 2*GUI_PADDING;
+  menu_hud_unit.build(loc, unit, anchor::TOPLEFT);
 
-  menu_hud.build(loc, test);
+  vector<string> gen;
+  for (int i = 0; i < menu::NUM_GEN_CHOICE; i++) {
+    gen.push_back(menu::GEN_TEXT[i]);
+  }
+  loc = sf::Vector2i(0,0);
+  loc.x = WINDOW_WIDTH - GUI_PADDING;
+  loc.y = status_hudr.MENU_SIZE.y + 2*GUI_PADDING;
+  menu_hud_gen.build(loc, gen, anchor::TOPRIGHT);
 }
 
 HUDManager::~HUDManager() {

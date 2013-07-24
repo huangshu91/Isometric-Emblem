@@ -31,7 +31,7 @@ void MenuWidget::setup(GameEngine* eng) {
 // loc is topleft, not center.  This is because the menu size is
 // variable so center position does not make sense.  Instead use
 // topleft for positioning relative to other widgets.
-void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
+void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Position a) {
   sf::Vector2i size(0,0);
   sf::Vector2i tx_size(0,0);
   choices.clear();
@@ -39,7 +39,7 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
 
   for (auto t : opt) {
     sf::Text tx;
-    tx.setFont(*(eng_ptr->getRes()->getFont(DEFAULT_FONT_KEY)));
+    tx.setFont(*(eng_ptr->getRes()->getFont(VISITOR_FONT_KEY)));
     tx.setCharacterSize(VISITOR_SIZE);
     tx.setColor(sf::Color::Black);
     tx.setString(t);
@@ -60,7 +60,7 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   // number of options
   tx_size.y *= num_opt;
   // padding between options
-  tx_size.y += (num_opt-1)*(2*MENU_PADDING);
+  tx_size.y += (num_opt-1)*(3*MENU_PADDING);
   // add top and bottom borders
   tx_size.y += 2*FONT_SIZE;
 
@@ -69,8 +69,7 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   MENU_SIZE.y = ceil(tx_size.y/(float)FRAME_CELL);
   MENU_SIZE.y *= FRAME_CELL;
   CENTER = loc;
-  CENTER.x += MENU_SIZE.x/2;
-  CENTER.y += MENU_SIZE.y/2;
+  setAnchor(a);
 
   frame.build(CENTER, MENU_SIZE);
 
@@ -81,17 +80,40 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt) {
   for (int i = 1, j = c_text.size(); i < j; i++) {
     c_text[i].setPosition(CENTER.x, c_text[i-1].getPosition().y + FONT_SIZE + 2*MENU_PADDING);
   }
-
-  //c_text[selected].setColor(sf::Color::Green);
 }
 
-bool MenuWidget::isDisabled(menu::Choice c) {
+void MenuWidget::setAnchor(anchor::Position a) {
+  switch (a) {
+  case anchor::TOPLEFT:
+    CENTER.x += MENU_SIZE.x/2;
+    CENTER.y += MENU_SIZE.y/2;
+    break;
+  case anchor::TOPRIGHT:
+    CENTER.x -= MENU_SIZE.x/2;
+    CENTER.y += MENU_SIZE.y/2;
+    break;
+  case anchor::BOTLEFT:
+    CENTER.x += MENU_SIZE.x/2;
+    CENTER.y -= MENU_SIZE.y/2;
+    break;
+  case anchor::BOTRIGHT:
+    CENTER.x -= MENU_SIZE.x/2;
+    CENTER.y -= MENU_SIZE.y/2;
+    break;
+  case anchor::CENTER:
+    break;
+  default:
+    break;
+  }
+}
+
+bool MenuWidget::isDisabled(menu::UnitChoice c) {
   if (c >= num_opt) return false;
 
   return c_enable[c];
 }
 
-void MenuWidget::disableChoice(menu::Choice c) {
+void MenuWidget::disableChoice(menu::UnitChoice c) {
   c_text[c].setColor(sf::Color::White);
   c_enable[c] = false;
 }

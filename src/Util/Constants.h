@@ -68,7 +68,8 @@ const std::string PHASE_HUD = "phasehud";
 const std::string STATUS_HUDR = "status_hudr";
 const std::string STATUS_HUDL = "status_hudl";
 const std::string EXP_HUD = "exp_hud";
-const std::string MENU_HUD = "menu_hud";
+const std::string MENU_HUD_UNIT = "menu_hud_unit";
+const std::string MENU_HUD_GEN = "menu_hud_gen";
 
 const int GUI_PADDING = 30;
 const int MENU_PADDING = 5;
@@ -103,9 +104,18 @@ namespace playstate {
 
 namespace menu {
   enum Type { NONE, UNIT, STAT };
-  enum Choice { ATTACK, ITEM, END };
+  enum UnitChoice { ATTACK, ITEM, END };
+  enum GenChoice { UNITS, STATUS, OPTION, ENDTURN };
 
+  const int NUM_UNIT_CHOICE = 3;
   const std::string CHOICE_TEXT[] = { "ATTACK", "ITEM", "END" };
+
+  const int NUM_GEN_CHOICE = 4;
+  const std::string GEN_TEXT[] = { "UNIT", "STATUS", "CONFIG", "END" };
+}
+
+namespace anchor {
+  enum Position { TOPLEFT, TOPRIGHT, BOTLEFT, BOTRIGHT, CENTER };
 }
 
 namespace camera {
