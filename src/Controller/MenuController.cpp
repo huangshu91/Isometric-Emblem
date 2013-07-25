@@ -57,7 +57,9 @@ void MenuController::update() {
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)
     && timer.getElapsedTime() > INPUT_DELAY) {
-
+    timer.resetClock();
+    eng_ptr->getPlayState()->changePhase(playstate::RETURN);
+    base_menu->disable();
   }
 }
 

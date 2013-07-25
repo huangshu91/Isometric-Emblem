@@ -61,6 +61,8 @@ private:
   StatusWidget* statushudl_ptr;
   MenuWidget* base_menu;
   MenuWidget* cur_menu;
+
+  sf::Vector2i prev_loc;
 };
 
 #endif /* INPUTCONTROLLER_H_ */

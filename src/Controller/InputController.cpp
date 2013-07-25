@@ -144,12 +144,27 @@ void InputController::update() {
     else selectCell();
   }
 
-  // for now use this to end turn/change phase. debugging purposes
+  // cancel previous action. does nothing if not in menu
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-
-    //eng_ptr->getPlayState()->changePhase(playstate::MENU);
-    eng_ptr->getPlayState()->changePhase(playstate::ENEMY);
+    if (state == inputstate::MENU) {
+      inputtimer.resetClock();
+      state = inputstate::MOVE;
+      base_menu->disable();
+      moveUnit(prev_loc.x, prev_loc.y);
+      map_ptr->toggleRangeOn(selected, range::COMBINED);
+    }
+    else if (state == inputstate::MOVE) {
+      inputtimer.resetClock();
+      state = inputstate::FREE;
+      map_ptr->toggleRangeOff();
+      selected = 0;
+    }
+    else if (state == inputstate::ATTACK) {
+      inputtimer.resetClock();
+      base_menu->enable();
+      state = inputstate::MENU;
+    }
   }
 }
 
@@ -195,6 +210,8 @@ void InputController::selectCell() {
       return;
     }
 
+    prev_loc.x = selected->getCurCell()->getRow();
+    prev_loc.y = selected->getCurCell()->getCol();
     if (!moveUnit(cur_cell->getRow(), cur_cell->getCol()))
       return;
     map_ptr->toggleRangeOff();

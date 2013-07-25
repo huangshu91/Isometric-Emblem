@@ -50,7 +50,7 @@ void GameEngine::runEngine() {
 
   GUIFrame frame;
   frame.setup(getEngine());
-  frame.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), sf::Vector2i(80,80));
+  frame.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), sf::Vector2i(920,200));
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
