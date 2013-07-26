@@ -13,7 +13,6 @@
 using namespace std;
 
 MenuWidget::MenuWidget() {
-  visible = false;
   num_opt = 0;
   MENU_SIZE = sf::Vector2i(0,0);
   selected = 0;
@@ -138,7 +137,7 @@ void MenuWidget::select(int s) {
 }
 
 void MenuWidget::enable() {
-  visible = true;
+  GUIWidget::enable();
   select(0);
 }
 
@@ -150,10 +149,6 @@ void MenuWidget::resetMenu() {
   for (unsigned int i = 0; i < c_enable.size(); i++) {
     c_enable[i] = true;
   }
-}
-
-void MenuWidget::disable() {
-  visible = false;
 }
 
 void MenuWidget::render() {

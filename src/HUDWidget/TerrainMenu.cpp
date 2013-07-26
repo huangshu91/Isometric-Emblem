@@ -94,7 +94,6 @@ void TerrainMenu::setup(GameEngine* eng) {
 }
 
 void TerrainMenu::setTile(Terrain t) {
-
   def_val.setString(numberToString(t.def));
   atk_val.setString(numberToString(t.atk));
   avd_val.setString(numberToString(t.avd));

@@ -30,7 +30,6 @@ private:
   sf::Sprite player_sprite;
   sf::Sprite enemy_sprite;
 
-  bool is_visible;
   FormatClock timer;
 };
 

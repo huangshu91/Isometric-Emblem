@@ -19,11 +19,16 @@ public:
 
   void setup(GameEngine* eng);
 
+  virtual void enable() { visible = true; };
+  virtual void disable() { visible = false; };
+
   virtual void render() = 0;
 
 protected:
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
+
+  bool visible;
 };
 
 #endif /* GUIWIDGET_H_ */

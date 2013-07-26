@@ -16,7 +16,6 @@ sf::Vector2i StatusWidget::MENU_SIZE = sf::Vector2i(280, 120);
 
 StatusWidget::StatusWidget() {
   cur_ent = 0;
-  visible = false;
 }
 
 StatusWidget::~StatusWidget() {
@@ -80,14 +79,6 @@ void StatusWidget::update() {
   hp.setColor(sf::Color::Black);
   hp.setString(hpstring);
   hp.setOrigin(hp.getLocalBounds().width/2, hp.getLocalBounds().height/2);
-}
-
-// eventually have in and out animations for visibility
-void StatusWidget::setVisible(bool vis) {
-  //animation based on previous visibility
-  // if (visible == vis) do something
-
-  visible = vis;
 }
 
 void StatusWidget::render() {

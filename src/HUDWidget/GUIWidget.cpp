@@ -11,6 +11,7 @@
 GUIWidget::GUIWidget() {
   eng_ptr = 0;
   win_ptr = 0;
+  visible = false;
 }
 
 void GUIWidget::setup(GameEngine* eng)  {

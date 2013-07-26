@@ -50,7 +50,7 @@ void GameEngine::runEngine() {
 
   GUIFrame frame;
   frame.setup(getEngine());
-  frame.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), sf::Vector2i(920,200));
+  frame.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - 80), sf::Vector2i(920,120));
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
@@ -74,7 +74,7 @@ void GameEngine::runEngine() {
     pstate->render();
 
     //gameWindow.draw(testsprite);
-    //frame.render();
+    frame.render();
 
     gameWindow.display();
   }

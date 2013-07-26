@@ -11,7 +11,6 @@
 
 PhaseWidget::PhaseWidget() {
   phase = playstate::PLAYER;
-  is_visible = false;
 
   timer.resetClock();
 }
@@ -38,11 +37,11 @@ void PhaseWidget::setup(GameEngine* eng) {
 void PhaseWidget::changePhase(playstate::Phase p) {
   phase = p;
   timer.resetClock();
-  is_visible = true;
+  enable();
 }
 
 void PhaseWidget::render() {
-  if (is_visible) {
+  if (visible) {
     switch (phase) {
     case playstate::PLAYER:
       win_ptr->draw(player_sprite);
@@ -58,7 +57,7 @@ void PhaseWidget::render() {
   }
 
   if (timer.getElapsedTime() >= PHASE_DUR) {
-    is_visible = false;
+    disable();
     eng_ptr->getPlayState()->finishTransition();
   }
 }

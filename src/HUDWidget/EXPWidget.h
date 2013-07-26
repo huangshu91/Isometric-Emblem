@@ -23,7 +23,6 @@ public:
 
   void setup(GameEngine* eng);
   void updateChar(DynamicEntity* e, int from, int to);
-  void setVisible(bool vis);
   DynamicEntity* getCurEnt() { return unit; };
 
   void render();
@@ -44,8 +43,6 @@ private:
   int cur;
   bool incFlag;
   DynamicEntity* unit;
-
-  bool visible;
 };
 
 #endif /* EXPWIDGET_H_ */

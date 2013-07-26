@@ -287,22 +287,22 @@ void InputController::updateCell() {
   if (cur_cell->unit != 0) {// && selected == 0) {
     if (cur_cell->unit->getControl() == unit::PLAYER) {
       statushudr_ptr->updateChar(cur_cell->unit);
-      statushudr_ptr->setVisible(true);
+      statushudr_ptr->enable();
     }
     else if (cur_cell->unit->getControl() == unit::ENEMY) {
       statushudl_ptr->updateChar(cur_cell->unit);
-      statushudl_ptr->setVisible(true);
+      statushudl_ptr->enable();
     }
   }
 
   else if (selected != 0) {
     if (selected->getControl() == unit::PLAYER)
-      statushudr_ptr->setVisible(true);
+      statushudr_ptr->enable();
     if (selected->getControl() == unit::ENEMY)
-      statushudl_ptr->setVisible(true);
+      statushudl_ptr->enable();
   } else {
-    statushudr_ptr->setVisible(false);
-    statushudl_ptr->setVisible(false);
+    statushudr_ptr->disable();
+    statushudl_ptr->disable();
   }
 
   eng_ptr->getGameCam()->smoothMove(sf::Vector2f(cur_cell->getCenter()), 0.3f);

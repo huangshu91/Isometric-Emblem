@@ -12,6 +12,7 @@
 #include "../Util/UtilFunc.h"
 #include <string>
 #include <iostream>
+
 sf::Vector2i EXPWidget::MENU_SIZE = sf::Vector2i(440, 80);
 
 EXPWidget::EXPWidget() {
@@ -19,7 +20,6 @@ EXPWidget::EXPWidget() {
   end = 0;
   cur = 0;
   incFlag = false;
-  visible = false;
 
   unit = 0;
 }
@@ -68,17 +68,13 @@ void EXPWidget::updateChar(DynamicEntity* e, int from, int to) {
   cur = from;
   end = to;
 
-  visible = true;
+  enable();
   timer.resetClock();
 
   expbar.growProg(from, to);
 
   val.setString(numberToString(from));
   incFlag = true;
-}
-
-void EXPWidget::setVisible(bool vis) {
-  visible = true;
 }
 
 void EXPWidget::update() {
@@ -103,5 +99,5 @@ void EXPWidget::render() {
   win_ptr->draw(label);
   win_ptr->draw(val);
 
-  if (timer.getElapsedTime() > EXP_DUR) visible = false;
+  if (timer.getElapsedTime() > EXP_DUR) disable();
 }

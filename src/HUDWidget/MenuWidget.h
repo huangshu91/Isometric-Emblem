@@ -7,8 +7,8 @@
 
 #ifndef MENUWIDGET_H_
 #define MENUWIDGET_H_
-#include "../Interface/GUIFrame.h"
 #include "GUIWidget.h"
+#include "../Interface/GUIFrame.h"
 #include "../Util/Constants.h"
 #include <vector>
 
@@ -21,7 +21,6 @@ public:
   void build(sf::Vector2i loc, std::vector<std::string> opt, anchor::Position a);
 
   void enable();
-  void disable();
   void select(int s);
 
   std::string getChoiceName() { return choices[selected]; };
@@ -39,8 +38,6 @@ private:
 
   sf::Vector2i MENU_SIZE;
   sf::Vector2i CENTER;
-
-  bool visible;
 
   std::vector<std::string> choices;
   std::vector<sf::Text> c_text;

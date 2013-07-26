@@ -8,7 +8,7 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
-	MenuWidget, in build 'loc' param is top-left not center.  
+	Reaaaaaaaally need to split up inputcontroller. getting real messy.
 	
 	Split InputController into 2 source files.  One that has bare minimum of update, render, etc. The other contains logic for selecting cell, selecting menu, updating cell, etc.
 	

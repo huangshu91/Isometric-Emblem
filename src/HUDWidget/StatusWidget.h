@@ -22,7 +22,6 @@ public:
 
   void setup(GameEngine* eng, dir::Direction);
   void updateChar(DynamicEntity* e);
-  void setVisible(bool vis);
   DynamicEntity* getCurEnt() { return cur_ent; };
 
   void update();
@@ -40,8 +39,6 @@ private:
   sf::Text    hp;
 
   DynamicEntity* cur_ent;
-
-  bool visible;
 };
 
 #endif /* STATUSWIDGET_H_ */
