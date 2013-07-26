@@ -19,6 +19,7 @@ TextWidget::~TextWidget() {
 
 void TextWidget::setup(GameEngine* eng) {
   GUIWidget::setup(eng);
+  frame.setup(eng);
 
 }
 

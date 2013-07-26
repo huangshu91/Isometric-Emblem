@@ -88,6 +88,8 @@ const int SHAKE_INTENSITY = 2;
 const float EXP_DUR = 1;
 const int EXP_RATE = 2;
 
+const int TEXT_RATE = 10;
+
 // encyclopedia file paths
 
 const std::string DB_CLASS = "res/Data/classdb.txt";

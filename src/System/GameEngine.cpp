@@ -74,7 +74,7 @@ void GameEngine::runEngine() {
     pstate->render();
 
     //gameWindow.draw(testsprite);
-    frame.render();
+    //frame.render();
 
     gameWindow.display();
   }
