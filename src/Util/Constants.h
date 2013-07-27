@@ -105,7 +105,7 @@ namespace gamestate {
 
 namespace playstate {
   enum Phase { PLAYER, ENEMY, NEUTRAL, NEWTURN, RETURN,
-    FIGHT, FINISHFIGHT, UNITDEATH, LOSS, MENU_UNIT, MENU_STAT, MENU };
+    FIGHT, FINISHFIGHT, UNITDEATH, LOSS, MENU, CONVO };
 }
 
 namespace menu {

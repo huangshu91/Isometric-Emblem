@@ -38,6 +38,7 @@ private:
   int t_rate;
 
   std::string text;
+  sf::Text diag;
 };
 
 #endif /* SPEECHWIDGET_H_ */

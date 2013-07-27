@@ -17,6 +17,7 @@
 #include "../HUDWidget/StatusWidget.h"
 #include "../HUDWidget/EXPWidget.h"
 #include "../HUDWidget/MenuWidget.h"
+#include "../HUDWIdget/SpeechWidget.h"
 
 class GUIFrame;
 class GameEngine;

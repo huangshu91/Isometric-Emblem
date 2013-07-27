@@ -67,29 +67,26 @@ void PlayState::changePhase(playstate::Phase next) {
     input->reset();
     round_num++;
   }
+  else if (phase == playstate::CONVO) {
 
-  if (phase == playstate::UNITDEATH) {
-    // is there anything that needs to be handled here?
-    // just switch back to previous state;
+  }
+  else if (phase == playstate::UNITDEATH) {
+    //exp and stuff
     phase = turn;
 
     //finishTransition();
   }
-
-  if (phase == playstate::MENU) {
+  else if (phase == playstate::MENU) {
     mc->enable();
   }
-
-  if (phase == playstate::FIGHT) {
+  else if (phase == playstate::FIGHT) {
     // set some hud stuff?
   }
-
-  if (phase == playstate::FINISHFIGHT) {
+  else if (phase == playstate::FINISHFIGHT) {
     // exp stuff here as well
     phase = turn;
   }
-
-  if (phase == playstate::RETURN) {
+  else if (phase == playstate::RETURN) {
     phase = turn;
   }
 }
