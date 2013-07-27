@@ -29,13 +29,15 @@ private:
   GUIFrame frame;
 
   //placeholder for portrait;
-  sf::Texture   tex;
+  sf::Texture   port;
   sf::Text      name;
 
   std::vector<sf::Sprite> actors;
   sf::Sprite* speaker;
 
   int t_rate;
+
+  std::string text;
 };
 
 #endif /* SPEECHWIDGET_H_ */

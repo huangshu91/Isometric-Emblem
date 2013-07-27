@@ -27,6 +27,7 @@ void HUDManager::setup(GameEngine* eng) {
   exp_hud.setup(eng);
   menu_hud_unit.setup(eng);
   menu_hud_gen.setup(eng);
+  speech_hud.setup(eng);
   addWidget(STATUS_HUDL, &status_hudl);
   addWidget(STATUS_HUDR, &status_hudr);
   addWidget(TERRAIN_MENU, &terrain_hud);
@@ -34,6 +35,7 @@ void HUDManager::setup(GameEngine* eng) {
   addWidget(EXP_HUD, &exp_hud);
   addWidget(MENU_HUD_UNIT, &menu_hud_unit);
   addWidget(MENU_HUD_GEN, &menu_hud_gen);
+  addWidget(SPEECH_HUD, &speech_hud);
 
   vector<string> unit;
   for (int i = 0; i < menu::NUM_UNIT_CHOICE; i++) {

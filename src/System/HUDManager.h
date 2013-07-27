@@ -38,6 +38,7 @@ public:
   EXPWidget* getEXPHUD() { return &exp_hud; };
   MenuWidget* getMenuHUD() { return &menu_hud_unit; };
   MenuWidget* getGenHUD() { return &menu_hud_gen; };
+  SpeechWidget* getSpeechHUD() { return &speech_hud; };
 
   //void update();
   void render();
@@ -54,6 +55,7 @@ private:
   StatusWidget  status_hudr;
   StatusWidget  status_hudl;
   EXPWidget     exp_hud;
+  SpeechWidget  speech_hud;
 
   MenuWidget    menu_hud_unit;
   MenuWidget    menu_hud_gen;

@@ -73,6 +73,7 @@ const std::string STATUS_HUDL = "status_hudl";
 const std::string EXP_HUD = "exp_hud";
 const std::string MENU_HUD_UNIT = "menu_hud_unit";
 const std::string MENU_HUD_GEN = "menu_hud_gen";
+const std::string SPEECH_HUD = "speech_hud";
 
 const int GUI_PADDING = 30;
 const int MENU_PADDING = 5;
