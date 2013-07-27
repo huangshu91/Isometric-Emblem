@@ -38,6 +38,7 @@ public:
   void toggleRangeOff();
   void markCell(Cell* c, std::string key);
 
+  bool moveUnit(DynamicEntity* e, int x, int y);
   bool inDistance(DynamicEntity* e, unit::Control utype);
   void newTurn();
   void checkLoss();

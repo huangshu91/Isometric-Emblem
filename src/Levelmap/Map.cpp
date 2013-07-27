@@ -177,3 +177,24 @@ void Map::removeUnit(DynamicEntity* unit, unit::Control utype) {
 
   dead.push_back(unit);
 }
+
+bool Map::moveUnit(DynamicEntity* e, int x, int y) {
+  Cell* unit_cell = e->getCurCell();
+
+  if (unit_cell == 0)
+    return false;
+  Cell* to_cell = getCell(x, y);
+
+  if (unit_cell == to_cell)
+    return true;
+
+  if (to_cell == 0 || to_cell->unit != 0)
+    return false;
+
+  unit_cell->unit = 0;
+  e->setTile(to_cell, this);
+  to_cell->unit = e;
+
+  sortForeground();
+  return true;
+}
