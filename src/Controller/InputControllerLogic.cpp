@@ -18,20 +18,25 @@ void InputController::update() {
   //if the window does not have focus, do not accept input
   if (eng_ptr->hasFocus() == false) return;
 
-      sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
-      pixelPos.x *= eng_ptr->getGameCam()->getZoom();
-      pixelPos.y *= eng_ptr->getGameCam()->getZoom();
-      pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
-      pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
-      sf::Vector2f worldPos = win_ptr->mapPixelToCoords(pixelPos);
-      worldPos.x /= 30; //TSIZE_X/2
-      worldPos.y /= 15; //TSIZE_Y/4
-      int tx = ((worldPos.y - worldPos.x)/2)+0.5;
-      int ty = ((worldPos.x + worldPos.y)/2)-0.5;
-      if(setCurrentCell(tx, ty) && inputtimer.getElapsedTime() > INPUT_DELAY)
-      {
-      updateCell();
-      }
+  	  if(sf::Event::MouseMoved)
+  	  {
+  	  	  sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
+         pixelPos.x *= eng_ptr->getGameCam()->getZoom();
+         pixelPos.y *= eng_ptr->getGameCam()->getZoom();
+         pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
+         pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
+         sf::Vector2f worldPos = win_ptr->mapPixelToCoords(pixelPos);
+         worldPos.x /= 30; //TSIZE_X/2
+         worldPos.y /= 15; //TSIZE_Y/4
+         int tx = ((worldPos.y - worldPos.x)/2)+0.5;
+         int ty = ((worldPos.x + worldPos.y)/2)-0.5;
+         if(setCurrentCell(tx,ty))updateCell();
+         if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+         {
+
+         		selectCell();
+         }
+  	  }
   /*
   sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
   pixelPos.x *= eng_ptr->getGameCam()->getZoom();
