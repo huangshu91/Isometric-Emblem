@@ -9,13 +9,12 @@
 #include "../System/GameEngine.h"
 #include <string>
 
-sf::Vector2i SpeechWidget::MENU_SIZE = sf::Vector2i(920, 120);
+sf::Vector2i SpeechWidget::MENU_SIZE = sf::Vector2i(920, 160);
 
 
 SpeechWidget::SpeechWidget() {
   t_rate = TEXT_RATE;
   speaker = 0;
-  text = "testing testing testing testing testing testing testing tesitng testng testing testing";
 }
 
 SpeechWidget::~SpeechWidget() {
@@ -24,19 +23,20 @@ SpeechWidget::~SpeechWidget() {
 
 void SpeechWidget::setup(GameEngine* eng) {
   GUIWidget::setup(eng);
-  frame.setup(eng_ptr);
+  text_hud.setup(eng);
 
-  frame.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - 80), MENU_SIZE);
+  text_hud.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - (MENU_SIZE.y/2+20)), MENU_SIZE);
   build();
+  text_hud.enable();
   enable();
 }
 
 void SpeechWidget::build() {
-  diag.setFont(*(eng_ptr->getRes()->getFont(VISITOR_FONT_KEY)));
-  diag.setString(text);
-  diag.setColor(sf::Color::Black);
-  diag.setCharacterSize(VISITOR_SIZE);
-  diag.setPosition(sf::Vector2f(frame.getLoc()));
+
+  //cout << diag.getLocalBounds().top << " : " << diag.getLocalBounds().left << " : " << diag.getLocalBounds().height << " : " << diag.getLocalBounds().width << endl;
+
+  //sf::View v = win_ptr->getView();
+  //cout << v.getViewport().left << " : " << v.getViewport().top << endl;
 }
 
 void SpeechWidget::update() {
@@ -46,6 +46,11 @@ void SpeechWidget::update() {
 void SpeechWidget::render() {
   if (!visible) return;
 
-  frame.render();
-  win_ptr->draw(diag);
+  sf::View v = win_ptr->getView();
+  sf::RectangleShape rs(sf::Vector2f(960,300));
+  rs.setPosition(v.getViewport().left, v.getViewport().top);
+  rs.setFillColor(sf::Color(0,0,0,100));
+  win_ptr->draw(rs);
+
+  text_hud.render();
 }

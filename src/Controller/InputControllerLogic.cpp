@@ -16,6 +16,7 @@
 
 void InputController::update() {
   //if the window does not have focus, do not accept input
+
   if (eng_ptr->hasFocus() == false) return;
 
   	  	  sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
@@ -34,20 +35,6 @@ void InputController::update() {
 
   	         		selectCell();
   	         }
-  /*
-  sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
-  pixelPos.x *= eng_ptr->getGameCam()->getZoom();
-  pixelPos.y *= eng_ptr->getGameCam()->getZoom();
-  pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
-  pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
-  int tx = ceil((pixelPos.x+2*pixelPos.y-30-30)/60);
-  int ty = ceil((-pixelPos.x+2*pixelPos.y+30-30)/60);
-  if(setCurrentCell(ty, tx) && inputtimer.getElapsedTime() > INPUT_DELAY)
-  {
-  updateCell();
-  }
-  */
-
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {

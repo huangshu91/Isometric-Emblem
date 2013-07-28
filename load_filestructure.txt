@@ -46,10 +46,21 @@ G Grass
 PGG								// map description using symbols
 PPG
 
-
 Chapter database type
 -------------------------
 1								// number of maps
 1								// STRING chapter identifier
 Training Session				// name of chapter				
 res/Data/Maps/chapter1.txt		// path to chapter
+
+Text database type
+-------------------------
+2								// number of pages
+implying any of this is implemented \n\n it'll be finished when it's finished						 // text, use double \n\n for newlines.
+second page, blah blah. 
+
+Info database type
+-------------------------
+2								// number of text files
+ITEM_MISS text_itemmiss.txt		// KEY filename
+UNIT_GEN_DESC text_unitgendesc.txt
