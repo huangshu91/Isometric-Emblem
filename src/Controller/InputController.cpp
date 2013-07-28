@@ -53,7 +53,7 @@ void InputController::reset() {
   selected = 0;
 }
 
-void InputController::updateCell() {
+void InputController::updateCell(double time) {
   // consider if selected == 0, this means that if someone is selected,
   // the statuswidgets are locked.
   if (cur_cell->unit != 0) {// && selected == 0) {
@@ -77,7 +77,7 @@ void InputController::updateCell() {
     statushudl_ptr->disable();
   }
 
-  eng_ptr->getGameCam()->smoothMove(sf::Vector2f(cur_cell->getCenter()), 0.3f);
+  eng_ptr->getGameCam()->smoothMove(sf::Vector2f(cur_cell->getCenter()), time);
   terrainhud_ptr->setTile(cur_cell->getTerrain());
 }
 

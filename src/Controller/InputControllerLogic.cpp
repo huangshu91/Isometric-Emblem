@@ -18,8 +18,6 @@ void InputController::update() {
   //if the window does not have focus, do not accept input
   if (eng_ptr->hasFocus() == false) return;
 
-  	  if(sf::Event::MouseMoved)
-  	  {
   	  	  sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
          pixelPos.x *= eng_ptr->getGameCam()->getZoom();
          pixelPos.y *= eng_ptr->getGameCam()->getZoom();
@@ -30,13 +28,12 @@ void InputController::update() {
          worldPos.y /= 15; //TSIZE_Y/4
          int tx = ((worldPos.y - worldPos.x)/2)+0.5;
          int ty = ((worldPos.x + worldPos.y)/2)-0.5;
-         if(setCurrentCell(tx,ty))updateCell();
-         if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-         {
+         if(setCurrentCell(tx,ty)){updateCell(1.3f);}
+  	if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+  	         {
 
-         		selectCell();
-         }
-  	  }
+  	         		selectCell();
+  	         }
   /*
   sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
   pixelPos.x *= eng_ptr->getGameCam()->getZoom();
@@ -59,7 +56,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()-1);
     }
     else if (setCurrentCell(cur_cell->getRow() - 1, cur_cell->getCol()))
-      updateCell();
+      updateCell(0.3f);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)
@@ -69,7 +66,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()-1);
     }
     else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() - 1))
-      updateCell();
+      updateCell(0.3f);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)
@@ -79,7 +76,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()+1);
     }
     else if (setCurrentCell(cur_cell->getRow() + 1, cur_cell->getCol()))
-      updateCell();
+      updateCell(0.3f);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)
@@ -89,7 +86,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()+1);
     }
     else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() + 1))
-      updateCell();
+      updateCell(0.3f);
   }
 
   // select the current cell

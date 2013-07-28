@@ -31,7 +31,7 @@ public:
   bool setCurrentCell(int x, int y);
   void selectCell();
   void selectMenu();
-  void updateCell();
+  void updateCell(double time);
   sf::Vector2i getCurrentCenter();
   DynamicEntity* getSelected() { return selected; };
 

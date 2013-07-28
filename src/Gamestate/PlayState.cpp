@@ -39,7 +39,7 @@ void PlayState::setup() {
 
   input->setMap(level);
   input->setCurrentCell(3,3);
-  input->updateCell();
+  input->updateCell(0.5f);
   ai->setMap(level);
 
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
