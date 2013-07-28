@@ -104,6 +104,8 @@ void TerrainMenu::setTile(Terrain t) {
 }
 
 void TerrainMenu::render() {
+  if (!visible) return;
+
   frame.render();
   win_ptr->draw(label);
   win_ptr->draw(def_text);

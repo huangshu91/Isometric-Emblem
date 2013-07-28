@@ -8,7 +8,9 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
-	Reaaaaaaaally need to split up inputcontroller. getting real messy.
+	For text, use double \n because of spacing and readability.  For now use very simple formating, consider effects in future.
+	
+	Reaaaaaaaally need to split up inputcontroller. getting real messy. DONE
 	
 	Split InputController into 2 source files.  One that has bare minimum of update, render, etc. The other contains logic for selecting cell, selecting menu, updating cell, etc.
 	

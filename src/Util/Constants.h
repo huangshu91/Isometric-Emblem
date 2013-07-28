@@ -75,6 +75,8 @@ const std::string MENU_HUD_UNIT = "menu_hud_unit";
 const std::string MENU_HUD_GEN = "menu_hud_gen";
 const std::string SPEECH_HUD = "speech_hud";
 
+const std::string TEXT_HUD = "text_hud";
+
 const int GUI_PADDING = 30;
 const int MENU_PADDING = 5;
 
@@ -96,6 +98,7 @@ const int TEXT_RATE = 10;
 const std::string DB_CLASS = "res/Data/classdb.txt";
 const std::string DB_TILE = "res/Data/tiledb.txt";
 const std::string DB_CHAP = "res/Data/chapterdb.txt";
+const std::string DB_INFO = "res/Data/infodb.txt";
 
 // enums
 

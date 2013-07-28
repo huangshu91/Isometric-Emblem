@@ -16,35 +16,24 @@
 
 void InputController::update() {
   //if the window does not have focus, do not accept input
+
   if (eng_ptr->hasFocus() == false) return;
 
-      sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
-      pixelPos.x *= eng_ptr->getGameCam()->getZoom();
-      pixelPos.y *= eng_ptr->getGameCam()->getZoom();
-      pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
-      pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
-      sf::Vector2f worldPos = win_ptr->mapPixelToCoords(pixelPos);
-      worldPos.x /= 30; //TSIZE_X/2
-      worldPos.y /= 15; //TSIZE_Y/4
-      int tx = ((worldPos.y - worldPos.x)/2)+0.5;
-      int ty = ((worldPos.x + worldPos.y)/2)-0.5;
-      if(setCurrentCell(tx, ty) && inputtimer.getElapsedTime() > INPUT_DELAY)
-      {
-      updateCell();
-      }
-  /*
   sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
   pixelPos.x *= eng_ptr->getGameCam()->getZoom();
   pixelPos.y *= eng_ptr->getGameCam()->getZoom();
   pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
   pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
-  int tx = ceil((pixelPos.x+2*pixelPos.y-30-30)/60);
-  int ty = ceil((-pixelPos.x+2*pixelPos.y+30-30)/60);
-  if(setCurrentCell(ty, tx) && inputtimer.getElapsedTime() > INPUT_DELAY)
+  sf::Vector2f worldPos = win_ptr->mapPixelToCoords(pixelPos);
+  worldPos.x /= 30; //TSIZE_X/2
+  worldPos.y /= 15; //TSIZE_Y/4
+  int tx = ((worldPos.y - worldPos.x)/2)+0.5;
+  int ty = ((worldPos.x + worldPos.y)/2)-0.5;
+  if(setCurrentCell(tx, ty) && inputtimer.getElapsedTime() > INPUT_DELAY)
   {
-  updateCell();
+    updateCell();
   }
-  */
+
 
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)

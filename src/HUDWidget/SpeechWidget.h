@@ -9,6 +9,7 @@
 #define SPEECHWIDGET_H_
 
 #include "GUIWidget.h"
+#include "TextWidget.h"
 #include "../Interface/GUIFrame.h"
 #include "../Util/Constants.h"
 
@@ -26,11 +27,11 @@ public:
   static sf::Vector2i MENU_SIZE;
 
 private:
-  GUIFrame frame;
-
   //placeholder for portrait;
   sf::Texture   port;
   sf::Text      name;
+
+  TextWidget  text_hud;
 
   std::vector<sf::Sprite> actors;
   sf::Sprite* speaker;

@@ -54,6 +54,8 @@ void HUDManager::setup(GameEngine* eng) {
   loc.x = WINDOW_WIDTH - GUI_PADDING;
   loc.y = status_hudr.MENU_SIZE.y + 2*GUI_PADDING;
   menu_hud_gen.build(loc, gen, anchor::TOPRIGHT);
+
+  terrain_hud.disable();
 }
 
 HUDManager::~HUDManager() {

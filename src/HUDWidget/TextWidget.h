@@ -11,6 +11,8 @@
 #include "GUIWidget.h"
 #include "../Interface/GUIFrame.h"
 #include "../Util/Constants.h"
+#include <vector>
+#include <string>
 
 class TextWidget: public GUIWidget {
 public:
@@ -18,15 +20,23 @@ public:
   virtual ~TextWidget();
 
   void setup(GameEngine* eng);
-  void build();
+  void build(sf::Vector2i loc, sf::Vector2i size);
+
+  void setText(std::vector<std::string> text);
+
+  void update();
 
   void render();
+
+  sf::Vector2i getMenuSize() { return MENU_SIZE; };
 
 private:
   GUIFrame frame;
 
   sf::Vector2i MENU_SIZE;
   sf::Vector2i CENTER;
+
+  int t_rate;
 
   sf::Sprite icon;
   sf::Text name;
