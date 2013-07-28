@@ -19,6 +19,7 @@ void InputController::update() {
 
   if (eng_ptr->hasFocus() == false) return;
 
+  /*
   sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
   pixelPos.x *= eng_ptr->getGameCam()->getZoom();
   pixelPos.y *= eng_ptr->getGameCam()->getZoom();
@@ -33,7 +34,7 @@ void InputController::update() {
   {
     updateCell();
   }
-
+  */
 
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
