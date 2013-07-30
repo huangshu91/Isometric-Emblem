@@ -29,12 +29,8 @@ void InputController::update() {
          worldPos.y /= 15; //TSIZE_Y/4
          int tx = ((worldPos.y - worldPos.x)/2)+0.5;
          int ty = ((worldPos.x + worldPos.y)/2)-0.5;
-         if(setCurrentCell(tx,ty)){updateCell(1.3f);}
-  	if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-  	         {
-
-  	         		selectCell();
-  	         }
+         if(setCurrentCell(tx,ty)) { updateCell(1.3f); }
+         if(sf::Mouse::isButtonPressed((sf::Mouse::Left))) { selectCell();}
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
@@ -43,7 +39,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()-1);
     }
     else if (setCurrentCell(cur_cell->getRow() - 1, cur_cell->getCol()))
-      updateCell(0.3f);
+      updateCell(KEY_PAN_SENS);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)
@@ -53,7 +49,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()-1);
     }
     else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() - 1))
-      updateCell(0.3f);
+      updateCell(KEY_PAN_SENS);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)
@@ -63,7 +59,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()+1);
     }
     else if (setCurrentCell(cur_cell->getRow() + 1, cur_cell->getCol()))
-      updateCell(0.3f);
+      updateCell(KEY_PAN_SENS);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)
@@ -73,7 +69,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()+1);
     }
     else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() + 1))
-      updateCell(0.3f);
+      updateCell(KEY_PAN_SENS);
   }
 
   // select the current cell

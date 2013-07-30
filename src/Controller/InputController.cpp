@@ -53,7 +53,7 @@ void InputController::reset() {
   selected = 0;
 }
 
-void InputController::updateCell(double time) {
+void InputController::updateCell(float time) {
   // consider if selected == 0, this means that if someone is selected,
   // the statuswidgets are locked.
   if (cur_cell->unit != 0) {// && selected == 0) {
