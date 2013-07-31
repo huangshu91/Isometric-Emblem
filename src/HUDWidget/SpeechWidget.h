@@ -28,11 +28,13 @@ public:
   void build();
 
   void loadConvo(std::string conv);
+  void nextPage();
 
   void update();
   void render();
 
   static sf::Vector2i MENU_SIZE;
+  static sf::Vector2i CHAR_POS[6];
 
 private:
   TextWidget  text_hud;
@@ -40,7 +42,7 @@ private:
   std::vector<Speaker> actors;
   Speaker cur_speak;
 
-  int t_rate;
+  float t_rate;
   int cur_page;
 
   sf::Vector2i MENU_LOC;

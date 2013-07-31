@@ -1,7 +1,7 @@
 2
-Kou
+Kou 5
 res/Char/char_kou.png
-Rese
+Rese 0
 res/Char/char_rese.png
 
 3

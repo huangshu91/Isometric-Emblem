@@ -24,6 +24,7 @@ public:
   void build(sf::Vector2i loc, sf::Vector2i size);
 
   void setText(std::vector<std::string> text);
+  bool isFinished() { return finished; };
 
   void update();
 
@@ -37,12 +38,15 @@ private:
   sf::Vector2i MENU_SIZE;
   sf::Vector2i CENTER;
 
-  int t_rate;
+  float t_rate;
   FormatClock timer;
+  bool finished;
 
-  sf::Sprite icon;
-  sf::Text name;
-  std::vector<sf::Text> text;
+  unsigned int char_pos;
+  std::string cur_text;
+  std::string full_text;
+  sf::Sprite cont_button;
+  sf::Text page;
 };
 
 #endif /* TEXTWIDGET_H_ */

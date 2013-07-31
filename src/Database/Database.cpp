@@ -92,15 +92,18 @@ Convo Database::LoadAct(string convo_path) {
     int char_num = 0;
     string str_temp;
     string str_temp2;
+    int int_temp;
 
     file >> char_num;
     ret.chars = char_num;
     for (int i = 0; i < char_num; i++) {
       file >> str_temp;
+      file >> int_temp;
       file >> str_temp2;
 
       eng_ptr->getRes()->addResource(str_temp, str_temp2);
       ret.char_keys.push_back(str_temp);
+      ret.char_pos.push_back(int_temp);
     }
 
     int pages = 0;

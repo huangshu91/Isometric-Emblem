@@ -11,7 +11,10 @@
 #include <string>
 
 sf::Vector2i SpeechWidget::MENU_SIZE = sf::Vector2i(920, 160);
-
+// Modify these to be more consistent once sprite size is figured out
+sf::Vector2i SpeechWidget::CHAR_POS[] = { sf::Vector2i(170, 360),
+    sf::Vector2i(270,360), sf::Vector2i(370, 360), sf::Vector2i(610, 360),
+    sf::Vector2i(710,360), sf::Vector2i(710, 360)};
 
 SpeechWidget::SpeechWidget() {
   t_rate = TEXT_RATE;
@@ -42,10 +45,11 @@ void SpeechWidget::loadConvo(string convo) {
   }
 
   cur_page = 0;
-  for (auto it : conv.char_keys) {
+  for (unsigned int i = 0; i < conv.char_keys.size(); i++) {
+    string it = conv.char_keys[i];
     sf::Sprite s(*(eng_ptr->getRes()->getResource(it)));
     s.setOrigin(s.getLocalBounds().width/2, s.getLocalBounds().height);
-    s.setPosition(MENU_LOC.x, MENU_LOC.y - MENU_SIZE.y/2);
+    s.setPosition(sf::Vector2f(CHAR_POS[conv.char_pos[i]]));
     Speaker tmp;
     tmp.name = it;
     tmp.sp = s;
@@ -54,6 +58,10 @@ void SpeechWidget::loadConvo(string convo) {
       cur_speak = actors[actors.size()-1];
     }
   }
+
+}
+
+void SpeechWidget::nextPage() {
 
 }
 

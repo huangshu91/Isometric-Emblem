@@ -50,6 +50,7 @@ struct Convo {
   int chars;
   int pages;
   std::vector<std::string> char_keys;
+  std::vector<int> char_pos;
   std::vector<Page> dialogue;
 };
 
