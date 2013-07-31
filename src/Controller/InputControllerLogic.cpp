@@ -31,8 +31,7 @@ void InputController::update() {
   int tx = ((worldPos.y - worldPos.x)/2)+0.5;
   int ty = ((worldPos.x + worldPos.y)/2)-0.5;
   if(setCurrentCell(tx,ty)){updateCell(2.0f);}
-  if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-  {
+  if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
     selectCell();
   }
   */
@@ -45,7 +44,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()-1);
     }
     else if (setCurrentCell(cur_cell->getRow() - 1, cur_cell->getCol()))
-      updateCell(0.3f);
+      updateCell(KEY_PAN_SENS);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)
@@ -55,7 +54,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()-1);
     }
     else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() - 1))
-      updateCell(0.3f);
+      updateCell(KEY_PAN_SENS);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)
@@ -65,7 +64,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()+1);
     }
     else if (setCurrentCell(cur_cell->getRow() + 1, cur_cell->getCol()))
-      updateCell(0.3f);
+      updateCell(KEY_PAN_SENS);
   }
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)
@@ -75,7 +74,7 @@ void InputController::update() {
       base_menu->select(base_menu->getChoice()+1);
     }
     else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() + 1))
-      updateCell(0.3f);
+      updateCell(KEY_PAN_SENS);
   }
 
   // select the current cell
