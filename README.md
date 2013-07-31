@@ -8,6 +8,10 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	multithread for loading in future. database loading, sound manager, map loading. display simple load screen and use other thread to load then pass messages back to update progress. will be necessary because of number of assests loaded into mem at start of game.
+	
+	Maps are loaded when needed (when it is used).  Everything else should be loaded right at start in database.
+	
 	For text, use double \n because of spacing and readability.  For now use very simple formating, consider effects in future.
 	
 	Reaaaaaaaally need to split up inputcontroller. getting real messy. DONE

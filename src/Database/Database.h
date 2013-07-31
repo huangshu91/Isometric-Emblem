@@ -41,6 +41,18 @@ struct ChapDef {
   std::string map_def;
 };
 
+struct Page {
+  std::string char_key;
+  std::string line;
+};
+
+struct Convo {
+  int chars;
+  int pages;
+  std::vector<std::string> char_keys;
+  std::vector<Page> dialogue;
+};
+
 class Database {
 public:
   Database();
@@ -52,6 +64,7 @@ public:
   TileDef getTile(std::string t);
   ChapDef getChap(std::string c);
   UnitClass getClass(std::string c);
+  Convo getConvo(std::string c);
 
 private:
   GameEngine* eng_ptr;
@@ -66,10 +79,16 @@ private:
   std::vector<std::string> chapter_id;
   std::map<std::string, ChapDef> chap_db;
 
+  std::vector<std::string> convo_names;
+  std::map<std::string, Convo> convo_db;
+
   void LoadClasses();
   void LinkClasses();
   void LoadTiles();
   void LoadChapterInfo();
+  void LoadConvo();
+
+  Convo LoadAct(std::string convo_path);
 };
 
 #endif /* DATABASE_H_ */

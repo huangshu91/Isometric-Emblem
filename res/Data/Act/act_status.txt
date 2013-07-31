@@ -1,0 +1,13 @@
+2
+Kou
+res/Char/char_kou.png
+Rese
+res/Char/char_rese.png
+
+3
+Kou
+testing testing
+Rese
+test test test
+Kou
+testingly

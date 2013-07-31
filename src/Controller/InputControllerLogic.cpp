@@ -19,22 +19,24 @@ void InputController::update() {
 
   if (eng_ptr->hasFocus() == false) return;
 
-  	  	  sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
-         pixelPos.x *= eng_ptr->getGameCam()->getZoom();
-         pixelPos.y *= eng_ptr->getGameCam()->getZoom();
-         pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
-         pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
-         sf::Vector2f worldPos = win_ptr->mapPixelToCoords(pixelPos);
-         worldPos.x /= 30; //TSIZE_X/2
-         worldPos.y /= 15; //TSIZE_Y/4
-         int tx = ((worldPos.y - worldPos.x)/2)+0.5;
-         int ty = ((worldPos.x + worldPos.y)/2)-0.5;
-         if(setCurrentCell(tx,ty)){updateCell(1.3f);}
-  	if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-  	         {
+  /*
+  sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
+  pixelPos.x *= eng_ptr->getGameCam()->getZoom();
+  pixelPos.y *= eng_ptr->getGameCam()->getZoom();
+  pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
+  pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
+  sf::Vector2f worldPos = win_ptr->mapPixelToCoords(pixelPos);
+  worldPos.x /= 30; //TSIZE_X/2
+  worldPos.y /= 15; //TSIZE_Y/4
+  int tx = ((worldPos.y - worldPos.x)/2)+0.5;
+  int ty = ((worldPos.x + worldPos.y)/2)-0.5;
+  if(setCurrentCell(tx,ty)){updateCell(2.0f);}
+  if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+  {
+    selectCell();
+  }
+  */
 
-  	         		selectCell();
-  	         }
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {

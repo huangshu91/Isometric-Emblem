@@ -11,6 +11,24 @@
 #include "DatabaseTest.h"
 using namespace std;
 
+void testConvo(vector<string> convs, map<string, Convo> db) {
+  cout << "test start" << endl;
+  for (auto i : convs) {
+    Convo c = db.find(i)->second;
+    cout << c.chars << endl;
+    for (auto j : c.char_keys) {
+      cout << j << endl;
+    }
+    cout << c.pages << endl;
+    for (auto k : c.dialogue) {
+      cout << k.char_key << endl;
+      cout << k.line << endl;
+      cout << endl;
+    }
+  }
+  cout << "------------" << endl;
+}
+
 void testChap(vector<string> chap, map<string, ChapDef> db) {
   cout << "test start" << endl;
   for (auto i : chap) {

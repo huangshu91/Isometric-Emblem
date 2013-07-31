@@ -62,5 +62,26 @@ second page, blah blah.
 Info database type
 -------------------------
 2								// number of text files
-ITEM_MISS text_itemmiss.txt		// KEY filename
-UNIT_GEN_DESC text_unitgendesc.txt
+ITEM_MISS res/Data/Info/text_itemmiss.txt		// KEY path
+UNIT_GEN_DESC res/Data/Info/text_unitgendesc.txt
+
+Convo database type
+--------------------------
+1								// number of convo files
+STATUS_CONVO res/Data/Act/act_status.txt		// KEY path
+
+Act database type
+--------------------------
+2								// number of actors
+Kou 							// key (name) of actor
+res/Char/char_kou.png			// actor sprite path
+Rese
+res/Char/char_rese.png
+
+3								// number of pages
+Kou								// actor
+testing testing					// dialogue
+Rese
+test test test				
+Kou
+testingly						

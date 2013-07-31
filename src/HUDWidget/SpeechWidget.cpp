@@ -7,6 +7,7 @@
 
 #include "SpeechWidget.h"
 #include "../System/GameEngine.h"
+#include "../Database/Database.h"
 #include <string>
 
 sf::Vector2i SpeechWidget::MENU_SIZE = sf::Vector2i(920, 160);
@@ -14,7 +15,7 @@ sf::Vector2i SpeechWidget::MENU_SIZE = sf::Vector2i(920, 160);
 
 SpeechWidget::SpeechWidget() {
   t_rate = TEXT_RATE;
-  speaker = 0;
+  cur_page = 0;
 }
 
 SpeechWidget::~SpeechWidget() {
@@ -25,32 +26,59 @@ void SpeechWidget::setup(GameEngine* eng) {
   GUIWidget::setup(eng);
   text_hud.setup(eng);
 
-  text_hud.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - (MENU_SIZE.y/2+20)), MENU_SIZE);
+  MENU_LOC = sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - (MENU_SIZE.y/2+20));
+  text_hud.build(MENU_LOC, MENU_SIZE);
   build();
+  loadConvo("STATUS_CONVO");
   text_hud.enable();
   enable();
 }
 
+void SpeechWidget::loadConvo(string convo) {
+  conv = eng_ptr->getDatabase()->getConvo(convo);
+  if (conv.pages == 0 && conv.chars == 0) {
+    eng_ptr->getLog()->e("Could not load convo: "+convo);
+    return;
+  }
+
+  cur_page = 0;
+  for (auto it : conv.char_keys) {
+    sf::Sprite s(*(eng_ptr->getRes()->getResource(it)));
+    s.setOrigin(s.getLocalBounds().width/2, s.getLocalBounds().height);
+    s.setPosition(MENU_LOC.x, MENU_LOC.y - MENU_SIZE.y/2);
+    Speaker tmp;
+    tmp.name = it;
+    tmp.sp = s;
+    actors.push_back(tmp);
+    if (!conv.dialogue[cur_page].char_key.compare(it)) {
+      cur_speak = actors[actors.size()-1];
+    }
+  }
+
+}
+
 void SpeechWidget::build() {
 
-  //cout << diag.getLocalBounds().top << " : " << diag.getLocalBounds().left << " : " << diag.getLocalBounds().height << " : " << diag.getLocalBounds().width << endl;
-
-  //sf::View v = win_ptr->getView();
-  //cout << v.getViewport().left << " : " << v.getViewport().top << endl;
 }
 
 void SpeechWidget::update() {
-
+  text_hud.update();
 }
 
 void SpeechWidget::render() {
   if (!visible) return;
 
+  for (unsigned int i = 0; i < actors.size(); i++) {
+    win_ptr->draw(actors[i].sp);
+  }
+
   sf::View v = win_ptr->getView();
-  sf::RectangleShape rs(sf::Vector2f(960,300));
+  sf::RectangleShape rs(sf::Vector2f(960,540));
   rs.setPosition(v.getViewport().left, v.getViewport().top);
   rs.setFillColor(sf::Color(0,0,0,100));
   win_ptr->draw(rs);
+
+  win_ptr->draw(cur_speak.sp);
 
   text_hud.render();
 }

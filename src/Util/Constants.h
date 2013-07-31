@@ -16,7 +16,7 @@ const int WINDOW_COLOR_DEPTH = 32;
 const int FPS_LIMIT = 60;
 const bool DEBUG = true;
 
-const std::string VERSION_NUM = "0.0.2";
+const std::string VERSION_NUM = "0.0.3";
 const std::string GAME_LABEL = "Isometric RPG";
 const sf::Color WINDOW_COLOR = sf::Color(117,169,191);
 
@@ -99,6 +99,7 @@ const std::string DB_CLASS = "res/Data/classdb.txt";
 const std::string DB_TILE = "res/Data/tiledb.txt";
 const std::string DB_CHAP = "res/Data/chapterdb.txt";
 const std::string DB_INFO = "res/Data/infodb.txt";
+const std::string DB_CONVO = "res/Data/convodb.txt";
 
 // enums
 

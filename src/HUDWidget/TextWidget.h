@@ -11,6 +11,7 @@
 #include "GUIWidget.h"
 #include "../Interface/GUIFrame.h"
 #include "../Util/Constants.h"
+#include "../Util/FormatClock.h"
 #include <vector>
 #include <string>
 
@@ -37,6 +38,7 @@ private:
   sf::Vector2i CENTER;
 
   int t_rate;
+  FormatClock timer;
 
   sf::Sprite icon;
   sf::Text name;
