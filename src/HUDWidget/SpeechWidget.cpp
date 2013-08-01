@@ -19,6 +19,7 @@ sf::Vector2i SpeechWidget::CHAR_POS[] = { sf::Vector2i(170, 360),
 SpeechWidget::SpeechWidget() {
   t_rate = TEXT_RATE;
   cur_page = 0;
+  finished = false;
 }
 
 SpeechWidget::~SpeechWidget() {
@@ -31,10 +32,9 @@ void SpeechWidget::setup(GameEngine* eng) {
 
   MENU_LOC = sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - (MENU_SIZE.y/2+20));
   text_hud.build(MENU_LOC, MENU_SIZE);
-  build();
-  loadConvo("STATUS_CONVO");
+  //loadConvo("STATUS_CONVO");
   text_hud.enable();
-  enable();
+  //enable();
 }
 
 void SpeechWidget::loadConvo(string convo) {
@@ -44,6 +44,7 @@ void SpeechWidget::loadConvo(string convo) {
     return;
   }
 
+  finished = false;
   cur_page = 0;
   for (unsigned int i = 0; i < conv.char_keys.size(); i++) {
     string it = conv.char_keys[i];
@@ -54,19 +55,25 @@ void SpeechWidget::loadConvo(string convo) {
     tmp.name = it;
     tmp.sp = s;
     actors.push_back(tmp);
-    if (!conv.dialogue[cur_page].char_key.compare(it)) {
-      cur_speak = actors[actors.size()-1];
-    }
+    actor.insert(make_pair(it, tmp));
   }
 
+  cur_speak = actor.find(conv.dialogue[cur_page].char_key)->second;
+  text_hud.setText(conv.dialogue[cur_page].line);
 }
 
 void SpeechWidget::nextPage() {
+  // Or could display whole page instantly
+  if (text_hud.isFinished() == false) return;
 
-}
+  cur_page++;
+  if (cur_page >= conv.dialogue.size()) {
+    finished = true;
+    return;
+  }
 
-void SpeechWidget::build() {
-
+  text_hud.setText(conv.dialogue[cur_page].line);
+  cur_speak = actor.find(conv.dialogue[cur_page].char_key)->second;
 }
 
 void SpeechWidget::update() {

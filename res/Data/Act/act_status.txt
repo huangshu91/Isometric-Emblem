@@ -5,9 +5,9 @@ Rese 0
 res/Char/char_rese.png
 
 3
-Kou
-testing testing
 Rese
-test test test
+C++/SFML is great!
 Kou
-testingly
+>implying you will ever finish
+Kou
+>not using gamemaker or unity

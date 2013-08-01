@@ -10,7 +10,7 @@ TODO:
 	
 	Color for dialogue. 
 	
-	multithread for loading in future. database loading, sound manager, map loading. display simple load screen and use other thread to load then pass messages back to update progress. will be necessary because of number of assests loaded into mem at start of game.
+	multithread for loading in future. database loading, sound manager, map loading. display simple load screen and use other thread to load then pass messages back to update progress. will be necessary because of number of assests loaded into mem at start of game.  Actually, looking at the load times for database files (which includes textures), this might not be necessary.
 	
 	Maps are loaded when needed (when it is used).  Everything else should be loaded right at start in database.
 	

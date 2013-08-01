@@ -34,6 +34,7 @@ public:
   void updateCell(float time = KEY_PAN_SENS);
   sf::Vector2i getCurrentCenter();
   DynamicEntity* getSelected() { return selected; };
+  void returnDelay() { inputtimer.resetClock(); };
 
   void reset();
   void finishSelect();

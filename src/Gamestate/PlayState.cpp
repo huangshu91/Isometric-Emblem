@@ -18,7 +18,6 @@ PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   level = new Map(eng_ptr);
   input = new InputController(eng_ptr);
   ai = new AIController(eng_ptr);
-  mc = new MenuController();
   phase = playstate::PLAYER;
   turn = playstate::PLAYER;
   wait = false;
@@ -30,7 +29,6 @@ PlayState::~PlayState() {
   delete level;
   delete input;
   delete ai;
-  delete mc;
 }
 
 void PlayState::setup() {
@@ -45,7 +43,8 @@ void PlayState::setup() {
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
   eng_ptr->getGameCam()->zoomCamera(0.8f);
 
-  mc->setup(eng_ptr, input);
+  mc.setup(eng_ptr, input);
+  sc.setup(eng_ptr);
   input->setup(eng_ptr);
 }
 
@@ -68,7 +67,7 @@ void PlayState::changePhase(playstate::Phase next) {
     round_num++;
   }
   else if (phase == playstate::CONVO) {
-
+    sc.enable();
   }
   else if (phase == playstate::UNITDEATH) {
     //exp and stuff
@@ -77,7 +76,7 @@ void PlayState::changePhase(playstate::Phase next) {
     //finishTransition();
   }
   else if (phase == playstate::MENU) {
-    mc->enable();
+    mc.enable();
   }
   else if (phase == playstate::FIGHT) {
     // set some hud stuff?
@@ -88,6 +87,7 @@ void PlayState::changePhase(playstate::Phase next) {
   }
   else if (phase == playstate::RETURN) {
     phase = turn;
+    input->returnDelay();
   }
 }
 
@@ -114,7 +114,10 @@ void PlayState::update() {
       bm->update();
     }
     else if (phase == playstate::MENU) {
-      mc->update();
+      mc.update();
+    }
+    else if (phase == playstate::CONVO) {
+      sc.update();
     }
   }
 

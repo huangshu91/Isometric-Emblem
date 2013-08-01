@@ -13,6 +13,7 @@
 #include "../System/GameEngine.h"
 #include "../HUDWidget/MenuWidget.h"
 #include "../Gamestate/PlayState.h"
+#include "../Util/ConvoKey.h"
 
 void InputController::update() {
   //if the window does not have focus, do not accept input
@@ -121,11 +122,16 @@ void InputController::selectMenu() {
     base_menu->disable();
   }
 
-  /*
-  if (cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEM])) {
-
+  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEM])) {
+    terrainhud_ptr->disable();
+    statushudr_ptr->disable();
+    statushudl_ptr->disable();
+    eng_ptr->getHUD()->getSpeechHUD()->loadConvo(STATUS_CONVO);
+    eng_ptr->getPlayState()->changePhase(playstate::CONVO);
+    cur_menu->disable();
+    finishSelect();
   }
-  */
+
 }
 
 bool InputController::setCurrentCell(int x, int y) {

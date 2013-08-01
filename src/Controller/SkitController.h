@@ -9,6 +9,7 @@
 #define SKITCONTROLLER_H_
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "../Util/FormatClock.h"
 
 class GameEngine;
 class SpeechWidget;
@@ -19,6 +20,7 @@ public:
   virtual ~SkitController();
 
   void setup(GameEngine* eng);
+  void enable();
 
   void update();
   void render();
@@ -27,7 +29,9 @@ private:
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 
-  SpeechWidget* sw;
+  FormatClock timer;
+
+  SpeechWidget* sw_ptr;
 };
 
 #endif /* SKITCONTROLLER_H_ */

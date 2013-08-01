@@ -23,7 +23,7 @@ public:
   void setup(GameEngine* eng);
   void build(sf::Vector2i loc, sf::Vector2i size);
 
-  void setText(std::vector<std::string> text);
+  void setText(std::string s);
   bool isFinished() { return finished; };
 
   void update();

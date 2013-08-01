@@ -35,8 +35,12 @@ void TextWidget::setup(GameEngine* eng) {
 
 }
 
-void TextWidget::setText(vector<string> text) {
-
+void TextWidget::setText(string s) {
+  finished = false;
+  cur_text = "";
+  full_text = s;
+  page.setString(cur_text);
+  char_pos = 0;
 }
 
 void TextWidget::build(sf::Vector2i loc, sf::Vector2i size) {
@@ -64,6 +68,6 @@ void TextWidget::render() {
   if (!visible) return;
 
   frame.render();
-  update();
+  //update();
   win_ptr->draw(page);
 }

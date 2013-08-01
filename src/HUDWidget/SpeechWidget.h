@@ -25,10 +25,10 @@ public:
   virtual ~SpeechWidget();
 
   void setup(GameEngine* eng);
-  void build();
 
   void loadConvo(std::string conv);
   void nextPage();
+  bool isFinished() { return finished; };
 
   void update();
   void render();
@@ -40,10 +40,12 @@ private:
   TextWidget  text_hud;
 
   std::vector<Speaker> actors;
+  std::map<std::string, Speaker> actor;
   Speaker cur_speak;
 
   float t_rate;
-  int cur_page;
+  unsigned int cur_page;
+  bool finished;
 
   sf::Vector2i MENU_LOC;
 
