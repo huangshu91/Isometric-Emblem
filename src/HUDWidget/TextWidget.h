@@ -23,7 +23,7 @@ public:
   void setup(GameEngine* eng);
   void build(sf::Vector2i loc, sf::Vector2i size);
 
-  void setText(std::string s);
+  void setText(std::vector<std::string> s);
   bool isFinished() { return finished; };
 
   void update();
@@ -42,9 +42,11 @@ private:
   FormatClock timer;
   bool finished;
 
+  unsigned int line_num;
   unsigned int char_pos;
-  std::string cur_text;
-  std::string full_text;
+  std::string cur_line;
+  std::string full_line;
+  std::vector<std::string> full_text;
   sf::Sprite cont_button;
   sf::Text page;
 };

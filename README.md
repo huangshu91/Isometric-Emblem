@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Visibility system.  Tiles should have a variable that says if it is visible or not.  If not, terrain info and units/items are hidden.  Use default tile (greyed color) to represent a hidden tile.  Decreased visibility at dusk and dawn with severely decreased visibility at night.
+	
 	Color for dialogue. 
 	
 	multithread for loading in future. database loading, sound manager, map loading. display simple load screen and use other thread to load then pass messages back to update progress. will be necessary because of number of assests loaded into mem at start of game.  Actually, looking at the load times for database files (which includes textures), this might not be necessary.

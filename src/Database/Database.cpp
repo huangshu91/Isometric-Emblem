@@ -111,13 +111,18 @@ Convo Database::LoadAct(string convo_path) {
     ret.pages = pages;
     for (int i = 0; i < pages; i++) {
       file >> str_temp;
-      // twice because of \n character left in stream
-      getline(file, str_temp2);
+      file >> int_temp;
+      // \n character left in stream
       getline(file, str_temp2);
 
       Page p_temp;
+      p_temp.num_line = int_temp;
       p_temp.char_key = str_temp;
-      p_temp.line = str_temp2;
+
+      for (int i = 0; i < int_temp; i++) {
+        getline(file, str_temp2);
+        p_temp.line.push_back(str_temp2);
+      }
       ret.dialogue.push_back(p_temp);
     }
     file.close();

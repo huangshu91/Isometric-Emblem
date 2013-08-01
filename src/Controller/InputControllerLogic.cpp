@@ -123,7 +123,6 @@ void InputController::selectMenu() {
   }
 
   if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEM])) {
-    terrainhud_ptr->disable();
     statushudr_ptr->disable();
     statushudl_ptr->disable();
     eng_ptr->getHUD()->getSpeechHUD()->loadConvo(STATUS_CONVO);

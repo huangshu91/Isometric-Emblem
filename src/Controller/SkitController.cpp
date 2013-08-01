@@ -29,6 +29,7 @@ void SkitController::setup(GameEngine* eng) {
 
 void SkitController::enable() {
   sw_ptr->enable();
+  eng_ptr->getHUD()->getTerrainHUD()->disable();
 }
 
 void SkitController::update() {

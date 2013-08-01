@@ -32,9 +32,7 @@ void SpeechWidget::setup(GameEngine* eng) {
 
   MENU_LOC = sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - (MENU_SIZE.y/2+20));
   text_hud.build(MENU_LOC, MENU_SIZE);
-  //loadConvo("STATUS_CONVO");
   text_hud.enable();
-  //enable();
 }
 
 void SpeechWidget::loadConvo(string convo) {

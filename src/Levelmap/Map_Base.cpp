@@ -7,6 +7,7 @@
 
 #include "../System/GameEngine.h"
 #include "../Util/Constants.h"
+#include "../Util/ConvoKey.h"
 #include "../Database/Database.h"
 #include "../Entity/DynamicEntity.h"
 #include "../Gamestate/PlayState.h"
@@ -75,6 +76,11 @@ void Map::loadMap(string id) {
       file >> en.lck;
 
       createEntity(loc, str_tmp, en);
+    }
+    file >> int_tmp;
+    if (int_tmp) { //skit at start of map?
+      eng_ptr->getHUD()->getSpeechHUD()->loadConvo(CH1_START);
+      eng_ptr->getPlayState()->changePhase(playstate::CONVO);
     }
 
     file.close();

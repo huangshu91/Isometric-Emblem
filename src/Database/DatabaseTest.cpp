@@ -22,7 +22,9 @@ void testConvo(vector<string> convs, map<string, Convo> db) {
     cout << c.pages << endl;
     for (auto k : c.dialogue) {
       cout << k.char_key << endl;
-      cout << k.line << endl;
+      for (auto l : k.line) {
+        cout << l << endl;
+      }
       cout << endl;
     }
   }

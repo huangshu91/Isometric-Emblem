@@ -13,9 +13,10 @@ using namespace std;
 
 TextWidget::TextWidget() {
   t_rate = TEXT_RATE;
-  full_text = "testing testing testing\n\ntesting testing testing\n\ntesting testing testing";
-  cur_text = "";
+  full_line = "testing testing testing\n\ntesting testing testing\n\ntesting testing testing";
+  cur_line = "";
   char_pos = 0;
+  line_num = 0;
   timer.resetClock();
   finished = false;
 }
@@ -29,17 +30,19 @@ void TextWidget::setup(GameEngine* eng) {
   frame.setup(eng);
 
   page.setFont(*(eng_ptr->getRes()->getFont(VISITOR_FONT_KEY)));
-  page.setString(cur_text);
+  page.setString(cur_line);
   page.setColor(sf::Color::Black);
   page.setCharacterSize(VISITOR_SIZE);
 
 }
 
-void TextWidget::setText(string s) {
+void TextWidget::setText(vector<string> s) {
   finished = false;
-  cur_text = "";
+  line_num = 0;
+  cur_line = "";
+  full_line = s[line_num];
   full_text = s;
-  page.setString(cur_text);
+  page.setString(cur_line);
   char_pos = 0;
 }
 
@@ -56,10 +59,20 @@ void TextWidget::build(sf::Vector2i loc, sf::Vector2i size) {
 
 void TextWidget::update() {
   if (timer.getElapsedTime() > t_rate && finished == false) {
-    cur_text += full_text[char_pos];
+    cur_line += full_line[char_pos];
     char_pos++;
-    if (char_pos >= full_text.length()) finished = true;
-    page.setString(cur_text);
+    if (char_pos >= full_line.length()) {
+      line_num++;
+      if (line_num < full_text.size()) {
+        cur_line += "\n\n";
+        full_line = full_text[line_num];
+        char_pos = 0;
+      }
+      if (line_num >= full_text.size()) {
+        finished = true;
+      }
+    }
+    page.setString(cur_line);
     timer.resetClock();
   }
 }

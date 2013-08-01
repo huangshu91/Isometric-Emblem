@@ -43,7 +43,8 @@ struct ChapDef {
 
 struct Page {
   std::string char_key;
-  std::string line;
+  std::vector<std::string> line;
+  int         num_line;
 };
 
 struct Convo {
