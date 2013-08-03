@@ -11,6 +11,7 @@
 #include "GUIWidget.h"
 #include "../Interface/GUIFrame.h"
 #include "../Util/Constants.h"
+#include "../Util/FormatClock.h"
 #include <vector>
 #include <string>
 
@@ -22,7 +23,8 @@ public:
   void setup(GameEngine* eng);
   void build(sf::Vector2i loc, sf::Vector2i size);
 
-  void setText(std::vector<std::string> text);
+  void setText(std::vector<std::string> s);
+  bool isFinished() { return finished; };
 
   void update();
 
@@ -36,11 +38,17 @@ private:
   sf::Vector2i MENU_SIZE;
   sf::Vector2i CENTER;
 
-  int t_rate;
+  float t_rate;
+  FormatClock timer;
+  bool finished;
 
-  sf::Sprite icon;
-  sf::Text name;
-  std::vector<sf::Text> text;
+  unsigned int line_num;
+  unsigned int char_pos;
+  std::string cur_line;
+  std::string full_line;
+  std::vector<std::string> full_text;
+  sf::Sprite cont_button;
+  sf::Text page;
 };
 
 #endif /* TEXTWIDGET_H_ */

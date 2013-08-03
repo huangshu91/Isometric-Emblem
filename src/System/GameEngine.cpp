@@ -25,9 +25,9 @@ GameEngine::GameEngine() {
 
   loadDebug();
 
+  gameData.setup(getEngine());
   gameCam.setup(getWindow());
   gameHUD.setup(getEngine());
-  gameData.setup(getEngine());
 
   caravan.setup(getEngine());
 

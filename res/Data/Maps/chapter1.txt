@@ -28,3 +28,6 @@ Dummy
 7 3
 Dummy
 20 5 5 5 5 5 5
+
+1
+CH1_START

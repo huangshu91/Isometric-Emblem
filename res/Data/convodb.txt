@@ -1,0 +1,3 @@
+2
+STATUS_CONVO	res/Data/Act/act_status.txt
+CH1_START	res/Data/Act/ch1_start.txt

@@ -1,0 +1,13 @@
+2
+Kou 5
+res/Char/char_kou.png
+Rese 0
+res/Char/char_rese.png
+
+3
+Rese 1
+C++/SFML is great!
+Kou 1
+>implying you will ever finish
+Kou 1
+>not using gamemaker or unity

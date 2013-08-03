@@ -51,9 +51,85 @@ void Database::setup(GameEngine* eng) {
   //testChap(chapter_id, chap_db);
 
   log_ptr->i("Finished Loading ChapterInfo.");
+  log_ptr->i("Loading Conversations: ");
+
+  LoadConvo();
+  //testConvo(convo_names, convo_db);
+
+  log_ptr->i("Finished loading Conversations.");
 
   log_ptr->i("Finished loading db files.");
 
+}
+
+void Database::LoadConvo() {
+  ifstream file(DB_CONVO.c_str());
+  if (file.is_open()) {
+    int num_convo = 0;
+    file >> num_convo;
+
+    string convo_key;
+    string convo_path;
+
+    for (int i = 0; i < num_convo; i++) {
+      file >> convo_key;
+      file >> convo_path;
+
+      convo_names.push_back(convo_key);
+      Convo c = LoadAct(convo_path);
+      convo_db.insert(make_pair(convo_key, c));
+    }
+    file.close();
+  } else {
+    log_ptr->e("Could not load conversations!");
+  }
+}
+
+Convo Database::LoadAct(string convo_path) {
+  Convo ret;
+  ifstream file(convo_path.c_str());
+  if (file.is_open()) {
+    int char_num = 0;
+    string str_temp;
+    string str_temp2;
+    int int_temp;
+
+    file >> char_num;
+    ret.chars = char_num;
+    for (int i = 0; i < char_num; i++) {
+      file >> str_temp;
+      file >> int_temp;
+      file >> str_temp2;
+
+      eng_ptr->getRes()->addResource(str_temp, str_temp2);
+      ret.char_keys.push_back(str_temp);
+      ret.char_pos.push_back(int_temp);
+    }
+
+    int pages = 0;
+    file >> pages;
+    ret.pages = pages;
+    for (int i = 0; i < pages; i++) {
+      file >> str_temp;
+      file >> int_temp;
+      // \n character left in stream
+      getline(file, str_temp2);
+
+      Page p_temp;
+      p_temp.num_line = int_temp;
+      p_temp.char_key = str_temp;
+
+      for (int i = 0; i < int_temp; i++) {
+        getline(file, str_temp2);
+        p_temp.line.push_back(str_temp2);
+      }
+      ret.dialogue.push_back(p_temp);
+    }
+    file.close();
+  } else {
+    log_ptr->e("Could not load Dialogue - "+convo_path+"!");
+  }
+  return ret;
 }
 
 void Database::LoadChapterInfo() {
@@ -253,4 +329,15 @@ TileDef Database::getTile(string t) {
   }
 
   return tile_db.find(t)->second;
+}
+
+Convo Database::getConvo(string c) {
+  if (convo_db.count(c) == 0) {
+    Convo tmp;
+    tmp.chars = 0;
+    tmp.pages = 0;
+    return tmp;
+  }
+
+  return convo_db.find(c)->second;
 }

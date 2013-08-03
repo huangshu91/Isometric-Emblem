@@ -12,6 +12,12 @@
 #include "TextWidget.h"
 #include "../Interface/GUIFrame.h"
 #include "../Util/Constants.h"
+#include "../Database/Database.h"
+
+struct Speaker {
+  std::string name;
+  sf::Sprite sp;
+};
 
 class SpeechWidget: public GUIWidget {
 public:
@@ -19,27 +25,31 @@ public:
   virtual ~SpeechWidget();
 
   void setup(GameEngine* eng);
-  void build();
+
+  void loadConvo(std::string conv);
+  void nextPage();
+  bool isFinished() { return finished; };
 
   void update();
   void render();
 
   static sf::Vector2i MENU_SIZE;
+  static sf::Vector2i CHAR_POS[6];
 
 private:
-  //placeholder for portrait;
-  sf::Texture   port;
-  sf::Text      name;
-
   TextWidget  text_hud;
 
-  std::vector<sf::Sprite> actors;
-  sf::Sprite* speaker;
+  std::vector<Speaker> actors;
+  std::map<std::string, Speaker> actor;
+  Speaker cur_speak;
 
-  int t_rate;
+  float t_rate;
+  unsigned int cur_page;
+  bool finished;
 
-  std::string text;
-  sf::Text diag;
+  sf::Vector2i MENU_LOC;
+
+  Convo conv;
 };
 
 #endif /* SPEECHWIDGET_H_ */

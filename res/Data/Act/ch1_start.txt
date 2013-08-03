@@ -1,0 +1,14 @@
+2
+Kou 5
+res/Char/char_kou.png
+Rese 0
+res/Char/char_rese.png
+
+3
+Rese 1
+Ch1 starting script!
+Kou 1
+Go hit the dummies or whatever.
+Kou 2
+Remember, although dummies can't move they can still attack you back.
+It'd be a shame if you somehow died in the tutorial chapter.

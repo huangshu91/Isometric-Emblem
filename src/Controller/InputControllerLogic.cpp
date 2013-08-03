@@ -13,24 +13,30 @@
 #include "../System/GameEngine.h"
 #include "../HUDWidget/MenuWidget.h"
 #include "../Gamestate/PlayState.h"
+#include "../Util/ConvoKey.h"
 
 void InputController::update() {
   //if the window does not have focus, do not accept input
 
   if (eng_ptr->hasFocus() == false) return;
 
-  	  	  sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
-         pixelPos.x *= eng_ptr->getGameCam()->getZoom();
-         pixelPos.y *= eng_ptr->getGameCam()->getZoom();
-         pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
-         pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
-         sf::Vector2f worldPos = win_ptr->mapPixelToCoords(pixelPos);
-         worldPos.x /= 30; //TSIZE_X/2
-         worldPos.y /= 15; //TSIZE_Y/4
-         int tx = ((worldPos.y - worldPos.x)/2)+0.5;
-         int ty = ((worldPos.x + worldPos.y)/2)-0.5;
-         if(setCurrentCell(tx,ty)) { updateCell(1.3f); }
-         if(sf::Mouse::isButtonPressed((sf::Mouse::Left))) { selectCell();}
+  /*
+  sf::Vector2i pixelPos = sf::Mouse::getPosition(*win_ptr);
+  pixelPos.x *= eng_ptr->getGameCam()->getZoom();
+  pixelPos.y *= eng_ptr->getGameCam()->getZoom();
+  pixelPos.x += eng_ptr->getGameCam()->GetLocation().x;
+  pixelPos.y += eng_ptr->getGameCam()->GetLocation().y;
+  sf::Vector2f worldPos = win_ptr->mapPixelToCoords(pixelPos);
+  worldPos.x /= 30; //TSIZE_X/2
+  worldPos.y /= 15; //TSIZE_Y/4
+  int tx = ((worldPos.y - worldPos.x)/2)+0.5;
+  int ty = ((worldPos.x + worldPos.y)/2)-0.5;
+  if(setCurrentCell(tx,ty)){updateCell(2.0f);}
+  if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+    selectCell();
+  }
+  */
+
   // move the cursor highlight
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
@@ -116,11 +122,15 @@ void InputController::selectMenu() {
     base_menu->disable();
   }
 
-  /*
-  if (cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEM])) {
-
+  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEM])) {
+    statushudr_ptr->disable();
+    statushudl_ptr->disable();
+    eng_ptr->getHUD()->getSpeechHUD()->loadConvo(STATUS_CONVO);
+    eng_ptr->getPlayState()->changePhase(playstate::CONVO);
+    cur_menu->disable();
+    finishSelect();
   }
-  */
+
 }
 
 bool InputController::setCurrentCell(int x, int y) {

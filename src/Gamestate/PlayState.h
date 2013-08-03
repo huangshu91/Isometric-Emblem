@@ -13,11 +13,12 @@
 #include "GameState.h"
 #include "../Util/Constants.h"
 #include "../Entity/BattleManager.h"
+#include "../Controller/MenuController.h"
+#include "../Controller/SkitController.h"
 
 class Map;
 class InputController;
 class AIController;
-class MenuController;
 class GameEngine;
 
 class PlayState: public GameState {
@@ -38,7 +39,8 @@ private:
   InputController* input;
   AIController* ai;
   BattleManager* bm;
-  MenuController* mc;
+  MenuController mc;
+  SkitController sc;
 
   playstate::Phase phase;
   playstate::Phase turn;
