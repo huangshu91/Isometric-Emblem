@@ -9,6 +9,7 @@
 #define GUIFRAME_H_
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/System.hpp>
 #include <vector>
 #include <string>
 

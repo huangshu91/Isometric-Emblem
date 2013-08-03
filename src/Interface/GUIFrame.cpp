@@ -9,6 +9,7 @@
 #include "../System/ResourceManager.h"
 #include "../System/GameEngine.h"
 #include "../Util/Constants.h"
+#include <SFML/System.hpp>
 #include <iostream>
 using namespace std;
 
