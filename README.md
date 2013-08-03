@@ -8,6 +8,10 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Levelup.  Can do this without finishing stats system.  Need the GUI for levelup and controller.
+	
+	Items system.  Flesh it out and split into multiple parts.  Equipment is one task (involves stats, hooking up with units, chapter/enemy loading, etc).  Items held is another, they dont' have to DO anything yet but system needs to be set up so that you can see what items you have on you.  Item drops/chests is a third system that is integrated into map/tiles and need a generation system and map loading.
+	
 	Visibility system.  Tiles should have a variable that says if it is visible or not.  If not, terrain info and units/items are hidden.  Use default tile (greyed color) to represent a hidden tile.  Decreased visibility at dusk and dawn with severely decreased visibility at night.
 	
 	Color for dialogue. 
@@ -115,6 +119,7 @@ FUTURE:
 	Titles - (bonuses for unit achievements)
 	Rewards - (bonuses for objectives in stage)
 	Day/Night phase - (modifier based on time of day for certain units)
+	skills? - (Consider if this mechanic makes sense)
 	
 NOTES:
 

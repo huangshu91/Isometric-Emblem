@@ -94,7 +94,7 @@ const int SHAKE_INTENSITY = 2;
 const float EXP_DUR = 1;
 const int EXP_RATE = 2;
 
-const float TEXT_RATE = 0.05f;
+const float TEXT_RATE = 0.025f;
 
 // encyclopedia file paths
 

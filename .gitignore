@@ -14,6 +14,8 @@
 
 Debug/
 Release/
+.project
+.cproject
 .settings
 Screenshot/*
 log.txt
