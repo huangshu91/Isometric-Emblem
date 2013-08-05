@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Need to consider how to use textwidget by itself.  What owns it?  Each one needs to built anew because of size.
+	
 	Levelup.  Can do this without finishing stats system.  Need the GUI for levelup and controller.
 	
 	Items system.  Flesh it out and split into multiple parts.  Equipment is one task (involves stats, hooking up with units, chapter/enemy loading, etc).  Items held is another, they dont' have to DO anything yet but system needs to be set up so that you can see what items you have on you.  Item drops/chests is a third system that is integrated into map/tiles and need a generation system and map loading.

@@ -37,6 +37,10 @@ GameEngine::GameEngine() {
   gameBat.setup(getEngine(), getPlayState());
 }
 
+void GameEngine::cleanup() {
+  gameLog.close();
+}
+
 void GameEngine::loadDebug() {
   gameRes.addFont(DEFAULT_FONT_KEY, DEFAULT_FONT);
   gameRes.addFont(VISITOR_FONT_KEY, VISITOR_FONT);
@@ -55,8 +59,10 @@ void GameEngine::runEngine() {
   while (gameWindow.isOpen()) {
     sf::Event ev;
     while (gameWindow.pollEvent(ev)) {
-      if (ev.type == sf::Event::Closed) gameWindow.close();
-
+      if (ev.type == sf::Event::Closed) {
+        cleanup();
+        gameWindow.close();
+      }
       if (ev.type == sf::Event::LostFocus) focus = false;
       if (ev.type == sf::Event::GainedFocus) focus = true;
 

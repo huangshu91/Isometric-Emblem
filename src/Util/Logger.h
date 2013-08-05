@@ -26,6 +26,9 @@ public:
   //debug message
   void d(std::string msg);
 
+  //safe even if log not open
+  void close() { log.close(); };
+
 private:
   void printheader(char type);
 

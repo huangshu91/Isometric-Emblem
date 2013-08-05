@@ -29,6 +29,7 @@ public:
   GameEngine();
 
   void runEngine();
+  void cleanup();
 
   // Pass a reference to self to all subsystems
   GameEngine* getEngine() { return this; };

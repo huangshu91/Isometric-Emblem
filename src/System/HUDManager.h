@@ -61,8 +61,6 @@ private:
 
   MenuWidget    menu_hud_unit;
   MenuWidget    menu_hud_gen;
-
-  TextWidget    text_hud;
 };
 
 #endif /* HUDMANAGER_H_ */

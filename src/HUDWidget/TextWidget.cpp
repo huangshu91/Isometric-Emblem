@@ -13,7 +13,7 @@ using namespace std;
 
 TextWidget::TextWidget() {
   t_rate = TEXT_RATE;
-  full_line = "testing testing testing\n\ntesting testing testing\n\ntesting testing testing";
+  full_line = "";
   cur_line = "";
   char_pos = 0;
   line_num = 0;
@@ -33,7 +33,15 @@ void TextWidget::setup(GameEngine* eng) {
   page.setString(cur_line);
   page.setColor(sf::Color::Black);
   page.setCharacterSize(VISITOR_SIZE);
+}
 
+void TextWidget::reset() {
+  full_text = "";
+  cur_line = "";
+  char_pos = 0;
+  line_num = 0;
+  timer.resetClock();
+  finished = false;
 }
 
 void TextWidget::setText(vector<string> s) {
