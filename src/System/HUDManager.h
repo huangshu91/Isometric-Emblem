@@ -32,6 +32,7 @@ public:
   void setup(GameEngine* eng);
 
   void addWidget(std::string key, GUIWidget* obj);
+  void removeWidget(std::string key);
   GUIWidget* getWidget(std::string key);
 
   TerrainMenu* getTerrainHUD() { return &terrain_hud; };

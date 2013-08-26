@@ -69,6 +69,17 @@ void HUDManager::addWidget(string key, GUIWidget* obj) {
   map.insert(make_pair(key, obj));
 }
 
+void HUDManager::removeWidget(string key) {
+  GUIWidget* wp = getWidget(key);
+  if (wp == 0) return;
+
+  auto m_it = map.find(key);
+  map.erase(m_it);
+  for (auto it = widgets.begin(); it != widgets.end(); it++) {
+    if (*it == wp) widgets.erase(it);
+  }
+}
+
 GUIWidget* HUDManager::getWidget(string key) {
   if (map.count(key) < 1) {
     return 0;

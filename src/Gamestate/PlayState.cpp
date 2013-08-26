@@ -45,7 +45,7 @@ void PlayState::setup() {
   ai->setMap(level);
 
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
-  eng_ptr->getGameCam()->zoomCamera(0.8f);
+  //eng_ptr->getGameCam()->zoomCamera(0.8f);
 }
 
 void PlayState::changePhase(playstate::Phase next) {

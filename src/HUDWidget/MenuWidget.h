@@ -20,6 +20,8 @@ public:
   void setup(GameEngine* eng);
   void build(sf::Vector2i loc, std::vector<std::string> opt, anchor::Position a);
 
+  void addChild(MenuWidget);
+
   void enable();
   void select(int s);
 

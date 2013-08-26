@@ -32,7 +32,6 @@ private:
   FormatClock timer;
 
   SpeechWidget* sw_ptr;
-  TextWidget* tw_ptr;
 };
 
 #endif /* SKITCONTROLLER_H_ */

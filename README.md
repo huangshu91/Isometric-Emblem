@@ -8,6 +8,10 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Instead of adding simple animation effects to renderable objects themselves, use the effectmanager (WIP). This will keep track of what object needs to be moved/shaked/etc.
+	
+	Can add move schemantics to MenuWidget (addChild) but I don't think the speedup gain is worth the time.  Work on this if i'm ever bored.
+	
 	Need to consider how to use textwidget by itself.  What owns it?  Each one needs to built anew because of size.
 	
 	Levelup.  Can do this without finishing stats system.  Need the GUI for levelup and controller.

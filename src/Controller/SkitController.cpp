@@ -14,7 +14,6 @@ SkitController::SkitController() {
   eng_ptr = 0;
   win_ptr = 0;
   sw_ptr = 0;
-  tw_ptr = 0;
 }
 
 SkitController::~SkitController() {

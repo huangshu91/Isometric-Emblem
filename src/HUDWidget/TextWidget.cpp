@@ -36,8 +36,9 @@ void TextWidget::setup(GameEngine* eng) {
 }
 
 void TextWidget::reset() {
-  full_text = "";
+  full_line = "";
   cur_line = "";
+  full_text.clear();
   char_pos = 0;
   line_num = 0;
   timer.resetClock();
