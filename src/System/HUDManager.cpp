@@ -25,7 +25,7 @@ void HUDManager::setup(GameEngine* eng) {
   status_hudr.setup(eng, dir::RIGHT);
   status_hudl.setup(eng, dir::LEFT);
   exp_hud.setup(eng);
-  menu_hud_unit.setup(eng);
+  //menu_hud_unit.setup(eng);
   menu_hud_gen.setup(eng);
   speech_hud.setup(eng);
   addWidget(STATUS_HUDL, &status_hudl);
@@ -33,7 +33,7 @@ void HUDManager::setup(GameEngine* eng) {
   addWidget(TERRAIN_MENU, &terrain_hud);
   addWidget(PHASE_HUD, &phase_hud);
   addWidget(EXP_HUD, &exp_hud);
-  addWidget(MENU_HUD_UNIT, &menu_hud_unit);
+  //addWidget(MENU_HUD_UNIT, &menu_hud_unit);
   addWidget(MENU_HUD_GEN, &menu_hud_gen);
   addWidget(SPEECH_HUD, &speech_hud);
 

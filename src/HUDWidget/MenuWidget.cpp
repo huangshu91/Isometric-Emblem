@@ -34,7 +34,7 @@ void MenuWidget::setup(GameEngine* eng) {
 // loc is topleft, not center.  This is because the menu size is
 // variable so center position does not make sense.  Instead use
 // topleft for positioning relative to other widgets.
-void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Position a) {
+void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
   sf::Vector2i size(0,0);
   sf::Vector2i tx_size(0,0);
   choices.clear();

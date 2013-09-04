@@ -18,7 +18,7 @@ public:
   virtual ~MenuWidget();
 
   void setup(GameEngine* eng);
-  void build(sf::Vector2i loc, std::vector<std::string> opt, anchor::Position a);
+  void build(sf::Vector2i loc, std::vector<std::string> opt, anchor::Region a);
 
   void addChild(MenuWidget);
 
