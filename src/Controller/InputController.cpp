@@ -30,8 +30,10 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
   cur_menu = 0;
   state = inputstate::FREE;
 
-  base_menu = eng->getHUD()->getMenuHUD();
-  cur_menu = base_menu;
+  buildMenu(menu::UNIT);
+
+  //base_menu = eng->getHUD()->getMenuHUD();
+  //cur_menu = base_menu;
 
   inputtimer.resetClock();
 }

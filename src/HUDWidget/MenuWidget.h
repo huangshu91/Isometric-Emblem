@@ -34,7 +34,7 @@ public:
   void render();
 
 private:
-  void setAnchor(anchor::Position a);
+  void setAnchor(anchor::Region a);
 
   GUIFrame frame;
 

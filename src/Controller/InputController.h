@@ -44,6 +44,8 @@ public:
   void render();
 
 private:
+  void buildMenu(menu::Type t);
+
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 

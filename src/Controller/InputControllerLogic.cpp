@@ -130,6 +130,40 @@ void InputController::selectMenu() {
     cur_menu->disable();
     finishSelect();
   }
+}
+
+void InputController::buildMenu(menu::Type t) {
+  switch (t) {
+  case menu::UNIT : {
+    base_menu = new MenuWidget();
+    base_menu->setup(eng_ptr);
+
+    vector<string> coms;
+
+    if (map_ptr->inDistance(selected, unit::ENEMY)) {
+      coms.push_back(menu::CHOICE_TEXT[menu::ATTACK]);
+    }
+
+    coms.push_back(menu::CHOICE_TEXT[menu::ITEMS]);
+    coms.push_back(menu::CHOICE_TEXT[menu::END]);
+    sf::Vector2i loc(0,0);
+    loc.x = WINDOW_WIDTH - GUI_PADDING;
+    loc.y = statushudr_ptr->MENU_SIZE.y + 2*GUI_PADDING;
+    base_menu->build(loc, coms, anchor::TOPRIGHT);
+    base_menu->enable();
+
+    eng_ptr->getHUD()->addWidget(MENU_HUD_UNIT, base_menu);
+
+  } break;
+  case menu::ITEM : {
+
+
+  } break;
+
+  default:
+    break;
+  }
+
 
 }
 

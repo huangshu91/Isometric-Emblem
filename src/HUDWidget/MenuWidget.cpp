@@ -86,7 +86,7 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
   }
 }
 
-void MenuWidget::setAnchor(anchor::Position a) {
+void MenuWidget::setAnchor(anchor::Region a) {
   switch (a) {
   case anchor::TOPLEFT:
     CENTER.x += MENU_SIZE.x/2;

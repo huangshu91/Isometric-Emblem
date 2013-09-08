@@ -50,6 +50,7 @@ void Map::toggleRangeOn(DynamicEntity* e, range::RangeType type) {
 }
 
 bool Map::inDistance(DynamicEntity* e, unit::Control utype) {
+  if (!e) return false;
   queue<Cell*> q = getPath(e, range::ATTACK);
   while (!q.empty()) {
     Cell* c = q.front();

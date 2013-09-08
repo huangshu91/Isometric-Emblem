@@ -116,8 +116,8 @@ namespace playstate {
 }
 
 namespace menu {
-  enum Type { NONE, UNIT, STAT };
-  enum UnitChoice { ATTACK, ITEM, END };
+  enum Type { NONE, UNIT, ITEM, STAT };
+  enum UnitChoice { ATTACK, ITEMS, END };
   enum GenChoice { UNITS, STATUS, OPTION, ENDTURN };
 
   const int NUM_UNIT_CHOICE = 3;

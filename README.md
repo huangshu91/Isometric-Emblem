@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	GUIWidgets that need to be rebuilt (unit menu, item menu) will now be dynamically allocated by the caller (inputcontroller) and removed when finished. 
+	
 	Instead of adding simple animation effects to renderable objects themselves, use the effectmanager (WIP). This will keep track of what object needs to be moved/shaked/etc.
 	
 	Can add move schemantics to MenuWidget (addChild) but I don't think the speedup gain is worth the time.  Work on this if i'm ever bored.
