@@ -16,6 +16,7 @@ MenuWidget::MenuWidget() {
   num_opt = 0;
   MENU_SIZE = sf::Vector2i(0,0);
   selected = 0;
+  anc = anchor::UNDEF;
 }
 
 MenuWidget::~MenuWidget() {
@@ -90,7 +91,14 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
   select(0);
 }
 
+// only allow use of this shortened build if menu was already built with full params
+void MenuWidget::build(vector<string> opt) {
+  if (anc == anchor::UNDEF) return;
+  build(loc, opt, anc);
+}
+
 void MenuWidget::setAnchor(anchor::Region a) {
+  anc = a;
   switch (a) {
   case anchor::TOPLEFT:
     CENTER.x += MENU_SIZE.x/2;

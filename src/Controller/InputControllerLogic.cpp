@@ -132,14 +132,6 @@ void InputController::selectMenu() {
   }
 
   if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::SHOP])) {
-    vector<string> coms;
-    coms.push_back(menu::CHOICE_TEXT[menu::ATTACK]);
-    coms.push_back(menu::CHOICE_TEXT[menu::ITEMS]);
-    sf::Vector2i loc(0,0);
-        loc.x = WINDOW_WIDTH - GUI_PADDING;
-        loc.y = statushudr_ptr->MENU_SIZE.y + 2*GUI_PADDING;
-    base_menu->build(loc,coms,anchor::TOPRIGHT);
-    cur_menu = base_menu;
   }
 }
 

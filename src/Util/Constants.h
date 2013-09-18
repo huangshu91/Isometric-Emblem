@@ -128,7 +128,7 @@ namespace menu {
 }
 
 namespace anchor {
-  enum Region { TOPLEFT, TOPRIGHT, BOTLEFT, BOTRIGHT, CENTER };
+  enum Region { TOPLEFT, TOPRIGHT, BOTLEFT, BOTRIGHT, CENTER, UNDEF };
 }
 
 namespace camera {
