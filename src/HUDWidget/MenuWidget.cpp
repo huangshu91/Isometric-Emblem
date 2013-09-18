@@ -38,6 +38,8 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
   sf::Vector2i size(0,0);
   sf::Vector2i tx_size(0,0);
   choices.clear();
+  c_text.clear();
+  c_enable.clear();
   num_opt = opt.size();
 
   for (auto t : opt) {
@@ -84,6 +86,8 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
     c_text[i].setPosition(CENTER.x,
         c_text[i-1].getPosition().y + FONT_SIZE + 2*MENU_PADDING);
   }
+
+  select(0);
 }
 
 void MenuWidget::setAnchor(anchor::Region a) {

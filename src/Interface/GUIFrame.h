@@ -22,7 +22,7 @@ public:
 
   void setup(GameEngine* eng);
   void build(sf::Vector2i loc, sf::Vector2i s);
-  virtual void setText(std::vector<std::string> args);
+  void rebuild(sf::Vector2i loc, sf::Vector2i s);
   virtual void render();
 
   const sf::Vector2i getLoc() { return center; };
@@ -36,13 +36,9 @@ protected:
   sf::RenderWindow* win_ptr;
 
   std::vector<sf::Sprite> draw_tiles;
-  std::vector<sf::Text> draw_text;
 
   sf::Vector2i center;
   sf::Vector2i size;
-
-  //static sf::Font font;
-  sf::Font font;
 };
 
 #endif /* GUIFRAME_H_ */

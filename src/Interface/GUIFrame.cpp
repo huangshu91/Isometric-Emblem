@@ -28,11 +28,9 @@ GUIFrame::~GUIFrame() {
   // TODO Auto-generated destructor stub
 }
 
-void GUIFrame::setText(vector<string> args) {
-  cout << "error: update called on GUIFrame base class" << endl;
-}
-
 void GUIFrame::build(sf::Vector2i loc, sf::Vector2i s) {
+  draw_tiles.clear();
+
   sf::Texture* tex = eng_ptr->getRes()->getResource(GUI_FRAME_KEY);
 
   size = s;
@@ -97,6 +95,10 @@ void GUIFrame::build(sf::Vector2i loc, sf::Vector2i s) {
   for (int i = 0, j = draw_tiles.size(); i < j; i++) {
     draw_tiles[i].move(sf::Vector2f(center-size/2));
   }
+}
+
+void GUIFrame::rebuild(sf::Vector2i loc, sf::Vector2i s) {
+  draw_tiles.clear();
 }
 
 void GUIFrame::render() {

@@ -29,5 +29,5 @@ Dummy
 Dummy
 20 5 5 5 5 5 5
 
-1
+0
 CH1_START

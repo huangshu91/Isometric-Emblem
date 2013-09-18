@@ -32,8 +32,8 @@ InputController::InputController(GameEngine* eng) : eng_ptr(eng) {
 
   //buildMenu(menu::UNIT);
 
-  //base_menu = eng->getHUD()->getMenuHUD();
-  //cur_menu = base_menu;
+  base_menu = eng->getHUD()->getMenuHUD();
+  cur_menu = base_menu;
 
   inputtimer.resetClock();
 }

@@ -44,7 +44,6 @@ public:
   void render();
 
   void buildMenu(menu::Type t);
-  void removeMenu(menu::Type t);
 
 private:
 

@@ -25,7 +25,7 @@ void HUDManager::setup(GameEngine* eng) {
   status_hudr.setup(eng, dir::RIGHT);
   status_hudl.setup(eng, dir::LEFT);
   exp_hud.setup(eng);
-  //menu_hud_unit.setup(eng);
+  menu_hud_unit.setup(eng);
   menu_hud_gen.setup(eng);
   speech_hud.setup(eng);
   addWidget(STATUS_HUDL, &status_hudl);
@@ -33,12 +33,12 @@ void HUDManager::setup(GameEngine* eng) {
   addWidget(TERRAIN_MENU, &terrain_hud);
   addWidget(PHASE_HUD, &phase_hud);
   addWidget(EXP_HUD, &exp_hud);
-  //addWidget(MENU_HUD_UNIT, &menu_hud_unit);
+  addWidget(MENU_HUD_UNIT, &menu_hud_unit);
   addWidget(MENU_HUD_GEN, &menu_hud_gen);
   addWidget(SPEECH_HUD, &speech_hud);
 
   sf::Vector2i loc(0,0);
-  /*
+
   vector<string> unit;
   for (int i = 0; i < menu::NUM_UNIT_CHOICE; i++) {
     unit.push_back(menu::CHOICE_TEXT[i]);
@@ -46,7 +46,6 @@ void HUDManager::setup(GameEngine* eng) {
   loc.x = WINDOW_WIDTH - GUI_PADDING;
   loc.y = status_hudr.MENU_SIZE.y + 2*GUI_PADDING;
   menu_hud_unit.build(loc, unit, anchor::TOPRIGHT);
-  */
 
   vector<string> gen;
   for (int i = 0; i < menu::NUM_GEN_CHOICE; i++) {

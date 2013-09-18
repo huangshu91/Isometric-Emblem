@@ -111,43 +111,35 @@ void InputController::update() {
 
 void InputController::selectMenu() {
   inputtimer.resetClock();
-  cout << cur_menu->getChoiceName() << endl;
 
   if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::END])) {
-    //cur_menu->disable();
+    cur_menu->disable();
     finishSelect();
   }
 
   if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ATTACK])) {
     state = inputstate::ATTACK;
-    //base_menu->disable();
+    base_menu->disable();
   }
 
-  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEM])) {
+  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEMS])) {
     statushudr_ptr->disable();
     statushudl_ptr->disable();
     eng_ptr->getHUD()->getSpeechHUD()->loadConvo(STATUS_CONVO);
     eng_ptr->getPlayState()->changePhase(playstate::CONVO);
-    //cur_menu->disable();
+    cur_menu->disable();
     finishSelect();
   }
-}
 
-void InputController::removeMenu(menu::Type t) {
-  switch (t) {
-  case menu::UNIT : {
-    eng_ptr->getHUD()->removeWidget(MENU_HUD_UNIT);
-    delete base_menu;
-    break;
-  }
-
-  case menu::ITEM : {
-
-    break;
-  }
-
-  default:
-    break;
+  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::SHOP])) {
+    vector<string> coms;
+    coms.push_back(menu::CHOICE_TEXT[menu::ATTACK]);
+    coms.push_back(menu::CHOICE_TEXT[menu::ITEMS]);
+    sf::Vector2i loc(0,0);
+        loc.x = WINDOW_WIDTH - GUI_PADDING;
+        loc.y = statushudr_ptr->MENU_SIZE.y + 2*GUI_PADDING;
+    base_menu->build(loc,coms,anchor::TOPRIGHT);
+    cur_menu = base_menu;
   }
 }
 
@@ -243,9 +235,7 @@ void InputController::selectCell() {
     map_ptr->toggleRangeOn(selected, range::ATTACK);
 
     state = inputstate::MENU;
-    //if (!canAttack) base_menu->disableChoice(menu::ATTACK);
-    //base_menu->enable();
-    buildMenu(menu::UNIT);
+    base_menu->enable();
     return;
   }
 
@@ -269,8 +259,5 @@ void InputController::finishSelect() {
   map_ptr->toggleRangeOff();
   state = inputstate::FREE;
   selected->can_move = false;
-  //base_menu->resetMenu();
-  //delete menus since this unit is finished moving
-  removeMenu(menu::UNIT);
   selected = 0;
 }
