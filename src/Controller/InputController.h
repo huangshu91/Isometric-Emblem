@@ -43,8 +43,10 @@ public:
   void update();
   void render();
 
-private:
   void buildMenu(menu::Type t);
+  void removeMenu(menu::Type t);
+
+private:
 
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;

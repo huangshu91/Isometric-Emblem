@@ -117,11 +117,11 @@ namespace playstate {
 
 namespace menu {
   enum Type { NONE, UNIT, ITEM, STAT };
-  enum UnitChoice { ATTACK, ITEMS, END };
+  enum UnitChoice { ATTACK, ITEMS, SHOP, END };
   enum GenChoice { UNITS, STATUS, OPTION, ENDTURN };
 
   const int NUM_UNIT_CHOICE = 3;
-  const std::string CHOICE_TEXT[] = { "ATTACK", "ITEM", "END" };
+  const std::string CHOICE_TEXT[] = { "ATTACK", "ITEMS", "SHOP", "END" };
 
   const int NUM_GEN_CHOICE = 4;
   const std::string GEN_TEXT[] = { "UNIT", "STATUS", "CONFIG", "END" };

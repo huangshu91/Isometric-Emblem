@@ -78,7 +78,10 @@ void HUDManager::removeWidget(string key) {
   auto m_it = map.find(key);
   map.erase(m_it);
   for (auto it = widgets.begin(); it != widgets.end(); it++) {
-    if (*it == wp) widgets.erase(it);
+    if (*it == wp) {
+      widgets.erase(it);
+      return;
+    }
   }
 }
 

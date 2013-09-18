@@ -6,9 +6,9 @@ res/Char/char_rese.png
 
 3
 Rese 1
-Ch1 starting script!
+Hi GameBuilders!
 Kou 1
-Go hit the dummies or whatever.
+Testing ch1 script.
 Kou 2
-Remember, although dummies can't move they can still attack you back.
-It'd be a shame if you somehow died in the tutorial chapter.
+I'm looking for a few people to help me out with my game.
+Mainly looking for coders and someone who can do comments/wiki.

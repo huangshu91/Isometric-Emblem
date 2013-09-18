@@ -111,15 +111,16 @@ void InputController::update() {
 
 void InputController::selectMenu() {
   inputtimer.resetClock();
+  cout << cur_menu->getChoiceName() << endl;
 
   if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::END])) {
-    cur_menu->disable();
+    //cur_menu->disable();
     finishSelect();
   }
 
   if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ATTACK])) {
     state = inputstate::ATTACK;
-    base_menu->disable();
+    //base_menu->disable();
   }
 
   if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEM])) {
@@ -127,8 +128,26 @@ void InputController::selectMenu() {
     statushudl_ptr->disable();
     eng_ptr->getHUD()->getSpeechHUD()->loadConvo(STATUS_CONVO);
     eng_ptr->getPlayState()->changePhase(playstate::CONVO);
-    cur_menu->disable();
+    //cur_menu->disable();
     finishSelect();
+  }
+}
+
+void InputController::removeMenu(menu::Type t) {
+  switch (t) {
+  case menu::UNIT : {
+    eng_ptr->getHUD()->removeWidget(MENU_HUD_UNIT);
+    delete base_menu;
+    break;
+  }
+
+  case menu::ITEM : {
+
+    break;
+  }
+
+  default:
+    break;
   }
 }
 
@@ -151,6 +170,7 @@ void InputController::buildMenu(menu::Type t) {
     loc.y = statushudr_ptr->MENU_SIZE.y + 2*GUI_PADDING;
     base_menu->build(loc, coms, anchor::TOPRIGHT);
     base_menu->enable();
+    cur_menu = base_menu;
 
     eng_ptr->getHUD()->addWidget(MENU_HUD_UNIT, base_menu);
 
@@ -202,7 +222,7 @@ void InputController::selectCell() {
       state = inputstate::MOVE;
       return;
     }
-    else {
+    else { // select a cell with no unit, open general menu
       eng_ptr->getPlayState()->changePhase(playstate::MENU);
     }
   }
@@ -219,23 +239,14 @@ void InputController::selectCell() {
       return;
     map_ptr->toggleRangeOff();
     state = inputstate::ACTION;
-    bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
+    //bool canAttack = map_ptr->inDistance(selected, unit::ENEMY);
     map_ptr->toggleRangeOn(selected, range::ATTACK);
 
     state = inputstate::MENU;
-    if (!canAttack) base_menu->disableChoice(menu::ATTACK);
-    base_menu->enable();
+    //if (!canAttack) base_menu->disableChoice(menu::ATTACK);
+    //base_menu->enable();
+    buildMenu(menu::UNIT);
     return;
-
-    // for now go straight to attack if possible, in future use a menu with the action "attack"
-    if (canAttack) {
-      map_ptr->toggleRangeOn(selected, range::ATTACK);
-      state = inputstate::ATTACK;
-      return;
-    } else {
-      finishSelect();
-      return;
-    }
   }
 
   if (state == inputstate::ATTACK) {
@@ -258,7 +269,8 @@ void InputController::finishSelect() {
   map_ptr->toggleRangeOff();
   state = inputstate::FREE;
   selected->can_move = false;
-  base_menu->resetMenu();
-  //eng_ptr->getPlayState()->changePhase(playstate::MENU_UNIT);
+  //base_menu->resetMenu();
+  //delete menus since this unit is finished moving
+  removeMenu(menu::UNIT);
   selected = 0;
 }
