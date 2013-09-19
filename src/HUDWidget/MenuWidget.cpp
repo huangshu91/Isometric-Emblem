@@ -91,7 +91,7 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
   select(0);
 }
 
-// only allow use of this shortened build if menu was already built with full params
+// only use this menu if menu was already built with full params
 void MenuWidget::build(vector<string> opt) {
   if (anc == anchor::UNDEF) return;
   build(loc, opt, anc);
