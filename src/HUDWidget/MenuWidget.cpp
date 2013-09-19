@@ -43,6 +43,8 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
   c_enable.clear();
   num_opt = opt.size();
 
+  orig = loc;
+
   for (auto t : opt) {
     sf::Text tx;
     tx.setFont(*(eng_ptr->getRes()->getFont(VISITOR_FONT_KEY)));
@@ -94,7 +96,7 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
 // only use this menu if menu was already built with full params
 void MenuWidget::build(vector<string> opt) {
   if (anc == anchor::UNDEF) return;
-  build(loc, opt, anc);
+  build(orig, opt, anc);
 }
 
 void MenuWidget::setAnchor(anchor::Region a) {
@@ -135,7 +137,6 @@ void MenuWidget::disableChoice(menu::UnitChoice c) {
 }
 
 void MenuWidget::select(int s) {
-  //if (s < 0 || s > num_opt-1) return;
   if (s < 0) s = num_opt-1;
   if (s > num_opt-1) s = 0;
 

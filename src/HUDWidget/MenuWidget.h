@@ -20,6 +20,7 @@ public:
   void setup(GameEngine* eng);
   void build(sf::Vector2i loc, std::vector<std::string> opt, anchor::Region a);
   void build(std::vector<std::string> opt);
+  sf::Vector2i getLoc() { return orig; };
 
   void addChild(MenuWidget);
 
@@ -37,7 +38,7 @@ public:
 private:
   void setAnchor(anchor::Region a);
   anchor::Region anc;
-  sf::Vector2i loc;
+  sf::Vector2i orig;
 
   GUIFrame frame;
 

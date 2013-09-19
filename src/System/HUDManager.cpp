@@ -93,6 +93,7 @@ GUIWidget* HUDManager::getWidget(string key) {
 }
 
 void HUDManager::render() {
+  //menu_hud_unit.render();
   win_ptr->setView(win_ptr->getDefaultView());
   for (int i = 0, j = widgets.size(); i < j; i++) {
     widgets[i]->render();
