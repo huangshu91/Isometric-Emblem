@@ -62,6 +62,7 @@ private:
 
   MenuWidget    menu_hud_unit;
   MenuWidget    menu_hud_gen;
+  MenuWidget    menu_hud_item;
 };
 
 #endif /* HUDMANAGER_H_ */

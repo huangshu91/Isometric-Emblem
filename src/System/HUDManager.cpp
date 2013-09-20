@@ -27,6 +27,7 @@ void HUDManager::setup(GameEngine* eng) {
   exp_hud.setup(eng);
   menu_hud_unit.setup(eng);
   menu_hud_gen.setup(eng);
+  menu_hud_item.setup(eng);
   speech_hud.setup(eng);
   addWidget(STATUS_HUDL, &status_hudl);
   addWidget(STATUS_HUDR, &status_hudr);
@@ -35,6 +36,7 @@ void HUDManager::setup(GameEngine* eng) {
   addWidget(EXP_HUD, &exp_hud);
   addWidget(MENU_HUD_UNIT, &menu_hud_unit);
   addWidget(MENU_HUD_GEN, &menu_hud_gen);
+  addWidget(MENU_HUD_ITEM, &menu_hud_item);
   addWidget(SPEECH_HUD, &speech_hud);
 
   sf::Vector2i loc(0,0);
@@ -46,15 +48,22 @@ void HUDManager::setup(GameEngine* eng) {
   loc.x = WINDOW_WIDTH - GUI_PADDING;
   loc.y = status_hudr.MENU_SIZE.y + 2*GUI_PADDING;
   menu_hud_unit.build(loc, unit, anchor::TOPRIGHT);
+  menu_hud_unit.setMenuId(MENU_HUD_UNIT);
 
   vector<string> gen;
   for (int i = 0; i < menu::NUM_GEN_CHOICE; i++) {
     gen.push_back(menu::GEN_TEXT[i]);
   }
-  loc = sf::Vector2i(0,0);
-  loc.x = WINDOW_WIDTH - GUI_PADDING;
-  loc.y = status_hudr.MENU_SIZE.y + 2*GUI_PADDING;
   menu_hud_gen.build(loc, gen, anchor::TOPRIGHT);
+  menu_hud_gen.setMenuId(MENU_HUD_GEN);
+
+  vector<string> item;
+  for (int i = 0; i < 6; i++) {
+    item.push_back("------");
+  }
+  loc.x -= 2*GUI_PADDING;
+  loc.y += 2*GUI_PADDING;
+  menu_hud_item.build(loc, item, anchor::TOPRIGHT);
 
   terrain_hud.enable();
 }

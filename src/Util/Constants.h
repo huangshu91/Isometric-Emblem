@@ -76,6 +76,7 @@ const std::string STATUS_HUDL = "status_hudl";
 const std::string EXP_HUD = "exp_hud";
 const std::string MENU_HUD_UNIT = "menu_hud_unit";
 const std::string MENU_HUD_GEN = "menu_hud_gen";
+const std::string MENU_HUD_ITEM = "menu_hud_item";
 const std::string SPEECH_HUD = "speech_hud";
 
 const std::string TEXT_HUD = "text_hud";
@@ -117,11 +118,11 @@ namespace playstate {
 
 namespace menu {
   enum Type { NONE, UNIT, ITEM, STAT };
-  enum UnitChoice { ATTACK, ITEMS, SHOP, END };
+  enum UnitChoice { ATTACK, ITEMS, SHOP, DEBUG, END };
   enum GenChoice { UNITS, STATUS, OPTION, ENDTURN };
 
   const int NUM_UNIT_CHOICE = 3;
-  const std::string CHOICE_TEXT[] = { "ATTACK", "ITEMS", "SHOP", "END" };
+  const std::string CHOICE_TEXT[] = { "ATTACK", "ITEMS", "SHOP", "DEBUG", "END" };
 
   const int NUM_GEN_CHOICE = 4;
   const std::string GEN_TEXT[] = { "UNIT", "STATUS", "CONFIG", "END" };

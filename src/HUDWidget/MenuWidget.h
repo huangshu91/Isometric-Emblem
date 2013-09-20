@@ -31,6 +31,10 @@ public:
   int getChoice() { return selected; };
   void disableChoice(menu::UnitChoice c);
   bool isDisabled(menu::UnitChoice c);
+  std::string getMenuId() { return menu_id; };
+  void setMenuId(std::string s) { menu_id = s; };
+  MenuWidget* getParent() { return parent; };
+  MenuWidget* getChild(std::string s);
 
   void resetMenu();
   void render();
@@ -52,6 +56,11 @@ private:
   int     selected;
 
   sf::Sprite menu_cursor;
+
+  std::string menu_id;
+
+  MenuWidget* parent;
+  std::vector<MenuWidget*> children;
 };
 
 #endif /* MENUWIDGET_H_ */

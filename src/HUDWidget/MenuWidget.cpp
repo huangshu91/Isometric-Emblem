@@ -16,6 +16,7 @@ MenuWidget::MenuWidget() {
   num_opt = 0;
   MENU_SIZE = sf::Vector2i(0,0);
   selected = 0;
+  parent = 0;
   anc = anchor::UNDEF;
 }
 
@@ -97,6 +98,16 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
 void MenuWidget::build(vector<string> opt) {
   if (anc == anchor::UNDEF) return;
   build(orig, opt, anc);
+}
+
+// get child menuwidget that matches string s
+MenuWidget* MenuWidget::getChild(string s) {
+  for (auto mw : children) {
+    if (mw->getMenuId().compare(s) == 0) {
+      return mw;
+    }
+  }
+  return 0;
 }
 
 void MenuWidget::setAnchor(anchor::Region a) {
