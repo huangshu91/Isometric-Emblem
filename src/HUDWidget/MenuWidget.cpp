@@ -18,6 +18,8 @@ MenuWidget::MenuWidget() {
   selected = 0;
   parent = 0;
   anc = anchor::UNDEF;
+  menu_id = "";
+  has_focus = false;
 }
 
 MenuWidget::~MenuWidget() {
@@ -41,7 +43,6 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
   sf::Vector2i tx_size(0,0);
   choices.clear();
   c_text.clear();
-  c_enable.clear();
   num_opt = opt.size();
 
   orig = loc;
@@ -61,7 +62,6 @@ void MenuWidget::build(sf::Vector2i loc, vector<string> opt, anchor::Region a) {
     tx.setOrigin(tx.getLocalBounds().width/2, 0);
     c_text.push_back(tx);
     choices.push_back(t);
-    c_enable.push_back(true);
   }
 
   // add side borders
@@ -136,17 +136,6 @@ void MenuWidget::setAnchor(anchor::Region a) {
   }
 }
 
-bool MenuWidget::isDisabled(menu::UnitChoice c) {
-  if (c >= num_opt) return false;
-
-  return c_enable[c];
-}
-
-void MenuWidget::disableChoice(menu::UnitChoice c) {
-  c_text[c].setColor(sf::Color::White);
-  c_enable[c] = false;
-}
-
 void MenuWidget::select(int s) {
   if (s < 0) s = num_opt-1;
   if (s > num_opt-1) s = 0;
@@ -154,25 +143,21 @@ void MenuWidget::select(int s) {
   menu_cursor.setPosition(c_text[s].getPosition().x - c_text[s].getLocalBounds().width/2,
       c_text[s].getPosition().y);
 
-  if (c_enable[selected]) c_text[selected].setColor(sf::Color::Black);
-  else c_text[selected].setColor(sf::Color::White);
+  c_text[selected].setColor(sf::Color::Black);
   selected = s;
   c_text[s].setColor(sf::Color::Green);
+}
+
+// don't need to check if child already exists because they are only
+// added from a single place and relationships are set from the start.
+void MenuWidget::addChild(MenuWidget* mw) {
+  children.push_back(mw);
+  mw->parent = this;
 }
 
 void MenuWidget::enable() {
   GUIWidget::enable();
   select(0);
-}
-
-void MenuWidget::resetMenu() {
-  for (sf::Text s : c_text) {
-    s.setColor(sf::Color::Black);
-  }
-
-  for (unsigned int i = 0; i < c_enable.size(); i++) {
-    c_enable[i] = true;
-  }
 }
 
 void MenuWidget::render() {
@@ -181,5 +166,5 @@ void MenuWidget::render() {
   for (auto t : c_text) {
     win_ptr->draw(t);
   }
-  win_ptr->draw(menu_cursor);
+  if (has_focus) win_ptr->draw(menu_cursor);
 }

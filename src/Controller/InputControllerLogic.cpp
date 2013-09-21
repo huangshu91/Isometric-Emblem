@@ -42,7 +42,7 @@ void InputController::update() {
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
     if (state == inputstate::MENU) {
       inputtimer.resetClock();
-      base_menu->select(base_menu->getChoice()-1);
+      cur_menu->select(cur_menu->getChoice()-1);
     }
     else if (setCurrentCell(cur_cell->getRow() - 1, cur_cell->getCol()))
       updateCell(KEY_PAN_SENS);
@@ -52,7 +52,7 @@ void InputController::update() {
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
     if (state == inputstate::MENU) {
       inputtimer.resetClock();
-      base_menu->select(base_menu->getChoice()-1);
+      cur_menu->select(cur_menu->getChoice()-1);
     }
     else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() - 1))
       updateCell(KEY_PAN_SENS);
@@ -62,7 +62,7 @@ void InputController::update() {
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
     if (state == inputstate::MENU) {
       inputtimer.resetClock();
-      base_menu->select(base_menu->getChoice()+1);
+      cur_menu->select(cur_menu->getChoice()+1);
     }
     else if (setCurrentCell(cur_cell->getRow() + 1, cur_cell->getCol()))
       updateCell(KEY_PAN_SENS);
@@ -72,7 +72,7 @@ void InputController::update() {
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
     if (state == inputstate::MENU) {
       inputtimer.resetClock();
-      base_menu->select(base_menu->getChoice()+1);
+      cur_menu->select(cur_menu->getChoice()+1);
     }
     else if (setCurrentCell(cur_cell->getRow(), cur_cell->getCol() + 1))
       updateCell(KEY_PAN_SENS);

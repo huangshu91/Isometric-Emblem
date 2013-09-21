@@ -78,8 +78,10 @@ const std::string MENU_HUD_UNIT = "menu_hud_unit";
 const std::string MENU_HUD_GEN = "menu_hud_gen";
 const std::string MENU_HUD_ITEM = "menu_hud_item";
 const std::string SPEECH_HUD = "speech_hud";
-
 const std::string TEXT_HUD = "text_hud";
+
+const int INVEN_SIZE = 6;
+const std::string DEF_ITEM = "-------";
 
 const int GUI_PADDING = 30;
 const int MENU_PADDING = 5;

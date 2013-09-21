@@ -8,7 +8,7 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
-	GUIWidgets that need to be rebuilt (unit menu, item menu) will now be dynamically allocated by the caller (inputcontroller) and removed when finished. 
+	Work on graphical things next.  Combat numbers popping up.  Particle effects.  Consider elevating the tiles of units in combat while darkening the rest of the screen.
 	
 	Instead of adding simple animation effects to renderable objects themselves, use the effectmanager (WIP). This will keep track of what object needs to be moved/shaked/etc.
 	

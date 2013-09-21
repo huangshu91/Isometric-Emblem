@@ -22,22 +22,21 @@ public:
   void build(std::vector<std::string> opt);
   sf::Vector2i getLoc() { return orig; };
 
-  void addChild(MenuWidget);
-
   void enable();
   void select(int s);
 
   std::string getChoiceName() { return choices[selected]; };
   int getChoice() { return selected; };
-  void disableChoice(menu::UnitChoice c);
-  bool isDisabled(menu::UnitChoice c);
+
   std::string getMenuId() { return menu_id; };
   void setMenuId(std::string s) { menu_id = s; };
   MenuWidget* getParent() { return parent; };
   MenuWidget* getChild(std::string s);
+  void addChild(MenuWidget* mw); //add as parent for child as well
 
-  void resetMenu();
   void render();
+
+  bool has_focus;
 
 private:
   void setAnchor(anchor::Region a);
@@ -51,7 +50,6 @@ private:
 
   std::vector<std::string> choices;
   std::vector<sf::Text> c_text;
-  std::vector<bool> c_enable;
   int     num_opt;
   int     selected;
 

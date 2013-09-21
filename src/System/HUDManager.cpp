@@ -58,12 +58,15 @@ void HUDManager::setup(GameEngine* eng) {
   menu_hud_gen.setMenuId(MENU_HUD_GEN);
 
   vector<string> item;
-  for (int i = 0; i < 6; i++) {
-    item.push_back("------");
+  for (int i = 0; i < INVEN_SIZE; i++) {
+    item.push_back(DEF_ITEM);
   }
   loc.x -= 2*GUI_PADDING;
   loc.y += 2*GUI_PADDING;
+  menu_hud_item.setMenuId(MENU_HUD_ITEM);
   menu_hud_item.build(loc, item, anchor::TOPRIGHT);
+
+  menu_hud_unit.addChild(&menu_hud_item);
 
   terrain_hud.enable();
 }
@@ -97,7 +100,6 @@ GUIWidget* HUDManager::getWidget(string key) {
   if (map.count(key) < 1) {
     return 0;
   }
-
   return map.find(key)->second;
 }
 
@@ -113,7 +115,6 @@ StatusWidget* HUDManager::getStatusHUD(dir::Direction d) {
   if (d == dir::LEFT) {
     return &status_hudl;
   }
-
   return &status_hudr;
 }
 

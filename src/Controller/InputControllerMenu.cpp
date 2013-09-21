@@ -28,15 +28,23 @@ void InputController::selectMenu() {
   }
 
   if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::ITEMS])) {
+    buildMenu(menu::ITEM);
+    base_menu->has_focus = false;
+    cur_menu = base_menu->getChild(MENU_HUD_ITEM);
+    cur_menu->enable();
+    cur_menu->has_focus = true;
+  }
+
+  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::SHOP])) {
+  }
+
+  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::DEBUG])) {
     statushudr_ptr->disable();
     statushudl_ptr->disable();
     eng_ptr->getHUD()->getSpeechHUD()->loadConvo(STATUS_CONVO);
     eng_ptr->getPlayState()->changePhase(playstate::CONVO);
     cur_menu->disable();
     finishSelect();
-  }
-
-  if (!cur_menu->getChoiceName().compare(menu::CHOICE_TEXT[menu::SHOP])) {
   }
 }
 
@@ -50,9 +58,12 @@ void InputController::buildMenu(menu::Type t) {
     }
     coms.push_back(menu::CHOICE_TEXT[menu::ITEMS]);
     coms.push_back(menu::CHOICE_TEXT[menu::END]);
+
+    if (DEBUG) coms.push_back(menu::CHOICE_TEXT[menu::DEBUG]);
     base_menu->build(coms);
     base_menu->enable();
     cur_menu = base_menu;
+    cur_menu->has_focus = true;
   } break;
   case menu::ITEM : {
 
@@ -62,6 +73,4 @@ void InputController::buildMenu(menu::Type t) {
   default:
     break;
   }
-
-
 }
