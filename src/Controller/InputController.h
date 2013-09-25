@@ -46,6 +46,7 @@ public:
   void buildMenu(menu::Type t);
 
 private:
+  void backMenu();
 
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;

@@ -67,10 +67,28 @@ void InputController::buildMenu(menu::Type t) {
   } break;
   case menu::ITEM : {
 
-
   } break;
 
   default:
     break;
   }
 }
+
+void InputController::backMenu() {
+  if (cur_menu->getMenuId().compare(MENU_HUD_UNIT) == 0) {
+    state = inputstate::MOVE;
+    base_menu->disable();
+    map_ptr->moveUnit(selected, prev_loc.x, prev_loc.y);
+    map_ptr->toggleRangeOn(selected, range::COMBINED);
+  }
+
+  else if (cur_menu->getMenuId().compare(MENU_HUD_ITEM) == 0) {
+    cur_menu->has_focus = false;
+    cur_menu->disable();
+    base_menu->has_focus = true;
+    cur_menu = base_menu;
+
+  }
+}
+
+

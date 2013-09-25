@@ -13,6 +13,7 @@
 #include "../Util/Constants.h"
 #include "../Util/UtilValues.h"
 #include "../Entity/BattleManager.h"
+#include "../Item/Item.h"
 
 class GameEngine;
 class Cell;
@@ -61,6 +62,8 @@ public:
   int exp;
   int move_range;
   int attack_range;
+
+  std::vector<Item> inventory;
 
   // for debug use
   friend std::ostream& operator<<(std::ostream& out, const DynamicEntity* e);

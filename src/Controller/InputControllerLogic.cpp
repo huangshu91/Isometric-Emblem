@@ -17,7 +17,6 @@
 
 void InputController::update() {
   //if the window does not have focus, do not accept input
-
   if (eng_ptr->hasFocus() == false) return;
 
   /*
@@ -81,28 +80,25 @@ void InputController::update() {
   // select the current cell
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
-    if (state == inputstate::MENU) selectMenu();
+    if (state == inputstate::MENU) {
+      selectMenu();
+    }
     else selectCell();
   }
 
   // cancel previous action. does nothing if not in menu
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)
       && inputtimer.getElapsedTime() > INPUT_DELAY) {
+    inputtimer.resetClock();
     if (state == inputstate::MENU) {
-      inputtimer.resetClock();
-      state = inputstate::MOVE;
-      base_menu->disable();
-      map_ptr->moveUnit(selected, prev_loc.x, prev_loc.y);
-      map_ptr->toggleRangeOn(selected, range::COMBINED);
+      backMenu();
     }
     else if (state == inputstate::MOVE) {
-      inputtimer.resetClock();
       state = inputstate::FREE;
       map_ptr->toggleRangeOff();
       selected = 0;
     }
     else if (state == inputstate::ATTACK) {
-      inputtimer.resetClock();
       base_menu->enable();
       state = inputstate::MENU;
     }

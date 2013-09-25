@@ -34,6 +34,7 @@ GameEngine::GameEngine() {
   pstate = new PlayState(getEngine());
   pstate->setup();
 
+
   gameBat.setup(getEngine(), getPlayState());
 }
 

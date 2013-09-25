@@ -8,6 +8,8 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Effect_Manager holds all the effects which are created and owned by the manager.  Others will call the manager asking to create certain effects.  Effects are like GUIWidgets and all derive from base class Effect which has info on duration, effect_type, etc.
+	
 	Work on graphical things next.  Combat numbers popping up.  Particle effects.  Consider elevating the tiles of units in combat while darkening the rest of the screen.
 	
 	Instead of adding simple animation effects to renderable objects themselves, use the effectmanager (WIP). This will keep track of what object needs to be moved/shaked/etc.

@@ -26,8 +26,8 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n)
   map_ptr = 0;
   tile_ptr = 0;
 
-  total.hp = 30;
-  total.max_hp = 30;
+  total.hp = 20;
+  total.max_hp = 20;
   level = 1;
   exp = 0;
 }
