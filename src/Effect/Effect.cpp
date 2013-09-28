@@ -6,13 +6,22 @@
  */
 
 #include "Effect.h"
+#include "../System/GameEngine.h"
 
 Effect::Effect() {
-  // TODO Auto-generated constructor stub
+  type = effect::UNDEF;
+  eng_ptr = 0;
+  win_ptr = 0;
 
+  bounce = false;
+  fade = false;
 }
 
 Effect::~Effect() {
   // TODO Auto-generated destructor stub
 }
 
+void Effect::setup(GameEngine* eng) {
+  eng_ptr = eng;
+  win_ptr = eng->getWindow();
+}

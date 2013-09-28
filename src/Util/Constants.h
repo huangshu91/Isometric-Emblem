@@ -27,6 +27,9 @@ const float INPUT_DELAY = 0.15;
 const float MOUSE_PAN_SENS = 2.0f;
 const float KEY_PAN_SENS = 0.3f;
 
+const int MAX_ZOOM = 4;
+const int MIN_ZOOM = -4;
+const float ZOOM_FACTOR = 0.9f;
 
 const std::string TILE_BASE = "res/Tiles/rock_plain_tile.png";
 const std::string TILE_KEY = "rocktile";
@@ -132,6 +135,11 @@ namespace menu {
 
 namespace anchor {
   enum Region { TOPLEFT, TOPRIGHT, BOTLEFT, BOTRIGHT, CENTER, UNDEF };
+}
+
+namespace effect {
+  enum Object { TEXT, UNDEF };
+  enum Type { FADE, BOUNCE };
 }
 
 namespace camera {

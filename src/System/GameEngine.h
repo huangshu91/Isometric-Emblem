@@ -20,6 +20,7 @@
 #include "Camera.h"
 #include "ResourceManager.h"
 #include "HUDManager.h"
+#include "EffectManager.h"
 
 class GameState;
 class PlayState;
@@ -40,6 +41,7 @@ public:
   Logger* getLog() { return &gameLog; };
   Database* getDatabase() { return &gameData; };
   BattleManager* getBattle() { return &gameBat; };
+  EffectManager* getEffect() { return &gameEffect; };
 
   Caravan* getCaravan() { return &caravan; };
 
@@ -48,9 +50,10 @@ public:
   bool hasFocus() { return focus; };
 
 private:
-
   void loadDebug();
-  void ChangeState(gamestate::Statetype newstate);
+  void changeState(gamestate::Statetype newstate);
+  void takeScreenshot();
+  void changeZoom(int fac);
 
   gamestate::Statetype stateId;
   std::vector<GameState*> states;
@@ -63,12 +66,16 @@ private:
   Logger              gameLog;
   Database            gameData;
   BattleManager       gameBat;
+  EffectManager       gameEffect;
 
   Caravan             caravan;
 
   PlayState* pstate;
 
   bool focus;
+  int zoom_amt;
+
+  FormatClock timer;
 };
 
 

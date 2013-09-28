@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
 #include "../Util/Constants.h"
+#include "../Util/FormatClock.h"
 #include "../Entity/BattleManager.h"
 #include "../Controller/MenuController.h"
 #include "../Controller/SkitController.h"
@@ -35,6 +36,8 @@ public:
   void finishTransition();
 
 private:
+  void checkZoom();
+
   Map* level;
   InputController* input;
   AIController* ai;

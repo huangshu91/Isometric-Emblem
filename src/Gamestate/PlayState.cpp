@@ -13,6 +13,7 @@
 #include "../System/GameEngine.h"
 #include "../Entity/BattleManager.h"
 
+
 PlayState::PlayState(GameEngine* eng) : GameState(eng) {
   stateId = gamestate::PLAY;
   level = new Map(eng_ptr);
@@ -45,7 +46,10 @@ void PlayState::setup() {
   ai->setMap(level);
 
   eng_ptr->getGameCam()->setCenter(sf::Vector2f(input->getCurrentCenter()));
-  //eng_ptr->getGameCam()->zoomCamera(0.8f);
+  eng_ptr->getGameCam()->zoomCamera(0.8f);
+
+  sf::Vector2f loc(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+  eng_ptr->getEffect()->addEffectObj(effect::TEXT, loc, "test");
 }
 
 void PlayState::changePhase(playstate::Phase next) {
@@ -122,16 +126,16 @@ void PlayState::update() {
   }
 
   eng_ptr->getGameCam()->update();
+  eng_ptr->getEffect()->update();
 }
 
 void PlayState::render() {
-  eng_ptr->getWindow()->setView(*(eng_ptr->getGameCam()->GetView()));
-
+  //eng_ptr->getWindow()->setView(*(eng_ptr->getGameCam()->GetView()));
   level->render();
   input->render();
-  //level->renderUnits();
   level->renderAdd();
   level->renderUnits();
 
   eng_ptr->getHUD()->render();
+  eng_ptr->getEffect()->render();
 }

@@ -17,7 +17,6 @@ using namespace std;
 GameEngine::GameEngine() {
   gameWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_COLOR_DEPTH),
                      GAME_LABEL + " " + VERSION_NUM);
-
   gameWindow.setFramerateLimit(60);
   //gameWindow.setMouseCursorVisible(false);
   //gameWindow.setVerticalSyncEnabled(true);
@@ -28,14 +27,16 @@ GameEngine::GameEngine() {
   gameData.setup(getEngine());
   gameCam.setup(getWindow());
   gameHUD.setup(getEngine());
+  gameEffect.setup(getEngine());
 
   caravan.setup(getEngine());
 
   pstate = new PlayState(getEngine());
   pstate->setup();
 
-
   gameBat.setup(getEngine(), getPlayState());
+
+  zoom_amt = 0;
 }
 
 void GameEngine::cleanup() {
@@ -68,15 +69,12 @@ void GameEngine::runEngine() {
       if (ev.type == sf::Event::GainedFocus) focus = true;
 
       if (ev.type == sf::Event::KeyPressed) {
-        if (ev.key.code == sf::Keyboard::F1) {
-          gameLog.i("Screenshot taken.");
-          sf::Image im = gameWindow.capture();
-          im.saveToFile(SS_PATH+"ss_"+gameClock.getFormatTime()+".png");
-        }
+        if (ev.key.code == sf::Keyboard::F1) takeScreenshot();
       }
+      if (ev.type == sf::Event::MouseWheelMoved) changeZoom(ev.mouseWheel.delta);
     }
     gameWindow.clear(WINDOW_COLOR);
-
+    gameWindow.setView(*(getGameCam()->GetView()));
     pstate->update();
     pstate->render();
 
@@ -85,5 +83,28 @@ void GameEngine::runEngine() {
 
     gameWindow.display();
   }
+}
 
+void GameEngine::takeScreenshot() {
+  gameLog.i("Screenshot taken.");
+  sf::Image im = gameWindow.capture();
+  im.saveToFile(SS_PATH+"ss_"+gameClock.getFormatTime()+".png");
+}
+
+void GameEngine::changeZoom(int fac) {
+  //zoom in
+  cout << fac << endl;
+  if (fac > 0) {
+    if (zoom_amt < MAX_ZOOM) {
+      getGameCam()->zoomCamera(ZOOM_FACTOR);
+      zoom_amt++;
+    }
+  }
+  // zoom out
+  else if (fac < 0) {
+    if (zoom_amt > MIN_ZOOM) {
+      getGameCam()->zoomCamera(1/ZOOM_FACTOR);
+      zoom_amt--;
+    }
+  }
 }

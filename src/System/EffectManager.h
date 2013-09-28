@@ -9,7 +9,10 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <list>
 #include "../Effect/Effect.h"
+#include "../Effect/StrokeText.h"
+#include "../Util/Constants.h"
 
 class GameEngine;
 
@@ -23,11 +26,18 @@ public:
   void update();
   void render();
 
+  void addEffectObj(effect::Object o, sf::Vector2f loc, std::string s);
+  void addEffectObj(effect::Object o, sf::Vector2f loc);
+
+  void addEffect(effect::Type t);
+
 private:
   GameEngine* eng_ptr;
   sf::RenderWindow* win_ptr;
 
-  std::vector<Effect> eff_col;
+  std::list<StrokeText> text_col;
+
+  Effect* currentEffect;
 
   int num_effects;
 };
