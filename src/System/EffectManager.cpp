@@ -45,17 +45,13 @@ void EffectManager::render() {
 
 }
 
-void EffectManager::addEffectObj(effect::Object o, sf::Vector2f loc) {
-
-
-}
-
-void EffectManager::addEffectObj(effect::Object o, sf::Vector2f loc, string s) {
+void EffectManager::addEffectObj(effect::Object o, effect::param opt) {
   switch (o) {
   case effect::TEXT: {
     StrokeText st;
-    st.setup(eng_ptr, loc, s);
+    st.setup(eng_ptr, opt);
     text_col.push_back(st);
+    currentEffect = &(text_col.back());
     break;
   }
   default:

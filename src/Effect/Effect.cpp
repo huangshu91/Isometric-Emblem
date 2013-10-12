@@ -15,13 +15,15 @@ Effect::Effect() {
 
   bounce = false;
   fade = false;
+  end = false;
 }
 
 Effect::~Effect() {
   // TODO Auto-generated destructor stub
 }
 
-void Effect::setup(GameEngine* eng) {
+void Effect::setup(GameEngine* eng, effect::param opt) {
   eng_ptr = eng;
   win_ptr = eng->getWindow();
+  config = opt;
 }

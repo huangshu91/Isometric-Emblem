@@ -140,6 +140,18 @@ namespace anchor {
 namespace effect {
   enum Object { TEXT, UNDEF };
   enum Type { FADE, BOUNCE };
+
+  struct param {
+    param () : fade(false), bounce(false), disappear(true), lifetime(5) {
+      s = "UNINIT";
+    }
+    bool fade;
+    bool bounce;
+    bool disappear;
+    double lifetime;
+    sf::Vector2f loc;
+    std::string s;
+  };
 }
 
 namespace camera {

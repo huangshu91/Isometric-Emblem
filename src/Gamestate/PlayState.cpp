@@ -49,7 +49,12 @@ void PlayState::setup() {
   eng_ptr->getGameCam()->zoomCamera(0.8f);
 
   sf::Vector2f loc(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-  eng_ptr->getEffect()->addEffectObj(effect::TEXT, loc, "test");
+
+  effect::param op;
+  op.s = "TEST";
+  op.loc = loc;
+  op.fade = true;
+  eng_ptr->getEffect()->addEffectObj(effect::TEXT, op);
 }
 
 void PlayState::changePhase(playstate::Phase next) {

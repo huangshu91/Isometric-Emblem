@@ -14,8 +14,6 @@
 
 class GameEngine;
 
-#include "Effect.h"
-
 class StrokeText: public Effect {
 public:
   StrokeText();
@@ -24,7 +22,7 @@ public:
   void update();
   void render();
 
-  void setup(GameEngine* eng, sf::Vector2f loc, std::string s);
+  void setup(GameEngine* eng, effect::param opt);
 
 private:
   sf::Text text;
