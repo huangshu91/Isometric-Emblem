@@ -34,11 +34,13 @@ public:
   std::string getFormatTime();
 
   float getElapsedTime();
+  float getDeltaTime();
 
 private:
   sf::Clock internalclock;
 
   float breaktime;
+  float deltatime;
   bool paused;
 };
 

@@ -11,6 +11,7 @@
 #include "../Gamestate/PlayState.h"
 #include "../Entity/DynamicEntity.h"
 #include "../System/Camera.h"
+#include "../System/EffectManager.h"
 
 BattleManager::BattleManager() {
   eng_ptr = 0;
@@ -76,6 +77,15 @@ void BattleManager::battle() {
   int defense = def->getDef();
 
   bool damage = def->takeDamage(power-defense);
+
+  effect::param opt;
+  opt.s = ""+(power-defense);
+  opt.disappear = true;
+  opt.fade = true;
+  opt.lifetime = 1;
+  opt.loc = def->getLoc();
+  eng_ptr->getEffect()->addEffect(effect::TEXT, opt);
+
   if (def->total.hp == 0) {
     if (atk->getControl() == unit::PLAYER) {
       int val = atk->gainEXP(def, Result::KILL);

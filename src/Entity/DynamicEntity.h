@@ -25,6 +25,7 @@ public:
   virtual ~DynamicEntity();
 
   void setTile(Cell* t, Map* map);
+  sf::Vector2f getLoc();
   Cell* getCurCell() { return tile_ptr; };
   int getRange(range::RangeType state);
   unit::Control getControl() { return control; };

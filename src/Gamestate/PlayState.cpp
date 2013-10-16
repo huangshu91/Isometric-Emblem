@@ -54,7 +54,8 @@ void PlayState::setup() {
   op.s = "TEST";
   op.loc = loc;
   op.fade = true;
-  eng_ptr->getEffect()->addEffectObj(effect::TEXT, op);
+  op.lifetime = 0.5;
+  eng_ptr->getEffect()->addEffect(effect::TEXT, op);
 }
 
 void PlayState::changePhase(playstate::Phase next) {
@@ -141,6 +142,6 @@ void PlayState::render() {
   level->renderAdd();
   level->renderUnits();
 
-  eng_ptr->getHUD()->render();
   eng_ptr->getEffect()->render();
+  eng_ptr->getHUD()->render();
 }

@@ -26,8 +26,7 @@ public:
   void update();
   void render();
 
-  void addEffectObj(effect::Object o, effect::param opt);
-
+  void addEffect(effect::Object o, effect::param opt);
   void addEffect(effect::Type t);
 
 private:

@@ -55,6 +55,10 @@ void DynamicEntity::setTile(Cell* t, Map* map) {
   sprite.setPosition(sf::Vector2f(t->getCenter()));
 }
 
+sf::Vector2f DynamicEntity::getLoc() {
+  return (sf::Vector2f) tile_ptr->getCenter();
+}
+
 void DynamicEntity::render() {
   win_ptr->draw(sprite);
 }

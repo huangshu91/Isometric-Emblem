@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Effect/Effect.h"
 #include <string>
+#include <vector>
 
 class GameEngine;
 
@@ -26,6 +27,7 @@ public:
 
 private:
   sf::Text text;
+  std::vector<sf::Text> stroke;
   std::string s;
 };
 

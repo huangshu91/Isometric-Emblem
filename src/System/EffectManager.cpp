@@ -45,7 +45,7 @@ void EffectManager::render() {
 
 }
 
-void EffectManager::addEffectObj(effect::Object o, effect::param opt) {
+void EffectManager::addEffect(effect::Object o, effect::param opt) {
   switch (o) {
   case effect::TEXT: {
     StrokeText st;
