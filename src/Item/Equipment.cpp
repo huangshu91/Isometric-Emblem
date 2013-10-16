@@ -6,9 +6,10 @@
  */
 
 #include "Equipment.h"
+using namespace std;
 
-Equipment::Equipment() {
-  // TODO Auto-generated constructor stub
+Equipment::Equipment(string iden) : Item(iden) {
+  durability = 0;
 
 }
 

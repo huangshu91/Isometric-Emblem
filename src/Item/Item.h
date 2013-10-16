@@ -15,7 +15,7 @@ class DynamicEntity;
 
 class Item {
 public:
-  Item();
+  Item(std::string iden);
   virtual ~Item();
 
 private:

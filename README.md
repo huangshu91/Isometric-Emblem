@@ -8,6 +8,10 @@ TODO:
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
 	
+	Items, name will be a unique identifier.
+	
+	StrokeText done, the effects fade and disappear are done.  Eventually work on ParticleEmitter Effect and a bounce effect.  The bounce effect will just use kinematic equations.
+	
 	Effect_Manager holds all the effects which are created and owned by the manager.  Others will call the manager asking to create certain effects.  Effects are like GUIWidgets and all derive from base class Effect which has info on duration, effect_type, etc.
 	
 	Work on graphical things next.  Combat numbers popping up.  Particle effects.  Consider elevating the tiles of units in combat while darkening the rest of the screen.

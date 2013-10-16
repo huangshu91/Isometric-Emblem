@@ -57,9 +57,21 @@ void Database::setup(GameEngine* eng) {
   //testConvo(convo_names, convo_db);
 
   log_ptr->i("Finished loading Conversations.");
+  log_ptr->i("Loading Items: ");
+
+  LoadItems();
 
   log_ptr->i("Finished loading db files.");
 
+}
+
+void Database::LoadItems() {
+  ifstream file(DB_ITEMS.c_str());
+  if (file.is_open()) {
+
+
+
+  }
 }
 
 void Database::LoadConvo() {

@@ -84,11 +84,19 @@ private:
   std::vector<std::string> convo_names;
   std::map<std::string, Convo> convo_db;
 
+  std::vector<std::string> consume_names;
+
+
+  std::vector<std::string> eq_names;
+
   void LoadClasses();
   void LinkClasses();
   void LoadTiles();
   void LoadChapterInfo();
   void LoadConvo();
+  void LoadItems();
+    void LoadConsumable(std::string con_path);
+    void LoadEquipment(std::string eq_path);
 
   Convo LoadAct(std::string convo_path);
 };

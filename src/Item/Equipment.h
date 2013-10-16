@@ -12,8 +12,11 @@
 
 class Equipment: public Item {
 public:
-  Equipment();
+  Equipment(std::string iden = "UNDFEF");
   virtual ~Equipment();
+
+private:
+  int durability;
 };
 
 #endif /* EQUIPMENT_H_ */

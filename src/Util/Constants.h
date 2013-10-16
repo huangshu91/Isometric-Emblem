@@ -109,6 +109,7 @@ const std::string DB_TILE = "res/Data/tiledb.txt";
 const std::string DB_CHAP = "res/Data/chapterdb.txt";
 const std::string DB_INFO = "res/Data/infodb.txt";
 const std::string DB_CONVO = "res/Data/convodb.txt";
+const std::string DB_ITEMS = "res/Data/iteminfodb.txt";
 
 // enums
 

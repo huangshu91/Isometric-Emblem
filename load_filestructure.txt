@@ -85,3 +85,15 @@ Rese
 test test test				
 Kou
 testingly						
+
+Item Info database type
+---------------------------
+1								// number of consumable item types
+CommonHerb.txt					// path to the item
+1								// number of equipment item types
+IronSword.txt					// path to the item
+
+Consumable database type
+---------------------------
+Common Herb						// unique identifier for the item
+Common greenery found on the roadside	// flavor text description of the item
