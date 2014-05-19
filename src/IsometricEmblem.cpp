@@ -9,6 +9,7 @@
 #include "System/GameEngine.h"
 #include "stdlib.h"
 #include "time.h"
+#include <string>
 
 int main()
 {

@@ -13,8 +13,7 @@
 #include "../System/Camera.h"
 #include "../System/EffectManager.h"
 #include "../Util/Globals.h"
-
-//extern DelayTimer DelayClock;
+#include "../Util/UtilFunc.h"
 
 BattleManager::BattleManager() {
   eng_ptr = 0;
@@ -46,7 +45,7 @@ void BattleManager::attackUnit(DynamicEntity* a, DynamicEntity* d) {
 
 void BattleManager::update() {
   if (stat == FIRST) {
-    DelayClock.setTimer(3);
+    if (!DelayClock.setTimer(0.1)) return;
     stat = SECOND;
 
     battle();
@@ -55,6 +54,8 @@ void BattleManager::update() {
     def = swap;
 
   } else if (stat == SECOND) {
+
+    if (!DelayClock.setTimer(0.5)) return;
     //stat = THIRD;
     parent->changePhase(playstate::FINISHFIGHT);
 
@@ -79,11 +80,12 @@ void BattleManager::update() {
 void BattleManager::battle() {
   int power = atk->getPow();
   int defense = def->getDef();
+  int damage = power-defense;
 
-  bool damage = def->takeDamage(power-defense);
+  bool tookDmg = def->takeDamage(power-defense);
 
   effect::param opt;
-  opt.s = ""+(power-defense);
+  opt.s = numberToString(damage);
   opt.disappear = true;
   opt.fade = true;
   opt.lifetime = 1;
@@ -97,7 +99,7 @@ void BattleManager::battle() {
     }
     def->unitDeath();
   }
-  hit = (damage && atk->getControl() == unit::PLAYER) ? true : hit;
+  hit = (tookDmg && atk->getControl() == unit::PLAYER) ? true : hit;
 }
 
 void BattleManager::render() {

@@ -71,6 +71,11 @@ void GameEngine::runEngine() {
 
       if (ev.type == sf::Event::KeyPressed) {
         if (ev.key.code == sf::Keyboard::F1) takeScreenshot();
+        if (ev.key.code == sf::Keyboard::Escape) {
+          cleanup();
+          gameWindow.close();
+          return;
+        }
       }
       if (ev.type == sf::Event::MouseWheelMoved) changeZoom(ev.mouseWheel.delta);
     }

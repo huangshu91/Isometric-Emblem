@@ -82,6 +82,8 @@ void Camera::update() {
       cam_view.setCenter(smooth_goal);
       state = camera::NONE;
     }
+
+    //different camera movement style
     /*
     sf::Vector2f diff = smooth_goal - smooth_start;
     move(diff.x/smoothTime, diff.y/smoothTime);

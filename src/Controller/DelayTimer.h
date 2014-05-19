@@ -14,13 +14,13 @@ public:
   DelayTimer();
   virtual ~DelayTimer();
 
-  bool setTimer(double dur);
+  bool setTimer(float dur);
 
 private:
   FormatClock timer;
   bool        timer_set;
 
-  double duration;
+  float duration;
 };
 
 #endif /* DELAYTIMER_H_ */
