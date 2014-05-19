@@ -61,6 +61,7 @@ void Database::setup(GameEngine* eng) {
 
   LoadItems();
 
+  log_ptr->i("Finished loading Items.");
   log_ptr->i("Finished loading db files.");
 
 }
@@ -68,10 +69,63 @@ void Database::setup(GameEngine* eng) {
 void Database::LoadItems() {
   ifstream file(DB_ITEMS.c_str());
   if (file.is_open()) {
+    string conspath;
+    string eqpath;
 
+    file >> conspath;
+    file >> eqpath;
 
+    LoadConsumable(conspath);
+    //LoadEquipment(eqpath);
 
+    file.close();
+  } else {
+    log_ptr->e("Could not load Items!");
   }
+}
+
+void Database::LoadConsumable(string con_path) {
+  ifstream file(con_path.c_str());
+  if (file.is_open()) {
+    int num_con = 0;
+    file >> num_con;
+
+    string field;
+    int val;
+
+    for (int i = 0; i < num_con; i++) {
+      char start;
+      file >> start;
+      getline(file, field);
+      consume_names.push_back(start+field);
+
+      ConsumeDef c;
+      c.name = field;
+
+      file >> val;
+      c.value = val;
+      file >> val;
+      c.heal = val;
+      file >> val;
+      c.quant = val;
+
+      char end;
+      file >> end;
+      getline(file, field);
+      c.desc = end+field;
+    }
+
+    file.close();
+  } else {
+    log_ptr->e("\tCould not load Consumables!");
+  }
+
+  log_ptr->i("\tFinished loading Consumables.");
+}
+
+void Database::LoadEquipment(string eq_path) {
+
+  log_ptr->i("\tFinished loading Equipment.");
 }
 
 void Database::LoadConvo() {
@@ -352,4 +406,18 @@ Convo Database::getConvo(string c) {
   }
 
   return convo_db.find(c)->second;
+}
+
+ConsumeDef Database::getConsume(string c) {
+  if (consume_db.count(c) == 0) {
+    ConsumeDef tmp;
+    tmp.name = "NONE";
+    tmp.desc = "NONE";
+    tmp.value = 0;
+    tmp.heal = 0;
+    tmp.quant = 0;
+    return tmp;
+  }
+
+  return consume_db.find(c)->second;
 }

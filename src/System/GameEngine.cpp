@@ -28,7 +28,6 @@ GameEngine::GameEngine() {
   gameCam.setup(getWindow());
   gameHUD.setup(getEngine());
   gameEffect.setup(getEngine());
-
   caravan.setup(getEngine());
 
   pstate = new PlayState(getEngine());
@@ -98,8 +97,7 @@ void GameEngine::takeScreenshot() {
 }
 
 void GameEngine::changeZoom(int fac) {
-  //zoom in
-  cout << fac << endl;
+  //zoom in-
   if (fac > 0) {
     if (zoom_amt < MAX_ZOOM) {
       getGameCam()->zoomCamera(ZOOM_FACTOR);

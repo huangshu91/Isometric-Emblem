@@ -12,8 +12,12 @@
 
 class Consumable: public Item {
 public:
-  Consumable();
+  Consumable(std::string iden = "UNDEF");
   virtual ~Consumable();
+
+private:
+  int durability;
+  int cdurability;
 };
 
 #endif /* CONSUMABLE_H_ */

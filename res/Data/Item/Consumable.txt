@@ -1,0 +1,7 @@
+2
+Common Herb
+150 10 3
+Common shrubbery found on roadside
+Potion
+300 30 2
+Write it yourself

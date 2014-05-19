@@ -88,12 +88,12 @@ testingly
 
 Item Info database type
 ---------------------------
-1								// number of consumable item types
-CommonHerb.txt					// path to the item
-1								// number of equipment item types
-IronSword.txt					// path to the item
+res/Item/Consumable.txt					// path to item type
+res/Item/Equipment.txt					// path to item type
 
 Consumable database type
 ---------------------------
-Common Herb						// unique identifier for the item
-Common greenery found on the roadside	// flavor text description of the item
+1 													// number of items in db
+Common Herb											// unique identifier for the item
+150 10 3 											// cost per unit, hp healed, quantity
+Common shrubbery found on the roadside				// flavor text description of the item

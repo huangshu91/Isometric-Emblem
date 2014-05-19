@@ -17,6 +17,7 @@ public:
 
 private:
   int durability;
+  int cdurability;
 };
 
 #endif /* EQUIPMENT_H_ */

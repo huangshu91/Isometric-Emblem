@@ -45,9 +45,7 @@ void DynamicEntity::buildUnit(int hp, int max, int s, int de,
   buildUnit(temp, c);
 }
 
-DynamicEntity::~DynamicEntity() {
-  // TODO Auto-generated destructor stub
-}
+DynamicEntity::~DynamicEntity() { }
 
 void DynamicEntity::setTile(Cell* t, Map* map) {
   tile_ptr = t;
@@ -146,6 +144,5 @@ void DynamicEntity::endTurn() {
 }
 
 ostream& operator<<(ostream& out, const DynamicEntity* e) {
-
   return out;
 }

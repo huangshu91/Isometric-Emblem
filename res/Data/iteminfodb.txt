@@ -1,3 +1,2 @@
-1
-CommonHerb.txt
-0
+res/Data/Item/Consumable.txt
+res/Data/Item/Equipment.txt

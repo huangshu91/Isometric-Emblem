@@ -7,9 +7,9 @@
 
 #include "Consumable.h"
 
-Consumable::Consumable() {
-  // TODO Auto-generated constructor stub
-
+Consumable::Consumable(std::string iden) : Item(iden) {
+  durability = 0;
+  cdurability = 0;
 }
 
 Consumable::~Consumable() {

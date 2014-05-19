@@ -6,11 +6,10 @@
  */
 
 #include "Equipment.h"
-using namespace std;
 
-Equipment::Equipment(string iden) : Item(iden) {
+Equipment::Equipment(std::string iden) : Item(iden) {
   durability = 0;
-
+  cdurability = 0;
 }
 
 Equipment::~Equipment() {
