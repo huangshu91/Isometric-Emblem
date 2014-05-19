@@ -10,8 +10,16 @@
 
 Item::Item() {
   parent = 0;
+  amount = 0;
   base_type = item::UNINIT;
-  item_name = "NONE";
+  item_name = "UNDEF";
+}
+
+Item::Item(std::string iden) {
+  parent = 0;
+  amount = 0;
+  base_type = item::UNINIT;
+  item_name = iden;
 }
 
 Item::~Item() {

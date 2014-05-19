@@ -11,7 +11,7 @@ using namespace std;
 FormatClock::FormatClock() {
   paused = false;
   breaktime = 0;
-  deltatime = internalclock.getElapsedTime();
+  deltatime = internalclock.getElapsedTime().asSeconds();
 }
 
 FormatClock::~FormatClock() {
@@ -56,8 +56,8 @@ float FormatClock::getElapsedTime() {
 }
 
 float FormatClock::getDeltaTime() {
-  float ret = internalclock.getElapsedTime() - deltatime;
-  deltatime = internalclock.getElapsedTime();
+  float ret = internalclock.getElapsedTime().asSeconds() - deltatime;
+  deltatime = internalclock.getElapsedTime().asSeconds();
   return ret;
 }
 

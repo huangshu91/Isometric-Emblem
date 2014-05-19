@@ -15,6 +15,5 @@ int main()
   srand(time(0));
   GameEngine gEng;
   gEng.runEngine();
-
   return 0;
 }

@@ -45,6 +45,9 @@ private:
   FormatClock smooth_clock;
   float smoothTime;
 
+  float deltaT;
+  sf::Vector2f moveamt;
+
   sf::Vector2f shake_start;
   FormatClock shake_clock;
   int intensity;

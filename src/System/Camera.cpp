@@ -50,10 +50,11 @@ void Camera::smoothMove(sf::Vector2f center, float time) {
   smooth_start = GetCenter();
   // time*fps_limit will give you how much to move PER FRAME
   smoothTime = time*FPS_LIMIT;
+  deltaT = 0;
   state = camera::SMOOTH;
 
   sf::Vector2f diff = smooth_goal - smooth_start;
-  move(diff.x/smoothTime, diff.y/smoothTime);
+  moveamt = diff/time;
   smooth_clock.resetClock();
 }
 
@@ -81,8 +82,14 @@ void Camera::update() {
       cam_view.setCenter(smooth_goal);
       state = camera::NONE;
     }
+    /*
     sf::Vector2f diff = smooth_goal - smooth_start;
     move(diff.x/smoothTime, diff.y/smoothTime);
+    */
+
+    float delta = smooth_clock.getElapsedTime() - deltaT;
+    move(moveamt.x*delta, moveamt.y*delta);
+    deltaT = smooth_clock.getElapsedTime();
   }
 
   if (state == camera::SHAKE) {

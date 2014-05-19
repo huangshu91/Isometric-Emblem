@@ -27,12 +27,12 @@ public:
   void d(std::string msg);
 
   //safe even if log not open
-  void close() { log.close(); };
+  void close() { logg.close(); };
 
 private:
   void printheader(char type);
 
-  std::ofstream log;
+  std::ofstream logg;
   FormatClock gameClock;
 
   bool debugEnabled;

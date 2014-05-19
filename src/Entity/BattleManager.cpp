@@ -12,6 +12,9 @@
 #include "../Entity/DynamicEntity.h"
 #include "../System/Camera.h"
 #include "../System/EffectManager.h"
+#include "../Util/Globals.h"
+
+//extern DelayTimer DelayClock;
 
 BattleManager::BattleManager() {
   eng_ptr = 0;
@@ -43,6 +46,7 @@ void BattleManager::attackUnit(DynamicEntity* a, DynamicEntity* d) {
 
 void BattleManager::update() {
   if (stat == FIRST) {
+    DelayClock.setTimer(3);
     stat = SECOND;
 
     battle();

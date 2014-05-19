@@ -51,12 +51,12 @@ void GameEngine::loadDebug() {
 void GameEngine::runEngine() {
   gameRes.addResource("test", "res/Units/unit_dummy.png");
   sf::Sprite testsprite(*(gameRes.getResource("test")));
-  //testsprite.setOrigin(testsprite.getLocalBounds().width/2, testsprite.getLocalBounds().height/2);
+  testsprite.setOrigin(testsprite.getLocalBounds().width/2, testsprite.getLocalBounds().height/2);
   testsprite.setPosition(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 
-  GUIFrame frame;
-  frame.setup(getEngine());
-  frame.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - 80), sf::Vector2i(920,120));
+  //GUIFrame frame;
+  //frame.setup(getEngine());
+  //frame.build(sf::Vector2i(WINDOW_WIDTH/2, WINDOW_HEIGHT - 80), sf::Vector2i(920,120));
 
   while (gameWindow.isOpen()) {
     sf::Event ev;
@@ -64,6 +64,7 @@ void GameEngine::runEngine() {
       if (ev.type == sf::Event::Closed) {
         cleanup();
         gameWindow.close();
+        return;
       }
       if (ev.type == sf::Event::LostFocus) focus = false;
       if (ev.type == sf::Event::GainedFocus) focus = true;

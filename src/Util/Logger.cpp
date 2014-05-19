@@ -9,8 +9,10 @@
 using namespace std;
 
 Logger::Logger() {
-  log.open(LOG_FILE.c_str(), ios_base::trunc);
-  log << "LOG SYSTEM FOR '" << GAME_LABEL << " VER-" << VERSION_NUM
+  logg.open(LOG_FILE.c_str(), ios_base::trunc);
+  logg << "LOG SYSTEM FOR '" << GAME_LABEL << " VER-" << VERSION_NUM
+      << " STARTED." << endl;
+  cout << "LOG SYSTEM FOR '" << GAME_LABEL << " VER-" << VERSION_NUM
       << " STARTED." << endl;
   debugEnabled = true;
   prevLogType = ' ';
@@ -18,8 +20,8 @@ Logger::Logger() {
 }
 
 Logger::~Logger() {
-  log << "LOG SYSTEM CLOSING." << endl;
-  log.close();
+  logg << "LOG SYSTEM CLOSING." << endl;
+  logg.close();
 }
 
 void Logger::i(string msg) {
@@ -28,7 +30,7 @@ void Logger::i(string msg) {
   }
 
   if (DEBUG) cout << gameClock.getFormatTime() << " - " << msg << endl;
-  log << gameClock.getFormatTime() << " - " << msg << endl;
+  logg << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'i';
 }
 
@@ -38,7 +40,7 @@ void Logger::e(string msg) {
   }
 
   if (DEBUG) cout << gameClock.getFormatTime() << " - " << msg << endl;
-  log << gameClock.getFormatTime() << " - " << msg << endl;
+  logg << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'e';
 }
 
@@ -52,27 +54,27 @@ void Logger::d(string msg) {
   }
 
   if (DEBUG) cout << gameClock.getFormatTime() << " - " << msg << endl;
-  log << gameClock.getFormatTime() << " - " << msg << endl;
+  logg << gameClock.getFormatTime() << " - " << msg << endl;
   prevLogType = 'd';
 }
 
 void Logger::printheader(char type) {
-  log << "============ ";
+  logg << "============ ";
 
   switch (type) {
   case ('i'):
-    log << "INFO ";
+    logg << "INFO ";
     break;
   case ('e'):
-    log << "ERROR ";
+    logg << "ERROR ";
     break;
   case ('d'):
-    log << "DEBUG ";
+    logg << "DEBUG ";
     break;
   default:
-    log << "EXTRA ";
+    logg << "EXTRA ";
     break;
   }
 
-  log << "============" << endl;
+  logg << "============" << endl;
 }
