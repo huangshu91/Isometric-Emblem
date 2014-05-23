@@ -7,6 +7,10 @@ TODO:
 	-MAP LOADING
 	-EXPERIENCE/LEVELUP/LEVEL
 	-UNIT TYPES/ADV STATS
+
+	AnimationEffects.  Lightning. Opengl shaders.
+
+	Link items in text.  Text that is linked will be a different color and can be hovered (selected?) to pop up description of the item.
 	
 	Items, name will be a unique identifier.
 	
@@ -53,8 +57,6 @@ TODO:
 	Map source too big.  Split into different source files.  One for handling the map during runtime and the other for loading/setting up the map.
 	
 	Map::createEntity is to load ENEMY entities for that level.  setupEntity is just for player entities and does not load from file.  hardcode player entities in database.
-	
-	Camera.  In update, at the end of smooth state, if setcenter, there is a slight whiplash effect.  can keep or remove.
 	
 	EXP gain.  Until I flesh out class structure and have an idea of how growth should work, not going to bother making
 	exp gain formula.  Static exp gain of 50 per killed unit.  Once the expwidget reaches 100, call level up on unit.  This might be bad design but it lets the animation finish before displaying level up screen.

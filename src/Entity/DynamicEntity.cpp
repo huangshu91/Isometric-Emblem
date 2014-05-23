@@ -32,6 +32,7 @@ DynamicEntity::DynamicEntity(GameEngine* eng, string n)
   exp = 0;
 }
 
+//add third param, itembag
 void DynamicEntity::buildUnit(StatPack s, unit::Control c) {
   s.hp = s.max_hp;
   base = s;
@@ -43,6 +44,10 @@ void DynamicEntity::buildUnit(int hp, int max, int s, int de,
     int a, int d, int r, int l, int co, int ch, unit::Control c){
   StatPack temp(hp, max, s, de, a, d, r, l, co, ch);
   buildUnit(temp, c);
+}
+
+void DynamicEntity::addItem(Item it) {
+
 }
 
 DynamicEntity::~DynamicEntity() { }

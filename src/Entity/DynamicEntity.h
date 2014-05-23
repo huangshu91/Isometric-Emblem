@@ -14,6 +14,7 @@
 #include "../Util/UtilValues.h"
 #include "../Entity/BattleManager.h"
 #include "../Item/Item.h"
+#include "../Item/ItemBag.h"
 
 class GameEngine;
 class Cell;
@@ -48,6 +49,7 @@ public:
   void buildUnit(StatPack s, unit::Control c = unit::ENEMY);
   void buildUnit(int hp, int max, int s, int dee, int a, int d,
       int r, int l, int co, int ch, unit::Control c = unit::ENEMY);
+  void addItem(Item it);
 
   // modify these later to give calculated values
   int getPow();
@@ -75,6 +77,8 @@ private:
 
   Map* map_ptr;
   Cell* tile_ptr;
+
+  ItemBag inven;
 };
 
 #endif /* DYNAMICENTITY_H_ */
